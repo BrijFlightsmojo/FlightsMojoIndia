@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @*<picture>
+            <img src="/images/deal_new.webp" />
+            <img src="/images/deal_new.jpg"  />
+        </picture>*@ 
+
+        <picture>
+            <source srcset="/images/deal_new.webp" type="image/webp">
+            <img src="/images/deal_new.jpg" />
+        </picture>
+
+    </div>
+</div>
+

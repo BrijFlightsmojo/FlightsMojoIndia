@@ -1,0 +1,13 @@
+  :
+---------------------------------------------Original Request11.56.03 AM 15 February 2024---------------------------------------------
+{"userSessionID":"r1v1dgg4ndvv3ki5b54nzav1","userSearchID":"1502241154227589a1494b904880bcc01409ab0159f5","userLogID":"1502241154227589a1494b904880bcc01409ab0159f5","client":0,"segment":[{"originAirport":"DEL","orgArp":{"airportCode":"DEL","airportName":"New Delhi Indira Gandhi Intl","cityCode":"DEL","cityName":"Delhi","countryCode":"IN","countryName":"India","showSeq":0},"destinationAirport":"BOM","destArp":{"airportCode":"BOM","airportName":"Chhatrapati Shivaji","cityCode":"BOM","cityName":"Mumbai","countryCode":"IN","countryName":"India","showSeq":0},"travelDate":"2024-02-29T00:00:00"}],"searchDirectFlight":false,"flexibleSearch":false,"tripType":1,"adults":1,"child":0,"infants":0,"cabinType":1,"airline":"ALL","currencyCode":"INR","siteId":2,"sourceMedia":"1000","sID":null,"rID":null,"locale":null,"isNearBy":false,"limit":null,"page":null,"pageValue":null,"userIP":"::1","serverIP":null,"fareCachingKey":null,"isMetaRequest":false,"fareType":0,"travelType":1,"deepLink":"/flight/searchFlightResult?org=DEL&dest=BOM&depdate=29-02-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr","redirectID":null,"isGetLiveFare":false,"tgy_Request_id":"15022024115422","TvoTraceId":null,"ST_ResultSessionID":null}
+------------------------------------------------------
+
+
+
+---------------------------------------------Original Response11.56.03 AM 15 February 2024---------------------------------------------
+{"airlineList":[],"stop":[],"result":[],"resultReturn":null,"depCity":null,"retCity":null,"depDate":null,"retDate":null,"gdsList":[],"isReturn":false,"minPrice":0,"maxPrice":0,"depTimeDur":[1,2,3,4],"arrTimeDur":[1,2,3,4],"request":null,"flexiFare":"0","nearByFare":"0","nonStopFare":"0","isShowDetails":false,"Currency":null,"redirectURl":"/flight/NoResult/1502241154227589a1494b904880bcc01409ab0159f5","totpax":0}
+------------------------------------------------------
+
+
+

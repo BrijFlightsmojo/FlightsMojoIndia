@@ -1,0 +1,150 @@
+﻿@model Core.Flight.FlightSearchRequest
+@using Core.Flight;
+@using Core;
+@using Newtonsoft.Json;
+@using System.Diagnostics;
+@using MojoIndia.Controllers;
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_LayoutFlight.cshtml";
+}
+@section AdditionalMeta
+{
+    <title>Flightmojo</title>
+}
+<style>
+    .search-main-div {
+    background: #eee;
+}
+    
+.logo a img{ width: 60%;padding-left: 20px;}
+         .mobile-calling h3 {
+        font-size: 14px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .mobile-calling span {
+        font-size: 14px;
+        color: #a5171b;
+    }
+
+    .mobile-calling .deal-code {
+        background: #fff;
+        text-align: center;
+        padding: 5px;
+        width: 155px;
+        border: #ccc dashed 1px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .mobile-calling table tr td {
+        padding: 10px;
+    }
+        .mobile_left {
+        width: 16%;
+        text-align: left;
+        float: left;
+        padding-top: 15px;
+    }
+
+    .mobile_mid {
+        width: 56%;
+        text-align: left;
+        float: left;
+    }
+
+    .mobile_last {
+        width: 25%;
+        float: right;
+        padding-top: 13px;
+    }
+    .modify_search {
+  
+  display: block !important;
+   height:inherit !important;
+  position:relative !important;
+}
+</style>
+
+<section class="modify_seach">
+    <div class="modify_con">
+        <div class="container no_padding">
+            <div class="destinatin_Mod">               
+                @{ Html.RenderPartial("/Views/Shared/SearchEngineModify.cshtml");}
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="clearfix"></div>
+<div class="container-fluid search-main-div">
+    <div class="row">
+
+        <div class="middle-search_no">
+            <div class="no_result">
+                <div class="no_result_left">
+                    <div class=""><img src="/images/call_center.jpg" alt="call-center" /></div>
+                    <h1>Sorry! No Result Found</h1>
+                    <p>We have Searched more than million Flights Combination. We didn't find any Flights for Your Search. </p>
+                    <h3>Let Our Agents Help You Find The Best Flight Option!</h3>
+                    <h5> Call Now </h5>
+                    <a href="tel:@GlobalData.Phone"><dfn></dfn> @GlobalData.Phone</a>
+
+                </div>
+                @*<div class="no_result_right"><img src="/images/call_center.png" alt="call-center" /></div>*@
+            </div>
+            @*<div class="mobile-calling">
+                <div class="mobile_left"><img src="/images/telephone.png" class="dep-ai-img" /> </div>
+                <div class="mobile_mid">
+                    <h3>Call us for phone only </h3>
+                    <span>unpublished fares</span>
+                    <div class="deal-code">Deal Code: A2258512</div>
+                </div>
+                <div class="mobile_last">
+                    <a href="tel:@GlobalData.Phone" class="btn  float-right" aria-hidden="true" style="background-color: #0b4a80 !important; color:#fff; "> <i class="fa fa-phone"></i> CALL </a>
+                </div>
+            </div>*@
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/MojoIndiaJsResult")
+    <script>
+        $(document).ready(function () {
+            $('ul li').click(function () {
+                $('li').removeClass("active");
+                $(this).addClass("active");
+            });
+            ResultSuccess();
+        });
+    </script>
+    <script>
+        function ResultSuccess() {
+
+            var adult = parseInt($("#Adult").val());
+            var child = parseInt($("#Child").val());
+            var infant = parseInt($("#Infant").val());
+            var totpax = adult + child + infant;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'search',
+                'link_name': 'null search',
+                'origin_city': $("#hfCity_from").val(),
+                'destination_city': $("#hfCity_to").val(),
+                'depart_date': $("#departure_date").val(),
+                'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+                'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+                'passenger_count': totpax,
+                'airline_class': $("#Cabin option:selected").text()
+            });
+        }
+    </script>
+}
+
+
+

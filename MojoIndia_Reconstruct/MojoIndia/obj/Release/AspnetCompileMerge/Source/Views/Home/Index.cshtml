@@ -1,0 +1,205 @@
+﻿@model Core.ContentPage.OriginDestinationContent
+@{
+    ViewBag.Title = "Home Page";
+}
+@section AdditionalMeta{
+    <title>Book Cheap Flight Tickets Online | Airline Tickets | FlightsMojo</title>
+    <meta name="description" content="Get the best flight deal at a discount price with FlightsMojo.In. Book online air tickets for Domestic & International flights across India. Book Now!" />
+    <meta name="keywords" content="Online Flight Booking, Domestic Flight Booking, International Flight Booking, Domestic & International Flights, Airline Tickets India, last-minute flights, Airline Reservation, Budget Airlines India, Low Air Fare, Lowest Air Fares, Flight Bookings India, Airline Booking, Cheap Flights Abroad, Cheap Airline Tickets, Cheap Airfares, Airline Tickets India, Airline Tickets International, Domestic Discount Travel Airfares," />
+    <link rel="canonical" href="https://www.flightsmojo.in/" />
+    <meta name="author" content="Flights Mojo" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="INDEX, FOLLOW" />
+    <meta name="Copyright" content="https://www.flightsmojo.in/" />
+    <meta property="og:title" content="Book Cheap Flight Tickets Online | Airline Tickets | FlightsMojo" />
+    <meta property="og:description" content="Get the best flight deal at a discount price with FlightsMojo.In. Book online air tickets for Domestic & International flights across India. Book Now!" />
+    <meta property="og:url" content="https://www.flightsmojo.in/" />
+    <meta property="og:type" content="Travel Agency" />
+    <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />
+    <meta name="google-site-verification" content="q0BfdWkjWsvjXD8U_ZvtnecpMhT_SRRzrUkUFcwBBLE" />
+    <link rel="alternate" href="https://www.flightsmojo.in/" hreflang="en-in" />
+    <link rel="alternate" hreflang="x-default" href="https://www.flightsmojo.in/" />
+}
+
+<main>
+    <div class="searc_bg">
+        <div class="container">
+            <div class="row">
+                @{ Html.RenderPartial("~/Views/Shared/SearchEngine.cshtml");}
+                <input type="hidden" id="HomePageindex" name="HomePage" />
+            </div>
+        </div>
+    </div>
+    <div class="trust_container DesktopCon">
+        <div class="container">
+            <picture>
+                <source srcset="/images/travel_icon.webp" type="image/webp" />
+
+                <img loading="lazy" src="/images/travel_icon.png" alt="banner" />
+            </picture>
+
+        </div>
+    </div>
+    <div class="trust_container mobile porelative">
+        <div class="container">
+            <picture>
+                <source srcset="/images/icon_travel.webp" type="image/webp" />
+
+               <img loading="lazy" src="/images/icon_travel.png" alt="banner" />
+            </picture>
+
+        </div>
+    </div>
+
+    <div class="trust_pilot_con">
+        <div class="container">
+            <div class="row">
+                <div class="tp_container">
+                    <div data-romw-token="ck15c9nAI4hMGt68Hr18kHA0dMpYudzU5xxakB1kyMPLUkZFz2"></div>                   
+                    <div data-romw-token="bf0ae0CVfZ448bq1qbjgbZ6VRnBpqA1dOabBBE7wp311G4zhrP"></div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="populal_main">
+        <div class="container">
+            <h2>Popular Routes</h2>
+            <div class="row">
+                <div class="row">
+                    <ul id="ulDealDetails"></ul>
+                    <input type="hidden" id="hfdealType" value="3" />
+                    <input type="hidden" id="hforigin" value="" />
+                    <input type="hidden" id="hfdestination" value="" />
+                    <input type="hidden" id="hfairline" value="" />
+                    <input type="hidden" id="hftripType" value="1" />
+                    <input type="hidden" id="hfcabinClass" value="1" />
+                </div>
+                <div class="fare_quted">
+                    <h6>*All fares are quoted in INR.</h6>
+                    <p>Last updated on @DateTime.Today.AddDays(-7).ToString() , the fares mentioned above are for flight tickets and inclusive of fuel surcharges, <a href="/user-agreement">user agreement.</a> Based on historical data, these fares are subject to change without prior notice and cannot be guaranteed at the time of booking. Kindly go through our <a href="/terms-condition">terms and conditions</a>  before booking.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="whychoose_con">
+        <div class="container-fluid">
+            <div class="whychoose_20">
+                <h3>Why Book With Us?</h3>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/pci_small.png" alt="pci" /></div>
+                <div class="choose_right border_right">
+                    <h4>Safe & Secure</h4>
+                    <p>Purchase with Confidence: Safe & Secure Bookings</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/easy_small.png" alt="easyicon" /></div>
+                <div class="choose_right border_right">
+                    <h4>EASY BOOKING</h4>
+                    <p>We offer easy and convenient flight bookings with attractive offers.</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/repee_small.png" alt="rupee icon" /></div>
+                <div class="choose_right border_right">
+                    <h4>LOWEST PRICE</h4>
+                    <p>We ensure low rates on hotel reservation, holiday packages and on flight tickets.</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/custome_small.png" alt="icon" /></div>
+                <div class="choose_right">
+                    <h4>24/7 SUPPORT</h4>
+                    <p>Get assistance 24/7 on any kind of travel related query. We are happy to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@*<div id="bkgOverlay" class="backgroundOverlay"></div>
+        <div id="delayedPopup" class="delayedPopupWindow" style="display:none;">
+            <div class="popup_top">
+              <div class="popup_left">
+                        <img src="/images/logo_white.png" alt="logo" />
+                    </div>
+            <div class="popup_middle">
+                <h2>Want help finding the best deal?</h2>
+                <p>Discover unpublished fares by calling our Toll Free Number.</p>
+            </div>
+            <div class="popup_right">
+                <a id="btnClose" title="Click here to close this deal box.">[X]</a>
+            </div>
+        </div>
+        <div class="popup_main_con container">
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5 no-padding pop_divcon">
+                <div class="popup_reason">
+                    <div class="reason_header">
+                        <h5>Top 3 Reasons</h5>
+                        <p>Why Call Us?</p>
+                    </div>
+                    <div class="reason_content">
+                        <div><img src="/images/icon_takeof.png" alt="icon" /><p> Get bargain Airfares!</p></div>
+                        <div><img src="/images/ph24.png" alt="icon" /><p> Enjoy outstanding service!</p></div>
+                        <div><img src="/images/stop_icon2.png" alt="icon" /><p> Save your time on researching deals!</p></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7 pop_divconone ">
+                <p>Talk to one of our experienced Agents to get the best airfares</p>
+                <h3>You may save up to 70%*</h3>
+                <div class="callus_div">
+                    <div class="call_divc">
+                        <p>CALL(TOLL FREE)</p>
+                        <a href="tel:@ViewBag.PhoneNo">
+                            @ViewBag.PhoneNo
+                        </a>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="cllnow_popup">
+                        <a href="tel:@ViewBag.PhoneNo">
+                            <i class="fa fa-phone"></i>Call Now
+                        </a>
+                    </div>
+                    <p> Disclaimer - *The fares displayed on the website are up to 70 % cheaper as compared to the highest fare in the same cabin.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pop_divcon mob">
+            </div>
+        </div>
+    </div>*@
+
+
+@*@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#bkgOverlay").delay(1000).fadeIn(400);
+            $("#delayedPopup").delay(1000).fadeIn(400);
+            $("#btnClose").click(function (e) {
+                HideDialog();
+                e.preventDefault();
+            });
+        });
+
+        function HideDialog() {
+            $("#bkgOverlay").fadeOut(400);
+            $("#delayedPopup").fadeOut(400);
+        }
+        function closewebsitePopupBanner() {
+            $(".websitePopupBanner").hide();
+        }
+        $('.dropdown-toggle').on('click', function () {
+            $('.dropdown-menu').fadeToggle("slow");
+        });
+    </script>
+}*@
+
+
+
+
+<script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
+<script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>

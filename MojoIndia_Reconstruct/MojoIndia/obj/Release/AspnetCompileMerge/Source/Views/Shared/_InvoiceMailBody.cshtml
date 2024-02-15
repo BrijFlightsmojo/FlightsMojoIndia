@@ -1,0 +1,35 @@
+﻿@model FM_Core.Booking.FlightsBookingDetails
+@using FM_Core
+
+
+<table cellpadding="0" cellspacing="0" align="center" border="0" style="width:600px;  text-align:center; font-size:12px; line-height:30px; font-family:Arial, Helvetica, sans-serif; box-sizing:border-box;">
+    <tr>
+        <td align="center" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #ccc; border-collapse:collapse; width:100%; font-family:Arial, Helvetica, sans-serif;">
+                <tr style="border-bottom: 1px solid #ccc; background:#f1f3f4;">
+                    <td style="font-size:14px; color:#565555;text-align:left; font-weight:bold; padding:8px;">Important update</td>
+                    <td style="padding:8px;text-align:right;"><img style="width:150px;" src="https://www.flightsmojo.in/images/logo.png" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background:#f1f3f4; padding:15px;">
+                        <table style="width:100%;border:1px solid #ccc; border-radius:15px; background:#fff;">
+                            <tr>
+                                <td colspan="2" style="font-size:14px; color:#565555; font-weight:bold; padding:0 6px;">Dear @(Model.Booking.PaxFirstName +" "+Model.Booking.PaxMiddleName+" "+Model.Booking.PaxLastName),</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-size:14px; color:#565555; padding:0 6px;">Please find attached the Invoice for your Flight booking @("("+"FM"+"-"+Model.Booking.BookingID+")") with Flightsmojo On @Model.Booking.Booking_Date_Time <b>( Your Invoice is not a valid travel document )</b></td>
+                            </tr>
+                            <tr><td colspan="2" style="font-size:14px; color:#565555; padding:0 6px;">Please write to us at <a href="mailto:care@flightsmojo.in">care@flightsmojo.in</a> or call us on : <b>0124-445-2000</b></td></tr>
+                            <tr>
+                                <td colspan="2" style="font-size:14px; color:#565555; padding:0 6px;">Regards,</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-size:14px; color:#000; padding:0 6px; font-weight:bold;">Flights Mojo</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

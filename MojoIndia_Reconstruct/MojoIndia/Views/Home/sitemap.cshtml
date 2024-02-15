@@ -1,0 +1,184 @@
+﻿@model Sitemap
+@using Core;
+@using Core.ContentPage;
+@{
+    ViewBag.Title = "Sitemap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section AdditionalMeta
+{
+    <title>Sitemap - FlightsMojo.in</title>
+    <meta name="description" content="Check the sitemap to get the details of flights at FlightsMojo.in">
+    <meta name="keywords" content="Cheap flight tickets,Airline fares, Airline ticket deals,Cheap Flights,Air tickets,">
+    <meta name="author" content="Flights Mojo">
+    <meta name="language" content="en" />
+    <meta name="robots" content="INDEX, FOLLOW">
+    <link rel="canonical" href="https://www.flightsmojo.in/sitemap" />
+    <link rel="stylesheet" href="/Content/listnav.css">
+}
+
+<style>
+   .listNav, .ln-letters {
+    overflow: visible;
+    width: 100%;
+    float: left;
+    padding-bottom: 6px;
+    display: flex;
+}
+   .ln-letters a:hover, .ln-letters .ln-selected {
+    background-color: #000000;
+}
+.ln-letters .ln-disabled{background-color:gray;}
+.ln-letters a{border: 1px solid silver;border-right: none;display: block;float: left;font-size: .9em;padding: 2px 4px;flex: auto;color: #FF5722;text-align: center;}
+   
+
+</style>
+
+<section class="search_bg">
+    <div class="container">
+        <h1>Sitemap</h1>
+    </div>
+</section>
+<div id="main_content_wrap" class="outer">
+    <section class="site_map inner" id="main_content">
+        <div class="container">
+            <div class="row">
+                <div class="quick_linck">
+                    <h2>Top Flight Routes</h2>
+                    <div id="main_content_wrap" class="outer">
+                        <section id="main_content" class="inner">
+                            @if (Model != null)
+                            {
+
+                            <ul id="divOnD" class="demo">
+                                @foreach (var item in Model.OnD)
+                                    {
+                                    <li>
+                                        <a href="flights/@(item.OriginName.Trim().Replace(" ","-")+"-"+@item.OriginCode+"-"+@item.DestinationName.Trim().Replace(" ","-")+"-"+@item.DestinationCode+"-cheap-airtickets")" style="text-transform: capitalize;">
+                                            <i class="fa fa-angle-double-right"></i>  @item.OriginName to @item.DestinationName Flights
+                                        </a>
+                                    </li>
+                                    }
+                            </ul>
+                            }
+                        </section>
+                    </div>
+                </div>
+                <div class="quick_linck">
+                        <h2>Domestic Flight Cities</h2>
+                        @if (Model != null)
+                    {
+                            <ul id="divCity" class="demo">
+                                @foreach (var CC in Model.cityContent)
+                                {
+                                    <li>
+                                        <a href="city/cheap-flights-to-@(CC.CityName.Trim().Replace(" ","-")+"-"+CC.CityCode.Trim().Replace(" ","-"))" style="text-transform: capitalize;">
+                                            <i class="fa fa-angle-double-right"></i>Flights to @CC.CityName
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+
+
+                <div class="quick_linck">
+                    <h2>Top Airlines</h2>
+                    @if (Model != null)
+                    {
+                        <ul id="divAirline" class="demo">
+                            @foreach (var AC in Model.AirlineContent)
+                            {
+                                <li>
+                                    <a href="/airline/@((AC.AirlineName.Replace(" ", "-") + "-" + AC.AirlineCode)+"-flight-tickets")" style="text-transform: capitalize;">
+                                        <i class="fa fa-angle-double-right"></i>@AC.AirlineName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+
+
+                <div class="quick_linck">
+                    <h2>Top Deals</h2>
+                    @if (Model != null)
+                    {
+                        <ul id="divdeals" class="demo">
+                            @foreach (var DC in Model.DealsContent)
+                            {
+                                <li>
+                                    <a href="/deals/@(DC.ThemeName.Replace(" ", "-"))" style="text-transform: capitalize;">
+                                        <i class="fa fa-angle-double-right"></i>@DC.ThemeName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </section>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="Scripts/jquery-listnav.js"></script>
+    <script src="Scripts/vendor.js"></script>
+    <script>
+        $(function () {
+            $('#divOnD').listnav({
+                includeOther: true,
+                letters: ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+                prefixes: ['a', 'The Complete Works of']
+            });
+            //$('.demo a').click(function (e) {
+            //    e.preventDefault();
+            //});
+        });
+    </script>
+
+<script>
+        $(function () {
+            $('#divCity').listnav({
+                includeOther: true,
+                letters: ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+                prefixes: ['a', 'The Complete Works of']
+            });
+            //$('.demo a').click(function (e) {
+            //    e.preventDefault();
+            //});
+        });
+</script>
+
+
+<script>
+        $(function () {
+            $('#divAirline').listnav({
+                includeOther: true,
+                letters: ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+                prefixes: ['a', 'The Complete Works of']
+            });
+            //$('.demo a').click(function (e) {
+            //    e.preventDefault();
+            //});
+        });
+</script>
+
+<script>
+        $(function () {
+            $('#divdeals').listnav({
+                includeOther: true,
+                letters: ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+                prefixes: ['a', 'The Complete Works of']
+            });
+            //$('.demo a').click(function (e) {
+            //    e.preventDefault();
+            //});
+        });
+</script>
+}

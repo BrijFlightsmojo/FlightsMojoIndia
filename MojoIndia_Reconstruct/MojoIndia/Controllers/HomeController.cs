@@ -1,0 +1,539 @@
+﻿using Core;
+using Core.ContentPage;
+using Dal;
+//using iTextSharp.text;
+//using iTextSharp.text.html.simpleparser;
+//using iTextSharp.text.pdf;
+using MojoIndia.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MojoIndia.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index(string id)
+       {
+            if (Request.QueryString["utm_source"] != null)
+            {
+                setCookie(Request.QueryString.Get("utm_source"));
+            }
+
+            //sendMSG();
+            Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
+            OriginDestinationContent acd = ODC.OriginDestinationWithDealHomePage(3, "", "", "", 1, 1);
+            return View(acd);
+        }
+
+        private void sendMSG()
+        {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            String result;
+            //string apiKey = "NDQ3MDY0NmY0NDRiNzAzMTdhNTczNjUyNjQzNzYxNTA=";
+            //string numbers = fsr.phoneNo; // in a comma seperated list
+            //string message = "Dear '" + fsr.passengerDetails + "',Thank you for choosing FlightsMojo.in. You flight to Delhi is confirmed and ticketed.Please find the details below:FM Booking ID: '" + fsr.bookingID + "' Airline PNR: '" + fsr.PNR + "' Travel Date: '" + fsr.bookingID + "' In case of any queries, please reach out to us at 9874563210or email us at care@flightsmojo.in";
+            //string sender = "FLMOJO";
+            //String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
+            //refer to parameters to complete correct url string
+
+
+            String url = "https://api.textlocal.in/send/?apikey=NDQ3MDY0NmY0NDRiNzAzMTdhNTczNjUyNjQzNzYxNTA=&numbers=7668677843&message=Dear BRIJ,\n\nThank you for choosing FlightsMojo.in. You flight to LKO is confirmed and ticketed.\nPlease find the details below:\n\nFM Booking ID: 100000\nAirline PNR: ABC123\nTravel Date: 24-JAN\n\nIn case of any queries, please reach out to us at 0124-445-2000 or email us at care@flightsmojo.in&sender=FLMOJO";
+            StreamWriter myWriter = null;
+            HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+
+            objRequest.Method = "POST";
+            objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
+            objRequest.ContentType = "application/x-www-form-urlencoded";
+            try
+            {
+                myWriter = new StreamWriter(objRequest.GetRequestStream());
+                myWriter.Write(url);
+            }
+            catch (Exception e)
+            {
+                //return e.Message;
+                 e.ToString();
+            }
+            finally
+            {
+                myWriter.Close();
+            }
+
+            HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+            using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
+            {
+                result = sr.ReadToEnd();
+                sr.Close();
+            }
+            //return result;
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        [HttpGet]
+        [ActionName("contact-us")]
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "contact-us";
+            CaptchaModel obj = new CaptchaModel();
+            return View("Contact", obj);
+        }
+        [HttpPost]
+        [ActionName("contact-us")]
+        public ActionResult Contact(CaptchaModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                obj.sendMsg = "";
+                ViewBag.Message = "contact-us";
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("<table border='1' cellpadding='10' cellspacing='10' style='width:700PX;'>");
+                sb.Append("    <tr><td style='width:30%'>Name</td><td style='width:70%'>" + obj.Name + "</td></tr>");
+                sb.Append("    <tr><td>EmailID</td><td>" + obj.EmailID + "</td></tr>");
+                sb.Append("    <tr><td>PhoneNo</td><td>" + obj.PhoneNo + "</td></tr>");
+                sb.Append("    <tr><td>Massege</td><td>" + obj.Massege + "</td></tr>");
+                sb.Append("</table>");
+
+                Core.SendEmailRequest objSendEmailRequest = new Core.SendEmailRequest();
+                objSendEmailRequest.FromEmail = GlobalData.SendEmail;
+                objSendEmailRequest.ToEmail = GlobalData.Email;
+                objSendEmailRequest.BccEmail = "kundan@flightsmojo.com";
+                objSendEmailRequest.MailSubject = "Contact us mail for flightsmojo.in";
+                objSendEmailRequest.MailBody = sb.ToString();
+                objSendEmailRequest.BookingID = 0;
+                objSendEmailRequest.prodID = 0;
+                objSendEmailRequest.MailType = "ContactUs";
+
+                bool isSend = new Bal.SMTP().SendEMail(objSendEmailRequest);
+
+                obj.sendMsg = isSend ? "We have accepted your query. Our support team will contact you shortly. Thank you!" : "Due to some technical resion we are not accept your query, Please try again After some time, Thankyou!";
+                obj.Name = "";
+                obj.EmailID = "";
+                obj.PhoneNo = "";
+                obj.Massege = "";
+                return View("Contact", obj);
+            }
+            else
+            {
+                obj.sendMsg = "";
+                return View("Contact", obj);
+            }
+        }
+        [ActionName("about-us")]
+        public ActionResult about_us()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View("about_us");
+        }
+        [ActionName("terms-condition")]
+        public ActionResult TermsCondition()
+        {
+            ViewBag.Message = "terms-condition";
+
+            return View("TermsCondition");
+        }
+        [ActionName("cancelation-policy")]
+        public ActionResult cancelationPolicy()
+        {
+            ViewBag.Message = "cancelation-policy";
+
+            return View("cancelationPolicy");
+        }
+        [ActionName("user-agreement")]
+        public ActionResult useragreement()
+        {
+            ViewBag.Message = "user-agreement";
+
+            return View("useragreement");
+        }
+
+        [ActionName("privacy-policy")]
+        public ActionResult PrivacyPolicy()
+        {
+            ViewBag.Message = "privacy-policy";
+
+            return View("PrivacyPolicy");
+        }
+        [ActionName("pay-now")]
+        public ActionResult paynow()
+        {
+            ViewBag.Message = "pay-now";
+
+            return View("paynow");
+        }
+        [ActionName("cancellation-change")]
+        public ActionResult cancellationchange()
+        {
+            ViewBag.Message = "cancellation-change";
+
+            return View("cancellationchange");
+        }
+        [ActionName("credit-card-verification")]
+        public ActionResult creditcardverification()
+        {
+            ViewBag.Message = "credit-card-cerification";
+
+            return View("creditcardverification");
+        }
+        [ActionName("disclaimer")]
+        public ActionResult Disclaimer()
+        {
+            ViewBag.Message = "Disclaimer";
+
+            return View("Disclaimer");
+        }
+        [ActionName("taxes-fees")]
+        public ActionResult taxesfees()
+        {
+            ViewBag.Message = "Taxes-fees";
+
+            return View("Taxesfees");
+        }
+        [ActionName("booking-guide-lines")]
+        public ActionResult bookingguidelines()
+        {
+            ViewBag.Message = "booking-guide-lines";
+
+            return View("bookingguidelines");
+        }
+        [ActionName("flight-changes")]
+        public ActionResult FlightChanges()
+        {
+            ViewBag.Message = "Flight-Changes";
+
+            return View("FlightChanges");
+        }
+
+        [ActionName("travel-advisory")]
+        public ActionResult traveladvisory()
+        {
+            ViewBag.Message = "travel-advisory";
+
+            return View("traveladvisory");
+        }
+        [ActionName("visa")]
+        public ActionResult visa()
+        {
+            ViewBag.Message = "visa";
+
+            return View("visa");
+        }
+        [ActionName("cookies")]
+        public ActionResult cookies()
+        {
+            ViewBag.Message = "cookies";
+
+            return View("cookies");
+        }
+        [ActionName("sitemap")]
+        public ActionResult sitemap()
+        {
+            Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
+            Sitemap SM = ODC.GetSitemap();
+            return View(SM);
+        }
+
+        public ActionResult genrateSiteMap()
+        {
+            SitemapXML();
+            return View();
+        }
+
+
+        public void SitemapXML()
+        {
+            try
+            {
+                Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
+                Core.ContentPage.Sitemap SM = ODC.GetSitemap();
+
+                System.Xml.XmlDocument XMLDoc = new System.Xml.XmlDocument();
+                System.Xml.XmlNode DocMode = XMLDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                XMLDoc.AppendChild(DocMode);
+
+                System.Xml.XmlElement DataNode = XMLDoc.CreateElement("urlset");
+
+                DataNode.SetAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
+                DataNode.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                DataNode.SetAttribute("schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
+
+                XMLDoc.AppendChild(DataNode);
+                System.Xml.XmlNode url1 = XMLDoc.CreateElement("url");
+                XMLDoc.DocumentElement.AppendChild(url1);
+
+                System.Xml.XmlNode loc1 = XMLDoc.CreateElement("loc");
+                loc1.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower()));
+                url1.AppendChild(loc1);
+
+
+                System.Xml.XmlNode changefreq = XMLDoc.CreateElement("changefreq");
+                changefreq.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                url1.AppendChild(changefreq);
+
+
+                System.Xml.XmlNode lastmod1 = XMLDoc.CreateElement("lastmod");
+                lastmod1.AppendChild(XMLDoc.CreateTextNode(DateTime.Now.ToString("yyyy-MM-dd")));
+                url1.AppendChild(lastmod1);
+
+                for (int i = 0; i < SM.OnD.Count; i++)
+                {
+                    XMLDoc.AppendChild(DataNode);
+                    System.Xml.XmlNode url = XMLDoc.CreateElement("url");
+                    XMLDoc.DocumentElement.AppendChild(url);
+
+                    System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
+                    string URL = SM.OnD[i].OriginName.Trim().Replace(" ", "-") + "-" + SM.OnD[i].OriginCode + "-" + SM.OnD[i].DestinationName.Trim().Replace(" ", "-") + "-" + SM.OnD[i].DestinationCode;
+                    loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + "/flights/" + URL + "-cheap-airtickets"));
+                    url.AppendChild(loc);
+
+                    System.Xml.XmlNode changefreq2 = XMLDoc.CreateElement("changefreq");
+                    changefreq2.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                    url.AppendChild(changefreq2);
+
+                    System.Xml.XmlNode lastmod = XMLDoc.CreateElement("lastmod");
+                    DateTime dt = SM.OnD[i].Created;
+                    lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
+                    url.AppendChild(lastmod);
+                    
+                }
+
+                for (int i = 0; i < SM.cityContent.Count; i++)
+                {
+                    XMLDoc.AppendChild(DataNode);
+                    System.Xml.XmlNode url = XMLDoc.CreateElement("url");
+                    XMLDoc.DocumentElement.AppendChild(url);
+
+                    System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
+                    string URL = SM.cityContent[i].CityName.Trim().Replace(" ", "-") + "-" + SM.cityContent[i].CityCode.Replace(" ", "-");
+                    loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + "/city/cheap-flights-to-" + URL));
+                    url.AppendChild(loc);
+
+                    System.Xml.XmlNode changefreq3 = XMLDoc.CreateElement("changefreq");
+                    changefreq3.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                    url.AppendChild(changefreq3);
+
+                    System.Xml.XmlNode lastmod = XMLDoc.CreateElement("lastmod");
+                    DateTime dt = SM.cityContent[i].InsertedOn;
+                    lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
+                    url.AppendChild(lastmod);
+                    
+                }
+
+
+                for (int i = 0; i < SM.AirlineContent.Count; i++)
+                {
+                    XMLDoc.AppendChild(DataNode);
+                    System.Xml.XmlNode url = XMLDoc.CreateElement("url");
+                    XMLDoc.DocumentElement.AppendChild(url);
+
+                    System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
+
+                    string URL = SM.AirlineContent[i].AirlineName.Trim().Replace(" ", "-") + "-" + SM.AirlineContent[i].AirlineCode.Replace(" ", "-")+ "-flight-tickets";
+                    loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + "/airline/" + URL));
+                    url.AppendChild(loc);
+
+                    System.Xml.XmlNode changefreq3 = XMLDoc.CreateElement("changefreq");
+                    changefreq3.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                    url.AppendChild(changefreq3);
+
+                    System.Xml.XmlNode lastmod = XMLDoc.CreateElement("lastmod");
+                    DateTime dt = SM.AirlineContent[i].InsertedOn;
+                    lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
+                    url.AppendChild(lastmod);
+                }
+
+
+
+
+
+                for (int i = 0; i < SM.DealsContent.Count; i++)
+                {
+                    XMLDoc.AppendChild(DataNode);
+                    System.Xml.XmlNode url = XMLDoc.CreateElement("url");
+                    XMLDoc.DocumentElement.AppendChild(url);
+
+                    System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
+                    string URL = SM.DealsContent[i].ThemeName.Trim().Replace(" ", "-");
+                    loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + "/deals/" + URL));
+                    url.AppendChild(loc);
+
+                    System.Xml.XmlNode changefreq3 = XMLDoc.CreateElement("changefreq");
+                    changefreq3.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                    url.AppendChild(changefreq3);
+
+                    System.Xml.XmlNode lastmod = XMLDoc.CreateElement("lastmod");
+                    DateTime dt = SM.DealsContent[i].InsertedOn;
+                    lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
+                    url.AppendChild(lastmod);
+                }
+
+                
+                string[] StaticUrl = { "/top-international-destinations", "/first-class-flights", "/last-minute-flights", "/about-us", "/terms-condition", "/privacy-policy", "/user-agreement",
+                    "/disclaimer","/contact-us","/sitemap","/flights","/airline","/deals" };
+                for (int i = 0; i < StaticUrl.Length; i++)
+                {
+                    XMLDoc.AppendChild(DataNode);
+                    System.Xml.XmlNode url = XMLDoc.CreateElement("url");
+                    XMLDoc.DocumentElement.AppendChild(url);
+
+                    System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
+                    string URL = StaticUrl[i];
+                    loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + URL));
+                    url.AppendChild(loc);
+
+
+                    System.Xml.XmlNode changefreq1 = XMLDoc.CreateElement("changefreq");
+                    changefreq1.AppendChild(XMLDoc.CreateTextNode("Daily"));
+                    url.AppendChild(changefreq1);
+
+                    System.Xml.XmlNode lastmod = XMLDoc.CreateElement("lastmod");
+                    lastmod.AppendChild(XMLDoc.CreateTextNode(DateTime.Now.ToString("yyyy-MM-dd")));
+                    url.AppendChild(lastmod);
+
+                    //System.Xml.XmlNode priority = XMLDoc.CreateElement("priority");
+                    //priority.AppendChild(XMLDoc.CreateTextNode("1.00"));
+                    //url.AppendChild(priority);
+                }
+
+
+
+                var BasePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+                if (!System.IO.Directory.Exists(BasePath))
+                {
+                    System.IO.Directory.CreateDirectory(BasePath);
+                }
+                var newfile = string.Format("{0}{1}", "sitemap", ".xml");
+                XMLDoc.Save(BasePath + newfile);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter(ex.ToString(), "Errorsitemap_" + DateTime.Today.ToString("ddMMyy"), "Error");
+            }
+        }
+
+        //[ActionName("Affiliate-Programme")]
+        // public ActionResult AffiliateProgramme()
+        // {
+        // ViewBag.Message = "Affiliate-Programme";
+
+        // return View("AffiliateProgramme");
+        //}
+
+        [ActionName("us-top-destination")]
+        public ActionResult ustopdestination()
+        {
+            ViewBag.Message = "us-top-destination";
+
+            return View("US_Top_Destination");
+        }
+        [ActionName("top-international-destinations")]
+        public ActionResult topinternationaldestinations()
+        {
+            ViewBag.Message = "top-international-destinations";
+
+            return View("Top_International_Destinations");
+        }
+        [ActionName("first-class-flights")]
+        public ActionResult firstclassflights()
+        {
+            ViewBag.Message = "first-class-flights";
+
+            return View("firstclassflights");
+        }
+        [ActionName("last-minute-flights")]
+        public ActionResult lastminuteflights()
+        {
+            ViewBag.Message = "last-minute-flights";
+
+            return View("LastMinuteFlights");
+        }
+        [ActionName("404")]
+        public ActionResult error404()
+        {
+            //return Redirect("/");
+            Response.StatusCode = 404;
+            //ViewBag.Message = "";
+
+            return View("error404");
+        }
+        [ActionName("500")]
+        public ActionResult error500()
+        {
+            ViewBag.Message = "";
+            return View("error500");
+        }
+        [ActionName("UpdateStaticData")]
+        public ActionResult UpdateStaticData()
+        {
+            Core.FlightUtility.LoadMasterData();
+            ViewBag.Message = "";
+            return View("error404");
+        }
+        //[ActionName("test")]
+        //public ActionResult test()
+        //{
+        //    return View();
+        //    //Core.SendEmailRequest sendEmailRequest = new Core.SendEmailRequest() { FromEmail = GlobalData.SendEmail, ToEmail = "kundan@flightsmojo.com", CcEmail = "support@flightsmojo.com", MailSubject = "test by kundan", MailBody = "test by kundan" };
+        //    //new Bal.SMTP().SendEMail(sendEmailRequest);
+        //    //ViewBag.Message = "pay-now";
+
+        //    //return View("paynow");
+        //}
+
+        public void setCookie(string sourceMedia)
+        {
+            int intSmedia;
+            bool bNum = int.TryParse(sourceMedia, out intSmedia);
+            sourceMedia = bNum ? intSmedia.ToString() : "1000";
+            HttpCookie FMsMedia = new HttpCookie("FMsMediaIndia");
+            FMsMedia["sMediaIndia"] = sourceMedia;
+            FMsMedia.Expires = DateTime.Now.AddHours(1);
+            Response.Cookies.Add(FMsMedia);
+        }
+        public string GetCookie()
+        {
+            string sMedia = "";
+            HttpCookie FMsMedia = Request.Cookies["FMsMediaIndia"];
+            if (FMsMedia != null)
+            {
+                sMedia = FMsMedia["sMediaIndia"].ToString();
+            }
+            if (string.IsNullOrEmpty(sMedia))
+                sMedia = "1000";
+            return sMedia;
+        }
+
+
+        [ActionName("flights")]
+        public ActionResult flights()
+        {
+            return View("flights");
+        }
+
+
+        //[ActionName("deals")]
+        //public ActionResult deals()
+        //{
+        //    ViewBag.Message = "Your contact page.";
+
+        //    return View("deals");
+        //}
+    }
+}

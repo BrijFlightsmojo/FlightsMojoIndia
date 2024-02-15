@@ -1,0 +1,7 @@
+System.Net.WebException: The remote name could not be resolved: 'api.razorpay.com'
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Razorpay.Api.RestClient.MakeRequest(String relativeUrl, HttpMethod method, String data)
+   at Razorpay.Api.Entity.Request(String relativeUrl, HttpMethod verb, Dictionary`2 options)
+   at Razorpay.Api.Order.Create(Dictionary`2 data)
+   at MojoIndia.Controllers.FlightController.details(String mode, String ID)

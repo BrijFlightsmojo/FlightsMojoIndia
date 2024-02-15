@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "us-top-destination";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@section AdditionalMeta
+{
+    <link rel="canonical" href="https://www.flightsmojo.in/us-top-destination" />
+}
+<section class="banner_section" style="background:#6dc0e5;">
+    <div class="container">
+        <div class="row ">
+           
+            <div class="lastmin">
+                <h1>Popular International Destinations</h1>
+            </div>
+       
+            @{ Html.RenderPartial("~/Views/Shared/SearchEngine.cshtml");}
+        </div>
+
+        
+    </div>
+</section>
+

@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FMJ">
+    @RenderSection("AdditionalMeta", false)
+    <script src="https://kit.fontawesome.com/c3632ac11d.js" crossorigin="anonymous"></script>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+    @*<link rel="icon" href="images/favicon.ico" type="image/x-icon">*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<!-- Google Tag Manager -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-NZ4KF2T');
+</script>
+
+<!-- End Google Tag Manager -->
+    @Styles.Render("~/Content/cssIndiaResult")
+    @Scripts.Render("~/bundles/modernizr")
+  <style>
+      .search_con ul{  display: inline-block;padding-right: 60px;}
+
+      .logo a img{padding-left:20px;}
+
+      @@media screen and ( max-width:767px) {
+ .search_con ul{  display: inline-block;padding-right:0px;}
+      }
+  </style>  
+</head>
+<body>
+    <header>
+        @*<div class="container-fluid cooki_contop " id="divCookies" style="display:none;">
+            <div class="container">
+                <div>
+                    This website uses cookies to ensure you get the best experience.  &nbsp;<a href="/privacy-policy" target="_blank" style="color:#ff6a00;">Learn More</a>
+                    <button class="btn btn-danger" onclick="setCookies(); ">Accept</button>
+                </div>
+            </div>
+        </div>*@
+        <div class="container-fluid">
+            <div class="row">
+                <div class="head_con rrresult_con">
+                    <div class="logo"><a href="/"><img src="/images/logo.svg" alt="logo" /></a></div>
+                    <div class="header_right">
+                        <div id="mainnav" class="main_menu">
+                            <div id="menu"><i class="fa fa-bars"></i></div>
+                            <ul>
+                                @*<li><a class="active" href="/">FLIGHTS </a></li>
+                            <li><a class="" href="#">HOTELS </a></li>
+                            <li><a class="" href="">HOLIDAYS</a></li>*@
+
+                            </ul>
+                        </div>
+                        <div class="contact_con" style="display:none;">
+                            <div class="falg_div">
+
+                                <div class="country">
+                                    <div id="country" class="select"><img src="/images/ind_icon.png" alt="icon" /> IND<i class="fa fa-caret-down"></i></div>
+                                    <div id="country-drop" class="dropdown">
+                                        <ul>
+                                            @*<li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/us_icon.png" /> US </a></li>
+                                        <li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/ca_icon.png" /> CA </a></li>*@
+                                            <li data-code="AW" data-name="Aruba" data-cid="c42"><img src="/images/ind_icon.png" alt="icon" /> IND </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--<p><i class="fa fa-clock-o duration-size"></i>Call US for Support</p>-->
+                            @*<a href="call-to:@GlobalData.Phone"><img src="/images/ph_icon.png" /> @GlobalData.Phone</a>*@
+                        </div>
+                        @*<div class="mobile_Con">
+                        <a href="/contact-us"><span>Contact Us </span><i class="mobenvelope"></i></a>
+                    </div>*@
+                        <div class="search_con">
+                            <ul>
+                                @if (ViewBag.pageType != null && ViewBag.pageType == "index")
+                            {
+                                    <li class="dropdown" style="display:none;" id="SearchPad">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            My Searches <span class="Scratchpad" id="totRecentSearch"></span><span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" id="MySearches"></ul>
+                                    </li>
+                            }
+
+                                @*<li><a href="#">My Bookings</a></li>*@
+                                <li><a class="" href="/contact-us"><dfn class="ph_icon"></dfn>24x7 Helpline</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <style>
+        .logoanimation {
+            width: 100%;
+            background: #fff;
+            margin-top: 0;
+            border-radius: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            min-height: 60px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+            .logoanimation img {
+                max-height: 55px;
+                position: absolute;
+                right: -120px;
+                top: 10px;
+                max-width: 98px;
+            }
+
+
+
+        @@keyframes placeHolderShimmer {
+            0% {
+                background-position: -468px 0;
+            }
+
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        @@media screen and ( max-width:767px) {
+            .logoanimation {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <footer>
+        
+        <div class="footer_bottom footer_result">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright <span><i class="fa fa-copyright" aria-hidden="true"></i> </span>2015-2022 FlightsMojo </p>
+                </div>
+            </div>
+        </div>
+       <div class="main_footer2 footer_result">
+            <div class="trust_containerfoot">
+                <div class="container">
+                    <div class="flight_footer"><img src="/images/icon_bg.png"/></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+  
+
+    @RenderSection("scripts", required: false)
+    <script>
+
+        $(document).ready(function () {
+            $('#menu').bind('click', function (event) {
+                $('#mainnav ul').slideToggle();
+            });
+
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 768) {
+                    $('#mainnav ul').removeAttr('style');
+                }
+            });
+        });
+
+        function countryDropdown(seletor) {
+            var Selected = $(seletor);
+            var Drop = $(seletor + '-drop');
+            var DropItem = Drop.find('li');
+
+            Selected.click(function () {
+                Selected.toggleClass('open');
+                Drop.toggle();
+            });
+
+            Drop.find('li').click(function () {
+                Selected.removeClass('open');
+                Drop.hide();
+
+                var item = $(this);
+                Selected.html(item.html());
+            });
+
+
+        }
+
+        countryDropdown('#country');
+    </script>
+<!-- Google Tag Manager (noscript) -->
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ4KF2T"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

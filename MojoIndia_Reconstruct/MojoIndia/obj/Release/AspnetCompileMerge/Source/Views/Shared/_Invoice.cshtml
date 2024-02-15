@@ -1,0 +1,348 @@
+﻿@model Core.Flight.FlightBookingResponse
+@using Core
+
+@{
+    #region previous Invoice details
+    decimal adtBFare = 0, adtTax = 0, adtMarkup = 0;
+    decimal chdBFare = 0, chdTax = 0, chdMarkup = 0;
+    decimal infBFare = 0, infTax = 0, infMarkup = 0;
+    decimal totBFare = 0, totTax = 0, totMarkup = 0;
+    decimal totBFares = 0, totTaxs = 0, totMarkups = 0;
+    decimal agentMarkup = 0, couponAmount = 0, OtherCharges = 0, CommissionEarned = 0, FareIncreaseAmount = 0, ConvenienceFee = 0;
+
+
+    adtBFare = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.BaseFare && b.ChargesFor == ChargeFor.Adult).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    adtTax = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Tax && b.ChargesFor == ChargeFor.Adult).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    adtMarkup = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Markup && b.ChargesFor == ChargeFor.Adult).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+
+    chdBFare = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.BaseFare && b.ChargesFor == ChargeFor.Child).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    chdTax = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Tax && b.ChargesFor == ChargeFor.Child).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    chdMarkup = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Markup && b.ChargesFor == ChargeFor.Child).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+
+    infBFare = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.BaseFare && b.ChargesFor == ChargeFor.Infant).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    infTax = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Tax && b.ChargesFor == ChargeFor.Infant).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    infMarkup = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Markup && b.ChargesFor == ChargeFor.Infant).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+
+    totBFares = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.BaseFare && b.ChargesFor == ChargeFor.AllPax).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    totTaxs = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Tax && b.ChargesFor == ChargeFor.AllPax).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    totMarkups = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Markup && b.ChargesFor == ChargeFor.NA).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+
+    agentMarkup = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.AgentMarkup).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    couponAmount = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Coupon).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    OtherCharges = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.OtherCharges).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    CommissionEarned = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.CommissionEarned).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    FareIncreaseAmount = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.FareIncreaseAmount).ToList().Sum(x => (x.SellPrice * x.TotalUnit));
+    ConvenienceFee = Model.AmountDetails.Where(a => a.ChargeID == ChargeID.ConvenienceFee).ToList().Sum(o => (o.SellPrice * o.TotalUnit));
+    totMarkup = (adtMarkup + chdMarkup + infMarkup + totMarkups + agentMarkup);
+
+    //if (ConvenienceFee != 0)
+    //{
+    //    tot =(totMarkup + ConvenienceFee);
+    //   // CGST = tot * 9 / 100;
+    //   // SGST = tot * 9 / 100;
+    //    if (totMarkup != 0)
+    //    {
+    //        FMfee = (agentMarkup + totMarkups - CGST);
+    //        ConvenienceFee = Model.AmountDetails.Where(a => a.ChargeID == ChargeID.ConvenienceFee).ToList().Sum(o => (o.SellPrice * o.TotalUnit)) - SGST;
+    //    }
+    //    else {
+    //        ConvenienceFee = Model.AmountDetails.Where(a => a.ChargeID == ChargeID.ConvenienceFee).ToList().Sum(o => (o.SellPrice * o.TotalUnit)) - SGST-CGST;
+    //    }
+    //}
+    //else
+    //{
+    //    tot = totMarkup + ConvenienceFee;
+    //   // CGST = tot * 9 / 100;
+    //   // SGST = tot * 9 / 100;
+    //    FMfee = Model.AmountDetails.Where(b => b.ChargeID == ChargeID.Markup && b.ChargesFor == ChargeFor.NA).ToList().Sum(x => (x.SellPrice * x.TotalUnit)) - CGST-SGST;
+    //}
+    //totBFare = (adtBFare + chdBFare + infBFare + totBFares);
+    //totTax = (adtTax + chdTax + infTax + OtherCharges + FareIncreaseAmount + totTaxs + CommissionEarned);
+    #endregion
+
+    #region Current Details
+    decimal CGST, SGST, totalFare = 0, AirlineCharge = 0, taxfee = 0, tottaxfee = 0;
+
+    totalFare = Model.AmountDetails.Sum(x => (x.SellPrice * x.TotalUnit));
+    AirlineCharge = (Model.Booking.InvoiceAmount_0B + Model.Booking.InvoiceAmount_IB);
+    taxfee = (totalFare - Model.Booking.InvoiceAmount_0B - Model.Booking.InvoiceAmount_IB);
+    CGST = taxfee * 9 / 100;
+    SGST = taxfee * 9 / 100;
+    tottaxfee = (taxfee - CGST - SGST);
+
+    #endregion
+
+
+}
+
+<html>
+<head>
+
+</head>
+<body>
+    <table cellpadding="0" cellspacing="6" align="center" border="0" style="width:800px; background-color:#ffffff; color:#000; text-align:center; font-size:12px;padding:10px 10px 10px 10px; line-height:30px; font-family:Arial, Helvetica, sans-serif; box-sizing:border-box;">
+        <tr>
+            <td colspan="4" align="center" valign="top">
+                <table cellpadding="6" cellspacing="0" style="background-color:#ffffff;  border-collapse:collapse; width:100%; border:0.5px solid #ccc;">
+                    <tr>
+                        <td colspan="2" style="text-align:left;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td colspan="4" style="text-align:left;vertical-align:text-top; display:inline-block;"><img width="180" src="https://www.flightsmojo.com/images/logo.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="font-weight:bold; font-size:12px; color:#333; line-height:20px;text-align:left; padding-bottom:5px;">Date of Purchase:@Model.Booking.Booking_Date_Time</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="font-weight:bold; font-size:12px; color:#333; line-height:20px;text-align:left;padding-bottom:5px;"><b>Booking Id:</b> @Model.Booking.BookingID</td>
+                                </tr>
+                                @if (Model.Booking.GstCompany != "" && Model.Booking.GstCompany != null)
+                                {
+                                    <tr>
+                                        <td colspan="4" style="text-align:left; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Guest Company:</b>@Model.Booking.GstCompany</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" style="text-align:left; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Guest Company:</b>NA</td>
+                                    </tr>
+                                }
+                                @if (Model.Booking.GstNo != "" && Model.Booking.GstNo != null)
+                                {
+                                    <tr>
+                                        <td colspan="4" style="text-align:left; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Guest GSTNo:</b> @Model.Booking.GstNo</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" style="text-align:left; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Guest GSTNo:</b> NA</td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                        <td colspan="2" style="font-size:20px; font-weight:bold; color:#000; text-align:right;">
+                            <table style="width:100%; border-left:1px solid #ccc;">
+                                <tr>
+                                    <td colspan="4" style="font-size:20px; font-weight:bold; color:#000; text-align:right;padding-bottom:10px;">Tax Invoice</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Invoice No :</b> @Model.Booking.InvoiceNo</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>FLIGHTS MOJO BOOKINGS PVT LTD</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>Place of Supply:</b>Gurugram</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>HSN/SAC-</b>998551</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>GSTIN No:</b> 06AACCF6706H1ZS</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:25px;padding-bottom:5px;"><b>CIN No:</b> U74140DL2015PTC286310</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right; font-size:12px;color:#000;line-height:15px;"><b>Service Category:</b> Reservation services for air transportation.</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td colspan="4" style="text-align:left; border:1px solid #ccc; color:#000; font-size:14px;"><b style="line-height:25px; padding-bottom:6px;padding-top:6px;">Passenger Information</b></td>
+                    </tr>
+                    @foreach (var psg in Model.PassengerDetails)
+                    {
+                        List<int> lstTripID = Model.SectorDetail.Select(x => x.TripID).Distinct().ToList();
+                        <tr>
+                            <td colspan="1" style="text-align:left; border:1px solid #ccc;vertical-align: middle;font-size:12px;color:#000;line-height:25px;"><p>@(psg.Title + " " + psg.Pax_First_Name + " " + psg.Pax_Last_Name)</p></td>
+                            @if (psg.TicketNo != "")
+                            {
+                                <td colspan="1" style="text-align:left; border:1px solid #ccc;vertical-align: middle;font-size:12px;color:#000;line-height:25px;"><p> Ticket No:<b>@psg.TicketNo</b></p></td>
+                            }
+                            else
+                            {
+                                <td colspan="1" style="text-align:left; border:1px solid #ccc;vertical-align: middle;font-size:12px;color:#000;line-height:25px;"><p> Ticket No:<b>NA</b></p></td>
+                            }
+                            <td colspan="2" style="text-align:left; border:1px solid #ccc;vertical-align: middle;font-size:12px;color:#000;line-height:15px;">
+                                @foreach (int i in lstTripID)
+                                {
+                                    if (i == 1)
+                                    {
+                                        <p>DEPARTURE PNR:<b style="font-size:11px;">@Model.Booking.PNR_Confirmation </b></p>
+                                    }
+                                    else
+                                    {
+                                        <p>RETURN PNR:<b style="font-size:11px;">@Model.Booking.PNR_ConfirmationUAPI </b></p>
+                                    }
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="4" style="font-size: 12px; color:#000; border-bottom:1px solid #000; text-align:left;line-height:25px;"><b>Flights</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="font-weight:bold;font-size:12px;line-height:20px;text-align:left;">Date and Flights</td>
+                        <td colspan="2" style="font-weight:bold;text-align:center;font-size:12px;line-height:25px;">Class</td>
+                    </tr>
+                    @foreach (var ser in Model.SectorDetail)
+                    {
+                        <tr>
+                            <td colspan="2" style="color:#000;font-size:11px;line-height:20px;text-align:left;"><b><span>@ser.From_Destination</span> <span>@ser.To_Destination</span></b> | @ser.From_Date_Time | @ser.Airline-@ser.Flight_No</td>
+                            <td colspan="2" style="text-align: center;color: #000;font-size: 10px;line-height:25px;">@ser.AClass</td>
+                        </tr>
+                    }
+                    <tr><td colspan="4" style="font-size:13px; color:#000; font-weight:bold;text-align:left; line-height:25px; border-top:1px solid #ccc; padding:6px 6px 6px 6px;">Payment Breakup</td></tr>
+                    <tr>
+                        <td colspan="4">
+                            <table cellpadding="6" cellspacing="0" style="width:100%;">
+                                <tr>
+                                    <td colspan="2" style="font-size:12px;color: #000;text-align:left;line-height:25px;">Airline Charge:</td>
+                                    <td colspan="2" style="text-align:center; font-size:11px;color:#000;line-height:25px; ">&#8377; @AirlineCharge.ToString("f2") </td>
+                                </tr>
+                                @if (tottaxfee.ToString().Contains("-"))
+                                {
+                                    <tr>
+                                        <td colspan="2" style="font-size:12px;color:#000;text-align:left;line-height:25px;">Taxes and Fees:</td>
+                                        <td colspan="2" style="text-align:center; font-size:11px;color:#000;line-height:25px; ">&#8377; 0.00</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="2" style="font-size:12px;color:#000;text-align:left;line-height:25px;">Taxes and Fees:</td>
+                                        <td colspan="2" style="text-align:center; font-size:11px;color:#000;line-height:25px; ">&#8377; @tottaxfee.ToString("f2") </td>
+                                    </tr>
+                                }
+
+                                @if (tottaxfee.ToString().Contains("-"))
+                                {
+                                    if (Model.Booking.GstNo != "" && Model.Booking.GstNo != null)
+                                    {
+                                        if (Model.Booking.GstNo.StartsWith("06"))
+                                        {
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00 </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00 </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.Booking.GstNo != "" && Model.Booking.GstNo != null)
+                                    {
+                                        if (Model.Booking.GstNo.StartsWith("06"))
+                                        {
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; @CGST.ToString("f2") </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; @SGST.ToString("f2") </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                                <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; @((CGST + SGST).ToString("f2"))</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">CGST @@9% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; @CGST.ToString("f2") </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">SGST @@9% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; @SGST.ToString("f2") </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size: 12px;color:#000;text-align:left;line-height:25px;">IGST @@18% Fees:</td>
+                                            <td colspan="2" style="text-align:center; font-size: 11px;color:#000;line-height:25px;">&#8377; 0.00</td>
+                                        </tr>
+                                    }
+                                }
+
+                                <tr>
+                                    <td colspan="2" style="color:#000; font-weight:bold; font-size:13px;text-align:left;line-height:25px;">Total Fare:</td>
+                                    <td colspan="2" style="text-align:center;color:#000; font-weight:bold;font-size:14px;line-height:25px;">&#8377;@totalFare.ToString("f2") </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="width:100%;  font-size:14px; color:#ed0808;display:inline; background:#ffd800; "><p style="padding:6px; vertical-align:bottom; margin:0;">This invoice is not a valid travel document</p></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,761 @@
+﻿@model Core.Flight.FlightBookingResponse
+@using Core;
+@using Core.Flight;
+
+<link rel="stylesheet" href="/Content/stylesheet.css">
+<link rel="stylesheet" href="/Content/PassengerCss.css">
+
+@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/Shared/_LayoutFlight.cshtml";
+}
+@{
+    int ctr = 0;
+    decimal CouponAmount = 0;
+    if (Model.CouponAmount > 0 && !string.IsNullOrEmpty(Model.CouponCode))
+    {
+        CouponAmount = Model.CouponAmount;
+    }
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Flight Confirmation: Flightsmojo.in</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c3632ac11d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    <style>
+        .conformTop {
+            background: linear-gradient(45deg, #49494a, #ff0b00);
+            width: 100%;
+            float: left;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+            .conformTop h1 {
+                font-size: 25px;
+                color: #fff;
+                padding: 4px 0;
+            }
+
+            .conformTop p {
+                color: #fff;
+                font-size: 13px;
+            }
+
+        .conformBot {
+            width: 60%;
+            float: left;
+        }
+
+        .conformTop span {
+            background: #49494a;
+            color: #FFF;
+            padding: 6px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 0 2px #ffff;
+        }
+
+        .conformTop span {
+            background: #49494a;
+            color: #FFF;
+            padding: 6px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 0 2px #fff;
+        }
+
+        .conformTop {
+            font-size: 15px;
+            line-height: 25px;
+        }
+
+        @@media screen and ( max-width:767px) {
+            .logo {
+                width: 60%;
+            }
+
+            .header_right {
+                width: 40%;
+                float: right;
+            }
+
+            #mainnav ul {
+                background: none;
+                box-shadow: none;
+            }
+
+            .main_menu {
+                display: none;
+            }
+
+            .search_con ul {
+                padding-right: 16px;
+            }
+
+            .conformTop h4 {
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .conformTop h1 {
+                font-size: 22px;
+            }
+
+            .traveldetai_top table {
+                width: 100%;
+            }
+
+            .bookinStatus {
+                padding: 6px;
+            }
+
+            .traveldetai_top > table th, .traveldetai_top > table td {
+                font-size: 12px;
+                padding: 6px 3px;
+            }
+
+            .divBookingType {
+                width: 100%;
+            }
+
+                .divBookingType ul {
+                    border-right: 0px;
+                }
+
+            .resul_deatil {
+                padding: 5px;
+                background: none;
+            }
+        }
+    </style>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: "purchase",
+            transaction_id: "@Model.bookingID",
+            affiliation: "@Model.sourceMedia",
+            value: @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2"))),
+            currency: "INR",
+            coupon: "@Model.CouponCode",
+            ecommerce: {
+                transaction_id: "@Model.bookingID",
+                affiliation: "@Model.sourceMedia",
+                value: @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2"))),
+                currency: "INR",
+                coupon: "@Model.CouponCode",
+            }
+        });
+    </script>
+
+    <script>
+        if(@Model.flightResult.Count()==1)
+        {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'purchase',
+                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                'passenger_count': @(Model.passengerDetails.Count()),
+                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+			    'currency':'@Model.currencyCode',
+                'transaction_id':'@Model.bookingID',
+                'value': '@Model.sumFare.grandTotal',
+                'tax': '@Model.sumFare.Tax',
+                'coupon': 'INSTAMOJO',
+            items: [{
+                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'quantity': @(Model.passengerDetails.Count()),
+                'price':'@Model.sumFare.grandTotal',
+                'index':0
+            }]
+        });
+        }
+        else
+        {
+
+        }
+
+
+
+
+
+        if(@Model.flightResult.Count()==1)
+        {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'purchase',
+                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                'passenger_count': @(Model.passengerDetails.Count()),
+                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+			    'currency':'@Model.currencyCode',
+                'transaction_id':'@Model.bookingID',
+                'value': '@Model.sumFare.grandTotal',
+                'tax': '@Model.sumFare.Tax',
+                'coupon': 'INSTAMOJO',
+            items: [{
+                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'quantity': @(Model.passengerDetails.Count()),
+                'price':'@Model.sumFare.grandTotal',
+                'index':0
+            }]
+        });
+        }
+        else
+        {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'purchase',
+                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                'passenger_count': @(Model.passengerDetails.Count()),
+                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+				'currency':'@Model.currencyCode',
+                'transaction_id':'@Model.bookingID',
+                'value': '@Model.sumFare.grandTotal',
+                'tax': '@Model.sumFare.Tax',
+                'coupon': 'INSTAMOJO',
+            items: [{
+                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'quantity': @(Model.passengerDetails.Count()),
+                'price':'@(Model.flightResult.FirstOrDefault().Fare.grandTotal)',
+                'index':0
+            },
+           {
+               'item_id': '@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+               'quantity': '@(Model.passengerDetails.Count())',
+               'price': '@(Model.flightResult.LastOrDefault().Fare.grandTotal)',
+               'index':1
+           }]
+        });
+        }
+
+
+
+
+        //function PaymentSuccess() {
+
+        //}
+    </script>
+
+
+    @*value: @(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.conveniencefee)-CouponAmount).ToString("f2")),+ Model.sumFare.Tax + Model.sumFare.Markup *@
+    <!-- Google Tag Manager -->
+
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+        })(window,document,'script','dataLayer','GTM-NZ4KF2T');</script>
+
+    <!-- End Google Tag Manager -->
+    <style>
+        .logo a img {
+            width: 60%;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conformTop">
+        <div class="container">
+
+            @if (Model.bookingStatus == BookingStatus.Ticketed)
+            {
+                <h1>Congratulations!</h1>
+                <br />
+                <h1>Your tickets have been successfully booked. Please find your booking details below:</h1>
+            }
+            else if (Model.bookingStatus == BookingStatus.Failed)
+            {
+                <h1>We are Sorry!</h1>
+                <br />
+                <h4 style="text-align:justify;color:white;">
+                    Your booking has failed. Due to real time availability, your booking was not completed successfully.
+                    We are trying to complete the booking process manually on our end. We will update you the final status within next 30 minutes.
+                    In case we are unable to confirm, a full refund will be processed back to the original form of payment.
+                    Please do not create any duplicate booking until the final status is updated.s
+                    Please call us at 0124-445-2000 for any further clarification.
+                </h4>
+            }
+            else
+            {
+                <h1>
+                    Your booking is in Progress! <img src="~/images/1495.gif" />
+                </h1>
+
+                <br />
+                <h4 style="text-align:justify;color:white;">
+                    Your booking is currently being processed by the airline.
+                    We'll notify you when the ticketing is complete, and your tickets will be sent via email/WhatsApp.
+                    Please do not create duplicate bookings until the final status is updated.
+                    <br />
+                    A full refund will be issued if confirmation isn't possible. For any queries, contact us at 0124-445-2000.
+                </h4>
+            }
+
+
+
+            <div class="conformBot">
+
+                @if (Model.paymentStatus == PaymentStatus.Completed)
+                {
+                    <span>Payment Status: @Model.paymentStatus.ToString()</span>
+                }
+                else
+                {
+                    <span>Payment Status: @Model.paymentStatus.ToString()</span>
+                }
+
+                @if (Model.bookingStatus == BookingStatus.Ticketed)
+                {
+                    <span class="spabookinRef">Booking Status : @Model.bookingStatus.ToString()</span>
+                }
+                else if (Model.bookingStatus == BookingStatus.Confirmed)
+                {
+                    <span class="spabookinRef">Booking Status : @Model.bookingStatus.ToString()</span>
+                }
+                else if (Model.bookingStatus == BookingStatus.Failed)
+                {
+                    <span class="spabookinRef">Booking Status : @Model.bookingStatus.ToString()</span>
+                }
+                else if (Model.bookingStatus == BookingStatus.Cancelled)
+                {
+                    <span class="spabookinRef">Booking Status : @Model.bookingStatus.ToString()</span>
+                }
+                else
+                {
+                    <span class="spabookinRef">Booking Status : InProgress</span>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bookinStatus">
+            <span class="spanHeader">BOOKING DETAILS</span>
+            <div class="divBookingType">
+                <ul>
+                    <li><b>Email Address</b></li>
+                    <li><p>@Model.emailID</p></li>
+                </ul>
+            </div>
+            <div class="divBookingType">
+                <ul>
+                    <li><b>Contact No</b></li>
+                    <li><p>@Model.phoneNo</p></li>
+                </ul>
+            </div>
+            <div class="divBookingType">
+                <ul>
+                    <li><b>Booking Id</b></li>
+                    <li><p>@Model.bookingID</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bookinStatus">
+            <span class="spanHeader">FLIGHT ITINERARY</span>
+            <div class="listing_con">
+
+                <div class="resul_deatil" style="display:block !important">
+                    <div class="outbond">
+                        @foreach (var result in Model.flightResult)
+                        {
+                            foreach (var fs in result.FlightSegments)
+                            {
+                                <div class="outbond_top">
+                                    @if (fs.SegName.Equals("Return", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <div class="outbond_topL"><h2><img src="/images/inbond.png" />@fs.SegName.ToUpper()</h2></div>
+                                        <div class="outbond_topR">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="outbond_topL"><img src="/images/outbond.png" /><h2>@fs.SegName.ToUpper()</h2></div>
+                                        <div class="outbond_topR">
+                                        </div>
+                                    }
+                                </div>
+                                <div class="conf_itenary">
+                                    @foreach (var seg in fs.Segments)
+                                    {
+                                        var AirportFrom = Model.airport.Where(k => k.airportCode == seg.Origin).FirstOrDefault();
+                                        var AirportTo = Model.airport.Where(k => k.airportCode == seg.Destination).FirstOrDefault();
+                                        var airline = Model.airline.Where(k => k.code == seg.Airline).FirstOrDefault();
+
+                                        <div class="indiaConf_top">
+                                            <ul>
+                                                <li><b>@(seg.DepTime.ToString("ddd, dd MMM yyyy"))</b></li>
+                                                <li><b>@(AirportFrom.cityName) - @(AirportTo.cityName)</b></li>
+                                                <li><b>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</b></li>
+                                            </ul>
+                                            <div class="outbond_flight">
+                                                <div class="outbond_conf">
+                                                    <p>@airline.name.ToUpper()</p>
+                                                    <img src="/images/flight_small/@(airline.code).gif" alt="@(airline.code)" title="@(airline.name)">
+                                                </div>
+                                                <div class="outbond_one_con">
+                                                    <p>DESTINATION</p>
+                                                    <span><b>@(AirportFrom.cityName)</b></span>
+                                                </div>
+                                                <div class="outbond_two_con">
+                                                    <p>ARRIVAL</p>
+                                                    <span><b>@(AirportTo.cityName)</b></span>
+                                                </div>
+                                                <div class="outbond_third_con">
+                                                    <p>DURATION</p>
+                                                    <span><b>@(seg.DepTime.ToString("ddd, | hh:mm tt | MMM dd"))</b></span>
+                                                </div>
+                                                <div class="outbond_four_con">
+                                                    <p>PNR</p>
+                                                    @if (fs.SegName.Equals("Depart", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        <span><b>@(string.IsNullOrEmpty(Model.PNR) ? "Pending" : (Model.PNR))</b></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span><b>@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</b></span>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                            @if (seg.layOverTime > 0)
+                                            {
+                                                <div class="layover_conf">
+                                                    <span>
+                                                        <span>@AirportTo.cityName (@AirportTo.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min") Layover</span>
+                                                    </span>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.passengerDetails != null)
+            {
+            <div class="bookinStatus">
+                <span class="spanHeader">TRAVELER DETAILS</span>
+                <div class="traveldetai_top">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width:100%; background:#fff;">
+                        <tr>
+                            <th>NAME</th>
+                            @*<th>DESTINATION</th>*@
+                            @*<th>MEALS</th>
+                                <th>BAGGAGE</th>
+                                <th>SEAT NO.</th>*@
+                            @if (Model.passengerDetails[0].ticketNo != null && Model.passengerDetails[0].ticketNo != "")
+                            {
+                                <th>TICKET NO.</th>
+                            }
+                        </tr>
+
+                        @*@{ int i = 1;}*@
+                        @foreach (var pax in Model.passengerDetails)
+                        {
+                            var AirportFrom = Core.FlightUtility.GetAirport(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin);
+                            var AirportTo = Core.FlightUtility.GetAirport(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                            <tr>
+                                @*<td><p>@((i++).ToString())</p></td>*@
+                                <td>@(pax.title + " " + pax.firstName + " " + pax.lastName)</td>
+                                @*<td><span>@AirportFrom.airportCode</span> - <span>@AirportTo.airportCode</span></td>*@
+                                @*<td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>*@
+                                @if (!string.IsNullOrEmpty(pax.ticketNo))
+                                {
+                                    <td>@pax.ticketNo</td>
+                                }
+                                @*else
+                                    {
+                                        <td></td>
+                                    }*@
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+
+            </div>
+        }
+        <div class="bookinStatus">
+            <span class="spanHeader">FARE DETAILS</span>
+            <div class="traveldetai_top">
+                <table cellpadding="0" cellspacing="0" border="0" style="width:100%; background:#fff;">
+                    <tr>
+                        <th>BaseFare</th>
+                        <th>Taxes</th>
+                        <th>Convenience Fee</th>
+                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        {
+                            <th>Coupon</th>
+                        }
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>₹ @((Model.sumFare.BaseFare).ToString("f2"))</td>
+                        <td>
+                            ₹
+                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                            {
+                                @((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount).ToString("f2"))
+                            }
+                            else
+                            {
+                                @((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges).ToString("f2"))
+                            }
+                        </td>
+
+                        <td>₹ @(Model.conveniencefee)</td>
+                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        {
+                            <td>-₹ @(Model.CouponAmount)</td>
+                        }
+
+                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        {
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount) - CouponAmount).ToString("f2"))</td>
+                        }
+                        else
+                        {
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee) - CouponAmount).ToString("f2"))</td>
+                        }
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="bookinStatus ">
+            <span class="spanHeader">FARE RULES</span>
+            <div class="fareConfirmation padd10">
+                <div class="FareRulestabel">
+                    <table cellpadding="0" cellspacing="0" border="1" style="width:100%;">
+                        <tr>
+                            <th>
+                                <span>Time Frame to cancel</span>
+                                <p>Before scheduled departure time</p>
+                            </th>
+                            <th>
+                                <span>Cancellation charges</span>
+                                <p>per passenger</p>
+                            </th>
+                            <th>
+                                <span>Agency Fee</span>
+                                <p>per passenger</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>Cancel Before 72 hours of departure time.</td>
+                            @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                            {
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                            }
+                            else
+                            {
+                                <td>As per airlines policy</td>
+                                <td>₹ 500</td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>Cancel within 72 hours & before 4 hours of departure time.</td>
+                            @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                            {
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                            }
+                            else
+                            {
+                                <td>As per airlines policy</td>
+                                <td>₹ 500</td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+                <div class="FareRulestabel">
+                    <table cellpadding="0" cellspacing="0" border="1" style="width:100%;">
+                        <tr>
+                            <th>
+                                <span>Time Frame to reschedule</span>
+                                <p>Before scheduled departure time</p>
+                            </th>
+                            <th>
+                                <span>Cancellation charges</span>
+                                <p>per passenger</p>
+                            </th>
+                            <th>
+                                <span>Agency Fee</span>
+                                <p>per passenger</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>Reschedule before 72 hours of departure time.</td>
+                            @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                            {
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                            }
+                            else
+                            {
+                                <td>As per airlines policy</td>
+                                <td>₹ 500</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Reschedule within 72 hours & before 4 hours of departure time.</td>
+                            @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                            {
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                                <td style="color: #e94117;font-weight: 600; font-size:11px;">Non Refundable</td>
+                            }
+                            else
+                            {
+                                <td>As per airlines policy</td>
+                                <td>₹ 500</td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+                <div class="fareTerms">
+
+                    @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
+                    @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                    { <h6>IMPORTANT INFORMATION</h6>
+                    <ul>
+                        <li>This exclusive deal is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
+                        <li>The Fare Selected by You is a <strong> Special Category Group Promotional Fare.</strong></li>
+                        <li>This is a 100% Confirmed Ticket.You will be able check the status of your PNR on airline website or call center but names will be update  <strong> 12 to 24hrs </strong> prior to the flight departure.</li>
+                        <li>Web check-in is mandatory to board flights.</li>
+                        <li>Please reconfirm the Terminal Information with the boarding pass.</li>
+                    </ul>
+                    }
+                    <h6>Terms & Conditions</h6>
+                    <ul>
+                        <li>  All passengers, including children and infants, have to present their valid ID proof at the time of check ­ in.</li>
+                        <li>  We recommend you check­in at least 3 hours prior to departure of your domestic flight and 4 hours prior to your international flight.</li>
+                        <li>  For any cancellation of your booking, please contact FlightsMojo and not the Airlines directly. This will enable us to expedite your refund.</li>
+                        <li>  Please reconfirm your flight schedule prior to departure. Flights Mojo will not be responsible for intimating any schedule changes or flight cancellation by the airlines.</li>
+                        <li>  Use PNR/Booking ID for all communication you have directly with the airline about this booking.</li>
+                        <li>  Carry a print out of this e-ticket and present it to the airline counter at time of check-in.</li>
+                        <li>  FlightsMojo service Fees is Rs. 500 for any cancellation/amendments.</li>
+                        <li>  Recheck your baggage with your respective airline before travelling for hassle­free travel experience.</li>
+                        <li>  Please ensure you arrange at your end all visa's as per countries listed in your itinerary for your trip to avoid any visa/immigration issues at the airport .</li>
+                        <li>  In case of cancellation of a ticket, Company reserves the right to levy a cancellation fee per passenger per flight/sector. The aforesaid amount may be charged by the Company at its sole discretion and without notice to the User. Please note these charges shall be over and above the airline cancellation charges.</li>
+                        <li>  The detailed terms and conditions set out at Visit <a href="https://www.flightsmojo.in/terms-condition/" target="_blank">flightsmojo.in</a>! are incorporated herein by reference and shall accordingly apply to the booking.</li>
+                        <li>  Due to the security, reasons and Government regulations, passengers flying on destination like Jammu and Srinagar are not allow to carry any Hand Baggage.</li>
+                        <li>  In addition to the aforesaid terms and conditions, the terms, and conditions of the respective airlines shall also be applicable to the booking. In case of any inconsistency or conflict between the terms and conditions herein visa the terms and conditions of the airlines, the terms, and conditions of the airlines shall supersede.</li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    @if (Model.sourceMedia == "1015")
+    {
+        string ss = string.Empty, cabin = string.Empty;
+        foreach (var fr in Model.flightResult)
+        {
+            foreach (var fs in fr.FlightSegments)
+            {
+                foreach (var seg in fs.Segments)
+                {
+                    ss += (string.IsNullOrEmpty(ss) ? seg.Airline : ("|" + seg.Airline));
+                }
+            }
+        }
+        if (Model.flightResult[0].Fare.cabinType == CabinType.Business)
+        {
+            cabin = "business";
+        }
+        else if (Model.flightResult[0].Fare.cabinType == CabinType.PremiumEconomy)
+        {
+            cabin = "premium-economy";
+        }
+        else if (Model.flightResult[0].Fare.cabinType == CabinType.First)
+        {
+            cabin = "first";
+        }
+        else
+        {
+            cabin = "economy";
+        }
+        <img src="https://analytics.skyscanner.net/dv/v1/event.png?skyscanner_redirectid=@(Model.redirectID)&tracking_source_id=DV-291217-1&event_type=conversion&occurred_at=@(DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss'Z'"))&conversion_id=@(Model.bookingID)&transaction_total=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount)).ToString("f0"))&flight_fare=@((Model.sumFare.NetFare+Model.fareIncreaseAmount).ToString("f2"))&payment_fee=0&currency=@(Model.flightResult[0].Fare.Currency)&payment_method=@(Model.paymentDetails.cardCode)&marketing_carrier=@ss&legs=&cabin_class=@(cabin)&route_type=&haul_type=&adult_number=@Model.adults&child_number=@Model.child&infant_number=@Model.infants" style="width:1px;height:1px;border-style:none;" />
+    }
+
+    @(Model.sourceMedia == "1001")
+    {
+    <img src="https://secure.wego.com/analytics/v2/conversions?conversion_id=c-wego-flightsmojo.com&click_id=@(Model.redirectID)&comm_currency_code=INR&bv_currency_code=INR&transaction_id=@(Model.bookingID.ToString())&commission=0&total_booking_value=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.CouponIncreaseAmount) -CouponAmount).ToString("f0"))&status=@(Model.bookingStatus.ToString())" width='1' height='1' border='0' alt='' />
+    }
+    <script src="/Scripts/jquery.js"></script>
+
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <!-- Google Tag Manager (noscript) -->
+
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ4KF2T"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

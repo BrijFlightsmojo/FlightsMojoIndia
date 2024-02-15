@@ -1,0 +1,232 @@
+﻿@model Core.Flight.FlightSearchRequest
+@using Core;
+<form id="flightSearch" action="/Flight/SearchingFlight" method="post">
+    <div class="modify_search">
+        <div class="modify_menu">
+            <ul>
+                <li><a id="anchor1" class="@(Model.tripType == TripType.OneWay ? "active" : "")" onclick="ChangeTripType(1)">ONE WAY</a></li>
+                <li><a id="anchor2" class="@(Model.tripType == TripType.RoundTrip ? "active" : "")" onclick="ChangeTripType(2)">ROUND TRIP</a></li>
+            </ul>
+        </div>
+        <div class="modify_destination">
+            <a class="mobile_cross"><i class="fa fa-times"></i></a>
+            <div class="modifyleft_one ">
+                <div class="modify_from" onclick="OpenAutoComplete('from')" style="position:relative;" id="SeFrom">
+                    <dfn class="modiicon_takeoff"></dfn>
+                    <span class="modify_orgin">Origin</span>
+                    @*<span class="DesktopCon DestopOrgin" id="fromTopCity">Delhi</span>
+                    <span class="DesktopCon city_span" id="fromBottamCity">[DEL] India</span>
+                    <span class="mobile SeacrFont" id="fromTopCityMob">DEL</span>
+                    <span class="mobile city_span" id="fromBottamCityMob">Delhi</span>
+                    <input type="hidden" id="hfCity_from" name="hfCity_from" value="DEL" />*@
+
+                    <span class="DesktopCon DestopOrgin" id="fromTopCity">@Model.segment[0].orgArp.cityName</span>
+                    <span class="DesktopCon city_span" id="fromBottamCity">[@Model.segment[0].orgArp.airportCode] India</span>
+                    <span class="mobile SeacrFont" id="fromTopCityMob">@Model.segment[0].orgArp.airportCode</span>
+                    <span class="mobile city_span" id="fromBottamCityMob">@Model.segment[0].orgArp.cityName</span>
+                    <input type="hidden" id="hfCity_from" name="hfCity_from" value="@Model.segment[0].orgArp.airportCode" />
+
+
+
+                    @*<input id="fromCity" name="fromCity" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="@Model.segment[0].orgArp.cityName" autocomplete="off" />*@
+                    <div class="DestSector DestSectorMobile" id="fromAutoComplete" style="display:none;">
+                        <div class="DestDrop">
+                            <i class="fa fa-search DesktopCon"></i>
+                            <i class="fa fa-angle-left mobileArrow"></i>
+                            <input class="autoComplete" id="fromCity" name="fromCity" placeholder="From" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                            <a class="crossButn"></a>
+                        </div>
+                        <div class="DropScrol">
+                            <div class="clr"></div>
+                           
+                            <ul class="autoSuggest" id="fromAutoSuggest"></ul>
+                        </div>
+                        @*<em class="cross_icon" onclick="empytText('fromCity', 'spanDep', 'hfFromCity')"></em>
+                        <span id="spanFromArpMob">@Model.segment[0].orgArp.airportCode</span>
+                        <span class="modify_span" id="spanDep">@Model.segment[0].orgArp.cityName</span>
+                        <input type="hidden" id="hfFromCity" name="hfFromCity" value="@(Model.segment[0].orgArp.airportCode + " - " + Model.segment[0].orgArp.cityName +  ", " + Model.segment[0].orgArp.countryName)" />*@
+
+                    </div>
+                    </div>
+                <div class="modify_mid">
+                    <a></a>
+                </div>
+                <div class="modify_to" onclick="OpenAutoComplete('to')" style="position:relative;" id="SeTo">
+                    <dfn class="modicon_takein"></dfn>
+                    <span class="modify_orgin">Destination</span>
+                    @*<span class="DesktopCon DestopOrgin" id="toTopCity">Mumbai</span>
+                    <span class="DesktopCon city_span" id="toBottamCity">[BOM] Mumbai</span>
+                    <span class="mobile SeacrFont" id="toTopCityMob">BOM</span>
+                    <span class="mobile city_span" id="toBottamCityMob">Mumbai</span>
+                    <input type="hidden" id="hfCity_to" name="hfCity_to" value="BOM" />*@
+
+                    <span class="DesktopCon DestopOrgin" id="toTopCity">@Model.segment[0].destArp.cityName</span>
+                    <span class="DesktopCon city_span" id="toBottamCity">[@Model.segment[0].destArp.airportCode] @Model.segment[0].destArp.cityName</span>
+                    <span class="mobile SeacrFont" id="toTopCityMob">@Model.segment[0].destArp.cityName</span>
+                    <span class="mobile city_span" id="toBottamCityMob">@Model.segment[0].destArp.airportCode</span>
+                    <input type="hidden" id="hfCity_to" name="hfCity_to" value="@Model.segment[0].destArp.airportCode" />
+
+
+                    @*<input id="toCity" name="toCity" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="@Model.segment[0].destArp.cityName" autocomplete="off" />
+                    <em class="cross_icon2" onclick="empytText('toCity', 'spanRet', 'hfToCity')"></em>
+                    <span id="spanToArpMob">@Model.segment[0].destArp.airportCode</span>
+                    <span class="city_span" id="spanRet">@Model.segment[0].destArp.cityName</span>
+                    <input type="hidden" id="hfToCity" name="hfToCity" value="@(Model.segment[0].destArp.airportCode + " - " + Model.segment[0].destArp.cityName +  ", " + Model.segment[0].destArp.countryName)" />*@
+                    <div class="DestSector DestSectorMobile" id="toAutoComplete" style="display:none;">
+                        @*<div class="SearchMobHead"><a><i class="fa fa-caret-left"></i>Select Destination City</a></div>*@
+                        <div class="DestDrop">
+                            <i class="fa fa-search DesktopCon"></i>
+                            <i class="fa fa-angle-left mobileArrow"></i>
+                            <input class="autoComplete" id="toCity" name="toCity" placeholder="To" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                            <a class="crossButn"></a>
+                        </div>
+                        <div class="DropScrol">
+                            <div class="clr"></div>
+                           
+                            <ul class="autoSuggest" id="toAutoSuggest"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modify_calendr MobileJqueryUseDate">
+            <div class="modify_calmob">
+                <div class="modify_cal_left">
+                    <dfn class="modcalender_iconL"></dfn>
+                    <spn class="modify_depart">Depart</spn>
+                    <input id="departure_date" name="departure_date" readonly="readonly" placeholder="DD MMM YY" type="text" value="@Model.segment[0].travelDate.ToString("dd MMM yy")" autocomplete="off" onkeydown="return false" />
+                </div>
+                <div class="modify_cal_right" id="divReturnDate" style="@(Model.segment.Count == 1 ? "display:none;" : "display:block;")">
+                    <dfn class="modcalender_iconR"></dfn>
+                    <spn class="modify_depart">Return</spn>
+                    <input id="return_date" name="return_date" readonly="readonly" placeholder="DD MMM YY" type="text" value="@(Model.segment.Count > 1 ? Model.segment[1].travelDate.ToString("dd MMM yy") : Model.segment[0].travelDate.AddDays(7).ToString("dd MMM yy"))" autocomplete="off" onkeydown="return false" />
+                </div>
+            </div>
+        </div>
+        <div class="modify_passenger">
+            <div class="passen_left">
+                <dfn class="modpassen_icon"></dfn>
+                <span class="passen_header">Passenger</span>
+                <p><span class="travel-btn-down" id="spanPaxDetail">@(Model.adults + Model.child + Model.infants) Passenger (s), @(Model.cabinType.ToString())</span></p>
+                <div class="passenger-div">
+                    <div class="overlay_bg">
+                        <div class="select-passenger">
+                            <h4> Passenger</h4>
+                            <div class="select-passenger-content">
+                                <div class="adult-row">
+                                    <div class="adult-left">
+                                        <p class="adult-txt">
+                                            Adults
+                                            <span class="adult-txt-content">11+ Years</span>
+                                        </p>
+                                    </div>
+                                    <div class="adult-right">
+                                        <div class="adult-minus qtyminus" onclick="MinusPax('Adult');">
+                                            <p class="adult-minus-txt">-</p>
+                                        </div>
+                                        <input id="Adult" name="Adult" type="text" value="@Model.adults" class="qtynumber" readonly="readonly" />
+                                        <div class="adult-plus qtyminus" onclick="PlusPax('Adult');">
+                                            <p class="adult-minus-txt">+</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="children-row">
+                                    <div class="adult-left">
+                                        <p class="adult-txt">
+                                            Children
+                                            <span class="adult-txt-content">2 - 11 Years</span>
+                                        </p>
+                                    </div>
+                                    <div class="children-right">
+                                        <div class="adult-minus qtyminus" onclick="MinusPax('Child');">
+                                            <p class="adult-minus-txt">-</p>
+                                        </div>
+                                        <input id="Child" name="Child" type="text" value="@Model.child" class="qtynumber" readonly="readonly" />
+                                        <div class="adult-plus qtyminus" onclick="PlusPax('Child');">
+                                            <p class="adult-minus-txt">+</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="infants-row">
+                                    <div class="adult-left">
+                                        <p class="adult-txt">
+                                            Infants
+                                            <span class="adult-txt-content"> &lt; 2 Years</span>
+                                        </p>
+                                    </div>
+                                    <div class="infants-right">
+                                        <div class="adult-minus qtyminus" onclick="MinusPax('Infant');">
+                                            <p class="adult-minus-txt">-</p>
+                                        </div>
+                                        <input id="Infant" name="Infant" type="text" value="@Model.infants" class="qtynumber" readonly="readonly" />
+                                        <div class="adult-plus qtyminus" onclick="PlusPax('Infant');">
+                                            <p class="adult-minus-txt">+</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="CabinType">
+                                    <span class="Class_Type">Class</span>
+                                    <span class="Select_Class">
+                                        <select id="Cabin" name="Cabin" onchange="setPaxDropBox()">
+                                            <option value="1" @(Model.cabinType == CabinType.Economy ? "selected='selected'" : "")>Economy</option>
+                                            <option value="2" @(Model.cabinType == CabinType.PremiumEconomy ? "selected='selected'" : "")>Premium Economy</option>
+                                            <option value="3" @(Model.cabinType == CabinType.Business ? "selected='selected'" : "")>Business</option>
+                                            <option value="4" @(Model.cabinType == CabinType.First ? "selected='selected'" : "")>First</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <button type="button" class="done-btn close-txt">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modify_btn">
+            <input class="modify_button" type="submit" id="SubmitSearchEngine" onclick="return submitForm();" value="SEARCH " />
+            <input type="submit" id="SubmitSearchProgress" style="display:none;" onclick="return false;" value="SEARCHING....." />
+            <input type="hidden" id="hfTripType" name="hfTripType" value="@((int)Model.tripType)" />
+        </div>
+        <div class="modify_close"><i class="fa fa-times"></i></div>
+    </div>
+</form>
+
+<div class="overlay_bg" id="CalOverLay" style="display:none;"></div>
+<script type="text/javascript">
+    var minDate = new Date(parseInt("@DateTime.Now.Year", 10), parseInt("@DateTime.Now.Month", 10) - 1, parseInt("@DateTime.Now.Day", 10));
+    var maxDate = new Date(parseInt("@DateTime.Now.Year", 10), (parseInt("@DateTime.Now.Month", 10) - 1) + 11, parseInt("@DateTime.Now.Day", 10));
+</script>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#SubmitSearchEngine").show();
+            $("#SubmitSearchProgress").hide();
+        });
+    </script>
+
+<script>
+        function Modify() {
+
+            var adult = parseInt($("#Adult").val());
+            var child = parseInt($("#Child").val());
+            var infant = parseInt($("#Infant").val());
+            var totpax = adult + child + infant;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'flight_listing',
+                'link_name': 'modify',
+                'origin_city': $("#hfCity_from").val(),
+                'destination_city': $("#hfCity_to").val(),
+                'depart_date': $("#departure_date").val(),
+                'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+                'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+                'passenger_count': totpax,
+                'airline_class': $("#Cabin option:selected").text()
+            });
+        }
+</script>
+
+}

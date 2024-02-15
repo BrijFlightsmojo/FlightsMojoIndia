@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "deals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="searc_bg">
+        <div class="container">
+            <div class="row">
+                @{ Html.RenderPartial("~/Views/Shared/SearchEngine.cshtml");}
+                <input type="hidden" id="HomePageindex" name="HomePage" />
+            </div>
+        </div>
+    </div>
+    <div class="trust_container">
+        <div class="container">
+            <picture>
+                <source srcset="/images/travel_icon.webp" type="image/webp" />
+
+                <img loading="lazy" src="/images/travel_icon.png" alt="banner" />
+            </picture>
+
+
+        </div>
+    </div>
+
+    <div class="trust_pilot_con">
+        <div class="container">
+            <div class="row">
+                <div class="tp_container">
+                    <div data-romw-token="ck15c9nAI4hMGt68Hr18kHA0dMpYudzU5xxakB1kyMPLUkZFz2"></div>
+                    <div data-romw-token="bf0ae0CVfZ448bq1qbjgbZ6VRnBpqA1dOabBBE7wp311G4zhrP"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="populal_main">
+        <div class="container">
+            <h2>Popular Routes</h2>
+            <div class="row">
+                <div class="row">
+                    <ul id="ulDealDetails"></ul>
+                    <input type="hidden" id="hfdealType" value="3" />
+                    <input type="hidden" id="hforigin" value="" />
+                    <input type="hidden" id="hfdestination" value="" />
+                    <input type="hidden" id="hfairline" value="" />
+                    <input type="hidden" id="hftripType" value="1" />
+                    <input type="hidden" id="hfcabinClass" value="1" />
+                </div>
+                <div class="fare_quted">
+                    <h6>*All fares are quoted in INR.</h6>
+                    <p>Last updated on @DateTime.Today.AddDays(-7).ToString() , the fares mentioned above are for flight tickets and inclusive of fuel surcharges, <a href="/user-agreement">user agreement.</a> Based on historical data, these fares are subject to change without prior notice and cannot be guaranteed at the time of booking. Kindly go through our <a href="/terms-condition">terms and conditions</a>  before booking.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="whychoose_con">
+        <div class="container-fluid">
+            <div class="whychoose_20">
+                <h3>Why Book With Us?</h3>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/pci_small.png" alt="pci" /></div>
+                <div class="choose_right border_right">
+                    <h4>Safe & Secure</h4>
+                    <p>Purchase with Confidence: Safe & Secure Bookings</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/easy_small.png" alt="easyicon" /></div>
+                <div class="choose_right border_right">
+                    <h4>EASY BOOKING</h4>
+                    <p>We offer easy and convenient flight bookings with attractive offers.</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/repee_small.png" alt="rupee icon" /></div>
+                <div class="choose_right border_right">
+                    <h4>LOWEST PRICE</h4>
+                    <p>We ensure low rates on hotel reservation, holiday packages and on flight tickets.</p>
+                </div>
+            </div>
+            <div class="whychoose_20">
+                <div class="choose_left"><img src="/images/custome_small.png" alt="icon" /></div>
+                <div class="choose_right">
+                    <h4>24/7 SUPPORT</h4>
+                    <p>Get assistance 24/7 on any kind of travel related query. We are happy to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

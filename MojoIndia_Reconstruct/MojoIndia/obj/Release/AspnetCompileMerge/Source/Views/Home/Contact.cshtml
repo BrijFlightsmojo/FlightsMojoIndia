@@ -1,0 +1,215 @@
+﻿@model MojoIndia.Models.CaptchaModel
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section AdditionalMeta
+{
+    <title>Contact address, phone and email address of FlightsMojo.in</title>
+    <meta name="description" content="Reach FlightsMojo.in by using address, phone and email. We are here to help you regarding all your queries.">
+    <meta name="author" content="Flights Mojo">
+    <meta name="language" content="en" />
+    <meta name="robots" content="INDEX, FOLLOW">
+    <link rel="canonical" href="https://www.flightsmojo.in/contact-us" />
+}
+
+<section class="search_bg">
+    <div class="container">
+        <h1>CONTACT US</h1>
+    </div>
+</section>
+<section class="contact_page">
+    <div class="contact_top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4  col-xs-12">
+
+                    <div class="contacttopLeft">
+                        <div class=""></div>
+                        <h2>Need instant help?</h2>
+                        <div class="call_image">
+                            <img src="/images/call_center.png" alt="call_center" />
+                        </div>
+                        <a href="tel:+0124-445-2000"><i class="fa-solid fa-phone-volume"></i> 0124-445-2000</a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-xs-12">
+                    <form id="form1" action="/contact-us" method="post">
+                        @Html.ValidationSummary(true)
+                        <div class="contacttopRight">
+                            <div class="contact_form">
+                                <div class="form_div">
+                                    <label>Name*</label>
+                                    <i class="fa fa-user"></i>
+                                    @Html.TextBoxFor(t => t.Name, new { @class = "form-control", tabindex = "1", placeholder = "Your Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, null, new { @style = "color:#ff0000;" })
+                                </div>
+                                <div class="form_div">
+                                    <label>Email Address*</label>
+                                    <i class="fa fa-envelope"></i>
+                                    @Html.TextBoxFor(t => t.EmailID, new { @class = "form-control", tabindex = "2", placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.EmailID, null, new { @style = "color:#ff0000;" })
+                                </div>
+                                <div class="form_div">
+                                    <label>Contact*</label>
+                                    <i class="fa fa-phone"></i>
+                                    @Html.TextBoxFor(t => t.PhoneNo, new { @class = "form-control", @onkeypress = "return onlyNumerics(event)", tabindex = "3", placeholder = "Phone No." })
+                                    @Html.ValidationMessageFor(model => model.PhoneNo, null, new { @style = "color:#ff0000;" })
+                                </div>
+                                <div class="form_div">
+                                    <label>Message*</label>
+                                    <i class="fa  fa fa-edit"></i>
+                                    @Html.TextAreaFor(t => t.Massege, new { @class = "form-control", tabindex = "4", placeholder = "Message" })
+                                    @Html.ValidationMessageFor(model => model.Massege, null, new { @style = "color:#ff0000;" })
+                                </div>
+
+                                @*<div class="col-xs-12 contact_note" id="divMsg">
+                                    <img src="@Model.CapImage" />
+                                    <label class="col-xs-12 control-label">Verification Code* :</label>
+                                    @Html.TextBoxFor(t => t.CaptchaCodeText, new { @class = "form-control", tabindex = "5", placeholder = "Verification Code" })
+                                    @Html.ValidationMessageFor(model => model.CaptchaCodeText, null, new { @style = "color:#ff0000;" })
+                                </div>*@
+                                <div class="col-xs-12 contact_note" style="color:red">
+                                    @Model.sendMsg
+                                </div>
+                                <div class="submitDiv">
+                                    <button class="sumitEnquiry" style="cursor:pointer;" onclick="return SendContactEmail();">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="contactDiv">
+
+                <div class="contactDivleft">
+
+                    <div class="contactInfoDiv">
+                        <h4>CONTACT US</h4>
+                        <div class="resrvation">
+                            <p>RESERVATION</p>
+                            <a href="mailto:res@flightsmojo.in"><i class="fa-solid fa-envelope"></i> res@flightsmojo.in</a>
+                        </div>
+                        <div class="resrvation">
+                            <p>CUSTOMER SUPPORT</p>
+                            <a href="mailto:care@flightsmojo.in"><i class="fa-solid fa-envelope"></i> care@flightsmojo.in</a>
+                        </div>
+                        <div class="resrvation">
+                            <p>CALL US ON</p>
+                            <a href="tel:0124-445-2000"><i class="fa-solid fa-phone"></i> 0124-445-2000</a>
+                        </div>
+                        <div class="resrvation">
+                            <p>WHATS APP US</p>
+                            <a><i class="fa-brands fa-whatsapp"></i> +91-9205544546 (Whatsapp Only)</a>
+                        </div>
+                        <div class="resrvation">
+                            <p>ADDRESS</p>
+                            <address><i class="fa-solid fa-location-dot"></i> Plot No 83 , Sector-28 , Gurugram, Haryana - 122001 (India)</address>
+                        </div>
+
+                    </div>
+
+
+
+                    @*<h1>Flights Mojo Bookings Pvt. Ltd.</h1>
+                                            <div class="domestiAddress">
+                        <div class="imgRight"><img src="/images/india-gate.png" alt="indiagate" /></div>
+                        <div class="addressRight">
+                            <h3>Delhi</h3>
+                            <address><b>Address:- </b> B-4/124 , Safdarjung Enclave , New Delhi - 110029Plot No 83 , Sector-28 , Gurugram, Haryana - 122001 (India)</address>
+                                                    <p><b>Email us: </b><a style="color:#000;" href="mailto:@GlobalData.Email"> @GlobalData.Email</a></p>
+                                                    <p><b>Call us: </b> <a style="color:#000;" href="tel:@GlobalData.Phone"></a>@GlobalData.Phone</p>
+                                                    <p><b>WhatsApp: </b><img src="/images/whatsapp.png" /> +91-9205544546</p>
+                                                </div>
+
+                                            </div>
+
+                                            <h2>Overseas Office</h2>
+                                            <div class="domestiAddress">
+                                                <div class="imgRight"><img src="/images/burj-khalifa.png" alt="burj-khalifa" /></div>
+                                                <div class="addressRight">
+                                                    <h3>Dubai</h3>
+                                                    <p><b>Flights Mojo FZCO</b></p>
+                                                    <address><b>Address:- </b> IFZA Business Park - Dubai Silicon Oasis - Dubai - United Arab Emirates</address>
+                                                    <p><b>Email us: </b><a style="color:#000;" href="mailto:@GlobalData.Email"> @GlobalData.Email</a></p>
+                                                </div>
+                                            </div>
+                                            <div class="domestiAddress">
+                                                <div class="imgRight"><img src="/images/statue-of-liberty.png" alt="statue-of-liberty" /></div>
+                                                <div class="addressRight">
+                                                    <h3>USA</h3>
+                                                    <p><b>Flights Mojo LLC</b></p>
+                                                    <address><b>Address:- </b> 7260 W. Azure Drive, STE 140-814, Las Vegas, NV 89130</address>
+                                                    <p><b>Email us: </b><a style="color:#000;" href="mailto:@GlobalData.Email"> @GlobalData.Email</a></p>
+                                                    <p><b>Call us: </b> +1-646-868-0140</p>
+
+                                                </div>
+                                            </div>*@
+                </div>
+
+
+                <div class="contactDivright">
+                    <div class="contactMap">
+                        <h4>LOCATION MAP</h4>
+                        @*<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d62932.79915295367!2d77.1952186996937!3d28.564598058783258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sB-4%2F124%20%2C%20Safdarjung%20Enclave%20%2C%20New%20Delhi%20-%20110029!5e0!3m2!1sen!2sin!4v1661496813056!5m2!1sen!2sin" width="100%" height="470" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>*@
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.11497581255!2d77.08534151507902!3d28.476083882479738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1927028f0803%3A0x522caedfe9d49807!2s8%2F3%2C%20Chakkarpur%2C%20Sector%2028%2C%20Gurugram%2C%20Haryana%20122002!5e0!3m2!1sen!2sin!4v1657779351001!5m2!1sen!2sin" width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="divProgressBar" class="SessionTimeOut" style="display:none;">
+    <div class="BookingProgressBar">
+        <div class="row">
+            <div class="col-md-10 col-xs-10" style="text-align:center; background-color:#fff; color:maroon; padding:20px 10px;border-radius:8px;">
+                <p>Please wait...</p>
+                <img src="/images/476.gif" alt="loader" />
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        function SendContactEmail() {
+
+            var strMsg = "";
+            if ($("#Name").val() == "") {
+                strMsg += "Please enter name!\r\n";
+            }
+            if ($("#EmailID").val() == "") {
+                strMsg += "Please enter email id!\r\n";
+            }
+            else if (!(/^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#EmailID").val()))) {
+                strMsg += "You have entered an invalid email address!";
+            }
+            if ($("#PhoneNo").val().length <= 9) {
+                strMsg += "Please enter correct contact no!\r\n";
+            }
+            if ($("#Massege").val() == "") {
+                strMsg += "Please enter your query!\r\n";
+            }
+          
+
+            if (strMsg == "") {
+                $("#divProgressBar").show();
+                form1.submit();
+                return true;
+            }
+            else {
+                alert(strMsg);
+                return false;
+            }
+        }
+    </script>
+}

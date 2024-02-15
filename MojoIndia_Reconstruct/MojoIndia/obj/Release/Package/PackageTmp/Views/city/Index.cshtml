@@ -1,0 +1,360 @@
+﻿@model Core.ContentPage.CityContent
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section AdditionalMeta{
+    <title>@Model.PageTitle</title>
+    <meta name="description" content="@Model.MetaDescription" />
+    <meta name="keywords" content="@Model.MetaKeyWord" />
+    <link rel="canonical" href="https://www.flightsmojo.in/city/cheap-flights-to-@(Model.CityName.Trim().Replace(" ","-") + "-" + Model.CityCode)" />
+    <meta name="author" content="Flights Mojo" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="INDEX, FOLLOW" />
+    <meta name="Copyright" content="https://www.flightsmojo.in/" />
+}
+
+<main>
+    <style>
+         @@media screen and ( max-width:767px){
+    .bannerhead{ position: absolute;top:8px;right:0px;text-align:left;}
+    }
+    </style>
+   
+    <section class="banner_section" style="background:#6dc0e5;    position: relative;">
+        <div class="container ">
+            <div class="row ">
+
+               
+                    @{ Html.RenderPartial("~/Views/Shared/SearchEngineDestination.cshtml");}
+                
+              
+            </div>
+        </div>
+    </section>
+
+    <div class="trust_container">
+        <div class="container">
+            <picture>
+                <source srcset="/images/travel_icon.webp" type="image/webp" />
+
+                <img loading="lazy" src="/images/travel_icon.png" alt="banner" />
+            </picture>
+
+
+        </div>
+    </div>
+
+    <section class="populal_main">
+        <div class="container">
+            <h2>@Model.DealHeading</h2>
+            <div class="row">
+                <ul id="ulDealDetails"></ul>
+                <input type="hidden" id="hfdealType" value="5" />
+                <input type="hidden" id="hforigin" value="@Model.CityCode" />
+                <input type="hidden" id="hfdestination" value="" />
+                <input type="hidden" id="hfairline" value="" />
+                <input type="hidden" id="hftripType" value="1" />
+                <input type="hidden" id="hfcabinClass" value="1" />
+            </div>
+        </div>
+    </section>
+    <div class="trust_pilot_con">
+        <div class="container">
+            <div class="row">
+                <div class="tp_container">
+                    <div data-romw-token="ck15c9nAI4hMGt68Hr18kHA0dMpYudzU5xxakB1kyMPLUkZFz2"></div>
+                    <div data-romw-token="bf0ae0CVfZ448bq1qbjgbZ6VRnBpqA1dOabBBE7wp311G4zhrP"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        .content_con h2 {
+            font-size: 16px;
+            background: #e8e8e8;
+            padding: 7px 7px;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+            margin: 15px 0 8px 0;
+        }
+
+        .content_img {
+            float: right;
+            margin-left: 15px;
+            text-align: justify;
+        }
+
+        .content100 h3 {
+            background: #ccc;
+            padding: 4px 6px;
+            font-weight: bold;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+
+        .content100 table tr td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .content_con p {
+            font-size: 14px;
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            text-align: justify;
+            line-height: 20px;
+        }
+        .CitypageLink {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+        .CitypageLink li {
+            float: left;
+            margin: 20px 0;
+            color: #000;
+            font-size: 14px;
+        }
+
+            .CitypageLink li li + li:before {
+                padding: 8px;
+                color: black;
+                content: "/";
+            }
+
+        .CitypageLink > li + li::before {
+            color: #ccc;
+            content: "/ ";
+            padding: 0 5px;
+        }
+
+        .CitypageLink li:last-child {
+            border-right: 0;
+        }
+    </style>
+    <section class="detnation_con">
+       
+        <div class="container">
+
+            <div class="row">
+
+
+
+                <div class="container-fs mg_0">
+                    <ul class="CitypageLink">
+                        <li><a href="/" style="text-decoration-color:black;color: black;">Home</a></li>
+                        <li>Flights</li>
+                        <li>@Model.CityCode.ToUpper() Air Ticket</li>
+                    </ul>
+                </div>
+                @if (Model.AboutCityDescription != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>
+                            @Model.AboutCityHeading
+                        </h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.AboutCityDescription)
+                            </div>
+                        </div>
+                    </div>
+
+            }
+                @if (Model.FAQQ1 != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>FAQs About Flights From @Model.CityName.ToUpper()</h2>
+                        <div class="Flight_Info">
+                            <div class="faq_box">
+                                <p><b>Q. @Model.FAQQ1</b></p>
+                                <p> <b>A.</b>  @Model.FAQANS1</p>
+                            </div>
+                            @if (Model.FAQQ2 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ2</b></p>
+                                    <p> <b>A.</b>  @Model.FAQANS2</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ3 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ3</b></p>
+                                    <p> <b>A.</b>  @Model.FAQANS3</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ4 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ4</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS4</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ5 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ5</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS5</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ6 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ6</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS6</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ7 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ7</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS7</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ8 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ8</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS8</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ9 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ9</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS9</p>
+                                </div>
+                        }
+                            @if (Model.FAQQ10 != "")
+                        {
+                                <div class="faq_box">
+                                    <p><b>Q. @Model.FAQQ10</b></p>
+                                    <p><b>A.</b>  @Model.FAQANS10</p>
+                                </div>
+                        }
+
+                        </div>
+                    </div>
+            }
+
+
+                <div class="MonthlyDeal">
+                    <h2>Airport information</h2>
+                    <div class="Flight_Info">
+                        <div class="airportinfo_left">
+                            @{
+                            var AirportFrom = Core.FlightUtility.GetAirport(Model.CityCode);
+                            }
+                            <p style=" font-size:16px;"><b><i class="fa-solid fa-plane-departure" style="margin-right:6px;"></i> @Model.CityName.ToUpper() Airport information</b></p>
+                            <p><b>Airport : </b>@AirportFrom.airportName</p>
+                            <p><b>IATA Code : </b>@AirportFrom.airportCode</p>
+                            <p><b>Address : </b>@Model.OriginAirportAddress</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @if (Model.CitySubDescription1 != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>
+                            @Model.CitySubContentHeading1
+                        </h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.CitySubDescription1)
+                            </div>
+                        </div>
+                    </div>
+            }
+
+                @if (Model.CitySubDescription2 != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>@Model.CitySubContentHeading2</h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.CitySubDescription2)
+                            </div>
+                        </div>
+                    </div>
+            }
+
+                @if (Model.CitySubDescription3 != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>@Model.CitySubContentHeading3</h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.CitySubDescription3)
+                            </div>
+                        </div>
+                    </div>
+            }
+
+
+                @if (Model.CitySubDescription4 != "")
+            {
+                    <div class="MonthlyDeal">
+                        <h2>@Model.CitySubContentHeading4</h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.CitySubDescription4)
+                            </div>
+                        </div>
+                    </div>
+            }
+
+
+                @if (Model.CitySubDescription5 != "")
+            {
+                    <div class="MonthlyDeal" style="margin-bottom:20px;">
+                        <h2>@Model.CitySubContentHeading5</h2>
+                        <div class="Flight_Info">
+                            <div class="faq_con">
+                                @Html.Raw(@Model.CitySubDescription5)
+                            </div>
+                        </div>
+                    </div>
+            }
+
+     @if (Model.websiteFareDeal != null)
+            {
+                    <div class="MonthlyDeal" style="margin-bottom:20px;">
+                        <h2>Top Airlines Flying from @Model.CityName </h2>
+                        <div class="Flight_Air">
+                            <ul>
+                                @foreach (var item in Model.websiteFareDeal.Select(c => c.airline).Distinct())
+                                {
+                                    <li>
+                                        <div class="airline-logo">
+                                            <img src="/images/flight_small/@(item.code).gif" alt="@(item.name)" title="@(item.name)" />
+                                            <br />
+                                            <p><b>@item.name</b></p>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+    </section>
+
+    <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
+    <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
+</main>

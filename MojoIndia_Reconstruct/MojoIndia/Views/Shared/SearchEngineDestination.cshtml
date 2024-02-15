@@ -1,0 +1,243 @@
+﻿
+
+<form id="flightSearch" action="/Flight/SearchingFlight" method="post">
+    <div class="search_main">
+        <div class="search_menu">
+            <ul>
+                <li class="flight"><a class="active">FLIGHTS</a></li>
+                <li class="hotel" style="display:none;"><a>HOTELS</a></li>
+            </ul>
+        </div>
+        <div class="flight_menu">
+            <ul>
+                <li><a id="anchor1" class="active" onclick="ChangeTripType(1)">ONE WAY</a></li>
+                <li><a id="anchor2" onclick="ChangeTripType(2)">ROUND TRIP</a></li>
+            </ul>
+        </div>
+        <div class="destop_con">
+            <div id="divRoundOne">
+                <div class="trip_con ">
+                    <div class="origin_con" onclick="OpenAutoComplete('from')" style="position:relative;" id="SeFrom">
+                        @if (string.IsNullOrEmpty(ViewBag.orgcity))
+                        {
+                            <dfn class="icon_takeoff"></dfn>
+                            <span class="city_orgin">Origin</span>
+                            <span class="DesktopCon DestopOrgin" id="fromTopCity">Delhi</span>
+                            <span class="DesktopCon city_span" id="fromBottamCity">[DEL] India</span>
+                            <span class="mobile SeacrFont" id="fromTopCityMob">DEL</span>
+                            <span class="mobile city_span" id="fromBottamCityMob">Delhi</span>
+                            <input type="hidden" id="hfCity_from" name="hfCity_from" value="DEL" />
+                            <div class="DestSector DestSectorMobile" id="fromAutoComplete" style="display:none;">
+                                <div class="DestDrop">
+                                    <i class="fa fa-search DesktopCon"></i>
+                                    <i class="fa fa-angle-left mobileArrow"></i>
+                                    <input class="autoComplete" id="fromCity" name="fromCity" placeholder="From" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                                    <a class="crossButn"></a>
+                                </div>
+                                <div class="DropScrol">
+                                    <div class="clr"></div>
+                                    <ul class="autoSuggest" id="fromAutoSuggest"></ul>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <dfn class="icon_takeoff"></dfn>
+                            <span class="city_orgin">Origin</span>
+                            <span class="DesktopCon DestopOrgin" id="fromTopCity">@(ViewBag.orgcity)</span>
+                            <span class="DesktopCon city_span" id="fromBottamCity">[@(ViewBag.orgcity)] @ViewBag.orgCode</span>
+                            <span class="mobile SeacrFont" id="fromTopCityMob">@ViewBag.CityCode</span>
+                            <span class="mobile city_span" id="fromBottamCityMob">@ViewBag.orgcity</span>
+                            <input type="hidden" id="hfCity_from" name="hfCity_from" value="@ViewBag.CityCode" />
+                            <div class="DestSector DestSectorMobile" id="fromAutoComplete" style="display:none;">
+                                <div class="DestDrop">
+                                    <i class="fa fa-search DesktopCon"></i>
+                                    <i class="fa fa-angle-left mobileArrow"></i>
+                                    <input class="autoComplete" id="fromCity" name="fromCity" placeholder="From" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                                    <a class="crossButn"></a>
+                                </div>
+                                <div class="DropScrol">
+                                    <div class="clr"></div>
+                                    <ul class="autoSuggest" id="fromAutoSuggest"></ul>
+                                </div>
+                            </div>
+                        }
+
+
+</div>
+<div class="desti_mid">
+    <a></a>
+</div>
+<div class="desti_con" onclick="OpenAutoComplete('to')" style="position:relative;" id="SeTo">
+   
+
+
+    @if (string.IsNullOrEmpty(ViewBag.org))
+    {
+        <dfn class="icon_takein"></dfn>
+        <span class="city_orgin">Destination</span>
+        <span class="DesktopCon DestopOrgin" id="toTopCity">Mumbai</span>
+        <span class="DesktopCon city_span" id="toBottamCity">[BOM] Mumbai</span>
+        <span class="mobile SeacrFont" id="toTopCityMob">BOM</span>
+        <span class="mobile city_span" id="toBottamCityMob">Mumbai</span>
+        <input type="hidden" id="hfCity_to" name="hfCity_to" value="BOM" />
+        <div class="DestSector DestSectorMobile" id="toAutoComplete" style="display:none;">
+            <div class="DestDrop">
+                <i class="fa fa-search DesktopCon"></i>
+                <i class="fa fa-angle-left mobileArrow"></i>
+                <input class="autoComplete" id="toCity" name="toCity" placeholder="To" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                <a class="crossButn"></a>
+            </div>
+            <div class="DropScrol">
+                <div class="clr"></div>
+                <ul class="autoSuggest" id="toAutoSuggest"></ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <dfn class="icon_takein"></dfn>
+        <span class="city_orgin">Destination</span>
+        <span class="DesktopCon DestopOrgin" id="toTopCity">@(ViewBag.descity)</span>
+        <span class="DesktopCon city_span" id="toBottamCity">[@ViewBag.org] @(ViewBag.descity)</span>
+        <span class="mobile SeacrFont" id="toTopCityMob">@ViewBag.org</span>
+        <span class="mobile city_span" id="toBottamCityMob">@(ViewBag.descity)</span>
+        <input type="hidden" id="hfCity_to" name="hfCity_to" value="@ViewBag.org" />
+        <div class="DestSector DestSectorMobile" id="toAutoComplete" style="display:none;">
+            <div class="DestDrop">
+                <i class="fa fa-search DesktopCon"></i>
+                <i class="fa fa-angle-left mobileArrow"></i>
+                <input class="autoComplete" id="toCity" name="toCity" placeholder="To" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
+                <a class="crossButn"></a>
+            </div>
+            <div class="DropScrol">
+                <div class="clr"></div>
+                <ul class="autoSuggest" id="toAutoSuggest"></ul>
+            </div>
+        </div>
+    }
+
+
+
+
+
+</div>
+</div>
+<div class="calender_con MobileJqueryUseDate">
+    <div class="calden_left">
+        <dfn class="calender_iconL"></dfn>
+        <span>Depart</span>
+        <input type="text" id="departure_date" name="departure_date" readonly="readonly" placeholder="Select" autocomplete="off" />
+        <span class="error_mesg"></span>
+    </div>
+    <div class="calden_right" id="divReturnDate" style="display:none;">
+        <dfn class="calender_iconR"></dfn>
+        <span>Return</span>
+        <input type="text" id="return_date" name="return_date" readonly="readonly" placeholder="Select" autocomplete="off" />
+        <span class="error_mesg"></span>
+    </div>
+</div>
+</div>
+<div class="passenger_con">
+    <div class="passen_left">
+        <dfn class="passen_icon"></dfn>
+        <span class="passen_header">Passenger</span>
+        <p><span class="travel-btn-down" id="spanPaxDetail">1 Passenger - 0 Child</span></p>
+        <div class="passenger-div">
+            <div class="overlay_bg">
+                <div class="select-passenger">
+                    <h4>Passenger</h4>
+                    <div class="select-passenger-content">
+                        <div class="adult-row">
+                            <div class="adult-left">
+                                <p class="adult-txt">
+                                    Adults
+                                    <span class="adult-txt-content">11+ Years</span>
+                                </p>
+                            </div>
+                            <div class="adult-right">
+                                <div class="adult-minus qtyminus" onclick="MinusPax('Adult');">
+                                    <p class="adult-minus-txt">-</p>
+                                </div>
+                                <input id="Adult" name="Adult" type="text" value="1" class="qtynumber" readonly="readonly" />
+                                <div class="adult-plus qtyminus" onclick="PlusPax('Adult');">
+                                    <p class="adult-minus-txt">+</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="children-row">
+                            <div class="adult-left">
+                                <p class="adult-txt">
+                                    Children
+                                    <span class="adult-txt-content">2 - 11 Years</span>
+                                </p>
+                            </div>
+                            <div class="children-right">
+                                <div class="adult-minus qtyminus" onclick="MinusPax('Child');">
+                                    <p class="adult-minus-txt">-</p>
+                                </div>
+                                <input id="Child" name="Child" type="text" value="0" class="qtynumber" readonly="readonly" />
+                                <div class="adult-plus qtyminus" onclick="PlusPax('Child');">
+                                    <p class="adult-minus-txt">+</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infants-row">
+                            <div class="adult-left">
+                                <p class="adult-txt">
+                                    Infants
+                                    <span class="adult-txt-content"> &lt; 2 Years</span>
+                                </p>
+                            </div>
+                            <div class="infants-right">
+                                <div class="adult-minus qtyminus" onclick="MinusPax('Infant');">
+                                    <p class="adult-minus-txt">-</p>
+                                </div>
+                                <input id="Infant" name="Infant" type="text" value="0" class="qtynumber" readonly="readonly" />
+                                <div class="adult-plus qtyminus" onclick="PlusPax('Infant');">
+                                    <p class="adult-minus-txt">+</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CabinType">
+                            <span class="Class_Type">Class</span>
+                            <span class="Select_Class">
+                                <select id="Cabin" name="Cabin" onchange="setPaxDropBox()">
+                                    <option value="1">Economy</option>
+                                    <option value="2">Premium Economy</option>
+                                    <option value="3">Business</option>
+                                    <option value="4">First</option>
+                                </select>
+                            </span>
+                        </div>
+                        <button type="button" class="done-btn  close-txt">Done</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="search_div">
+    <button type="submit" id="SubmitSearchEngine" onclick="return submitForm();">Search</button>
+    <button type="submit" id="SubmitSearchProgress" style="display:none;" onclick="return false;">Searching.....</button>
+    <input type="hidden" id="hfTripType" name="hfTripType" value="1" />
+</div>
+</div>
+<div class="deal_Banner">
+<div class="bannerhead">
+<h1>@Model.BannerHeading</h1>
+<p>Book Latest Flight Deals &amp; Save NOW!</p>
+</div>
+<picture>
+<source srcset="/images/deal_new.webp" type="image/webp" />
+<img loading="lazy" src="/images/deal_new.jpg" alt="banner" />
+</picture>
+</div>
+</form>
+<div class="overlay_bg" id="CalOverLay" style="display:none;"></div>
+<script type="text/javascript">
+    var minDate = new Date(parseInt("@DateTime.Now.Year", 10), parseInt("@DateTime.Now.Month", 10) - 1, parseInt("@DateTime.Now.Day", 10));
+    var maxDate = new Date(parseInt("@DateTime.Now.Year", 10), (parseInt("@DateTime.Now.Month", 10) - 1) + 11, parseInt("@DateTime.Now.Day", 10));
+</script>

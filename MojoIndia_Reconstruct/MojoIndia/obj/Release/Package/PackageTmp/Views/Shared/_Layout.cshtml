@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FMJ">
+    @RenderSection("AdditionalMeta", false)
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c3632ac11d.js" crossorigin="anonymous"></script>
+    @*<link rel="icon" href="images/favicon.ico" type="image/x-icon" />*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google Tag Manager -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-NZ4KF2T');
+</script>
+
+<!-- End Google Tag Manager -->
+
+    @Styles.Render("~/Content/cssIndia")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        @*<div class="container-fluid cooki_contop " id="divCookies" style="display:none;">
+            <div class="container">
+                <div>
+                    This website uses cookies to ensure you get the best experience.  &nbsp;<a href="/privacy-policy" target="_blank" style="color:#ff6a00;">Learn More</a>
+                    <button class="btn btn-danger" onclick="setCookies(); ">Accept</button>
+                </div>
+            </div>
+        </div>*@
+        <div class="MainHead">
+            
+                <div class="container ">
+                    <div class="row">
+                        <div class="head_con">
+                            <div class="logo"><a href="/"><img src="/images/logo.svg" alt="logo" /></a></div>
+                            <div class="header_right">
+                                <div id="mainnav" class="main_menu">
+                                    <div id="menu"><i class="fa fa-bars"></i></div>
+                                    <ul>
+                                        @*<li><a class="active" href="/">FLIGHTS </a></li>
+                            <li><a class="" href="#">HOTELS </a></li>
+                                <li><a class="" href="">HOLIDAYS</a></li>*@
+                                    </ul>
+                                </div>
+                                <div class="contact_con" style="display:none;">
+                                    <div class="falg_div">
+                                        <div class="country">
+                                            <div id="country" class="select"><img src="/images/ind_icon.png" alt="icon" /> IND<i class="fa fa-caret-down"></i></div>
+                                            <div id="country-drop" class="dropdown">
+                                                <ul>
+                                                    @*<li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/us_icon.png" /> US </a></li>
+                                        <li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/ca_icon.png" /> CA </a></li>*@
+                                                    <li data-code="AW" data-name="Aruba" data-cid="c42"><img src="/images/ind_icon.png" alt="icon" /> IND </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<p><i class="fa fa-clock-o duration-size"></i>Call US for Support</p>-->
+                                    @*<a href="call-to:@GlobalData.Phone"><img src="/images/ph_icon.png" /> @GlobalData.Phone</a>*@
+                                </div>
+                                @*<div class="mobile_Con">
+                        <a href="/contact-us"><span>Contact Us </span><i class="mobenvelope"></i></a>
+                    </div>*@
+                                <div class="search_con">
+                                    <ul>
+                                        @if (false && ViewBag.pageType != null && ViewBag.pageType == "index")
+                            {
+                                            <li class="dropdown" style="display:none;" id="SearchPad">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    My Searches <span class="Scratchpad" id="totRecentSearch"></span><span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu" id="MySearches"></ul>
+                                            </li>
+                            }
+
+                                        @*<li><a href="#">My Bookings</a></li>*@
+                                        <li><a class="" href="/contact-us"><dfn class="ph_icon"></dfn>24x7 Helpline</a></li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="main_footer">
+            <div class="container">
+                <div class="footer_con">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
+                            <div class="footer_company">
+                                <h6>COMPANY INFO.</h6>
+                                <ul>
+                                    <li><a href="/about-us">About Us</a></li>
+                                    <li><a href="/terms-condition">Terms & Conditions</a></li>
+                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                    <li><a href="/user-agreement">User-agreement</a></li>
+                                    @*<li><a href="/pay-now">Pay Now</a></li>*@
+                                    <li>
+                                        <form>
+                                            <script src=https://checkout.razorpay.com/v1/payment-button.js data-payment_button_id="pl_K6oPtnxUAT6Oq1" async> </script>
+                                        </form>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                            <div class="footer_destination">
+                                <h6>&nbsp;</h6>
+                                <ul>
+                                    
+                                    <li><a href="/disclaimer">Disclaimer</a></li>
+                                    <li><a href="/contact-us">Contact Us</a></li>
+                                  <li><a href="/sitemap">Site Map</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                            <div class="footer_destination">
+                                <h6>DESTINATIONS</h6>
+                                <ul>
+                                    <li><a href="/top-international-destinations">International Destinations</a> </li>
+                                    <li><a href="/first-class-flights">First and Business Class</a> </li>
+                                    <li><a href="/last-minute-flights">Last Minute Flights</a> </li>
+									<li><a href="/flights">Flights</a> </li>
+                                    <li><a href="/airline">Airlines</a> </li>
+									<li><a href="/deals">Deals</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                            <div class="footer_touch">
+                                <h6>GET IN TOUCH</h6>
+                                <div class="newslatter">
+                                    <h6>Newsletter!</h6>
+                                    <input type="text" placeholder="Enter Your mail" />
+                                    <button>Subscribe</button>
+
+                                    <a href="mailto:@GlobalData.Email"><i class="envelope"></i>@GlobalData.Email</a>
+                                </div>
+                                <div class="social_link">
+                                    <ul>
+                                         <li><a class="fb_icon" href="https://www.facebook.com/flightsmojoin/" target="_blank" onclick="SetSocialMedia('facebook')"></a></li>
+                                        <li><a class="insta_icon" href="https://www.instagram.com/flightsmojoindia/" target="_blank" onclick="SetSocialMedia('instagram')"></a></li>   
+                                        @*<li><a href=""><i class="fa fa-twitter-square"></i></a></li>*@
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright <span><i class="fa fa-copyright" aria-hidden="true"></i> </span>2015-2022 FlightsMojo Bookings Pvt. Ltd.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*<div class="container-fluid cooki_con" id="divCookies1" style="display:none;">
+        <div class="container">
+            <div>
+                We use cookies to give you the best and the most relevant website experience. Kindly accept and for more details about cookies click on &nbsp;<a style="color:#ff6a00;" href="/privacy-policy" target="_blank">Privacy Policy</a>
+                <button class="btn btn-danger" onclick="setCookies();">Accept</button>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="searach_popup" id="" style="display:none;">
+        <form id="flightSearch1" action="/Flight/SearchingFlight_se" method="post">
+            <div class="close_btn"><a><i class="fa fa-close"></i></a></div>
+            <div class="destin_name">
+                Flight
+                <span id="seFrom"></span> To <span id="seTo"></span>
+            </div>
+            <div class="trip_type">
+                <div class="one_way_trip"><i class="fa fa-calendar"></i><input type="text" id="se_departure_date" name="se_departure_date" placeholder="YYYY-MM-DD" value="@(System.DateTime.Today.AddDays(1).ToString("yyyy-MM-dd"))" /></div>
+                <div class="round_trip"><i class="fa fa-calendar"></i><input type="text" id="se_return_date" name="se_return_date" placeholder="YYYY-MM-DD" value="@(System.DateTime.Today.AddDays(8).ToString("yyyy-MM-dd"))" /></div>
+            </div>
+            <div class="trip_type2" id="travellerDiv2">
+                <div class="trip_type2_trav"><input type="text" id="se_txtPaxDetail" name="class" placeholder="1 Traveller , Economy" autocomplete="off" /><span class="PaxDropArrow2"><i class="fa fa-chevron-down"></i></span></div>
+                <div class="round_trip2_btn">
+                    <input type="submit" class="" onclick="return se_submitForm();" value="Search" />
+                </div>
+                <div class="passenger-div2" style="display: none; background-color:#fff;">
+                    <div class="passenger-div-content2">
+                        <p style="font-size:12px;" id="class-txt">Class : </p>
+                        <select class="select-class2 home-select-class" id="se_Cabin" name="se_Cabin" onchange="se_setPaxDropBox();">
+                            <option value="1">Economy</option>
+                            <option value="2">Premium Economy</option>
+                            <option value="3">Business</option>
+                            <option value="4">First</option>
+                        </select>
+                    </div>
+                    <div style="margin-top:0;" class="select-passenger">
+                        <div class="select-passenger-content">
+                            <div class="adult-row">
+                                <div class="adult-left">
+                                    <p style="font-size:12px;" class="adult-txt">
+                                        Adults<br>
+                                        <span class="adult-txt-content">11+ Years</span>
+                                    </p>
+                                </div>
+                                <div class="adult-right">
+                                    <div class="adult-minus qtyminus" onclick="se_MinusPax('se_Adult');">
+                                        <p class="adult-minus-txt">-</p>
+                                    </div>
+                                    <input id="se_Adult" name="se_Adult" type="text" value="1" class="qtynumber" readonly="readonly" />
+                                    <div class="adult-plus qtyminus" onclick="se_PlusPax('se_Adult');">
+                                        <p class="adult-minus-txt">+</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="children-row">
+                                <div class="adult-left">
+                                    <p style="font-size:12px;" class="adult-txt">
+                                        Children<br>
+                                        <span class="adult-txt-content">2 - 11 Years</span>
+                                    </p>
+                                </div>
+                                <div class="children-right">
+                                    <div class="adult-minus qtyminus" onclick="se_MinusPax('se_Child');">
+                                        <p class="adult-minus-txt">-</p>
+                                    </div>
+                                    <input id="se_Child" name="se_Child" type="text" value="0" class="qtynumber" readonly="readonly" />
+                                    <div class="adult-plus qtyminus" onclick="se_PlusPax('se_Child');">
+                                        <p class="adult-minus-txt">+</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="infants-row">
+                                <div class="adult-left">
+                                    <p style="font-size:12px;" class="adult-txt">
+                                        Infants<br>
+                                        <span class="adult-txt-content"> &lt; 2 Years</span>
+                                    </p>
+                                </div>
+                                <div class="infants-right">
+                                    <div class="adult-minus qtyminus" onclick="se_MinusPax('se_Infant');">
+                                        <p class="adult-minus-txt">-</p>
+                                    </div>
+                                    <input id="se_Infant" name="se_Infant" type="text" value="0" class="qtynumber" readonly="readonly" />
+                                    <div class="adult-plus qtyminus" onclick="se_PlusPax('se_Infant');">
+                                        <p class="adult-minus-txt">+</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="infants-row" style="display:none;">
+                                <div class="adult-left">
+                                    <p class="adult-txt">
+                                        Infants WithSeat<br>
+                                        <span class="adult-txt-content"> < 2 Years</span>
+                                    </p>
+                                </div>
+                                <div class="infants-right">
+                                    <div class="adult-minus qtyminus" onclick="se_MinusPax('se_InfantWs');">
+                                        <p class="adult-minus-txt">-</p>
+                                    </div>
+                                    <input id="se_InfantWs" name="se_InfantWs" type="text" value="0" class="qtynumber" readonly="readonly" />
+                                    <div class="adult-plus qtyminus" onclick="se_PlusPax('se_InfantWs');">
+                                        <p class="adult-minus-txt">+</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn done-btn pull-right close-txt closePaxDiv2">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input id="se_fromCity" name="se_fromCity" type="hidden" />
+            <input id="se_toCity" name="se_toCity" type="hidden" />
+            <input type="hidden" id="se_hfTripType" name="se_hfTripType" />
+        </form>
+    </div>
+
+    @Scripts.Render("~/bundles/MojoIndiaJs")
+
+    @RenderSection("scripts", required: false)
+    <script>
+
+        $(document).ready(function () {
+            $('#menu').bind('click', function (event) {
+
+                $("#mainnav ul").animate({
+                    width: "toggle"
+                });
+            });
+
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 768) {
+                    $('#mainnav ul').removeAttr('style');
+                }
+            });
+        });
+
+        function countryDropdown(seletor) {
+            var Selected = $(seletor);
+            var Drop = $(seletor + '-drop');
+            var DropItem = Drop.find('li');
+
+            Selected.click(function () {
+                Selected.toggleClass('open');
+                Drop.toggle();
+            });
+
+            Drop.find('li').click(function () {
+                Selected.removeClass('open');
+                Drop.hide();
+
+                var item = $(this);
+                Selected.html(item.html());
+            });
+
+
+        }
+
+        countryDropdown('#country');
+    </script>
+<!-- Google Tag Manager (noscript) -->
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ4KF2T"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- End Google Tag Manager (noscript) -->
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E602BE58-814F-4B06-9882-1F36F4E2D6EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgencyBalanceResponse.cs" />
+    <Compile Include="ContentPage\AirlineContent.cs" />
+    <Compile Include="ContentPage\CityContent.cs" />
+    <Compile Include="ContentPage\DealsContent.cs" />
+    <Compile Include="ContentPage\OriginDestinationContent.cs" />
+    <Compile Include="ContentPage\PageContent.cs" />
+    <Compile Include="ContentPage\Sitemap.cs" />
+    <Compile Include="ContentPage\WebsiteFareDeal.cs" />
+    <Compile Include="CountryList.cs" />
+    <Compile Include="CouponStatusRequest.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="FlightUtility.cs" />
+    <Compile Include="Flight\AirContext.cs" />
+    <Compile Include="Flight\Airline.cs" />
+    <Compile Include="Flight\Airport.cs" />
+    <Compile Include="Flight\CalendarFareResponse.cs" />
+    <Compile Include="Flight\CalendarFareUpdateRequest.cs" />
+    <Compile Include="Flight\FlightSupplier.cs" />
+    <Compile Include="Flight\GoogleFlightDeepLink.cs" />
+    <Compile Include="Flight\VerifyFareDetails.cs" />
+    <Compile Include="Flight\VerifyPriceResponse.cs" />
+    <Compile Include="Flight\FlightBookingRequest.cs" />
+    <Compile Include="Flight\FlightBookingResponse.cs" />
+    <Compile Include="Flight\FlightSearchRequest.cs" />
+    <Compile Include="Flight\FlightSearchResponse.cs" />
+    <Compile Include="Flight\PriceVerificationRequest.cs" />
+    <Compile Include="Flight\PriceVerificationResponse.cs" />
+    <Compile Include="PassengerDetails.cs" />
+    <Compile Include="PaymentDetails.cs" />
+    <Compile Include="PayU\WebhookSuccessDetails.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefineResult\RefineResult.cs" />
+    <Compile Include="ResponseStatus.cs" />
+    <Compile Include="RP\PaymentCaptured.cs" />
+    <Compile Include="RP\PaymentRP.cs" />
+    <Compile Include="RP\Webhook\WebhookSuccess.cs" />
+    <Compile Include="SendEmailRequest.cs" />
+    <Compile Include="Whatsapp\WhatsappMsg.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

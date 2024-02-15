@@ -1,0 +1,318 @@
+﻿@model Core.Flight.FlightBookingResponse
+@using Core;
+
+<!DOCTYPE html>
+<html>
+
+<body>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%; background-color:#ffffff; color:#000; text-align:center; font-size:12px;padding:10px 10px 10px 10px; line-height:30px; font-family:Arial, Helvetica, sans-serif; box-sizing:border-box;">
+            <tr>
+                <td colspan="2">
+                    <table style="width:100%;">
+
+                        <tr>
+                            <td colspan="2" style="text-align:left;"><img width="180" src="https://www.flightsmojo.in/images/logo.png" /></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:12px; color:#000;text-align:left;line-height:25px;padding-bottom:8px;">Flight <b style="padding-left:8px;">E-ticket</b></td>
+                            <td style="font-size:12px; color:#000;text-align:right;line-height:25px;padding-bottom:8px;">Booking Reference Number: <b style="padding-left:8px;">@Model.bookingID</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding:8px 8px 8px 8px;border:1px solid #cccccc;text-align:left;"><b style="font-size:12px; color:#000;">PASSENGER DETAILS</b></td>
+                        </tr>
+                        @if (Model.passengerDetails != null)
+                        {
+                            <tr>
+                                <td colspan="2" style="width:100%;">
+
+                                    <table style="width:100%;border:1px solid #cccccc;" cellpadding="4" cellspacing="0">
+                                        <tr>
+                                            <td style="text-align:left;"><b style="font-size:12px; color:#000;">NAME</b></td>
+                                            @if (Model.passengerDetails[0].ticketNo != null && Model.passengerDetails[0].ticketNo != "")
+                                            {
+                                                <td><b style="font-size:12px; color:#000;">TICKET NO.</b></td>
+                                            }
+                                            else
+                                            {
+                                                <td>&nbsp;</td>
+                                            }
+                                            <td><b style="font-size:12px; color:#000;text-align:right;">Booking Status.</b></td>
+                                        </tr>
+                                        @foreach (var item in Model.passengerDetails)
+                                        {
+                                            <tr>
+                                                <td style="font-size:12px; color:#000;text-align:left;">@(item.title + " " + item.firstName + " " + item.lastName)</td>
+                                                @if (item.ticketNo != "")
+                                                {
+                                                    <td style="font-size:12px; color:#000;">@item.ticketNo</td>
+                                                }
+                                                else
+                                                {
+                                                    <td></td>
+                                                }
+                                                <td><b style="font-size:12px; color:#000;">@((BookingStatus)Model.bookingStatus)</b></td>
+                                            </tr>
+                                        }
+                                    </table>
+
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var result in Model.flightResult)
+                        {
+                            foreach (var fs in result.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    var AirportFrom1 = Model.airport.Where(k => k.airportCode == seg.Origin).FirstOrDefault();
+                                    var AirportTo1 = Model.airport.Where(k => k.airportCode == seg.Destination).FirstOrDefault();
+                                    var airline = Model.airline.Where(k => k.code == seg.Airline).FirstOrDefault();
+                                    <tr>
+                                        <td colspan="2">
+
+                                            <table style="width:100%; border:1px solid #cccccc;" cellpadding="6" cellspacing="0">
+                                                <tr>
+                                                    <td colspan="2" style="font-size:13px;text-align:left;"><b>@(seg.DepTime.ToString("ddd, dd MMM yyyy")) </b></td>
+                                                    <td style="text-align:center; font-size:13px;"><b>@(AirportFrom1.cityName) -  @(AirportTo1.cityName)</b></td>
+                                                    <td colspan="2" style="text-align:right;font-size:14px;"><b>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</b></td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="padding-bottom:15px;">
+
+                                            <table cellpadding="4" cellspacing="0" align="center" style="width:100%; border:1px solid #cccccc;">
+
+                                                <tr>
+                                                    <td style="font-size:12px; color:#000;text-align:left;"><b>AIRLINE</b></td>
+                                                    <td style="font-size:12px; color:#000;"><b>DEPARTURE</b></td>
+                                                    <td style="font-size:12px; color:#000;"><b>ARRIVAL</b></td>
+                                                    <td style="font-size:12px; color:#000;"><b>DURATION</b></td>
+                                                    <td style="font-size:12px; color:#000;"><b>PNR</b></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="font-size:11px; color:#000;text-align:left; padding:6px 6px 6px 6px;display:inline-block;">
+                                                        <span><img src="https://www.flightsmojo.in/images/flight_small/@(airline.code).gif" /></span>
+                                                        <p style="margin:0;padding:0;font-size:10px;line-height:15px; padding-top:6px;">@airline.name</p>
+                                                        <p style="margin:0;padding:0;font-size:10px;line-height:15px;">@(airline.code + "-" + seg.FlightNumber)</p>
+                                                        <p style="margin:0;padding:0;font-size:10px;line-height:15px;">@((CabinType)seg.CabinClass)</p>
+                                                    </td>
+                                                    <td>
+                                                        <b style="font-size:12px;text-align:left;">@AirportFrom1.cityName</b><p style="margin:0;padding:0;font-size:11px;">@(seg.DepTime.ToString("hh:mm tt"))</p>
+                                                        @if (!string.IsNullOrEmpty(seg.FromTerminal))
+                                                        {
+                                                            <p style="margin:0;padding:0;font-size:11px;">Terminal:@seg.FromTerminal</p>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        <b style="font-size:12px;">@AirportTo1.cityName</b><p style="margin:0;padding:0;font-size:11px;">@(seg.ArrTime.ToString("hh:mm tt"))</p>
+                                                        @if (!string.IsNullOrEmpty(seg.ToTerminal))
+                                                        {
+                                                            <p style="margin:0;padding:0;font-size:11px;">Terminal:@seg.ToTerminal</p>
+                                                        }
+
+                                                    </td>
+                                                    <td style="font-size:12px;">
+
+                                                        <span><b>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</b></span>
+
+                                                        @*<p style="margin:0;padding:0;font-size:11px;">Non stop</p>*@
+
+                                                    </td>
+
+                                                    @if (fs.SegName.Equals("Depart", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        if (!string.IsNullOrEmpty(Model.PNR))
+                                                        {
+                                                            <td style="font-size:12px;"><b style="padding-top:6px;">@Model.PNR</b></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td style="font-size:12px;"><b style="padding-top:6px;">Pending</b></td>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="font-size:12px;"><b style="padding-top:6px;">@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</b></td>
+                                                    }
+                                                </tr>
+                                                @if (seg.layOverTime > 0)
+                                                {
+                                                    <tr>
+                                                        <td align="center" colspan="5"><span style="font-size:12px; color:#333; padding:6px 6px 6px 6px; text-align:center;">@AirportTo1.cityName (@AirportTo1.airportCode) - @((seg.layOverTime / 60) + "hr" + (seg.layOverTime % 60) + "min Layover in ")</span></td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                        @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
+                                       @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)
+                                       {
+                            <tr>
+                                <td colspan="2" style="line-height:20px;">
+                                    <table style="width:100%; display:inline-block;">
+                                        <tr bg="#ddd">
+                                            <td colspan="2" style="font-size:14px; color:#000; padding:4px; border-radius:10px; font-weight:bold;display:inline-block;text-align:left;"><b>Important Information</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;"> &bull; The fare you selected is a Special Category Group Promotional Fare.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;"> &bull; Web Check-in for this ticket can be done a day before the journey.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Please reconfirm the flight timings and schedule at least 24-48 hours before departure.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; The fare once booked, cannot be changed, or cancelled. This is a highly restricted fare and completely non-refundable and non-changeable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; This is a 100% Confirmed Ticket. However, as it is a group fare, your name will reflect on the airline’s website only 12-24 hours before departure.</td>
+                                        </tr>
+                                        <tr bg="#ddd">
+                                            <td colspan="2" style="font-size:14px; color:#000;border-radius:10px; font-weight:bold;display:inline-block;text-align:left;"><b>Terms & Conditions</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">&bull; All passengers, including children and infants, have to present their valid ID proof at the time of check ­ in.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">&bull; We recommend you check­in at least 3 hours prior to departure of your domestic flight and 4 hours prior to your international flight.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">
+                                                &bull; For any cancellation of your booking, please contact FlightsMojo and not the Airlines directly.
+                                                This will enable us to expedite your refund.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Please reconfirm your flight schedule prior to departure. Flights Mojo will not be responsible for intimating any schedule changes or flight cancellation by the airlines.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Use PNR/Booking ID for all communication you have directly with the airline about this booking.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Carry a print out of this e-ticket and present it to the airline counter at time of check-in.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Recheck your baggage with your respective airline before travelling for hassle­free travel experience.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; Please ensure you arrange at your end all visa's as per countries listed in your itinerary for your trip
+                                                to avoid any visa/immigration issues at the airport.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; In case of cancellation of a ticket, Company reserves the right to levy a cancellation fee per
+                                                passenger per flight/sector. The aforesaid amount may be charged by the Company at its sole
+                                                discretion and without notice to the User. Please note these charges shall be over and above the
+                                                airline cancellation charges.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Due to the security, reasons and Government regulations, passengers flying on destination like Jammu and Srinagar are not allow to carry any Hand Baggage.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; In addition to the aforesaid terms and conditions, the terms, and conditions of the respective airlines
+                                                shall also be applicable to the booking. In case of any inconsistency or conflict between the terms
+                                                and conditions herein visa the terms and conditions of the airlines, the terms, and conditions of the
+                                                airlines shall supersede.
+                                            </td>
+                                        </tr>
+                                        <tr><td colspan="2" style="line-height:20px;">&nbsp;<br /></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="2" style="line-height:20px;">
+                                    <table style="width:100%; display:inline-block;">
+                                        <tr bg="#ddd">
+                                            <td colspan="2" style="font-size:14px; color:#000;border-radius:10px; font-weight:bold;display:inline-block;text-align:left;"><b>Terms & Conditions</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">&bull; All passengers, including children and infants, have to present their valid ID proof at the time of check ­ in.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">&bull; We recommend you check­in at least 3 hours prior to departure of your domestic flight and 4 hours prior to your international flight.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;line-height:20px;text-align:left;">
+                                                &bull; For any cancellation of your booking, please contact FlightsMojo and not the Airlines directly.
+                                                This will enable us to expedite your refund.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Please reconfirm your flight schedule prior to departure. Flights Mojo will not be responsible for intimating any schedule changes or flight cancellation by the airlines.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Use PNR/Booking ID for all communication you have directly with the airline about this booking.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Carry a print out of this e-ticket and present it to the airline counter at time of check-in.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; FlightsMojo service Fees is Rs. 500 for any cancellation/amendments.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Recheck your baggage with your respective airline before travelling for hassle­free travel experience.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; Please ensure you arrange at your end all visa's as per countries listed in your itinerary for your trip
+                                                to avoid any visa/immigration issues at the airport.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; In case of cancellation of a ticket, Company reserves the right to levy a cancellation fee per
+                                                passenger per flight/sector. The aforesaid amount may be charged by the Company at its sole
+                                                discretion and without notice to the User. Please note these charges shall be over and above the
+                                                airline cancellation charges.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">&bull; Due to the security, reasons and Government regulations, passengers flying on destination like Jammu and Srinagar are not allow to carry any Hand Baggage.</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="font-size:12px; color:#000;padding:6px 0px 6px 0px;line-height:20px;text-align:left;">
+                                                &bull; In addition to the aforesaid terms and conditions, the terms, and conditions of the respective airlines
+                                                shall also be applicable to the booking. In case of any inconsistency or conflict between the terms
+                                                and conditions herein visa the terms and conditions of the airlines, the terms, and conditions of the
+                                                airlines shall supersede.
+                                            </td>
+                                        </tr>
+                                        <tr><td colspan="2" style="line-height:20px;">&nbsp;<br /></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="2">
+                                <table style="width:100%; border:1px solid #cccccc;" cellpadding="4" cellspacing="0">
+                                    <tr>
+                                        <td colspan="2" style="border:1px solid #000;line-height:20px;font-size:12px;">
+                                            <b style=" font-size:12px;">Flightsmojo Support</b><br /> Tel:0124-445-2000
+                                            <br /> Email:care@flightsmojo.in
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+</body>
+</html>
