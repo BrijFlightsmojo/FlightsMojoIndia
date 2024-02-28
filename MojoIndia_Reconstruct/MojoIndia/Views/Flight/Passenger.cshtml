@@ -7,8 +7,8 @@
 }
 @section AdditionalMeta
 {
-<title>Flight Passenger: Flightsmojo.in</title>
-<link href="/Content/PassengerCss.css" rel="stylesheet" />
+    <title>Flight Passenger: Flightsmojo.in</title>
+    <link href="/Content/PassengerCss.css" rel="stylesheet" />
 }
 
 <style>
@@ -225,7 +225,7 @@
                                                     <li><a class="showSingle" onclick="FareRule()">Fare Rules</a></li>
                                                     @if (Model.travelType == Core.TravelType.Domestic && Model.flightResult.FirstOrDefault().cabinClass == Core.CabinType.Economy)
                                                     {
-                                                    <li><a class="showSingleBaggage">Baggage</a></li>
+                                                        <li><a class="showSingleBaggage">Baggage</a></li>
                                                     }
                                                 </ul>
                                                 <div id="Menu2" style="display: none;" class="FareRulesCon targetMenu">
@@ -249,22 +249,22 @@
                                                                 <td style="width:60%;">Cancel Before 72 hours of departure time.</td>
                                                                 @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                                                                 {
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;">  NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;">  NON REFUNDABLE</td>
 
                                                                 }
                                                                 else
                                                                 {
-                                                                <td style="width:20%;">As per airlines policy</td>
-                                                                <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
+                                                                    <td style="width:20%;">As per airlines policy</td>
+                                                                    <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
                                                                 }
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Cancel within 72 hours & before 4 hours of departure time.</td>
                                                                 @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                                                                 {
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
 
                                                                 }
                                                                 else
@@ -295,26 +295,26 @@
                                                                 <td style="width:60%;">Reschedule before 72 hours of departure time.</td>
                                                                 @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                                                                 {
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                 }
                                                                 else
                                                                 {
-                                                                <td style="width:20%;">As per airlines policy</td>
-                                                                <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
+                                                                    <td style="width:20%;">As per airlines policy</td>
+                                                                    <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
                                                                 }
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Reschedule within 72 hours & before 4 hours of departure time.</td>
                                                                 @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                                                                 {
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
-                                                                <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
+                                                                    <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                 }
                                                                 else
                                                                 {
-                                                                <td style="width:20%;">As per airlines policy</td>
-                                                                <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
+                                                                    <td style="width:20%;">As per airlines policy</td>
+                                                                    <td style="width:20%;"> <i class="fa fa-rupee"></i> 500</td>
                                                                 }
                                                             </tr>
                                                         </table>
@@ -541,25 +541,25 @@
                                                         <div class="passenger_Dtailsone">
                                                             @for (int i = 0; i < Model.passengerDetails.Count; i++)
                                                             {
-                                                            @Html.HiddenFor(o => o.passengerDetails[i].passengerType)
+                                                                @Html.HiddenFor(o => o.passengerDetails[i].passengerType)
                                                                 if (Model.passengerDetails[i].passengerType == PassengerType.Adult)
                                                                 {
-                                                            <h5><img src="/images/profile.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
+                                                                    <h5><img src="/images/profile.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
                                                                 }
                                                                 else if (Model.passengerDetails[i].passengerType == PassengerType.Child)
                                                                 {
-                                                            <h5><img src="/images/Child.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
+                                                                    <h5><img src="/images/Child.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
                                                                 }
                                                                 else
                                                                 {
-                                                            <h5><img src="/images/baby-boy.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
+                                                                    <h5><img src="/images/baby-boy.svg" /> @(i + 1) (@Model.passengerDetails[i].passengerType.ToString())</h5>
                                                                 }
-                                                            <div class="passenger_details ">
-                                                                @if (Model.passengerDetails[i].passengerType == Core.PassengerType.Adult)
+                                                                <div class="passenger_details ">
+                                                                    @if (Model.passengerDetails[i].passengerType == Core.PassengerType.Adult)
                                                                     {
-                                                                    <div class="pay_pax_detail_Title">
-                                                                        <label>Title*</label>
-                                                                        @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
+                                                                        <div class="pay_pax_detail_Title">
+                                                                            <label>Title*</label>
+                                                                            @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
                                                                     {
                                                                     new SelectListItem() {Text = "Select", Value=""},
                                                                     new SelectListItem() {Text = "Mr", Value="Mr"},
@@ -567,71 +567,71 @@
                                                                     new SelectListItem() {Text = "Ms", Value="Ms"}
 
                                                                     }, new { @class = "form-control" })
-                                                                    </div>
+                                                                        </div>
                                                                     }
                                                                     else if (Model.flightResult[0].Fare.gdsType == GdsType.Tbo)
                                                                     {
-                                                                    <div class="pay_pax_detail_Title">
-                                                                        <label>Title*</label>
-                                                                        @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
+                                                                        <div class="pay_pax_detail_Title">
+                                                                            <label>Title*</label>
+                                                                            @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
                                                                         {
                                                                             new SelectListItem() {Text = "Select", Value=""},
                                                                             new SelectListItem() {Text = "Mstr", Value="Mstr"},
                                                                             new SelectListItem() {Text = "Miss", Value="Miss"}
                                                                         }, new { @class = "form-control" })
-                                                                    </div>
+                                                                        </div>
                                                                     }
                                                                     else
                                                                     {
-                                                                    <div class="pay_pax_detail_Title">
-                                                                        <label>Title*</label>
-                                                                        @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
+                                                                        <div class="pay_pax_detail_Title">
+                                                                            <label>Title*</label>
+                                                                            @Html.DropDownListFor(o => o.passengerDetails[i].title, new List<SelectListItem>
                                                                     {
                                                                     new SelectListItem() {Text = "Select", Value=""},
                                                                     new SelectListItem() {Text = "Master", Value="Master"},
                                                                     new SelectListItem() {Text = "Ms", Value="Ms"}
                                                                     }, new { @class = "form-control" })
-                                                                    </div>
+                                                                        </div>
                                                                     }
-                                                                <div class="pay_pax_detail">
-                                                                    <label>First Name*</label>
-                                                                    @Html.TextBoxFor(o => o.passengerDetails[i].firstName, new { @class = "form-control", @maxlength = "30", @onkeypress = "return LettersOnly(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "First Name*", @onkeyup = "chkPaxValidation()" })
-                                                                </div>
-                                                                <div class="pay_pax_detail">
-                                                                    <label>Last Name*</label>
-                                                                    @Html.TextBoxFor(o => o.passengerDetails[i].lastName, new { @class = "form-control", @maxlength = "30", @onkeypress = "return LettersOnly(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "Last Name*", @onkeyup = "chkPaxValidation()" })
-                                                                </div>
-                                                                @if (Model.passengerDetails[i].passengerType != PassengerType.Adult || (Model.passengerDetails[i].passengerType == PassengerType.Adult && Model.travelType == TravelType.International))
+                                                                    <div class="pay_pax_detail">
+                                                                        <label>First Name*</label>
+                                                                        @Html.TextBoxFor(o => o.passengerDetails[i].firstName, new { @class = "form-control", @maxlength = "30", @onkeypress = "return LettersOnly(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "First Name*", @onkeyup = "chkPaxValidation()" })
+                                                                    </div>
+                                                                    <div class="pay_pax_detail">
+                                                                        <label>Last Name*</label>
+                                                                        @Html.TextBoxFor(o => o.passengerDetails[i].lastName, new { @class = "form-control", @maxlength = "30", @onkeypress = "return LettersOnly(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "Last Name*", @onkeyup = "chkPaxValidation()" })
+                                                                    </div>
+                                                                    @if (Model.passengerDetails[i].passengerType != PassengerType.Adult || (Model.passengerDetails[i].passengerType == PassengerType.Adult && Model.travelType == TravelType.International))
                                                                     {
-                                                                    <div class="pay_pax_birth">
-                                                                        <label>Date Of Birth*</label>
-                                                                        <span>@Html.DropDownListFor(o => o.passengerDetails[i].month, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].month), new { @class = "form-control" })</span>
-                                                                        <span>@Html.DropDownListFor(o => o.passengerDetails[i].day, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].day), new { @class = "form-control" })</span>
-                                                                        <span>@Html.DropDownListFor(o => o.passengerDetails[i].year, MojoIndia.Models.StaticWebsiteData.getYear(Model.passengerDetails[i].year, Model.passengerDetails[i].passengerType, Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime), new { @class = "form-control" })</span>
-                                                                    </div>
+                                                                        <div class="pay_pax_birth">
+                                                                            <label>Date Of Birth*</label>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].month, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].month), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].day, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].day), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].year, MojoIndia.Models.StaticWebsiteData.getYear(Model.passengerDetails[i].year, Model.passengerDetails[i].passengerType, Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime), new { @class = "form-control" })</span>
+                                                                        </div>
                                                                     }
-                                                            </div>
+                                                                </div>
                                                                 if (Model.travelType == TravelType.International)
                                                                 {
-                                                            <div class="passenger_details ">
-                                                                <div class="pay_pax_detail">
-                                                                    <label>Passport No*</label>
-                                                                    @Html.TextBoxFor(o => o.passengerDetails[i].passportNumber, new { @class = "form-control", @maxlength = "15", @onkeypress = "return LettersNoOnlyPassport(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "Passport No*" })
-                                                                </div>
-                                                                <div class="pay_pax_birth">
-                                                                    <label>Passport Expiry Date*</label>
-                                                                    <span>@Html.DropDownListFor(o => o.passengerDetails[i].exMonth, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].exMonth), new { @class = "form-control" })</span>
-                                                                    <span>@Html.DropDownListFor(o => o.passengerDetails[i].exDay, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].exDay), new { @class = "form-control" })</span>
-                                                                    <span>@Html.DropDownListFor(o => o.passengerDetails[i].exYear, MojoIndia.Models.StaticWebsiteData.getExpPassYear(Model.passengerDetails[i].exYear), new { @class = "form-control" })</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="passenger_details ">
+                                                                        <div class="pay_pax_detail">
+                                                                            <label>Passport No*</label>
+                                                                            @Html.TextBoxFor(o => o.passengerDetails[i].passportNumber, new { @class = "form-control", @maxlength = "15", @onkeypress = "return LettersNoOnlyPassport(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "Passport No*" })
+                                                                        </div>
+                                                                        <div class="pay_pax_birth">
+                                                                            <label>Passport Expiry Date*</label>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].exMonth, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].exMonth), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].exDay, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].exDay), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].exYear, MojoIndia.Models.StaticWebsiteData.getExpPassYear(Model.passengerDetails[i].exYear), new { @class = "form-control" })</span>
+                                                                        </div>
+                                                                    </div>
                                                                 }
-                                                            <div id="errors@(i)"></div>
-                                                            @Html.HiddenFor(o => o.passengerDetails[i].title)
-                                                            @Html.HiddenFor(o => o.passengerDetails[i].firstName)
-                                                            @Html.HiddenFor(o => o.passengerDetails[i].lastName)
-                                                            @Html.HiddenFor(o => o.travelType)
-                                                            <input type="hidden" name="ageDate" id="ageDate" value="@Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime.ToString(" MM-dd-yyyy")" />
+                                                                <div id="errors@(i)"></div>
+                                                                @Html.HiddenFor(o => o.passengerDetails[i].title)
+                                                                @Html.HiddenFor(o => o.passengerDetails[i].firstName)
+                                                                @Html.HiddenFor(o => o.passengerDetails[i].lastName)
+                                                                @Html.HiddenFor(o => o.travelType)
+                                                                <input type="hidden" name="ageDate" id="ageDate" value="@Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")" />
                                                             }
                                                         </div>
                                                         <div class="booknow-bt">
@@ -744,7 +744,7 @@
                                                             }
                                                             else
                                                             {
-                                                               <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
+                                                                <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
                                                             }
                                                             <span class="ssl_payment"><i class="fa-solid fa-lock"></i> SSL Secure Payment</span>
                                                         </div>
@@ -815,11 +815,11 @@
                                                         Rechecking Fare.. <em>
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
@@ -831,22 +831,22 @@
                                                         <em id="totalAmount">
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
                                                             <i class="fa fa-rupee"></i>
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                            <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
+                                                                <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
                                                             }
                                                             else
                                                             {
-                                                            <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal)).ToString("f2"))" />
+                                                                <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal)).ToString("f2"))" />
                                                             }
 
                                                             <input type="hidden" id="hftotalpax" value="@(Model.adults+Model.child+Model.infants+Model.infantsWs)" />
@@ -871,82 +871,82 @@
                                         </div>
                                     </div>
                                     @*@if (Model.sourceMedia == "1013")
-                                    {
-                                        <div class="couponCon">
-                                            <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
-                                            <div class="couponapplyCon">
-                                                <span class="applycoupon" onclick="ChangeCoupon('@Model.CouponCode')">
-                                                    <input type="text" placeholder="FMZERONETB" readonly="readonly" />
+                                        {
+                                            <div class="couponCon">
+                                                <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
+                                                <div class="couponapplyCon">
+                                                    <span class="applycoupon" onclick="ChangeCoupon('@Model.CouponCode')">
+                                                        <input type="text" placeholder="FMZERONETB" readonly="readonly" />
 
-                                                </span>
-                                                <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                                <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
-                                            </div>
-                                            <div class="selectCouponCon">
-                                                @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                                {
-                                                <div class="radioCoupon" onclick="ChangeCoupon('@Model.CouponCode')">
-                                                    <input id="@Model.CouponCode" name="radio" type="radio" checked="checked" value="@Model.CouponCode" />
-                                                    <label for="@Model.CouponCode" class="radioCoupon-label">@Model.CouponCode</label>
-                                                    <p>Use this coupon and get Rs.@Model.CouponAmount OFF on your flight booking.</p>
+                                                    </span>
+                                                    <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
+                                                    <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
                                                 </div>
-                                                }
-                                                <div class="radioCoupon" onclick="ChangeCoupon('FMZERONETB')">
-                                                    <input id="FMZERONETB" name="radio" type="radio" checked="checked" />
-                                                    <label for="FMZERONETB" class="radioCoupon-label">FMZERONETB</label>
-                                                    <p>ZERO Convenience Fees</p>
-                                                    <p>
-                                                        There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
-                                                    </p>
+                                                <div class="selectCouponCon">
+                                                    @if (!string.IsNullOrEmpty(Model.CouponCode))
+                                                    {
+                                                    <div class="radioCoupon" onclick="ChangeCoupon('@Model.CouponCode')">
+                                                        <input id="@Model.CouponCode" name="radio" type="radio" checked="checked" value="@Model.CouponCode" />
+                                                        <label for="@Model.CouponCode" class="radioCoupon-label">@Model.CouponCode</label>
+                                                        <p>Use this coupon and get Rs.@Model.CouponAmount OFF on your flight booking.</p>
+                                                    </div>
+                                                    }
+                                                    <div class="radioCoupon" onclick="ChangeCoupon('FMZERONETB')">
+                                                        <input id="FMZERONETB" name="radio" type="radio" checked="checked" />
+                                                        <label for="FMZERONETB" class="radioCoupon-label">FMZERONETB</label>
+                                                        <p>ZERO Convenience Fees</p>
+                                                        <p>
+                                                            There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        }
+
+                                        else if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                        {*@
+                                    <div class="couponCon">
+                                        <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
+                                        <div class="couponapplyCon">
+                                            <span class="applycoupon" onclick="ChangeCoupon('INSTAMOJO')">@Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code", @readonly = "readonly" })</span>
+                                            <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
+                                            <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
                                         </div>
-                                    }
-
-                                    else if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                    {*@
-                                        <div class="couponCon">
-                                            <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
-                                            <div class="couponapplyCon">
-                                                <span class="applycoupon" onclick="ChangeCoupon('INSTAMOJO')">@Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code", @readonly = "readonly" })</span>
-                                                <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                                <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
-                                            </div>
-                                            <div class="selectCouponCon">
-                                                @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                                {
+                                        <div class="selectCouponCon">
+                                            @if (!string.IsNullOrEmpty(Model.CouponCode))
+                                            {
                                                 <div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
                                                     <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
                                                     <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
                                                     <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
                                                 </div>
-                                                }
-                                                @if (Model.sourceMedia != "1013")
-                                                {
-                                                    <p style="color:green;" class="Coupon-hide">
-                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
-                                                    </p>
-                                                }
-                                                else
-                                                {
-                                                    <p style="color:green;" class="Coupon-hide">
-                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
-                                                        and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
-                                                    </p>
-                                                }
+                                            }
+                                            @if (Model.sourceMedia != "1013")
+                                            {
+                                                <p style="color:green;" class="Coupon-hide">
+                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p style="color:green;" class="Coupon-hide">
+                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
+                                                    and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
+                                                </p>
+                                            }
 
-                                                <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
-                                                    <input id="rbtnNone" name="radio" type="radio" value="None" />
-                                                    <label for="rbtnNone" class="radioCoupon-label">None</label>
-                                                    <p>No Coupon Applied. </p>
-                                                </div>
-                                                <div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
-                                                    <input id="INSTAMOJO" name="radio" type="radio" value="INSTAMOJO" checked="checked" />
-                                                    <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
-                                                    <p> Get Upto 33% Off on Flight Bookings.</p>
-                                                </div>
+                                            <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
+                                                <input id="rbtnNone" name="radio" type="radio" value="None" />
+                                                <label for="rbtnNone" class="radioCoupon-label">None</label>
+                                                <p>No Coupon Applied. </p>
+                                            </div>
+                                            <div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
+                                                <input id="INSTAMOJO" name="radio" type="radio" value="INSTAMOJO" checked="checked" />
+                                                <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
+                                                <p> Get Upto 33% Off on Flight Bookings.</p>
                                             </div>
                                         </div>
+                                    </div>
                                     @*}*@
                                 </div>
                             </div>
@@ -1128,7 +1128,7 @@
             <img alt="icon" src="/images/mojoloader.svg" />
         </div>
         <div class="loader_gif">
-            <img alt="gif" src="/images/pay_loader.gif"/>
+            <img alt="gif" src="/images/pay_loader.gif" />
         </div>
         <div class="confirm_progress1">
             <h2>Your booking will be completed in just a few seconds!</h2>
@@ -1201,10 +1201,10 @@
 <input type="hidden" id="hfStep" value="0" />
 @section scripts {
     @Scripts.Render("~/bundles/mojoFlightIndiaPassenger")
-	
-	
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script type="text/javascript">
         var totPax=@Model.passengerDetails.Count;
         if ($(window).width() > 960) {
@@ -1218,7 +1218,7 @@
             });
         }
     </script>
-	  <script>
+    <script>
         $(document).ready(function () {
             changeRbtn();
             $(".showSingle").click(function () {
@@ -1534,6 +1534,12 @@
                 }
                 if(ctr==totPax)
                 {
+                   // var NoOfInf=@Model.infants;
+                    @*if((@Model.infants>0) && ($("#ageDate").val()>2))
+                    {
+                      
+                    }*@
+
                     $("#btn_disable").hide();
                     $("#btn_proceed").show();
 
@@ -1834,7 +1840,7 @@
         var   GooglePayConvenceFee = @((Model.affiliate.UPIConFee.IndexOf("%") != -1 ? ((Convert.ToDecimal(Model.affiliate.UPIConFee.Replace("%", "")) * (Model.sumFare.grandTotal + Model.fareIncreaseAmount)) / 100) : (Convert.ToDecimal(Model.affiliate.UPIConFee) * Model.flightResult.Count * Model.passengerDetails.Count)));
         var totalAmt = parseFloat($("#hftotalAmt").val());
         function update_payment() {
-            
+
             var payment_mode = $('input[name="payment"]:checked').val();
             var S_media=@Model.sourceMedia;
             var final_con = parseFloat(0);
@@ -1904,7 +1910,7 @@
         });
     </script>
 
- <script>
+    <script>
         function changeRbtn() {
             var S_media=@Model.sourceMedia;
             if(S_media=="1013")
@@ -1917,7 +1923,7 @@
             }
         }
     </script>
-    
+
     <script>
         function payOnline() {
 
@@ -2093,12 +2099,12 @@
                         }]
                 });
             }
-       }
+        }
 
     </script>
 
 
-<script>
+    <script>
         function FareRule() {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -2197,8 +2203,8 @@
                 'passenger_count': @Model.passengerDetails.Count(),
                 'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
                 'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-               'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                 'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
                 'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
                 'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
             });
@@ -2206,7 +2212,7 @@
 
     </script>
 
-<script>
+    <script>
         function PassengerInfo() {
             var totpax = @Model.passengerDetails.Count();
             window.dataLayer = window.dataLayer || [];
@@ -2290,7 +2296,7 @@
 
     </script>
 
-<script>
+    <script>
         function PayNowClick() {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -2304,20 +2310,20 @@
                 'passenger_count': @Model.passengerDetails.Count(),
                 'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
                 'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-           'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                     'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
                 'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
                 'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
             });
         }
-</script>
+    </script>
 
 
 
-<script>
+    <script>
 
-    function Flight_listingLoad() {
-           window.dataLayer = window.dataLayer || [];
+        function Flight_listingLoad() {
+            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'flight_listing',
                 'link_name':'load'
@@ -2327,10 +2333,10 @@
                 'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
                 'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
                 'passenger_count': @(Model.passengerDetails.Count()),
-                'airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()'
-           });
+            'airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()'
+        });
         }
-</script>
+    </script>
 
 }
 

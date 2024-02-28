@@ -742,7 +742,7 @@
         <img src="https://analytics.skyscanner.net/dv/v1/event.png?skyscanner_redirectid=@(Model.redirectID)&tracking_source_id=DV-291217-1&event_type=conversion&occurred_at=@(DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss'Z'"))&conversion_id=@(Model.bookingID)&transaction_total=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount)).ToString("f0"))&flight_fare=@((Model.sumFare.NetFare+Model.fareIncreaseAmount).ToString("f2"))&payment_fee=0&currency=@(Model.flightResult[0].Fare.Currency)&payment_method=@(Model.paymentDetails.cardCode)&marketing_carrier=@ss&legs=&cabin_class=@(cabin)&route_type=&haul_type=&adult_number=@Model.adults&child_number=@Model.child&infant_number=@Model.infants" style="width:1px;height:1px;border-style:none;" />
     }
 
-    @(Model.sourceMedia == "1001")
+    @(Model.sourceMedia == "1001" || Model.sourceMedia == "1002")
     {
     <img src="https://secure.wego.com/analytics/v2/conversions?conversion_id=c-wego-flightsmojo.com&click_id=@(Model.redirectID)&comm_currency_code=INR&bv_currency_code=INR&transaction_id=@(Model.bookingID.ToString())&commission=0&total_booking_value=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.CouponIncreaseAmount) -CouponAmount).ToString("f0"))&status=@(Model.bookingStatus.ToString())" width='1' height='1' border='0' alt='' />
     }
