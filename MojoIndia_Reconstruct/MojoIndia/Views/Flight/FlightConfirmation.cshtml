@@ -78,69 +78,22 @@
             font-weight: bold;
             box-shadow: 0 0 2px #fff;
         }
+.conformTop{font-size: 15px;line-height: 25px;}
 
-        .conformTop {
-            font-size: 15px;
-            line-height: 25px;
-        }
-
-        @@media screen and ( max-width:767px) {
-            .logo {
-                width: 60%;
-            }
-
-            .header_right {
-                width: 40%;
-                float: right;
-            }
-
-            #mainnav ul {
-                background: none;
-                box-shadow: none;
-            }
-
-            .main_menu {
-                display: none;
-            }
-
-            .search_con ul {
-                padding-right: 16px;
-            }
-
-            .conformTop h4 {
-                font-size: 14px;
-                line-height: 20px;
-            }
-
-            .conformTop h1 {
-                font-size: 22px;
-            }
-
-            .traveldetai_top table {
-                width: 100%;
-            }
-
-            .bookinStatus {
-                padding: 6px;
-            }
-
-            .traveldetai_top > table th, .traveldetai_top > table td {
-                font-size: 12px;
-                padding: 6px 3px;
-            }
-
-            .divBookingType {
-                width: 100%;
-            }
-
-                .divBookingType ul {
-                    border-right: 0px;
-                }
-
-            .resul_deatil {
-                padding: 5px;
-                background: none;
-            }
+ @@media screen and ( max-width:767px){
+  .logo {width: 60%;}
+ .header_right{width: 40%;float: right;}
+ #mainnav ul{background:none;box-shadow:none;}
+ .main_menu{ display:none;}
+ .search_con ul{padding-right: 16px;}
+ .conformTop h4{font-size: 14px;line-height: 20px;}
+ .conformTop h1 {font-size: 22px;}
+ .traveldetai_top table{width:100%;}
+ .bookinStatus{ padding:6px;}
+ .traveldetai_top> table th,.traveldetai_top> table td{ font-size:12px;padding: 6px 3px;}
+ .divBookingType{width:100%;}
+ .divBookingType ul{border-right:0px;}
+ .resul_deatil{padding: 5px; background:none;}
         }
     </style>
     <script>
@@ -163,45 +116,6 @@
     </script>
 
     <script>
-        if(@Model.flightResult.Count()==1)
-        {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'purchase',
-                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                'passenger_count': @(Model.passengerDetails.Count()),
-                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-			    'currency':'@Model.currencyCode',
-                'transaction_id':'@Model.bookingID',
-                'value': '@Model.sumFare.grandTotal',
-                'tax': '@Model.sumFare.Tax',
-                'coupon': 'INSTAMOJO',
-            items: [{
-                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'quantity': @(Model.passengerDetails.Count()),
-                'price':'@Model.sumFare.grandTotal',
-                'index':0
-            }]
-        });
-        }
-        else
-        {
-
-        }
-
-
-
-
-
         if(@Model.flightResult.Count()==1)
         {
             window.dataLayer = window.dataLayer || [];
@@ -294,11 +208,8 @@
 
     <!-- End Google Tag Manager -->
     <style>
-        .logo a img {
-            width: 60%;
-            padding-left: 20px;
-        }
-    </style>
+        .logo a img{ width: 60%;padding-left: 20px;}
+        </style>
 </head>
 
 <body>
@@ -413,70 +324,70 @@
                                     @if (fs.SegName.Equals("Return", StringComparison.OrdinalIgnoreCase))
                                     {
                                         <div class="outbond_topL"><h2><img src="/images/inbond.png" />@fs.SegName.ToUpper()</h2></div>
-                                        <div class="outbond_topR">
-                                        </div>
+                                            <div class="outbond_topR">
+                                            </div>
                                     }
                                     else
                                     {
                                         <div class="outbond_topL"><img src="/images/outbond.png" /><h2>@fs.SegName.ToUpper()</h2></div>
-                                        <div class="outbond_topR">
-                                        </div>
-                                    }
-                                </div>
-                                <div class="conf_itenary">
-                                    @foreach (var seg in fs.Segments)
-                                    {
-                                        var AirportFrom = Model.airport.Where(k => k.airportCode == seg.Origin).FirstOrDefault();
-                                        var AirportTo = Model.airport.Where(k => k.airportCode == seg.Destination).FirstOrDefault();
-                                        var airline = Model.airline.Where(k => k.code == seg.Airline).FirstOrDefault();
-
-                                        <div class="indiaConf_top">
-                                            <ul>
-                                                <li><b>@(seg.DepTime.ToString("ddd, dd MMM yyyy"))</b></li>
-                                                <li><b>@(AirportFrom.cityName) - @(AirportTo.cityName)</b></li>
-                                                <li><b>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</b></li>
-                                            </ul>
-                                            <div class="outbond_flight">
-                                                <div class="outbond_conf">
-                                                    <p>@airline.name.ToUpper()</p>
-                                                    <img src="/images/flight_small/@(airline.code).gif" alt="@(airline.code)" title="@(airline.name)">
-                                                </div>
-                                                <div class="outbond_one_con">
-                                                    <p>DESTINATION</p>
-                                                    <span><b>@(AirportFrom.cityName)</b></span>
-                                                </div>
-                                                <div class="outbond_two_con">
-                                                    <p>ARRIVAL</p>
-                                                    <span><b>@(AirportTo.cityName)</b></span>
-                                                </div>
-                                                <div class="outbond_third_con">
-                                                    <p>DURATION</p>
-                                                    <span><b>@(seg.DepTime.ToString("ddd, | hh:mm tt | MMM dd"))</b></span>
-                                                </div>
-                                                <div class="outbond_four_con">
-                                                    <p>PNR</p>
-                                                    @if (fs.SegName.Equals("Depart", StringComparison.OrdinalIgnoreCase))
-                                                    {
-                                                        <span><b>@(string.IsNullOrEmpty(Model.PNR) ? "Pending" : (Model.PNR))</b></span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span><b>@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</b></span>
-                                                    }
-
-                                                </div>
+                                            <div class="outbond_topR">
                                             </div>
-                                            @if (seg.layOverTime > 0)
-                                            {
-                                                <div class="layover_conf">
-                                                    <span>
-                                                        <span>@AirportTo.cityName (@AirportTo.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min") Layover</span>
-                                                    </span>
-                                                </div>
-                                            }
-                                        </div>
                                     }
                                 </div>
+                                    <div class="conf_itenary">
+                                        @foreach (var seg in fs.Segments)
+                                        {
+                                            var AirportFrom = Model.airport.Where(k => k.airportCode == seg.Origin).FirstOrDefault();
+                                            var AirportTo = Model.airport.Where(k => k.airportCode == seg.Destination).FirstOrDefault();
+                                            var airline = Model.airline.Where(k => k.code == seg.Airline).FirstOrDefault();
+
+                                            <div class="indiaConf_top">
+                                                <ul>
+                                                    <li><b>@(seg.DepTime.ToString("ddd, dd MMM yyyy"))</b></li>
+                                                    <li><b>@(AirportFrom.cityName) - @(AirportTo.cityName)</b></li>
+                                                    <li><b>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</b></li>
+                                                </ul>
+                                                <div class="outbond_flight">
+                                                    <div class="outbond_conf">
+                                                        <p>@airline.name.ToUpper()</p>
+                                                        <img src="/images/flight_small/@(airline.code).gif" alt="@(airline.code)" title="@(airline.name)">
+                                                    </div>
+                                                    <div class="outbond_one_con">
+                                                        <p>DESTINATION</p>
+                                                        <span><b>@(AirportFrom.cityName)</b></span>
+                                                    </div>
+                                                    <div class="outbond_two_con">
+                                                        <p>ARRIVAL</p>
+                                                        <span><b>@(AirportTo.cityName)</b></span>
+                                                    </div>
+                                                    <div class="outbond_third_con">
+                                                        <p>DURATION</p>
+                                                        <span><b>@(seg.DepTime.ToString("ddd, | hh:mm tt | MMM dd"))</b></span>
+                                                    </div>
+                                                    <div class="outbond_four_con">
+                                                        <p>PNR</p>
+                                                        @if (fs.SegName.Equals("Depart", StringComparison.OrdinalIgnoreCase))
+                                                        {
+                                                            <span><b>@(string.IsNullOrEmpty(Model.PNR) ? "Pending" : (Model.PNR))</b></span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span><b>@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</b></span>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                @if (seg.layOverTime > 0)
+                                                {
+                                                    <div class="layover_conf">
+                                                        <span>
+                                                            <span>@AirportTo.cityName (@AirportTo.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min") Layover</span>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
                             }
                         }
                     </div>
@@ -539,10 +450,19 @@
                         <th>BaseFare</th>
                         <th>Taxes</th>
                         <th>Convenience Fee</th>
-                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                         {
                             <th>Coupon</th>
                         }
+                        @if (Model.CancellaionPolicyAmt>0)
+                        {
+                            <th>CancellaionPolicyAmt</th>
+                        }
+                        @if (Model.RefundPolicyAmt > 0)
+                        {
+                            <th>RefundPolicyAmt</th>
+                        }
+
                         <th>Total</th>
                     </tr>
                     <tr>
@@ -565,13 +485,24 @@
                             <td>-₹ @(Model.CouponAmount)</td>
                         }
 
+                        @if (Model.CancellaionPolicyAmt > 0)
+                        {
+                            <td>@Model.CancellaionPolicyAmt</td>
+                        }
+                        @if (Model.RefundPolicyAmt > 0)
+                        {
+                            <td>@Model.RefundPolicyAmt</td>
+                        }
+
+
+
                         @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                         {
-                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount) - CouponAmount).ToString("f2"))</td>
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
                         }
                         else
                         {
-                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee) - CouponAmount).ToString("f2"))</td>
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
                         }
                     </tr>
                 </table>
@@ -673,19 +604,19 @@
                     </table>
                 </div>
                 <div class="fareTerms">
-
+                   
                     @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
-                    @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                    @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType==Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                     { <h6>IMPORTANT INFORMATION</h6>
-                    <ul>
-                        <li>This exclusive deal is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
-                        <li>The Fare Selected by You is a <strong> Special Category Group Promotional Fare.</strong></li>
-                        <li>This is a 100% Confirmed Ticket.You will be able check the status of your PNR on airline website or call center but names will be update  <strong> 12 to 24hrs </strong> prior to the flight departure.</li>
-                        <li>Web check-in is mandatory to board flights.</li>
-                        <li>Please reconfirm the Terminal Information with the boarding pass.</li>
-                    </ul>
+                        <ul>
+                           <li>This exclusive deal is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
+                <li>The Fare Selected by You is a <strong> Special Category Group Promotional Fare.</strong></li>
+                <li>This is a 100% Confirmed Ticket.You will be able check the status of your PNR on airline website or call center but names will be update  <strong> 12 to 24hrs </strong> prior to the flight departure.</li>
+                <li>Web check-in is mandatory to board flights.</li>
+                <li>Please reconfirm the Terminal Information with the boarding pass.</li>
+                        </ul>
                     }
-                    <h6>Terms & Conditions</h6>
+<h6>Terms & Conditions</h6>
                     <ul>
                         <li>  All passengers, including children and infants, have to present their valid ID proof at the time of check ­ in.</li>
                         <li>  We recommend you check­in at least 3 hours prior to departure of your domestic flight and 4 hours prior to your international flight.</li>

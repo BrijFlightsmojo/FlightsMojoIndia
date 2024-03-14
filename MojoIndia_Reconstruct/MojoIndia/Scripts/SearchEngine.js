@@ -150,6 +150,22 @@ function submitForm() {
 
             $("#SubmitSearchEngine").hide();
             $("#SubmitSearchProgress").show();
+            var adult = parseInt($("#Adult").val());
+            var child = parseInt($("#Child").val());
+            var infant = parseInt($("#Infant").val());
+            var totpax = adult + child + infant;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'search',
+                'link_name': 'search click',
+                'origin_city': $("#hfCity_from").val(),
+                'destination_city': $("#hfCity_to").val(),
+                'depart_date': $("#departure_date").val(),
+                'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+                'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+                'passenger_count': totpax,
+                'airline_class': $("#Cabin option:selected").text()
+            });
         }
         return validationFlag;
     }

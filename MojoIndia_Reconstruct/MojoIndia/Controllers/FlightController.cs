@@ -236,7 +236,7 @@ namespace MojoIndia.Controllers
             fsr.isNearBy = false;
 
             fsr.sourceMedia = Request.QueryString.Get("campain");
-            if (fsr.sourceMedia.Equals("1001") || fsr.sourceMedia.Equals("1002"))
+            if ((fsr.sourceMedia.Equals("1001") || fsr.sourceMedia.Equals("1002"))&& Request.QueryString["utm_source"] != null)
             { 
                 fsr.sourceMedia = Request.QueryString["utm_source"] != null ? Request.QueryString.Get("utm_source").ToString() : "";
             }
@@ -904,7 +904,8 @@ namespace MojoIndia.Controllers
                             FB_booking_token_id = airContext.flightSearchResponse.FB_booking_token_id,
                             responseStatus = new ResponseStatus(),
                             affiliate = airContext.flightSearchResponse.affiliate,
-                            redirectID = airContext.flightSearchRequest.redirectID
+                            redirectID = airContext.flightSearchRequest.redirectID,                        
+                            isBuyCancellaionPolicy = false
                         };
                         bookingLog(ref sbLogger, "Flight Booking Request", JsonConvert.SerializeObject(airContext.flightBookingRequest));
                         airContext.flightBookingRequest.deepLink = airContext.flightSearchRequest.deepLink;
@@ -1058,6 +1059,9 @@ namespace MojoIndia.Controllers
                             }
                         }
                         #endregion
+
+                        airContext.flightBookingRequest.RefundPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]); 
+                        airContext.flightBookingRequest.CancellaionPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]); 
 
                         airContext.flightBookingRequest.currencyCode = airContext.flightSearchRequest.currencyCode;
                         airContext.flightBookingRequest.adults = airContext.flightSearchResponse.adults;
@@ -2123,9 +2127,10 @@ namespace MojoIndia.Controllers
                         objVps.grandTotal = airContext.flightBookingRequest.sumFare.grandTotal;
                         #endregion
                     }
-                    else if (airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ)
+                    else if (airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ ||
+                        airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
                     {
-                        #region Check Price Verification AirIQ
+                        #region Check Price Verification AirIQ And Ease2Fly
                         airContext.priceVerificationRequest = new PriceVerificationRequest()
                         {
                             adults = airContext.flightSearchResponse.adults,
@@ -2405,23 +2410,27 @@ namespace MojoIndia.Controllers
                 {
                     string orderid = string.Empty;
                     string amt = string.Empty;
-                    decimal totAmt = ((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount));
-                    bookingLog(ref sbLogger, "Payment totAmt", totAmt.ToString());
+
+                    if (airContext.flightBookingRequest.isBuyCancellaionPolicy==false)
+                    {
+                        airContext.flightBookingRequest.CancellaionPolicyAmt = 0;
+                    }
+                    if (airContext.flightBookingRequest.isBuyRefundPolicy == false)
+                    {
+                        airContext.flightBookingRequest.RefundPolicyAmt = 0;
+                    }
+
+                    decimal totAmt = ((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.RefundPolicyAmt + airContext.flightBookingRequest.CancellaionPolicyAmt));
                     decimal convFee = 0;
                     airContext.flightBookingRequest.paymentMode = getPayementMode(mode, ref convFee, airContext.flightBookingRequest.affiliate, airContext.flightBookingRequest.flightResult.Count, totAmt, airContext.flightBookingRequest.passengerDetails.Count);
-                    bookingLog(ref sbLogger, "Payment paymentMode", airContext.flightBookingRequest.paymentMode.ToString());
                     airContext.flightBookingRequest.convenienceFee = convFee;
-                    bookingLog(ref sbLogger, "Payment convenienceFee", airContext.flightBookingRequest.convenienceFee.ToString());
                     amt = Math.Round((totAmt + convFee) * 100).ToString("g29");
-                    bookingLog(ref sbLogger, "Payment amt", amt);
                     string Currency = airContext.flightBookingRequest.currencyCode;
-                    bookingLog(ref sbLogger, "Payment Currency", Currency);
                     airContext.flightBookingResponse.gatewayType = GetWayType.Razorpay;
                     try
                     {
                         ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                         String orderId = airContext.flightBookingRequest.bookingID.ToString();
-                        bookingLog(ref sbLogger, "Payment orderId", orderId);
                         RazorpayClient client = new RazorpayClient(key, secret);
                         Dictionary<string, object> options = new Dictionary<string, object>();
                         options.Add("amount", amt);
@@ -2431,27 +2440,18 @@ namespace MojoIndia.Controllers
                         options.Add("payment_capture", "1");
                         Order order = client.Order.Create(options);
                         RP.orderid = order.Attributes["id"];
-                        bookingLog(ref sbLogger, "Payment orderid", RP.orderid);
                         RP.name = " ";
                         RP.email = airContext.flightBookingRequest.emailID;
-                        bookingLog(ref sbLogger, "Payment email", RP.email);
                         RP.phone = airContext.flightBookingRequest.phoneNo;
-                        bookingLog(ref sbLogger, "Payment phone", RP.phone);
                         RP.amount = amt;
-                        bookingLog(ref sbLogger, "Payment amount", RP.amount);
                         RP.status = "1";
-                        bookingLog(ref sbLogger, "Payment status", "1");
-                        bookingLog(ref sbLogger, "Payment IsAutoBookingFalse", "false");
-                        new DAL.LogWriter_New(sbLogger.ToString(), airContext.flightBookingRequest.bookingID.ToString(), "PaymentRequest");
+                        //airContext.IsAutoBookingFalse = false;
                     }
                     catch (Exception ex)
                     {
                         RP.status = "2";
-                        bookingLog(ref sbLogger, "Payment Exception status", "2");
                         RP.name = ex.Message;
-                        bookingLog(ref sbLogger, "Final Exception Name", RP.name);
                         new LogWriter(ex.ToString(), "PaymentRequetException" + DateTime.Today.ToString("ddMMyy"), "Error");
-                        new DAL.LogWriter_New(sbLogger.ToString(), airContext.flightBookingRequest.bookingID.ToString(), "PaymentRequest");
                     }
                     finally
                     {
@@ -2553,7 +2553,7 @@ namespace MojoIndia.Controllers
                 {
                     airContext.IsBookingCompleted = true;
                     decimal CouponAmount = 0;
-                    amtount = Math.Round(((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.convenienceFee) - CouponAmount) * 100).ToString("g29");
+                    amtount = Math.Round(((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.convenienceFee + airContext.flightBookingRequest.RefundPolicyAmt + airContext.flightBookingRequest.CancellaionPolicyAmt) - CouponAmount) * 100).ToString("g29");
                     LogCreater.CreateLogFile(amtount.ToString(), "Log\\PaymentException\\", paymentid.ToString(), "_Payment8.txt");
                     string newsignatue = HmacSha256Digest(orderID + "|" + paymentid, secret);
                     if (signature == newsignatue)
@@ -4630,6 +4630,43 @@ namespace MojoIndia.Controllers
             catch (Exception ex)
             {
                 new LogWriter(ex.ToString(), "PostPassengerException" + DateTime.Today.ToString("ddMMyy"), "Error");
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveAddones(string ID, string CPolicy, string RPolicy)
+        {
+
+            StringBuilder sbLogger = new StringBuilder();
+            Core.CouponStatusResponse objResponse = new CouponStatusResponse();
+            try
+            {
+                AirContext airContext = FlightOperation.GetAirContext(ID);
+
+                if (airContext.IsBookingCompleted == true)
+                {
+                    objResponse.RedirectUrl = "/flight/FlightConfirmation/" + airContext.flightSearchRequest.userSearchID;
+                }
+                else
+                {
+                    if (airContext != null)
+                    {
+                        airContext.flightBookingRequest.isBuyCancellaionPolicy =  Convert.ToBoolean(CPolicy);
+                        airContext.flightBookingRequest.isBuyRefundPolicy = Convert.ToBoolean(RPolicy);
+                    }
+                    else
+                    {
+                        objResponse.responseStatus.status = TransactionStatus.Error;
+                        objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new LogWriter(ex.ToString(), "Error15_" + DateTime.Today.ToString("ddMMyy"), "Error");
+                objResponse.responseStatus.status = TransactionStatus.Error;
+                objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }

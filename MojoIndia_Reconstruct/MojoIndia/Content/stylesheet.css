@@ -943,7 +943,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .payment_con{margin-top: 35px;width: 100%;float: left;}
 .payment-page { position: relative;z-index: 1;}
 .payment_div{float: left;width: 100%;border: #ccc solid 1px;background: #fff;padding: 0;border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,.12); margin-bottom: 15px;padding-bottom: 10px;}
-.payment_div h3{background:#49494a;  margin-top: 0;color: #fff;font-size: 15px;  padding:8px 15px;font-weight: 600; border-radius: 12px 12px 0 0;}
+.payment_div h3{margin-top: 0;color: #000;font-size: 15px;  padding:8px 15px;font-weight: 600; border-radius: 12px 12px 0 0;}
 .hide-toggle {float: right;border: #fff solid 1px;border-radius: 2px;padding: 3px 8px;font-weight: 300;font-size: 11px;cursor:pointer;}
 .toggle-section {float: left;width: 100%;margin-top: 10px; padding:0 10px;}
 .pament_left{width:70%; float:left;}
@@ -1199,6 +1199,66 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .lostbaggage_right{width: 25%; float: left;    text-align: right;}
 .lostbaggage_right img{width:65%; padding: 10px;}
 .baggege_accept{width: 100%; display: inline-block;border-top:1px solid #4d4c4c;border-bottom:1px solid #4d4c4c;padding:4px 0;}
+.para_text span{background: linear-gradient(to right,#e83819,#f3850b);border-radius: 15px;padding: 4px 10px;font-size: 13px;font-weight: 400;color: #fff;}
+.cancel_policy {width: 100%;float: left;padding: 10px 15px;}
+.cancel_policy ul {list-style-type: none;margin: 0px;padding: 0px;}
+.cancel_policy ul li {font-size: 13px;color: #000;line-height: 26px;}
+.cancel_policy ul li img {padding-right: 6px;}
+.extended_con {width: 100%;float: left;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;margin-top: 10px; padding:4px 20px;}
+.smart_check {width: 6%;display: inline-block;margin-top: 10px;float: left;}
+.policy_textse {width:74%;float: left;padding: 10px 20px 9px 20px;}
+.extended_price{ width:20%; float:left;text-align:left;}
+.extended_price h3{ color:#000; font-size:18px; margin:0; padding:0px;}
+.extended_price p{ color:#333; font-size:10px; margin:0; padding:0;}
+.extended_bottom{ width:100%; float:left; padding:15px;}
+.extended_bottom p{width:80%; float:left; font-size:13px; color:#49494a; margin:0;}
+.extended_bottom p em{ color:#ff0b00;font-size:13px; padding-right:2px;}
+.extended_ploicy{width:20%; float:left; text-align:right;}
+.extended_ploicy a{color:#49494a; font-size:15px; font-weight:bold; text-decoration:underline;}
+.extended_ploicy a:hover{color:#ff0b00;}
+.airline_Refund {width: 100%;float: left; background:#000;}
+.airline_RefundLeft{width:80%; float:left;text-align:left;}
+.airline_RefundRight{width:20%; float:left;text-align:right;padding: 6px 15px;}
+.airline_RefundLeft span{width:8%;float:left;text-align:center;}
+.airline_RefundLeft h3{ color:#fff;font-size:15px; padding:0; margin:0; border:0px!important;}
+.airline_RefundRight h3{color:#fff;font-size:18px; padding:6px 0 0 0;display:block;}
+.main_Refund{ width:100%; float:left; padding:10px;}
+.airline_refundTrem{width:100%; float:left; margin:0; padding:10px;border-bottom:1px solid #ccc;}
+.refund_Text{width:33%; float:left; border-right:1px solid #ccc;height:130px;margin-top:10px;}
+.refund_Text:last-child{border-right:0px;}
+.refund_TextLeft{ width:10%; float:left;text-align: center;}
+.refund_TextRight{width:90%; float:left; padding-right:10px;}
+.refund_TextRight h3{ width:100%; float:left; margin:0; padding:0; font-size:14px;}
+.refund_TextRight p{ font-size:12px; color:#333; padding-top:10px;width:100%; float:left;}
+.Refund_Bottom{width:100%; float:left; padding:10px;border:1px solid #ccc; margin-top:15px;}
+.Refund_BottomLeft{ width:5%; float:left;}
+.Refund_BottomRight{ width:95%; float:left;text-align:left;}
+.Refund_BottomRight p img{width:25px; padding-right:6px;}
+.Refund_BottomRight p{ font-size:14px;color:#000;font-weight:bold; padding-top:6px;}
+
+.airline_RefundLeft span label{cursor: pointer;}
+.Refund_BottomLeft label{cursor: pointer;}
+.airline_RefundLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 4px solid #fff; margin-top:8px; background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.Refund_BottomLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 4px solid #fff;background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.input-radio.on:checked {box-shadow: 0px 0px 0px 4px #00eb27;background-color: #51ff6e;}
+.input-radio.off:checked {box-shadow: 0px 0px 0px 4px #eb0000;background-color: #ff5151;}
+.main_Refund a{color: #49494a;font-size:15px;font-weight: bold;text-decoration: underline;text-align: right;float: right;display: inline-block;padding-right: 15px;padding-top:10px;}
+.main_Refund a:hover{color:#ff0b00; }
+.airline_RefundRight h3{color:#fff;font-size:18px; padding:6px 0 0 0;display:block;}
+.main_Refund{ width:100%; float:left; padding:10px;}
+.airline_refundTrem{width:100%; float:left; margin:0; padding:10px;border-bottom:1px solid #ccc;}
+.refund_Text{width:33%; float:left; border-right:1px solid #ccc;height:185px;margin-top:10px;}
+.refund_Text:last-child{border-right:0px;}
+.refund_TextLeft{ width:10%; float:left;text-align: center;}
+.refund_TextRight{width:90%; float:left; padding-right:10px;}
+.refund_TextRight h3{ width:100%; float:left; margin:0; padding:0; font-size:14px;}
+.refund_TextRight p{ font-size:12px; color:#333; padding-top:10px;width:100%; float:left;}
+.Refund_Bottom{width:100%; float:left; padding:10px;border:1px solid #ccc; margin-top:15px;}
+.Refund_BottomLeft{ width:7%; float:left;}
+.Refund_BottomRight{ width:92%; float:left;text-align:left;}
+.Refund_BottomRight p img{width:25px; padding-right:6px;}
+.Refund_BottomRight p{ font-size:14px;color:#000;font-weight:bold; padding-top:6px;}
+
 .wid50 {width:48%;float: left;padding-left: 10px;}
 .slide_box {width: 16%;float: left;    margin-top: 4px;}
 .switch {display: inline-block;height: 16px;position: relative;width: 50px;margin: 0;}

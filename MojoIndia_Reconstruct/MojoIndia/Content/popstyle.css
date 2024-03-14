@@ -100,18 +100,9 @@
 .reslutcall_btn:hover{background: #047107;}
 .trust_con{width: 100%;float: left;text-align: center;margin-top: 15px;}
 .trust_con p{ color:#000; font-size:12px}
-.popup_left {
-    width: 20%;
-    float: left;
-}
-.popup_left img {
-    width: 100%;
-    float: left;
-}
-.popup_middle {
-    width: 70%;
-    float: left;
-    text-align: center;padding-top: 15px;}
+.popup_left {width: 20%;float: left;}
+.popup_left img {width: 100%;float: left;}
+.popup_middle {width: 70%;float: left;text-align: center;padding-top: 15px;}
 .popup_middle h2 {width: 100%;float: left;font-size: 18px;color: #fff;margin: 0;padding: 0px;text-align: center;}
 .popup_middle p {width: 100%;float: left;font-size: 14px;color: #fff; margin: 0;padding: 0px;text-align: center;}
 

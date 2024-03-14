@@ -381,7 +381,7 @@
                                                                                             <p>@airline.code - @seg.FlightNumber</p>
                                                                                         </td>
 
-                                                                                        <td>25 kg</td>
+                                                                                        <td>20 to 25 kg</td>
                                                                                         <td> 7 kg</td>
                                                                                     </tr>
                                                                                 }
@@ -448,12 +448,11 @@
                                                 <span class="d-inline-flex justify-content-center align-items-center">01</span>
                                                 Contact Information
                                             </div>
-                                            <div id="takingPaxDetails" @*class="Make_Mobile_Popup "*@>
+                                            <div id="takingPaxDetails">
                                                 <div id="step1" style="display:block">
                                                     <div class="mobpay_header"><a href=""><i class="fa-solid fa-arrow-left"></i></a> Contact Information</div>
 
                                                     <div class="payment_div border_radius">
-                                                        @*<h3><i class="fa-regular fa-id-card"></i> Contact Information</h3>*@
                                                         <div class="contact-information">
                                                             <div class="width50 marright14">
                                                                 <label>Contact Phone*</label>
@@ -657,9 +656,149 @@
 
                                         </div>
 
-                                        <div class="passenger_step false">
+
+
+
+
+                                        <div id="AddOnstep" class="passenger_step false">
                                             <div class="progess_Step">
                                                 <span class="d-inline-flex justify-content-center align-items-center">03</span>
+                                                Add on
+                                            </div>
+
+                                            @if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
+                                            {
+                                                <input type="hidden" id="hfStepShow" value="0" />
+
+
+                                                <div class="payment_div AddonsStep1" style="display:none;">
+                                                    <h3 class="para_text">
+                                                        <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
+                                                        <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
+                                                    </h3>
+                                                    <div class="cancel_policy">
+                                                        <ul>
+                                                            <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
+                                                            <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
+                                                            <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="extended_con" onclick="CancellaionPolicy();">
+                                                        <div class="smart_check">
+                                                            <label class="switch" for="chbCancellaionPolicyBye">
+                                                                <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="policy_textse">
+                                                            <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
+                                                            <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
+                                                        </div>
+                                                        <div class="extended_price">
+                                                            <h3><i class="fa fa-rupee"></i>@Model.CancellaionPolicyAmt</h3>
+                                                            <p>Per person</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="extended_bottom">
+                                                        <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
+                                                        <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" id="hfStepHide" value="0" />
+                                            }
+
+                                            <div class="payment_div AddonsStep2" style="display:none;">
+                                                <div class="main_Refund">
+                                                    <h3 class="para_text"><img src="/images/insurance.svg" alt="icon"> Airline Refund Assurance </h3>
+                                                    <div class="airline_Refund">
+                                                        <div class="airline_RefundLeft">
+                                                            <span>
+                                                                <label>
+                                                                    <input type="radio" class="input-radio on" name="pilih" onclick="RefundPolicy();" value="true" id="true">
+                                                                </label>
+                                                            </span>
+                                                            <h3 class="para_text"><img src="/images/insurance.svg" alt="icon"> Airline Refund Assurance</h3>
+                                                        </div>
+                                                        <div class="airline_RefundRight"><h3><i class="fa fa-rupee"></i>@Model.RefundPolicyAmt</h3></div>
+                                                    </div>
+                                                    <div class="airline_refundTrem">
+                                                        <div class="refund_Text">
+                                                            <div class="refund_TextLeft">
+                                                                <img src="/images/Shape 6.png" alt="icon" />
+                                                            </div>
+                                                            <div class="refund_TextRight">
+                                                                <h3>Protection against airline bankrupcy</h3>
+                                                                <p>In an unforceen even of flight cancellation due to airline bankrupcy or aircraft non-operational, you’re full covered</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="refund_Text">
+                                                            <div class="refund_TextLeft">
+                                                                <img src="/images/Shape 6.png" alt="icon" />
+                                                            </div>
+                                                            <div class="refund_TextRight">
+                                                                <h3>Instant Refunds For Cancellations</h3>
+                                                                <p>
+                                                                    Receive your refund in 24-48 hours, regardless of who cancels - you or the airline. For customer cancellations, applicable
+                                                                    fees are deducted and non-refundable bookings are excluded. Airline cancellations cover even non-refundable bookings.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="refund_Text">
+                                                            <div class="refund_TextLeft">
+                                                                <img src="/images/Shape 6.png" alt="icon" />
+                                                            </div>
+                                                            <div class="refund_TextRight">
+                                                                <h3>Proactive Refund For Delays</h3>
+                                                                <p>Should you face a flight delay exceeding 3 hours and choose not to accept the delay, we guarantee a prompt, full refund. Your comfort and schedule are our priorities.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="Refund_Bottom">
+                                                        <div class="Refund_BottomLeft">
+                                                            <label><input type="radio" class="input-radio off" checked="checked" name="pilih" onclick="RefundPolicy();" value="false" id="false"></label>
+                                                        </div>
+                                                        <div class="Refund_BottomRight"><p><img src="/images/shield.svg" alt="icon" />Non- Protected booking</p></div>
+                                                    </div>
+                                                   
+                                                    <div class="extended_bottom">
+                                                        <p><em>*</em>Airline Refund Assurance Is Non-Refundable once Purchased.</p>
+                                                        <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="booknow-bt" style="display:none;">
+                                                    <span class="proceed_Paybtn_diseable" id="btn_disable">Proceed to Payment</span>
+                                                </div>
+                                                <div class="booknow-bt">
+                                                    <span class="proceed_Paybtn" onclick="return SaveAddon();" id="btn_proceed">Proceed to Payment</span>
+                                                    <span type="submit" id="btn_disable" style="display:none;" onclick="return false;" class="proceed_Paybtn_diseable">Continue<img src="/images/827.gif" alt="gif-icon" /></span>
+                                                </div>
+                                                <div class="booknow-bt">
+                                                    <button id="SubmitSearchProgress" style="display:none;" onclick="return false;">Confirming <img src="/images/1495.gif" /></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="passenger_step false">
+                                            <div class="progess_Step">
+
+                                                @if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
+                                                {
+                                                <span class="d-inline-flex justify-content-center align-items-center">04</span>
+                                                }
+                                                else
+                                                {
+                                                <span class="d-inline-flex justify-content-center align-items-center">03</span>
+                                                }
+
                                                 Payment Details
                                             </div>
                                             <div class="payment_Detail" id="step3" style="display:none;">
@@ -740,11 +879,11 @@
                                                         <div class="PaynowDiv">
                                                             @if (Model.flightResult.Exists(o => (o.Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || o.Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)))
                                                             {
-                                                                <span class="payment-button" id="btnSubmit_offer_fare" onclick="return ShowGroupFare();">Pay Now </span>
+                                                            <span class="payment-button" id="btnSubmit_offer_fare" onclick="return ShowGroupFare();">Pay Now </span>
                                                             }
                                                             else
                                                             {
-                                                                <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
+                                                            <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
                                                             }
                                                             <span class="ssl_payment"><i class="fa-solid fa-lock"></i> SSL Secure Payment</span>
                                                         </div>
@@ -769,17 +908,17 @@
                                                 </div>
                                                 @if (Model.child > 0)
                                                 {
-                                                    <div class="price-row">
-                                                        <label class="psen-name">@Model.child Traveler(s) : Child</label>
-                                                        <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
+                                                <div class="price-row">
+                                                    <label class="psen-name">@Model.child Traveler(s) : Child</label>
+                                                    <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                </div>
                                                 }
                                                 @if (Model.infants > 0)
                                                 {
-                                                    <div class="price-row">
-                                                        <label class="psen-name">@Model.infants Traveler(s) : infants</label>
-                                                        <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
+                                                <div class="price-row">
+                                                    <label class="psen-name">@Model.infants Traveler(s) : infants</label>
+                                                    <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                </div>
                                                 }
 
                                                 <div class="price-row">
@@ -788,11 +927,11 @@
                                                         <i class="fa fa-rupee"></i> <font id="Surcharge">
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                                                             {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </font>
                                                     </label>
@@ -803,6 +942,21 @@
                                                         <i class="fa fa-rupee"></i><span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
                                                     </label>
                                                 </div>
+
+                                                <div class="price-row" id="PriceCancellaionPolicy" style="display:none;">
+                                                    <label class="psen-name ">Extended Cancellation Policy Fee</label>
+                                                    <label class="rate-amount CancellaionPolicy">
+                                                        <i class="fa fa-rupee"></i><span id="CouponAmt">@((Model.CancellaionPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="price-row" id="PriceRefundPolicy" style="display:none;">
+                                                    <label class="psen-name ">Extended Refund Policy Fee</label>
+                                                    <label class="rate-amount CancellaionPolicy">
+                                                        <i class="fa fa-rupee"></i><span id="CouponAmt">@((Model.RefundPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
+                                                    </label>
+                                                </div>
+
 
 
                                                 <div class="price-row" style="display:none;" id="ConvenienceFeeWeb">
@@ -815,11 +969,11 @@
                                                         Rechecking Fare.. <em>
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
@@ -831,23 +985,23 @@
                                                         <em id="totalAmount">
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
                                                             <i class="fa fa-rupee"></i>
-                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                                            {
-                                                                <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
-                                                            }
-                                                            else
-                                                            {
-                                                                <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal)).ToString("f2"))" />
-                                                            }
+                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                                                                {
+                                                                    <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt)).ToString("f2"))" />
+                                                                }*@
+                                                            @*else
+                                                                {*@
+                                                            <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
+                                                            @*}*@
 
                                                             <input type="hidden" id="hftotalpax" value="@(Model.adults+Model.child+Model.infants+Model.infantsWs)" />
                                                             @Html.HiddenFor(o => o.CouponAmount)
@@ -914,26 +1068,26 @@
                                         </div>
                                         <div class="selectCouponCon">
                                             @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                            {
+                                                {
                                                 <div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
                                                     <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
                                                     <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
                                                     <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
                                                 </div>
-                                            }
+                                                }
                                             @if (Model.sourceMedia != "1013")
-                                            {
+                                                {
                                                 <p style="color:green;" class="Coupon-hide">
                                                     Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
                                                 </p>
-                                            }
-                                            else
-                                            {
+                                                }
+                                                else
+                                                {
                                                 <p style="color:green;" class="Coupon-hide">
                                                     Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
                                                     and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
                                                 </p>
-                                            }
+                                                }
 
                                             <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
                                                 <input id="rbtnNone" name="radio" type="radio" value="None" />
@@ -975,11 +1129,11 @@
                                     <i class="fa fa-rupee"></i>
                                     @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                     {
-                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                     }
                                     else
                                     {
-                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                     }
                                 </span> <img src="/images/recheckloader.gif" />
                             </div>
@@ -1014,23 +1168,23 @@
 
                                             @if (Model.child > 0)
                                             {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.child Traveler(s) : Child</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
-                                                </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft">@Model.child Traveler(s) : Child</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+                                            </div>
                                             }
                                             @if (Model.infants > 0)
                                             {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
-                                                </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+                                            </div>
                                             }
 
                                             <div class="Fare100">
@@ -1040,11 +1194,11 @@
                                                     <font id="SurchargeMob">
                                                         @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                         {
-                                                            @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         }
                                                         else
                                                         {
-                                                            @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         }
                                                     </font>
                                                 </span>
@@ -1056,6 +1210,37 @@
                                                     <span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
                                                 </span>
                                             </div>
+
+                                            @if (Model.CancellaionPolicyAmt > 0)
+{
+                                            <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
+                                                <span class="textLeft">Extended Cancellation Policy Fee</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="SurchargeMob">
+                                                        @((Model.CancellaionPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                    </font>
+                                                </span>
+                                            </div>
+}
+
+
+                                            @if (Model.RefundPolicyAmt > 0)
+                                            {
+                                            <div class="Fare100" style="display:none;" id="RefundAmtMob">
+                                                <span class="textLeft">Extended Refund Policy Fee</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="SurchargeMob">
+                                                        @((Model.RefundPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                    </font>
+                                                </span>
+                                            </div>
+                                            }
+
+
+
+
 
                                             <div class="Fare100" style="display:none;" id="ConvenienceFeeMob">
                                                 <span class="textLeft">
@@ -1094,7 +1279,7 @@
     </section>
 </main>
 
-
+<input type="hidden" value="redirectID:- @Model.redirectID" />
 <div id="ResultProgressPopupSave" class="ResultProgressPopup" style="display:none;">
     <div class="ResultProgressProgressBar">
         <div class="ResultProgress-logo"><img src="/images/732.gif" /></div>
@@ -1128,7 +1313,7 @@
             <img alt="icon" src="/images/mojoloader.svg" />
         </div>
         <div class="loader_gif">
-            <img alt="gif" src="/images/pay_loader.gif" />
+            <img alt="gif" src="/images/pay_loader.gif"/>
         </div>
         <div class="confirm_progress1">
             <h2>Your booking will be completed in just a few seconds!</h2>
@@ -1199,12 +1384,68 @@
 }
 <input type="hidden" id="hfConvenFee" value="0" />
 <input type="hidden" id="hfStep" value="0" />
+<input type="hidden" id="hfAddonRPAmt" value="@Model.RefundPolicyAmt" />
+<input type="hidden" id="hfAddonCPAmt" value="@Model.CancellaionPolicyAmt" />
+<input type="hidden" id="hfStepAddon" value="0" />
+<input type="hidden" id="hfStepAddonRP" value="0" />
+
 @section scripts {
     @Scripts.Render("~/bundles/mojoFlightIndiaPassenger")
 
 
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        function CancellaionPolicy() {
+
+            if ($('#chbCancellaionPolicyBye').is(':checked')) {
+                $("#CancellaionPolicyYes").show();
+                $("#CancellaionPolicyNo").hide();
+
+                $("#PriceCancellaionPolicy").show();
+                $("#CancellaionAmtMob").show();
+
+                $("#hfStepAddon").val("1");
+                CalculateAmount();
+
+            }
+            else {
+                $("#CancellaionPolicyNo").show();
+                $("#CancellaionPolicyYes").hide();
+
+                $("#PriceCancellaionPolicy").hide();
+                $("#CancellaionAmtMob").hide();
+
+                $("#hfStepAddon").val("0");
+                CalculateAmount();
+            }
+        }
+    </script>
+
+
+    <script>
+        function RefundPolicy() {
+
+            var mode = $('input[name="pilih"]:checked').val();
+            if (mode=="true") {
+                $("#PriceRefundPolicy").show();
+                $("#RefundAmtMob").show();
+                $("#hfStepAddonRP").val("1");
+                CalculateAmount();
+
+            }
+            else if (mode=="false"){
+                $("#PriceRefundPolicy").hide();
+                $("#RefundAmtMob").hide();
+                $("#hfStepAddonRP").val("0");
+                CalculateAmount();
+            }
+        }
+    </script>
+
+
+
     <script type="text/javascript">
         var totPax=@Model.passengerDetails.Count;
         if ($(window).width() > 960) {
@@ -1218,7 +1459,7 @@
             });
         }
     </script>
-    <script>
+	  <script>
         $(document).ready(function () {
             changeRbtn();
             $(".showSingle").click(function () {
@@ -1425,6 +1666,17 @@
             {
                 totalAmt += parseFloat($("#hfConvenFee").val());
             }
+            if($("#hfStepAddon").val()!="0")
+            {
+                totalAmt += parseFloat($("#hfAddonCPAmt").val());
+               
+            }
+            if($("#hfStepAddonRP").val()!="0")
+            {
+                totalAmt += parseFloat($("#hfAddonRPAmt").val());
+              
+            }
+           
             $("#totalAmount").html("" + totalAmt.toFixed(0));
             $("#totalAmountMobile").html("" + totalAmt.toFixed(0));
             $("#totalAmountMob1").html("" + totalAmt.toFixed(0));
@@ -1534,12 +1786,6 @@
                 }
                 if(ctr==totPax)
                 {
-                   // var NoOfInf=@Model.infants;
-                    @*if((@Model.infants>0) && ($("#ageDate").val()>2))
-                    {
-                      
-                    }*@
-
                     $("#btn_disable").hide();
                     $("#btn_proceed").show();
 
@@ -1568,7 +1814,6 @@
             if($("#Passenger").validate().element("#phoneNo") && $("#Passenger").validate().element("#emailID")
                 && $("#Passenger").validate().element("#GSTNo") && $("#Passenger").validate().element("#GSTCompany"))
             {
-
                 var jsonData = {
                     ID: '@Model.userSearchID',
                     EmailID: $("#emailID").val(),
@@ -1593,6 +1838,14 @@
                         ShowContact.style.display = "block";
                         step2.style.display = "block";
                         step3.style.display = "none";
+                        $("#PriceCancellaionPolicy").hide();
+                        $("#PriceRefundPolicy").hide();
+                        $("#hfAddon").val("0");
+                        $('.AddonsStep1').hide();
+                        $('.AddonsStep2').hide();
+                        //AddonsStep1.style.display = "none";
+                        //AddonsStep2.style.display = "none";
+
                         $("#BookingID").val(bookingID);
                         checkout();
                         PassengerInfo();
@@ -1606,6 +1859,52 @@
             }
         }
     </script>
+
+    <script>
+        function SaveAddon() {
+
+            var jsonData = {
+                ID: '@Model.userSearchID',
+                CPolicy: $("#chbCancellaionPolicyBye").prop("checked"),
+                RPolicy: $('[name="pilih"]:radio:checked').val(),
+            };
+            $('#ResultProgressPopupSave').show();
+            $.ajax({
+                type: "POST",
+                url: "/Flight/SaveAddones",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(jsonData),
+                responseType: "json",
+                success: function (r) {
+        
+                    Contactstep.classList.add("success");
+                    Contactstep.classList.remove("false");
+                    AddOnstep.classList.add("success");
+                    AddOnstep.classList.remove("false");
+                    step1.style.display = "none";
+                    step2.style.display = "none";
+                    step3.style.display = "block";
+                    $("#hfStep").val("2");
+                    $('.AddonsStep1').hide();
+                    $('.AddonsStep2').hide();
+                    //AddonsStep1.style.display = "none";
+                    //AddonsStep2.style.display = "none";
+                    update_payment();
+                    $('#ResultProgressPopupSave').hide();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                    $('#ResultProgressPopupSave').hide();
+                }
+            });
+        }
+    </script>
+
+
+
+
+
 
     <script>
         function SavePassenger() {
@@ -1679,10 +1978,32 @@
                         data: JSON.stringify(jsonData),
                         responseType: "json",
                         success: function (r) {
-
-                            $("#hfStep").val("2");
+                
+                            //$("#hfStep").val("2");
                             $("#btn_proceed").hide();
                             $("#btn_disable").show();
+
+                            //$("#PriceCancellaionPolicy").show();
+                            //$("#PriceRefundPolicy").show();
+                            //AddonsStep1.style.display = "block";
+                            //AddonsStep2.style.display = "block";
+
+                            if($("#hfStepShow").val()!="0")
+                            {
+                                $('.AddonsStep1').hide();
+                                $('.AddonsStep2').show();
+                                //$("#hfStep").val("2");
+                                //step3.style.display = "block";
+                                //update_payment();
+                            }
+                            else
+                            {
+                                $('.AddonsStep1').show();
+                                $('.AddonsStep2').show();
+                            }
+
+
+
                             Contactstep.classList.add("success");
                             Contactstep.classList.remove("false");
                             Passengerstep.classList.add("success");
@@ -1724,15 +2045,11 @@
                             PaxShow.style.display = "block";
                             $("#PaxShowDataChd").show();
                             $("#PaxShowDataInf").show();
-
-
-
+                            $("#AddOnstep").show();
                             step1.style.display = "none";
                             step2.style.display = "none";
                             ShowContact.style.display = "block";
-
-                            step3.style.display = "block";
-                            update_payment();
+                            //update_payment();
                             AddPaymentInfo();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1828,8 +2145,6 @@
     </script>
 
     <script>
-        @*var convFeeNetBnk=@()*@
-
         var   upiConvenceFee = @((Model.affiliate.UPIConFee.IndexOf("%") != -1 ? ((Convert.ToDecimal(Model.affiliate.UPIConFee.Replace("%", "")) * (Model.sumFare.grandTotal + Model.fareIncreaseAmount)) / 100) : (Convert.ToDecimal(Model.affiliate.UPIConFee) * Model.flightResult.Count * Model.passengerDetails.Count)));
         var   cardConvenceFee = @((Model.affiliate.CardConFee.IndexOf("%") != -1 ? ((Convert.ToDecimal(Model.affiliate.CardConFee.Replace("%", "")) * (Model.sumFare.grandTotal + Model.fareIncreaseAmount)) / 100) : (Convert.ToDecimal(Model.affiliate.CardConFee) * Model.flightResult.Count * Model.passengerDetails.Count)));
         var   netbankingConvenceFee = @((Model.affiliate.NetBankingConFee.IndexOf("%") != -1 ? ((Convert.ToDecimal(Model.affiliate.NetBankingConFee.Replace("%", "")) * (Model.sumFare.grandTotal + Model.fareIncreaseAmount)) / 100) : (Convert.ToDecimal(Model.affiliate.NetBankingConFee) * Model.flightResult.Count * Model.passengerDetails.Count)));
@@ -1865,9 +2180,6 @@
                 final_con=emiConvenceFee;
             }
             var final_pay = parseFloat($("#hftotalAmt").val());
-            //$("#CFee").hide();
-            //$("#CFeeUPI").hide();
-            //$("#ConvenienceFeeMob").show();
             $("#fntConFee").html(final_con);
             $("#ConFeeAmtMob").html(final_con);
 
@@ -1875,6 +2187,16 @@
 
             var final = final_pay + final_con;
             final -= parseFloat($("#CouponAmount").val());
+            if($("#hfStepAddon").val()!="0")
+            {
+                final += parseFloat($("#hfAddonCPAmt").val());
+               
+            }
+            if($("#hfStepAddonRP").val()!="0")
+            {
+                final += parseFloat($("#hfAddonRPAmt").val());
+              
+            }
             $("#hfConvenFee").val(final_con);
             $("#totalAmount").html(+final.toFixed(0));
             $("#totalAmountMob").html(+final.toFixed(0));

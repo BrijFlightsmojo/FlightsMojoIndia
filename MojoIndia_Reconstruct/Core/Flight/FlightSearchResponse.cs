@@ -52,6 +52,14 @@ namespace Core.Flight
         public string userLogID { get; set; }
         [DataMember]
         public string ST_ResultSessionID { get; set; }
+
+        [DataMember]
+        public int E2F_id { get; set; }
+
+        [DataMember]
+        public string d_owner { get; set; }
+        [DataMember]
+        public string FlightKey { get; set; }
         public FlightSearchResponse()
         {
         }
@@ -352,7 +360,13 @@ namespace Core.Flight
 
         [DataMember]
         public string  AQ_ticket_id { get; set; }
+        [DataMember]
+        public int E2F_id { get; set; }
 
+        [DataMember]
+        public string d_owner { get; set; }
+        [DataMember]
+        public string FlightKey { get; set; }
 
     }
 

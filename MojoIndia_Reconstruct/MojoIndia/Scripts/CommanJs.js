@@ -135,12 +135,9 @@ function SetWebsiteDeal() {
                             htmlData += "    <div class='airport return'>";
                             htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                             htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
-                            htmlData += "    </div>";
-                            //htmlData += "    <div class='price eng-open' onclick='OpenSearchEnging(this," + i + ")'>";
-                            htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "')\">";
-                           // htmlData += "    <div class='price eng-open'>";
-                            htmlData += "        ₹" + response[i].totalFare + "";
-                            //htmlData += "<a href="/flight/searchFlightResult?org=""+ response[i].origin.airportCode+"&dest="+ response[i].destination.airportCode+"&depdate="+ response[i].destination.airportCode+"&retdate=&tripType=O&adults=1&child=&infants=&cabin=1&utm_source=1016&currency=inr">"  "" + response[i].origin.cityName + "</a>";
+                            htmlData += "    </div>";                        
+                            htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "','" + response[i].origin.airportCode + "', '" + response[i].destination.airportCode + "', '" + response[i].retDate + "', '1', '" + response[i].airline.code + "', '" + response[i].airline.code + "')\">";
+                            htmlData += "        ₹" + response[i].totalFare + "";                      
                             htmlData += "    </div>";
                             htmlData += "</li>";
                             i++;
@@ -156,7 +153,7 @@ function SetWebsiteDeal() {
                                 htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                                 htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
                                 htmlData += "    </div>";
-                                htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "')\">";
+                                htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "','" + response[i].origin.airportCode + "', '" + response[i].destination.airportCode + "', '" + response[i].retDate + "', '1', '" + response[i].airline.code + "', '" + response[i].airline.code + "')\">";
                                 htmlData += "        ₹" + response[i].totalFare + "";
                                 htmlData += "    </div>";
                                 htmlData += "</li>";
@@ -178,7 +175,18 @@ function SetWebsiteDeal() {
             $("#ulDealDetails").html("");
         }
 }
-function OpenPage(ctr, deepLink) {
+function OpenPage(ctr, deepLink, org, dest, traveldate, totpax, airlineName, airlineCode) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'home',
+        'link_name': 'popular search',
+        'origin_city': org,
+        'destination_city': dest,
+        'travel_date': traveldate,
+        'passenger_count': totpax,
+        'airline_name': airlineName,
+        'flight_code': airlineCode
+    });
     $(ctr).html("Wait.........")
     window.location.replace(deepLink);
 
@@ -235,3 +243,11 @@ function setCookies() {
     $("#divCookies").hide();
     $("#divCookies1").hide();
 }
+function SetSocialMedia(name) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'social_media',
+        'link_name':name
+    });
+}
+

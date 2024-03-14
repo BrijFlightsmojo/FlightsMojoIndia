@@ -230,6 +230,17 @@
                                                     <th colspan="2"><b>BaseFare</b></th>
                                                     <th><b>Taxes</b></th>
                                                     <th><b>Convenience Fee</b></th>
+
+                                                    @if (Model.CancellaionPolicyAmt > 0)
+                                                    {
+                                                        <th>CancellaionPolicyAmt</th>
+                                                    }
+                                                    @if (Model.RefundPolicyAmt > 0)
+                                                    {
+                                                        <th>RefundPolicyAmt</th>
+                                                    }
+
+
                                                     <th><b>Total</b></th>
                                                 </tr>
                                                 <tr>
@@ -242,8 +253,18 @@
                                                     <td>
                                                         <p style="margin:0;padding:0;font-size:12px;">@(Model.conveniencefee)</p>
                                                     </td>
+
+                                                    @if (Model.CancellaionPolicyAmt > 0)
+                                                    {
+                                                        <td>@Model.CancellaionPolicyAmt</td>
+                                                    }
+                                                    @if (Model.RefundPolicyAmt > 0)
+                                                    {
+                                                        <td>@Model.RefundPolicyAmt</td>
+                                                    }
+
                                                     <td>
-                                                        <p style="margin:0;padding:0;font-size:12px;">@(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee)).ToString("f2"))</p>
+                                                        <p style="margin:0;padding:0;font-size:12px;">@(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt)).ToString("f2"))</p>
                                                     </td>
 
                                                 </tr>

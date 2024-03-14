@@ -52,7 +52,8 @@ namespace Core
         FareBoutique = 4,
         AirIQ = 5,
         OneDFare = 8,
-        SatkarTravel = 9
+        SatkarTravel = 9,
+        Ease2Fly = 10
     }
     public enum TransactionStatus : int
     {

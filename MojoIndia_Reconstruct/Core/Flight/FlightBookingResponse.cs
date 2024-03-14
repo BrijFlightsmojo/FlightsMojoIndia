@@ -153,6 +153,16 @@ namespace Core.Flight
         public string Fb_Reference_id { get; set; }
         [DataMember]
         public Affiliate affiliate { get; set; }
+
+        [DataMember]
+        public bool isBuyCancellaionPolicy { get; set; }
+        [DataMember]
+        public string isBuyRefundPolicy { get; set; }
+
+        [DataMember]
+        public decimal RefundPolicyAmt { get; set; }
+        [DataMember]
+        public decimal CancellaionPolicyAmt { get; set; }
         public FlightBookingResponse()
         {
 
@@ -213,6 +223,9 @@ namespace Core.Flight
             tgy_Flight_Key = fbr.tgy_Flight_Key;
             tgy_Request_id = fbr.tgy_Request_id;
             tgy_Search_Key = fbr.tgy_Search_Key;
+            RefundPolicyAmt = fbr.RefundPolicyAmt;
+            CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
+
         }
     }
     [DataContract]

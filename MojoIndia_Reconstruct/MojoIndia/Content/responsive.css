@@ -318,10 +318,10 @@
 .Make_Mobile_Popup {display:none;position:fixed; top:0px;z-index:99;background:#fff; height:100vh;overflow-y:scroll;left:0;} 
 .Make_Mobile_Popup_show {display:block;} 
 .booknow-bt input{padding: 8px 10px;font-size:13px;}
-.payment_div h3{border-radius:0px; background:#000;}
+
 .gray_pay h3{ display:none;}
 .mobile_none,.footer_result{ display:none;}
-.payment_div h3{ display:none;}
+
 .ResultProgressPopup .ResultProgressProgressBar{left: 50%; width: 96%;}
 .ResultProgressPopup1 .ResultProgressProgressBar1{left: 50%; width: 96%;}
 .DesktopCon{ display:none;}
@@ -418,6 +418,22 @@
 .modify_orgin{ font-size:11px;}
 .logo a img{ width:75%;padding-left: 5px;}
 .couponCon{ margin-bottom:15px;}
+.callContainerMob{ display:block;width:40%;padding: 10px 0;float:left;}
+.smart_check{ width:16%;}
+.policy_textse{width:64%;}
+.extended_price{width:20%;}
+.main_Refund{ padding:0;}
+.airline_RefundLeft span{ width:15%;padding-left: 5px;padding-top: 6px;}
+.refund_Text{ width:100%; border-right:0px; height:unset;}
+.refund_TextRight p{padding-top: 0px;}
+.airline_RefundLeft h3{ font-size:13px;}
+.airline_RefundLeft{width: 75%;}
+.airline_RefundRight{width: 25%;padding: 13px 9px }
+.Refund_BottomLeft{width:10%;}
+.Refund_BottomRight{width:88%;}
+.payment_div h3{text-align:center;border-radius:0px; font-size:13px;padding: 8px 4px;}
+.extended_con{ padding:0;}
+.para_text p{ margin-top:10px;color:#000;}
 }
 
 @media only screen 
