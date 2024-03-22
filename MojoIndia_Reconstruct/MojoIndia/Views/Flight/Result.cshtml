@@ -1088,6 +1088,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
 </div>
 <div style="display:none;">
     <form id="formPrePax" action="/flight/PrePax/" method="post">
+        <input type="hidden" name="sMedia" value="@Model.sourceMedia" />
         <input type="hidden" name="sID" value="@Model.userSearchID" />
         <input type="hidden" name="oID" id="oID" value="" />
         <input type="hidden" name="iID" id="iID" value="" />

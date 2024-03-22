@@ -20,4 +20,19 @@ namespace Core.Flight
         public string Origin { get; set; }
         public string Destination { get; set; }
     }
+   
+    public class GfPriceVerifyResponse
+    {        
+        public ResponseStatus responseStatus { get; set; }        
+        public Fare fare { get; set; }
+    }
+   
+    public class GfPriceVerifyRequest
+    {        
+        public int adults { get; set; }        
+        public int child { get; set; }        
+        public int infants { get; set; }        
+        public int infantsWs { get; set; }        
+        public List<FlightResult> flightResult { get; set; }
+    }
 }

@@ -2,7 +2,7 @@
 @using Core;
 @using Core.Flight;
 @{
-    ViewBag.Title = "Passenger";
+    ViewBag.Title = "PassengerGF";
     Layout = "~/Views/Shared/_LayoutFlight.cshtml";
 }
 @section AdditionalMeta
@@ -665,56 +665,45 @@
                                                 <span class="d-inline-flex justify-content-center align-items-center">03</span>
                                                 Add on
                                             </div>
-                                            
 
-
-                                            @if (Model.flightResult[0].Fare.gdsType == GdsType.Tbo || Model.flightResult[0].Fare.gdsType == GdsType.TripJack
-                                               || Model.flightResult[0].Fare.gdsType == GdsType.FareBoutique || Model.flightResult[0].Fare.gdsType == GdsType.AirIQ
-                                              || Model.flightResult[0].Fare.gdsType == GdsType.OneDFare || Model.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                                            @if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
                                             {
-                                                if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
-                                                {
-                                                    <input type="hidden" id="hfStepShow" value="0" />
+                                                <input type="hidden" id="hfStepShow" value="0" />
 
 
-                                                    <div class="payment_div AddonsStep1" style="display:none;">
-                                                        <h2 class="para_text">
-                                                            <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
-                                                            <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
-                                                        </h2>
-                                                        <div class="cancel_policy">
-                                                            <ul>
-                                                                <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
-                                                                <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
-                                                                <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
-                                                            </ul>
+                                                <div class="payment_div AddonsStep1" style="display:none;">
+                                                    <h3 class="para_text">
+                                                        <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
+                                                        <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
+                                                    </h3>
+                                                    <div class="cancel_policy">
+                                                        <ul>
+                                                            <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
+                                                            <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
+                                                            <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="extended_con" onclick="CancellaionPolicy();">
+                                                        <div class="smart_check">
+                                                            <label class="switch" for="chbCancellaionPolicyBye">
+                                                                <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
+                                                                <div class="slider round"></div>
+                                                            </label>
                                                         </div>
-                                                        <div class="extended_con" onclick="CancellaionPolicy();">
-                                                            <div class="smart_check">
-                                                                <label class="switch" for="chbCancellaionPolicyBye">
-                                                                    <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
-                                                                    <div class="slider round"></div>
-                                                                </label>
-                                                            </div>
-                                                            <div class="policy_textse">
-                                                                <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
-                                                                <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
-                                                            </div>
-                                                            <div class="extended_price">
-                                                                <h5><i class="fa fa-rupee"></i>@Model.CancellaionPolicyAmt</h5>
-                                                                <p>Per person</p>
-                                                            </div>
+                                                        <div class="policy_textse">
+                                                            <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
+                                                            <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
                                                         </div>
-                                                        <div class="extended_bottom">
-                                                            <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
-                                                            <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
+                                                        <div class="extended_price">
+                                                            <h3><i class="fa fa-rupee"></i>@Model.CancellaionPolicyAmt</h3>
+                                                            <p>Per person</p>
                                                         </div>
                                                     </div>
-                                                }
-                                                else
-                                                {
-                                                    <input type="hidden" id="hfStepHide" value="0" />
-                                                }
+                                                    <div class="extended_bottom">
+                                                        <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
+                                                        <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
+                                                    </div>
+                                                </div>
                                             }
                                             else
                                             {
@@ -731,10 +720,9 @@
                                                                     <input type="radio" class="input-radio on" name="pilih" onclick="RefundPolicy();" value="true" id="true">
                                                                 </label>
                                                             </span>
-                                                            <h2 class="para_text"><img src="/images/insurance.svg" alt="icon"> Airline Refund Assurance <dfn>Recommended</dfn></h2>
-
+                                                            <h3 class="para_text"><img src="/images/insurance.svg" alt="icon"> Airline Refund Assurance</h3>
                                                         </div>
-                                                        <div class="airline_RefundRight"><h5><i class="fa fa-rupee"></i>@Model.RefundPolicyAmt</h5></div>
+                                                        <div class="airline_RefundRight"><h3><i class="fa fa-rupee"></i>@Model.RefundPolicyAmt</h3></div>
                                                     </div>
                                                     <div class="airline_refundTrem">
                                                         <div class="refund_Text">
@@ -963,7 +951,7 @@
                                                 </div>
 
                                                 <div class="price-row" id="PriceRefundPolicy" style="display:none;">
-                                                    <label class="psen-name ">Extended Airline Refund Assurance Fee</label>
+                                                    <label class="psen-name ">Extended Refund Policy Fee</label>
                                                     <label class="rate-amount CancellaionPolicy">
                                                         <i class="fa fa-rupee"></i><span id="CouponAmt">@((Model.RefundPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
                                                     </label>
@@ -995,7 +983,7 @@
                                                     <h4 id="emFareDetails" style="display:none;">
                                                         Final Total Price:
                                                         <em id="totalAmount">
-                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013" || Model.sourceMedia == "1037")
                                                             {
                                                                 @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount + Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }

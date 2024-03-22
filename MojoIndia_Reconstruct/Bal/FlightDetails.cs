@@ -191,7 +191,30 @@ namespace Bal
         }
 
 
-
+        public GfPriceVerifyResponse PriceVerify(GfPriceVerifyRequest fsr)
+        {
+            try
+            {
+                if (fsr != null)
+                {
+                    WebClient client = new WebClient();
+                    var url = API_URL + "Flights/GfPriceVrify?authcode=" + authcode;
+                    string serialisedData = JsonConvert.SerializeObject(fsr);
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    System.DateTime dt = DateTime.Now;
+                    var kk = client.UploadString(url, serialisedData);
+                    return JsonConvert.DeserializeObject<GfPriceVerifyResponse>(kk.ToString());
+                }
+                else
+                {
+                    return new GfPriceVerifyResponse() { fare = new Fare(), responseStatus = new ResponseStatus { status = TransactionStatus.Error, message = "" } };
+                }
+            }
+            catch (Exception exrr)
+            {
+                return new GfPriceVerifyResponse() { fare = new Fare(), responseStatus = new ResponseStatus { status = TransactionStatus.Error, message = exrr.ToString() } };
+            }
+        }
         public void FlightVerification(ref AirContext airContext, ref StringBuilder sbLogger)
         {
             FlightBookingResponse fbr;

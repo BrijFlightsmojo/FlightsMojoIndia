@@ -18,6 +18,7 @@ namespace Core
         public static List<AircraftDetail> AircraftDetails { get; set; }
         //public static List<AirlineBaggage> airlineBaggage { get; set; }
         //public static List<SecretDealDetails> secretDealDetails { get; set; }
+        public static List<AirportWithTimeZone> AirportTimeZoneList { get; set; }
         public static List<Affiliate> AffiliateList { get; set; }
         public static bool isMasterDataLoaded = false;
         public static void LoadMasterData()
@@ -28,6 +29,7 @@ namespace Core
             AircraftDetails = obj.getAllAircraftDetail();
             //airlineBaggage = obj.GetAllAirlineBaggage();
             //secretDealDetails = obj.GetAllSecretDealDetails();
+            AirportTimeZoneList = obj.getAllAirportWithTimeZone();
             AffiliateList = obj.GetAllAffiliate();
             isMasterDataLoaded = true;
         }
@@ -170,6 +172,28 @@ namespace Core
                 }
             }
             return CF;
+        }
+        public static AirportWithTimeZone GetAirportTimeZone(string AirportCode)
+        {
+            if (!FlightUtility.isMasterDataLoaded)
+            {
+                FlightUtility.LoadMasterData();
+            }
+
+            List<AirportWithTimeZone> ResAirportCode = FlightUtility.AirportTimeZoneList.Where(x => (x.airportCode.Equals(AirportCode, StringComparison.OrdinalIgnoreCase))).ToList();
+            if (ResAirportCode.Count > 0)
+            {
+                return ResAirportCode[0];
+            }
+            else
+            {
+                return new AirportWithTimeZone()
+                {
+                    airportCode = AirportCode,
+                    timeZone = "",
+                    timeZone2 = ""
+                };
+            }
         }
         //public static AirlineBaggage GetAirlineBaggage(string AirlineCode)
         //{
@@ -333,7 +357,37 @@ namespace Core
             }
             return arcftList;
         }
+        public List<AirportWithTimeZone> getAllAirportWithTimeZone()
+        {
+            List<AirportWithTimeZone> arpList = new List<AirportWithTimeZone>();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+            {
+                using (SqlCommand cmd = new SqlCommand("select * from Airport_With_TimeZone", con))
+                {
+                    try
+                    {
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                AirportWithTimeZone arp = new AirportWithTimeZone();
+                                arp.airportCode = dr["AirportCode"].ToString().ToUpper();
+                                arp.timeZone = dr["TimeZone"].ToString();
+                                arp.timeZone2 = dr["TimeZone2"].ToString();
+                                arpList.Add(arp);
+                            }
+                        }
+                    }
+                    catch //(Exception ex)
+                    {
 
+                    }
+                }
+            }
+            return arpList;
+        }
         //public List<AirlineBaggage> GetAllAirlineBaggage()
         //{
 

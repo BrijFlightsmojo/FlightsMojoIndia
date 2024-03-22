@@ -38,6 +38,11 @@ namespace Core.ContentPage
         public string FAQQ8 { get; set; }
         public string FAQQ9 { get; set; }
         public string FAQQ10 { get; set; }
+        public string FAQQ11 { get; set; }
+        public string FAQQ12 { get; set; }
+        public string FAQQ13 { get; set; }
+        public string FAQQ14 { get; set; }
+        public string FAQQ15 { get; set; }
         public string FAQANS1 { get; set; }
         public string FAQANS2 { get; set; }
         public string FAQANS3 { get; set; }
@@ -49,6 +54,11 @@ namespace Core.ContentPage
         public string FAQANS9 { get; set; }
         public string FAQANS10 { get; set; }
 
+        public string FAQANS11 { get; set; }
+        public string FAQANS12 { get; set; }
+        public string FAQANS13 { get; set; }
+        public string FAQANS14 { get; set; }
+        public string FAQANS15 { get; set; }
 
 
         public bool isStaticContent { get; set; }

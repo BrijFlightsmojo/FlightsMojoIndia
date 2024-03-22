@@ -35,6 +35,8 @@ namespace Core.Flight
         public int infants { get; set; }
         [DataMember]
         public CabinType cabinType { get; set; }
+        //[DataMember]
+        //public string airline { get; set; }
         [DataMember]
         public string airline { get; set; }
         [DataMember]

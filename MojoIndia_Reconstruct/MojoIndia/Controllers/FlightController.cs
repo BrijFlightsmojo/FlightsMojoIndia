@@ -552,10 +552,9 @@ namespace MojoIndia.Controllers
         [HttpGet]
         public ActionResult GF_FlightResult()
         {
-            // /flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=16986&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
-            // /flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=500&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&BookingCode1=V&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&BookingCode2=V&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&BookingCode3=V&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
-            // /flight/GF_FlightResult?Adult=1&PointOfSaleCountry=IN&DisplayedPrice=53939&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=RoundTrip&Slice1=1&Slice2=2&Cabin1=Economy&Carrier1=AI&DepartureDate1=2023-05-30&DepartureTime1=09:15&ArrivalDate1=2023-05-30&ArrivalTime1=11:05&Origin1=BOM&Destination1=JDH&BookingCode1=Y&FlightNumber1=645&Cabin2=Economy&Carrier2=AI&DepartureDate2=2023-06-05&DepartureTime2=11:45&ArrivalDate2=2023-06-05&ArrivalTime2=13:25&Origin2=JDH&Destination2=BOM&BookingCode2=Y&FlightNumber2=646&ReferralId=GOOG_GFS_0000
 
+            ///flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=16986&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
+            ///flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=500&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&BookingCode1=V&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&BookingCode2=V&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&BookingCode3=V&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
             StringBuilder sbLogger = new StringBuilder();
             try
             {
@@ -574,6 +573,7 @@ namespace MojoIndia.Controllers
                 Adult = string.IsNullOrEmpty(Request.QueryString.Get("Adult")) ? 1 : Convert.ToInt32(Request.QueryString.Get("Adult")),
                 child = string.IsNullOrEmpty(Request.QueryString.Get("child")) ? 0 : Convert.ToInt32(Request.QueryString.Get("child")),
                 infant = string.IsNullOrEmpty(Request.QueryString.Get("infant")) ? 0 : Convert.ToInt32(Request.QueryString.Get("infant")),
+
                 PointOfSaleCountry = string.IsNullOrEmpty(Request.QueryString.Get("PointOfSaleCountry")) ? "" : Request.QueryString.Get("PointOfSaleCountry"),
                 DisplayedPrice = string.IsNullOrEmpty(Request.QueryString.Get("DisplayedPrice")) ? 0 : Convert.ToDecimal(Request.QueryString.Get("DisplayedPrice")),
                 DisplayedPriceCurrency = string.IsNullOrEmpty(Request.QueryString.Get("DisplayedPriceCurrency")) ? "" : Request.QueryString.Get("DisplayedPriceCurrency"),
@@ -585,6 +585,10 @@ namespace MojoIndia.Controllers
                 flightSlice = new List<FlightSlice>(),
                 slice = new List<Slice>()
             };
+            if (gfd.infant == 0)
+            {
+                gfd.infant = string.IsNullOrEmpty(Request.QueryString.Get("InfantLap")) ? 0 : Convert.ToInt32(Request.QueryString.Get("InfantLap"));
+            }
             for (int i = 1; i <= 2; i++)
             {
                 if (!string.IsNullOrEmpty(Request.QueryString.Get("Slice" + i)))
@@ -651,18 +655,18 @@ namespace MojoIndia.Controllers
                 fsr.segment.Add(seg);
 
             }
-            foreach (var item in gfd.flightSlice)
-            {
-                //if (!fsr.airline.Exists(k => k == item.Carrier))
-                //{
-                //    fsr.airline.Add(item.Carrier);
-                //}
-            }
+            //foreach (var item in gfd.flightSlice)
+            //{
+            //    if (!fsr.airline.Exists(k => k == item.Carrier))
+            //    {
+            //        fsr.airline.Add(item.Carrier);
+            //    }
+            //}
             fsr.tripType = fsr.segment.Count == 1 ? TripType.OneWay : TripType.RoundTrip;
 
             #endregion
 
-            fsr.siteId = Core.SiteId.FlightsMojoIN;
+            fsr.siteId = SiteId.FlightsMojoIN;
             if (gfd.flightSlice[0].Cabin.Equals("PremiumEconomy", StringComparison.OrdinalIgnoreCase))
             {
                 fsr.cabinType = CabinType.PremiumEconomy;
@@ -680,6 +684,7 @@ namespace MojoIndia.Controllers
                 fsr.cabinType = CabinType.Economy;
             }
 
+            fsr.siteId = SiteId.FlightsMojoIN;
             fsr.sourceMedia = "1037";
             setCookie(fsr.sourceMedia);
 
@@ -712,98 +717,98 @@ namespace MojoIndia.Controllers
             airContext.flightRef = new List<string>();
 
             fsr.userSessionID = Guid.NewGuid().ToString();
-            fsr.userLogID = fsr.userSearchID = getSearchID();
+            fsr.userSearchID = getSearchID();
+            string aa = JsonConvert.SerializeObject(fsr);
             FlightOperation.SetAirContext(airContext);
-            fsr.tgy_Request_id = DateTime.Now.ToString("ddMMyyyyHHmmsss");
-            if (gfd.PointOfSaleCountry == "IN")
-            {
-                fsr.travelType = Core.TravelType.Domestic;
-            }
-            else
-            {
-                fsr.travelType = Core.TravelType.International;
-            }
-            stopwatch.Stop();
 
-            new Bal.FlightDetails().SearchFlight(ref airContext, GlobalData.isDummyResult);
-
+            //new Bal.FlightDetails().SearchFlight_gf(ref fsr, ref airContext);
+            var feeRule = new Bal.MakeFlightItinerary().GetFlightResult(airContext);
             FlightResult result = null;
-            FlightResult returnResult = null;
-            if (airContext.flightSearchResponse.Results != null && airContext.flightSearchResponse.Results.Count > 0)
+            if (false)
             {
-                string gfItinCombDepart = string.Empty;
-                string gfItinCombReturn = string.Empty;
-
-                for (int i = 0; i < gfd.slice.Count; i++)
+                GfPriceVerifyRequest pvReq = new GfPriceVerifyRequest()
                 {
+                    adults = fsr.adults,
+                    child = fsr.child,
+                    infants = fsr.infants,
+                 
+                    flightResult = airContext.flightSearchResponse.Results[0]
+                };
+                var priceVfResponse = new Bal.FlightDetails().PriceVerify(pvReq);
 
-                    foreach (int sid in gfd.slice[i].sliceId)
-                    {
-                        var segSlice = gfd.flightSlice.Where(k => k.id == sid).ToList();
-                        foreach (var fs in segSlice)
-                        {
-                            if (gfd.slice[i].id == "1")
-                            {
-                                gfItinCombDepart = fs.Origin + fs.Destination + fs.FlightNumber + fs.Carrier + fs.depDate;
-                            }
-                            else
-                            {
-                                gfItinCombReturn += fs.Origin + fs.Destination + fs.FlightNumber + fs.Carrier + fs.depDate;
-                            }
-                        }
-
-                    }
-
-                }
-
-                foreach (var flightResult in airContext.flightSearchResponse.Results[0])
+                if (priceVfResponse.responseStatus.status == TransactionStatus.Success)
                 {
-                    string ItinComb = string.Empty;
-                    foreach (var fs in flightResult.FlightSegments)
-                    {
-                        foreach (var seg in fs.Segments)
-                        {
-                            ItinComb += seg.Origin + seg.Destination + seg.FlightNumber + seg.Airline + seg.DepTime.ToString("yyyy-MM-dd");
-                        }
-                    }
-                    if (gfItinCombDepart.Equals(ItinComb, StringComparison.OrdinalIgnoreCase))
-                    {
-                        result = flightResult;
-                        airContext.flightSearchResponse.result1Index = result.ResultIndex;
-                    }
-                }
+                    Fare fare = new Fare();
+                    fare.BaseFare = priceVfResponse.fare.BaseFare;
+                    fare.Tax = priceVfResponse.fare.Tax;
+                    fare.PublishedFare = priceVfResponse.fare.PublishedFare;
+                    fare.NetFare = priceVfResponse.fare.NetFare;
+                    fare.grandTotal = priceVfResponse.fare.grandTotal;
 
-                if (airContext.flightSearchResponse.Results.Count > 1)
-                {
-                    foreach (var flightResult in airContext.flightSearchResponse.Results[1])
+                    Core.Flight.FareBreakdown fb = fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
+
+
+                    feeRule = new Bal.MakeFlightItinerary().getFareRule(airContext, (fb.BaseFare + fb.Tax));
+                    if (feeRule != null)
                     {
-                        string ItinComb = string.Empty;
-                        foreach (var fs in flightResult.FlightSegments)
+                        if (feeRule.FeeAmount != 0)
                         {
-                            foreach (var seg in fs.Segments)
+                            fare.Markup += feeRule.FeeAmount;
+                            if (fsr.child > 0)
                             {
-                                ItinComb += seg.Origin + seg.Destination + seg.FlightNumber + seg.Airline + seg.DepTime.ToString("yyyy-MM-dd");
+                                fare.Markup += feeRule.FeeAmount;
                             }
+                            if (fsr.infants > 0)
+                            {
+                                fare.Markup += feeRule.FeeAmount;
+                            }
+
                         }
-                        if (gfItinCombReturn.Equals(ItinComb, StringComparison.OrdinalIgnoreCase))
+                        if (feeRule.FeePercent != 0)
                         {
-                            result = flightResult;
-                            airContext.flightSearchResponse.result2Index = result.ResultIndex;
+                            Core.Flight.FareBreakdown fbAdt = priceVfResponse.fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
+                            fare.Markup += ((priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax) * (feeRule.FeePercent / 100));
+                        }
+                        fare.grandTotal = (priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax + priceVfResponse.fare.Markup) ;
+                    }
+                    result = airContext.flightSearchResponse.Results[0][0];
+                    if (fare.grandTotal > result.Fare.grandTotal)
+                    {
+                        result.Fare.BaseFare = fare.BaseFare;
+                        result.Fare.Tax = fare.Tax;
+                        result.Fare.PublishedFare = fare.PublishedFare;
+                        result.Fare.NetFare = fare.NetFare;
+                        result.Fare.grandTotal = fare.grandTotal;
+                        result.Fare.Currency = fare.Currency;
+                        result.Fare.Markup = fare.Markup;
+                        result.Fare.fareBreakdown = new List<FareBreakdown>();
+                        foreach (var item in fare.fareBreakdown)
+                        {
+                            FareBreakdown fbreak = new FareBreakdown() { BaseFare = item.BaseFare, Tax = item.Tax, Markup = item.Markup, PassengerType = item.PassengerType };
+                            result.Fare.fareBreakdown.Add(fbreak);
                         }
                     }
                 }
-
             }
-
-            if (airContext.flightSearchResponse.response.status == TransactionStatus.Success && checkIsFareExist(ref airContext))
+            result = airContext.flightSearchResponse.Results[0][0];
+            if (result != null)
             {
-                return Redirect("/Flight/Passenger/" + fsr.userSearchID + "/" + airContext.flightSearchResponse.result1Index + (string.IsNullOrEmpty(airContext.flightSearchResponse.result2Index) ? "" : ("/" + airContext.flightSearchResponse.result2Index)));
+                airContext.IsGFMatch = true;
+
+                if (fsr.sourceMedia=="1037")
+                {
+                    return Redirect("/Flight/passengerGF/" + fsr.userSearchID + "/" + result.ResultID);
+                }
+                else
+                {
+                    return Redirect("/Flight/passenger/" + fsr.userSearchID + "/" + result.ResultID);
+                }
             }
             else
             {
-                return Redirect("/flight/NoResult/" + fsr.userSearchID);
+                airContext.IsGFMatch = false;
+                return Redirect("/Flight/flightnotmatch/" + fsr.userSearchID);
             }
-
         }
         public ActionResult Result(string ID)
         {
@@ -860,8 +865,15 @@ namespace MojoIndia.Controllers
         }
         public ActionResult PrePax(FormCollection fc)
         {
-
-            return Redirect("/flight/Passenger/" + fc["sID"].ToString() + "/" + fc["oID"].ToString() + (string.IsNullOrEmpty(fc["iID"].ToString()) ? "" : ("/" + fc["iID"].ToString())));
+            string sMedia = fc["sMedia"];
+            if (sMedia=="1037")
+            {
+                return Redirect("/flight/PassengerGF/" + fc["sID"].ToString() + "/" + fc["oID"].ToString() + (string.IsNullOrEmpty(fc["iID"].ToString()) ? "" : ("/" + fc["iID"].ToString())));
+            }
+            else
+            {
+                return Redirect("/flight/Passenger/" + fc["sID"].ToString() + "/" + fc["oID"].ToString() + (string.IsNullOrEmpty(fc["iID"].ToString()) ? "" : ("/" + fc["iID"].ToString())));
+            }
         }
         [HttpGet]
         public ActionResult Passenger(string ID, string lid, string rid)
@@ -903,7 +915,8 @@ namespace MojoIndia.Controllers
                             tgy_Search_Key = airContext.flightSearchResponse.tgy_Search_Key,
                             FB_booking_token_id = airContext.flightSearchResponse.FB_booking_token_id,
                             responseStatus = new ResponseStatus(),
-                            affiliate = airContext.flightSearchResponse.affiliate,
+                             affiliate = airContext.flightSearchResponse.affiliate,
+                          //  affiliate = FlightUtility.GetAffiliate(airContext.flightSearchRequest.sourceMedia),
                             redirectID = airContext.flightSearchRequest.redirectID,                        
                             isBuyCancellaionPolicy = false
                         };
@@ -1062,6 +1075,229 @@ namespace MojoIndia.Controllers
 
                         airContext.flightBookingRequest.RefundPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]); 
                         airContext.flightBookingRequest.CancellaionPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]); 
+
+                        airContext.flightBookingRequest.currencyCode = airContext.flightSearchRequest.currencyCode;
+                        airContext.flightBookingRequest.adults = airContext.flightSearchResponse.adults;
+                        airContext.flightBookingRequest.child = airContext.flightSearchResponse.child;
+                        airContext.flightBookingRequest.infants = airContext.flightSearchResponse.infants;
+                        airContext.flightBookingRequest.travelType = airContext.flightSearchRequest.travelType;
+                        airContext.flightBookingRequest.passengerDetails = GetPassengerDefault(airContext.flightSearchRequest);
+                        airContext.flightBookingRequest.LastCheckInDate = airContext.flightBookingRequest.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime;
+                        //   string jsonString = JsonConvert.SerializeObject(airContext.flightBookingRequest);
+                        return View(airContext.flightBookingRequest);
+                    }
+                    else { return Redirect("/"); }
+                }
+                else { return Redirect("/"); }
+            }
+            catch (Exception ex)
+            {
+                new LogWriter(ex.ToString(), "GetPassengerException" + DateTime.Today.ToString("ddMMyy"), "Error");
+                return Redirect("/");
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult PassengerGF(string ID, string lid, string rid)
+        {
+            ViewBag.isShowResult = true;
+            StringBuilder sbLogger = new StringBuilder();
+            try
+            {
+                AirContext airContext = FlightOperation.GetAirContext(ID);
+                if (airContext != null || (!string.IsNullOrEmpty(lid)))
+                {
+                    if (airContext.IsBookingCompleted)
+                    {
+                        return Redirect("/flight/FlightConfirmation/" + airContext.flightSearchRequest.userSearchID);
+                    }
+                    if (airContext.flightSearchResponse != null && airContext.flightSearchResponse.Results != null && airContext.flightSearchResponse.Results.Count > 0)
+                    {
+                        airContext.flightBookingRequest = new FlightBookingRequest()
+                        {
+                            airline = airContext.flightSearchResponse.airline,
+                            airport = airContext.flightSearchResponse.airport,
+                            aircraftDetail = airContext.flightSearchResponse.aircraftDetail,
+                            userIP = airContext.flightSearchRequest.userIP,
+                            userSearchID = airContext.flightSearchRequest.userSearchID,
+                            userLogID = airContext.flightSearchRequest.userLogID,
+                            userSessionID = airContext.flightSearchRequest.userSessionID,
+                            flightResult = new List<FlightResult>(),
+                            currencyCode = airContext.flightSearchRequest.currencyCode,
+                            adults = airContext.flightSearchResponse.adults,
+                            child = airContext.flightSearchResponse.child,
+                            infants = airContext.flightSearchResponse.infants,
+                            TvoTraceId = airContext.flightSearchResponse.TraceId,
+                            CouponAmount = 0,
+                            sourceMedia = airContext.flightSearchRequest.sourceMedia,
+                            BrowserDetails = System.Web.HttpContext.Current.Request.Headers["User-Agent"],
+                            siteID = airContext.flightSearchRequest.siteId,
+                            paymentDetails = new PaymentDetails(),
+                            tgy_Request_id = airContext.flightSearchRequest.tgy_Request_id,
+                            tgy_Search_Key = airContext.flightSearchResponse.tgy_Search_Key,
+                            FB_booking_token_id = airContext.flightSearchResponse.FB_booking_token_id,
+                            responseStatus = new ResponseStatus(),
+                            affiliate = airContext.flightSearchResponse.affiliate,
+                            //  affiliate = FlightUtility.GetAffiliate(airContext.flightSearchRequest.sourceMedia),
+                            redirectID = airContext.flightSearchRequest.redirectID,
+                            isBuyCancellaionPolicy = false
+                        };
+                        bookingLog(ref sbLogger, "Flight Booking Request", JsonConvert.SerializeObject(airContext.flightBookingRequest));
+                        airContext.flightBookingRequest.deepLink = airContext.flightSearchRequest.deepLink;
+                        #region set View bag for session Time out
+                        if (airContext.flightSearchRequest.tripType != TripType.MultiCity)
+                        {
+                            ViewBag.org = airContext.flightSearchRequest.segment[0].originAirport;
+                            ViewBag.dest = airContext.flightSearchRequest.segment[0].destinationAirport;
+                            ViewBag.depDate = airContext.flightSearchRequest.segment[0].travelDate.ToString("yyyy-MM-dd");
+                            ViewBag.retDate = airContext.flightSearchRequest.segment.Count == 1 ? airContext.flightSearchRequest.segment[0].travelDate.AddDays(7).ToString("yyyy-MM-dd") : airContext.flightSearchRequest.segment[1].travelDate.ToString("yyyy-MM-dd");
+                            ViewBag.tripType = ((int)airContext.flightSearchRequest.tripType).ToString();
+                        }
+                        else
+                        {
+                            ViewBag.org1 = airContext.flightSearchRequest.segment[0].originAirport;
+                            ViewBag.dest1 = airContext.flightSearchRequest.segment[0].destinationAirport;
+                            ViewBag.depDate1 = airContext.flightSearchRequest.segment[0].travelDate.ToString("yyyy-MM-dd");
+                            ViewBag.org2 = airContext.flightSearchRequest.segment[1].originAirport;
+                            ViewBag.dest2 = airContext.flightSearchRequest.segment[1].destinationAirport;
+                            ViewBag.depDate2 = airContext.flightSearchRequest.segment[1].travelDate.ToString("yyyy-MM-dd");
+
+                            if (airContext.flightSearchRequest.segment.Count >= 3)
+                            {
+                                ViewBag.org3 = airContext.flightSearchRequest.segment[2].originAirport;
+                                ViewBag.dest3 = airContext.flightSearchRequest.segment[2].destinationAirport;
+                                ViewBag.depDate3 = airContext.flightSearchRequest.segment[2].travelDate.ToString("yyyy-MM-dd");
+                            }
+                            else
+                            {
+                                ViewBag.org3 = "";
+                                ViewBag.dest3 = "";
+                                ViewBag.depDate3 = "";
+                            }
+                            if (airContext.flightSearchRequest.segment.Count >= 4)
+                            {
+                                ViewBag.org4 = airContext.flightSearchRequest.segment[3].originAirport;
+                                ViewBag.dest4 = airContext.flightSearchRequest.segment[3].destinationAirport;
+                                ViewBag.depDate4 = airContext.flightSearchRequest.segment[3].travelDate.ToString("yyyy-MM-dd");
+                            }
+                            else
+                            {
+                                ViewBag.org4 = "";
+                                ViewBag.dest4 = "";
+                                ViewBag.depDate4 = "";
+                            }
+                            ViewBag.tripType = ((int)airContext.flightSearchRequest.tripType).ToString();
+                            ViewBag.totTrip = airContext.flightSearchRequest.segment.Count.ToString();
+                        }
+                        #endregion
+
+                        #region Set Selected Flights
+
+                        FlightResult outBound = airContext.flightSearchResponse.Results.FirstOrDefault().Where(o => o.ResultID == lid).ToList()[0];
+                        airContext.flightBookingRequest.flightResult.Add(Clone<FlightResult>(outBound));
+                        if (!string.IsNullOrEmpty(rid))
+                        {
+                            FlightResult inBound = airContext.flightSearchResponse.Results.LastOrDefault().Where(o => o.ResultID == rid).ToList()[0];
+                            airContext.flightBookingRequest.flightResult.Add(Clone<FlightResult>(inBound));
+                            TimeSpan ts = airContext.flightBookingRequest.flightResult[1].FlightSegments[0].Segments[0].DepTime - airContext.flightBookingRequest.flightResult[0].FlightSegments[0].Segments.Last().ArrTime;
+                            if (ts.TotalMinutes < 240)
+                            {
+                                return Redirect("/Flight/Result/" + airContext.flightSearchRequest.userSearchID + "?error=1");
+                            }
+                        }
+
+
+
+                        foreach (var res in airContext.flightBookingRequest.flightResult)
+                        {
+                            var pubFare = res.FareList.Where(k => k.FareType == FareType.PUBLISH).FirstOrDefault();
+
+                            if (pubFare != null)
+                            {
+                                airContext.flightBookingRequest.CouponIncreaseAmount += ((pubFare.grandTotal - res.Fare.grandTotal) / (airContext.flightBookingRequest.adults + airContext.flightBookingRequest.child + airContext.flightBookingRequest.infants));
+                            }
+                        }
+
+                        //if (airContext.flightSearchRequest.sourceMedia == "1000" || airContext.flightSearchRequest.sourceMedia == "1001" || airContext.flightSearchRequest.sourceMedia == "1016" || airContext.flightSearchRequest.sourceMedia == "1004" || airContext.flightSearchRequest.sourceMedia == "1015")
+                        //{
+                        airContext.flightBookingRequest.flightResult[0].isPreCuponAvailable = true;
+                        airContext.flightBookingRequest.CouponIncreaseAmount = airContext.flightBookingRequest.CouponIncreaseAmount <= 0 ? 300m : airContext.flightBookingRequest.CouponIncreaseAmount;
+                        airContext.flightBookingRequest.CouponAmount = airContext.flightBookingRequest.CouponIncreaseAmount <= 0 ? 300m : airContext.flightBookingRequest.CouponIncreaseAmount;
+                        //  }
+                        //else
+                        //{
+                        //    airContext.flightBookingRequest.flightResult[0].isPreCuponAvailable = false;
+                        //    bookingLog(ref sbLogger, "Flight Booking Request isPreCuponAvailable", "false");
+                        //    airContext.flightBookingRequest.CouponIncreaseAmount = 0;
+                        //    bookingLog(ref sbLogger, "Flight Booking Request CouponIncreaseAmount", airContext.flightBookingRequest.CouponIncreaseAmount.ToString());
+                        //    airContext.flightBookingRequest.CouponAmount = 0;
+                        //    bookingLog(ref sbLogger, "Flight Booking Request CouponAmount", airContext.flightBookingRequest.CouponAmount.ToString());
+                        //}
+                        #endregion
+
+                        //  airContext.flightBookingRequest.flightResult.FirstOrDefault().Fare.subProvider = airContext.flightSearchResponse.Results.FirstOrDefault().Fare.subProvider;
+
+                        #region Set Sum fare
+                        airContext.flightBookingRequest.sumFare = new Fare() { fareBreakdown = new List<FareBreakdown>() };
+                        airContext.flightBookingRequest.PriceID = new List<string>();
+                        foreach (var item in airContext.flightBookingRequest.flightResult)
+                        {
+                            Fare fare = item.Fare;
+                            if (item.Fare.gdsType == GdsType.Travelogy)
+                            {
+                                airContext.flightBookingRequest.PriceID.Add(fare.Tgy_FareID);
+                            }
+                            else
+                            {
+                                airContext.flightBookingRequest.PriceID.Add(fare.tjID);
+                            }
+
+                            airContext.flightBookingRequest.sumFare.subProvider = fare.subProvider;
+
+                            airContext.flightBookingRequest.sumFare.Currency = fare.Currency;
+                            airContext.flightBookingRequest.sumFare.NetFare += fare.NetFare;
+                            airContext.flightBookingRequest.sumFare.PublishedFare += fare.PublishedFare;
+                            airContext.flightBookingRequest.sumFare.grandTotal += fare.grandTotal;
+                            airContext.flightBookingRequest.sumFare.ffDiscount += fare.ffDiscount;
+                            airContext.flightBookingRequest.sumFare.BaseFare += fare.BaseFare;
+                            airContext.flightBookingRequest.sumFare.Tax += fare.Tax;
+                            airContext.flightBookingRequest.sumFare.AdditionalTxnFeeOfrd += fare.AdditionalTxnFeeOfrd;
+                            airContext.flightBookingRequest.sumFare.AdditionalTxnFeePub += fare.AdditionalTxnFeePub;
+                            airContext.flightBookingRequest.sumFare.Discount += fare.Discount;
+                            airContext.flightBookingRequest.sumFare.Markup += fare.Markup;
+                            airContext.flightBookingRequest.sumFare.OfferedFare += fare.OfferedFare;
+                            airContext.flightBookingRequest.sumFare.OtherCharges += fare.OtherCharges;
+                            airContext.flightBookingRequest.sumFare.ServiceFee += fare.ServiceFee;
+                            airContext.flightBookingRequest.sumFare.CommissionEarned += fare.CommissionEarned;
+                            airContext.flightBookingRequest.sumFare.TdsOnCommission += fare.TdsOnCommission;
+                            airContext.flightBookingRequest.sumFare.TdsOnIncentive += fare.TdsOnIncentive;
+                            airContext.flightBookingRequest.sumFare.TdsOnPLB += fare.TdsOnPLB;
+                            airContext.flightBookingRequest.sumFare.YQTax += fare.YQTax;
+
+                            if (airContext.flightBookingRequest.sumFare.fareBreakdown.Count == 0)
+                            {
+                                foreach (FareBreakdown fb in fare.fareBreakdown)
+                                {
+                                    airContext.flightBookingRequest.sumFare.fareBreakdown.Add(new FareBreakdown());
+                                }
+                            }
+                            for (int i = 0; i < fare.fareBreakdown.Count; i++)
+                            {
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].BaseFare += fare.fareBreakdown[i].BaseFare;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].Tax += fare.fareBreakdown[i].Tax;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].Markup += fare.fareBreakdown[i].Markup;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].PassengerType = item.Fare.fareBreakdown[i].PassengerType;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].YQTax += fare.fareBreakdown[i].YQTax;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].AdditionalTxnFeeOfrd += fare.fareBreakdown[i].AdditionalTxnFeeOfrd;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].AdditionalTxnFeePub += fare.fareBreakdown[i].AdditionalTxnFeePub;
+                                airContext.flightBookingRequest.sumFare.fareBreakdown[i].PGCharge += fare.fareBreakdown[i].PGCharge;
+                            }
+                        }
+                        #endregion
+
+                        airContext.flightBookingRequest.RefundPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]);
+                        airContext.flightBookingRequest.CancellaionPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]);
 
                         airContext.flightBookingRequest.currencyCode = airContext.flightSearchRequest.currencyCode;
                         airContext.flightBookingRequest.adults = airContext.flightSearchResponse.adults;
@@ -2216,7 +2452,186 @@ namespace MojoIndia.Controllers
                         #endregion
                     }
 
+                    else if (airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.GFS)
+                    {
+                        #region Check Price Verification GFS
+                        airContext.priceVerificationRequest = new PriceVerificationRequest()
+                        {
+                            adults = airContext.flightSearchResponse.adults,
+                            child = airContext.flightSearchResponse.child,
+                            infants = airContext.flightSearchResponse.infants,
+                            flightResult = airContext.flightBookingRequest.flightResult,
+                            infantsWs = 0,
+                            isFareQuote = true,
+                            isFareRule = false,
+                            isSSR = false,
+                            PriceID = airContext.flightBookingRequest.PriceID,
+                            siteID = airContext.flightSearchRequest.siteId,
+                            sourceMedia = airContext.flightSearchRequest.sourceMedia,
+                            TvoTraceId = "",
+                            userIP = airContext.flightSearchRequest.userIP,
+                            userSearchID = airContext.flightSearchRequest.userSearchID,
+                            userLogID = airContext.flightSearchRequest.userLogID,
+                            userSessionID = airContext.flightSearchRequest.userSessionID,
+                            origin= airContext.flightSearchRequest.segment[0].originAirport.ToLower(),
+                            destination = airContext.flightSearchRequest.segment[0].destinationAirport.ToLower(),
+                            depDate=airContext.flightSearchRequest.segment[0].travelDate.ToString("dd/MM/yyyy")
+                    };
 
+                        new Bal.FlightDetails().FlightVerification(ref airContext, ref sbLogger);
+
+                        if (airContext.priceVerificationResponse != null && airContext.priceVerificationResponse.responseStatus.status == TransactionStatus.Success &&
+                            airContext.priceVerificationResponse.fareQuoteResponse != null && airContext.priceVerificationResponse.fareQuoteResponse.responseStatus.status == TransactionStatus.Success)
+                        {
+                            airContext.flightBookingRequest.fareIncreaseAmount = airContext.priceVerificationResponse.fareQuoteResponse.fareIncreaseAmount;
+                            if (airContext.flightBookingRequest.fareIncreaseAmount > 0)
+                            {
+                                if (airContext.flightBookingRequest.sourceMedia == "1015")
+                                {
+                                    decimal FarePercentage = (airContext.flightBookingRequest.fareIncreaseAmount / airContext.flightBookingRequest.sumFare.NetFare) * 100;
+                                    if (FarePercentage >= 10 || airContext.flightBookingRequest.fareIncreaseAmount > 0)
+                                    {
+                                        airContext.flightBookingRequest.isFareChange = true;
+                                        airContext.flightBookingRequest.isShowFareIncrease = true;
+                                        airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                                    }
+                                    else
+                                    {
+                                        airContext.flightBookingRequest.fareIncreaseAmount = 0.00M;
+                                        airContext.flightBookingRequest.isFareChange = true;
+                                        airContext.flightBookingRequest.isMakeBookingInprogress = true;
+                                    }
+                                }
+                                else
+                                {
+                                    airContext.flightBookingRequest.isFareChange = true;
+                                    airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                                }
+                            }
+                            else
+                            {
+                                airContext.flightBookingRequest.isFareChange = false;
+                                airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                            }
+                            airContext.flightBookingRequest.TjBookingID = airContext.priceVerificationResponse.fareQuoteResponse.TjBookingID;
+                            airContext.flightBookingRequest.TjReturnBookingID = airContext.priceVerificationResponse.fareQuoteResponse.TjReturnBookingID;
+                            airContext.flightBookingRequest.VerifiedTotalPrice = airContext.priceVerificationResponse.fareQuoteResponse.VerifiedTotalPrice;
+                            airContext.flightBookingRequest.STSessionID = airContext.priceVerificationResponse.fareQuoteResponse.STSessionID;
+                        }
+                        else if (airContext.priceVerificationResponse.fareQuoteResponse.responseStatus.message == "Error" || airContext.flightBookingRequest.TjBookingID == "" || airContext.flightBookingRequest.TjBookingID == null)
+                        {
+                            objVps.RedirectUrl = "/Flight/Result/" + airContext.flightSearchRequest.userSearchID;
+                        }
+                        bookingLog(ref sbLogger, "TjBookingID", airContext.flightBookingRequest.TjBookingID);
+                        airContext.flightBookingRequest.fareIncreaseAmount = airContext.priceVerificationResponse.fareQuoteResponse.fareIncreaseAmount;
+                        objVps.isFareChange = airContext.flightBookingRequest.isFareChange;
+                        objVps.fareIncreaseAmount = airContext.flightBookingRequest.fareIncreaseAmount;
+                        vfd.newAmt = ((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount) - airContext.flightBookingRequest.CouponAmount);
+                        vfd.SeconSearchFareID = String.Join(",", airContext.flightBookingRequest.PriceID);
+                        vfd.TripjackBookingID = airContext.flightBookingRequest.TjBookingID;
+                        objVps.adultFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare) * (airContext.flightBookingRequest.adults);
+                        if (airContext.flightSearchRequest.child > 0)
+                        {
+                            objVps.childFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare) * (airContext.flightBookingRequest.child);
+                        }
+                        if (airContext.flightSearchRequest.infants > 0)
+                        {
+                            objVps.infantFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare) * (airContext.flightBookingRequest.infants);
+                        }
+                        objVps.TaxWithMakrup = (airContext.flightBookingRequest.sumFare.Tax + airContext.flightBookingRequest.sumFare.Markup + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.CouponIncreaseAmount);
+                        objVps.grandTotal = airContext.flightBookingRequest.sumFare.grandTotal;
+                        #endregion
+                    }
+                    else if (airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.Amadeus)
+                    {
+                        #region Check Price Verification GFS
+                        airContext.priceVerificationRequest = new PriceVerificationRequest()
+                        {
+                            adults = airContext.flightSearchResponse.adults,
+                            child = airContext.flightSearchResponse.child,
+                            infants = airContext.flightSearchResponse.infants,
+                            flightResult = airContext.flightBookingRequest.flightResult,
+                            infantsWs = 0,
+                            isFareQuote = true,
+                            isFareRule = false,
+                            isSSR = false,
+                            PriceID = airContext.flightBookingRequest.PriceID,
+                            siteID = airContext.flightSearchRequest.siteId,
+                            sourceMedia = airContext.flightSearchRequest.sourceMedia,
+                            TvoTraceId = "",
+                            userIP = airContext.flightSearchRequest.userIP,
+                            userSearchID = airContext.flightSearchRequest.userSearchID,
+                            userLogID = airContext.flightSearchRequest.userLogID,
+                            userSessionID = airContext.flightSearchRequest.userSessionID,
+                            origin = airContext.flightSearchRequest.segment[0].originAirport.ToLower(),
+                            destination = airContext.flightSearchRequest.segment[0].destinationAirport.ToLower(),
+                            depDate = airContext.flightSearchRequest.segment[0].travelDate.ToString("dd/MM/yyyy")
+                        };
+
+                        new Bal.FlightDetails().FlightVerification(ref airContext, ref sbLogger);
+
+                        if (airContext.priceVerificationResponse != null && airContext.priceVerificationResponse.responseStatus.status == TransactionStatus.Success &&
+                            airContext.priceVerificationResponse.fareQuoteResponse != null && airContext.priceVerificationResponse.fareQuoteResponse.responseStatus.status == TransactionStatus.Success)
+                        {
+                            airContext.flightBookingRequest.fareIncreaseAmount = airContext.priceVerificationResponse.fareQuoteResponse.fareIncreaseAmount;
+                            if (airContext.flightBookingRequest.fareIncreaseAmount > 0)
+                            {
+                                if (airContext.flightBookingRequest.sourceMedia == "1015")
+                                {
+                                    decimal FarePercentage = (airContext.flightBookingRequest.fareIncreaseAmount / airContext.flightBookingRequest.sumFare.NetFare) * 100;
+                                    if (FarePercentage >= 10 || airContext.flightBookingRequest.fareIncreaseAmount > 0)
+                                    {
+                                        airContext.flightBookingRequest.isFareChange = true;
+                                        airContext.flightBookingRequest.isShowFareIncrease = true;
+                                        airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                                    }
+                                    else
+                                    {
+                                        airContext.flightBookingRequest.fareIncreaseAmount = 0.00M;
+                                        airContext.flightBookingRequest.isFareChange = true;
+                                        airContext.flightBookingRequest.isMakeBookingInprogress = true;
+                                    }
+                                }
+                                else
+                                {
+                                    airContext.flightBookingRequest.isFareChange = true;
+                                    airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                                }
+                            }
+                            else
+                            {
+                                airContext.flightBookingRequest.isFareChange = false;
+                                airContext.flightBookingRequest.isMakeBookingInprogress = false;
+                            }
+                            airContext.flightBookingRequest.TjBookingID = airContext.priceVerificationResponse.fareQuoteResponse.TjBookingID;
+                            airContext.flightBookingRequest.TjReturnBookingID = airContext.priceVerificationResponse.fareQuoteResponse.TjReturnBookingID;
+                            airContext.flightBookingRequest.VerifiedTotalPrice = airContext.priceVerificationResponse.fareQuoteResponse.VerifiedTotalPrice;
+                            airContext.flightBookingRequest.STSessionID = airContext.priceVerificationResponse.fareQuoteResponse.STSessionID;
+                        }
+                        else if (airContext.priceVerificationResponse.fareQuoteResponse.responseStatus.message == "Error" || airContext.flightBookingRequest.TjBookingID == "" || airContext.flightBookingRequest.TjBookingID == null)
+                        {
+                            objVps.RedirectUrl = "/Flight/Result/" + airContext.flightSearchRequest.userSearchID;
+                        }
+                        bookingLog(ref sbLogger, "TjBookingID", airContext.flightBookingRequest.TjBookingID);
+                        airContext.flightBookingRequest.fareIncreaseAmount = airContext.priceVerificationResponse.fareQuoteResponse.fareIncreaseAmount;
+                        objVps.isFareChange = airContext.flightBookingRequest.isFareChange;
+                        objVps.fareIncreaseAmount = airContext.flightBookingRequest.fareIncreaseAmount;
+                        vfd.newAmt = ((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount) - airContext.flightBookingRequest.CouponAmount);
+                        vfd.SeconSearchFareID = String.Join(",", airContext.flightBookingRequest.PriceID);
+                        vfd.TripjackBookingID = airContext.flightBookingRequest.TjBookingID;
+                        objVps.adultFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare) * (airContext.flightBookingRequest.adults);
+                        if (airContext.flightSearchRequest.child > 0)
+                        {
+                            objVps.childFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare) * (airContext.flightBookingRequest.child);
+                        }
+                        if (airContext.flightSearchRequest.infants > 0)
+                        {
+                            objVps.infantFare = (airContext.flightBookingRequest.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare) * (airContext.flightBookingRequest.infants);
+                        }
+                        objVps.TaxWithMakrup = (airContext.flightBookingRequest.sumFare.Tax + airContext.flightBookingRequest.sumFare.Markup + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.CouponIncreaseAmount);
+                        objVps.grandTotal = airContext.flightBookingRequest.sumFare.grandTotal;
+                        #endregion
+                    }
                 }
                 saveVerificationDetails(vfd);
                 bookingLog(ref sbLogger, "Verification Response", JsonConvert.SerializeObject(objVps));
@@ -2326,12 +2741,12 @@ namespace MojoIndia.Controllers
         //            //{
         //            //    if (GlobalData.isGoToOnlinePayment)
         //            //    {
-        //            //        return Redirect("/flight/Payment/" + airContext.flightSearchRequest.userSearchID);
+        //            //        return Redirect("/flight/passenger/" + airContext.flightSearchRequest.userSearchID);
         //            //    }
         //            //    else
         //            //    {
         //            //        CreateLogFile(sbLogger.ToString(), "Log\\UpdatePassengerDetail", airContext.flightBookingRequest.bookingID.ToString() + ".txt");
-        //            //        return Redirect("/flight/Payment/" + airContext.flightSearchRequest.userSearchID);
+        //            //        return Redirect("/flight/passenger/" + airContext.flightSearchRequest.userSearchID);
         //            //    }
         //            //}
         //            //else

@@ -52,5 +52,16 @@ namespace Core.Flight
         public string TvoResultIndex { get; set; }
         [DataMember]
         public string ST_ResultSessionID { get; set; }
+
+        [DataMember]
+        public string GFS_FlightKey { get; set; }
+
+        [DataMember]
+        public string origin { get; set; }
+        [DataMember]
+        public string destination { get; set; }
+
+        [DataMember]
+        public string depDate { get; set; }
     }
 }

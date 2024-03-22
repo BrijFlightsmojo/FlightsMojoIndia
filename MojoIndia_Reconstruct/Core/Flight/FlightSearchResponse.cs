@@ -60,6 +60,9 @@ namespace Core.Flight
         public string d_owner { get; set; }
         [DataMember]
         public string FlightKey { get; set; }
+
+        [DataMember]
+        public string GFS_FlightKey { get; set; }
         public FlightSearchResponse()
         {
         }
@@ -277,10 +280,6 @@ namespace Core.Flight
         [DataMember]
         public decimal sgstax { get; set; }
         [DataMember]
-        public decimal baseFare { get; set; }
-        [DataMember]
-        public decimal tax { get; set; }
-        [DataMember]
         public decimal flat { get; set; }
         [DataMember]
         public decimal yQTax { get; set; }
@@ -367,6 +366,9 @@ namespace Core.Flight
         public string d_owner { get; set; }
         [DataMember]
         public string FlightKey { get; set; }
+
+        [DataMember]
+        public string GFS_FlightKey { get; set; }
 
     }
 
@@ -458,6 +460,8 @@ namespace Core.Flight
 
         [DataMember]
         public bool IsETicketEligible { get; set; }
+        [DataMember]
+        public string resDesignCode { get; set; }
     }
 
     [DataContract]

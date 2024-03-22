@@ -109,38 +109,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="footer_con">
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
+                        <div class="col-md-3 col-sm-3 col-xs-12 ">
                             <div class="footer_company">
-                                <h6>COMPANY INFO.</h6>
+                                <h6>QUICK LINKS</h6>
+                                <span></span>
                                 <ul>
                                     <li><a href="/about-us">About Us</a></li>
-                                    <li><a href="/terms-condition">Terms & Conditions</a></li>
-                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
-                                    <li><a href="/user-agreement">User-agreement</a></li>
-                                    @*<li><a href="/pay-now">Pay Now</a></li>*@
-                                    <li>
-                                        <form>
-                                            <script src=https://checkout.razorpay.com/v1/payment-button.js data-payment_button_id="pl_K6oPtnxUAT6Oq1" async> </script>
-                                        </form>
-                                    </li>
+                                    <li><a href="/disclaimer">Disclaimer</a></li>
+                                    <li><a href="/contact-us">Contact Us</a></li>
+                                    <li><a href="/sitemap">Site Map</a></li>                             
 
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="footer_destination">
-                                <h6>&nbsp;</h6>
+                                <h6>LEGAL</h6>
+                                <span></span>
                                 <ul>
-                                    
-                                    <li><a href="/disclaimer">Disclaimer</a></li>
-                                    <li><a href="/contact-us">Contact Us</a></li>
-                                  <li><a href="/sitemap">Site Map</a></li>
+                                    <li><a href="/terms-condition">Terms & Conditions</a></li>
+                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                    <li><a href="/user-agreement">User-agreement</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="footer_destination">
                                 <h6>DESTINATIONS</h6>
+                                <span></span>
                                 <ul>
                                     <li><a href="/top-international-destinations">International Destinations</a> </li>
                                     <li><a href="/first-class-flights">First and Business Class</a> </li>
@@ -151,20 +147,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 no_padding">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="footer_touch">
                                 <h6>GET IN TOUCH</h6>
+                                <span></span>
                                 <div class="newslatter">
                                     <h6>Newsletter!</h6>
                                     <input type="text" placeholder="Enter Your mail" />
                                     <button>Subscribe</button>
 
-                                    <a href="mailto:@GlobalData.Email"><i class="envelope"></i>@GlobalData.Email</a>
+                                    <a href="mailto:@GlobalData.Email"><i class="fa fa-envelope"></i>@GlobalData.Email</a>
                                 </div>
                                 <div class="social_link">
                                     <ul>
-                                         <li><a class="fb_icon" href="https://www.facebook.com/flightsmojoin/" target="_blank" onclick="SetSocialMedia('facebook')"></a></li>
-                                        <li><a class="insta_icon" href="https://www.instagram.com/flightsmojoindia/" target="_blank" onclick="SetSocialMedia('instagram')"></a></li>   
+                                         <li><a class="fb_icon" href="https://www.facebook.com/flightsmojoin/" target="_blank" onclick="SetSocialMedia('facebook')"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a class="insta_icon" href="https://www.instagram.com/flightsmojoindia/" target="_blank" onclick="SetSocialMedia('instagram')"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>   
                                         @*<li><a href=""><i class="fa fa-twitter-square"></i></a></li>*@
 
                                     </ul>
@@ -183,7 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <p>Copyright <span><i class="fa fa-copyright" aria-hidden="true"></i> </span>2015-2024 FlightsMojo Bookings Pvt. Ltd.</p>
                 </div>
             </div>
-        </div>
+        </div> 
     </footer>
     @*<div class="container-fluid cooki_con" id="divCookies1" style="display:none;">
         <div class="container">
@@ -313,7 +310,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     width: "toggle"
                 });
             });
-
             $(window).resize(function () {
                 var w = $(window).width();
                 if (w > 768) {

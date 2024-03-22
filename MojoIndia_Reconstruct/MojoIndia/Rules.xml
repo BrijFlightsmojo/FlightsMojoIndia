@@ -1,0 +1,479 @@
+<RuleSet>
+  <LocationGroup>
+    <TableNum>1</TableNum>
+    <Location id="N:TR"/>
+    <Location id="N:AE"/>
+    <Location id="N:BH"/>
+    <Location id="N:IL"/>
+    <Location id="N:KW"/>
+    <Location id="N:QA"/>
+    <Location id="N:BA"/>
+    <Location id="N:BG"/>
+    <Location id="N:CY"/>
+    <Location id="N:CZ"/>
+    <Location id="N:HR"/>
+    <Location id="N:HU"/>
+    <Location id="N:MD"/>
+    <Location id="N:ME"/>
+    <Location id="N:MK"/>
+    <Location id="N:MT"/>
+    <Location id="N:PL"/>
+    <Location id="N:RO"/>
+    <Location id="N:RS"/>
+    <Location id="N:SI"/>
+    <Location id="N:SK"/>
+    <Location id="N:AL"/>
+    <Location id="N:AM"/>
+    <Location id="N:AZ"/>
+    <Location id="N:BY"/>
+    <Location id="N:EE"/>
+    <Location id="N:GE"/>
+    <Location id="N:KG"/>
+    <Location id="N:KZ"/>
+    <Location id="N:LT"/>
+    <Location id="N:LV"/>
+    <Location id="N:RU"/>
+    <Location id="N:TM"/>
+    <Location id="N:UA"/>
+    <Location id="N:UZ"/>
+    <Location id="N:XU"/>
+    <Location id="N:AF"/>
+    <Location id="N:IQ"/>
+    <Location id="N:JO"/>
+    <Location id="N:LB"/>
+    <Location id="N:OM"/>
+    <Location id="N:SA"/>
+    <Location id="N:SY"/>
+    <Location id="N:YE"/>
+    <Location id="N:AO"/>
+    <Location id="N:BF"/>
+    <Location id="N:BJ"/>
+    <Location id="N:CD"/>
+    <Location id="N:CG"/>
+    <Location id="N:CI"/>
+    <Location id="N:CM"/>
+    <Location id="N:CV"/>
+    <Location id="N:DJ"/>
+    <Location id="N:DZ"/>
+    <Location id="N:ER"/>
+    <Location id="N:GA"/>
+    <Location id="N:GH"/>
+    <Location id="N:GM"/>
+    <Location id="N:GN"/>
+    <Location id="N:GQ"/>
+    <Location id="N:GW"/>
+    <Location id="N:LR"/>
+    <Location id="N:LY"/>
+    <Location id="N:MA"/>
+    <Location id="N:MG"/>
+    <Location id="N:ML"/>
+    <Location id="N:MU"/>
+    <Location id="N:MW"/>
+    <Location id="N:MZ"/>
+    <Location id="N:NA"/>
+    <Location id="N:NG"/>
+    <Location id="N:SC"/>
+    <Location id="N:SL"/>
+    <Location id="N:SN"/>
+    <Location id="N:SS"/>
+    <Location id="N:ST"/>
+    <Location id="N:TG"/>
+    <Location id="N:TN"/>
+    <Location id="N:ZA"/>
+    <Location id="N:ZM"/>
+    <Location id="N:ZW"/>
+    <Location id="N:BD"/>
+    <Location id="N:LK"/>
+    <Location id="N:MV"/>
+    <Location id="N:PK"/>
+    <Location id="N:EG"/>
+    <Location id="N:IR"/>
+    <Location id="N:BI"/>
+    <Location id="N:ET"/>
+    <Location id="N:KE"/>
+    <Location id="N:RW"/>
+    <Location id="N:SD"/>
+    <Location id="N:TZ"/>
+    <Location id="N:UG"/>
+  </LocationGroup>
+  <LocationGroup>
+    <TableNum>2</TableNum>
+    <Location id="N:AT"/>
+    <Location id="N:CH"/>
+    <Location id="N:DE"/>
+    <Location id="N:FR"/>
+    <Location id="N:IT"/>
+    <Location id="N:NL"/>
+    <Location id="N:ES"/>
+    <Location id="N:GB"/>
+    <Location id="N:IE"/>
+    <Location id="N:BE"/>
+    <Location id="N:DK"/>
+    <Location id="N:FI"/>
+    <Location id="N:GR"/>
+    <Location id="N:IS"/>
+    <Location id="N:LU"/>
+    <Location id="N:NO"/>
+    <Location id="N:PT"/>
+    <Location id="N:SE"/>
+  </LocationGroup>
+  <LocationGroup>
+    <TableNum>3</TableNum>
+    <Location id="N:DZ"/>
+    <Location id="N:BW"/>
+    <Location id="N:BF"/>
+    <Location id="N:BI"/>
+    <Location id="N:CG"/>
+    <Location id="N:CI"/>
+    <Location id="N:DJ"/>
+    <Location id="N:ER"/>
+    <Location id="N:ET"/>
+    <Location id="N:GA"/>
+    <Location id="N:GM"/>
+    <Location id="N:GH"/>
+    <Location id="N:GN"/>
+    <Location id="N:GW"/>
+    <Location id="N:KE"/>
+    <Location id="N:LR"/>
+    <Location id="N:LY"/>
+    <Location id="N:MG"/>
+    <Location id="N:MW"/>
+    <Location id="N:ML"/>
+    <Location id="N:MU"/>
+    <Location id="N:MA"/>
+    <Location id="N:MZ"/>
+    <Location id="N:NA"/>
+    <Location id="N:NG"/>
+    <Location id="N:RW"/>
+    <Location id="N:SN"/>
+    <Location id="N:SL"/>
+    <Location id="N:ZA"/>
+    <Location id="N:SD"/>
+    <Location id="N:TZ"/>
+    <Location id="N:TG"/>
+    <Location id="N:TN"/>
+    <Location id="N:UG"/>
+    <Location id="N:ZM"/>
+    <Location id="N:ZW"/>
+    <Location id="N:AO"/>
+    <Location id="N:BJ"/>
+    <Location id="N:CD"/>
+    <Location id="N:CM"/>
+    <Location id="N:SS"/>
+    <Location id="N:MR"/>
+    <Location id="N:TD"/>
+    <Location id="N:NE"/>
+    <Location id="N:CF"/>
+  </LocationGroup>
+  <LocationGroup>
+    <TableNum>4</TableNum>
+    <Location id="P:CUN"/>
+    <Location id="P:CZM"/>
+    <Location id="P:MZT"/>
+    <Location id="P:PVR"/>
+    <Location id="P:SJD"/>
+  </LocationGroup>
+  <LocationGroup>
+    <TableNum>5</TableNum>
+    <Location id="N:YE"/>
+    <Location id="N:IR"/>
+    <Location id="N:LY"/>
+    <Location id="N:SO"/>
+    <Location id="N:SY"/>
+    <Location id="N:VE"/>
+  </LocationGroup>
+  <CarrierGroup>
+    <TableNum>1</TableNum>
+    <Carrier id="AC"/>
+    <Carrier id="OS"/>
+    <Carrier id="LH"/>
+    <Carrier id="LX"/>
+    <Carrier id="SN"/>
+    <Carrier id="UA"/>
+  </CarrierGroup>
+  <CarrierGroup>
+    <TableNum>2</TableNum>
+    <Carrier id="B6"/>
+    <Carrier id="G4"/>
+    <Carrier id="Y4"/>
+    <Carrier id="VB"/>
+    <Carrier id="TX"/>
+    <Carrier id="B0"/>
+    <Carrier id="VH"/>
+    <Carrier id="LF"/>
+    <Carrier id="OB"/>
+    <Carrier id="9K"/>
+    <Carrier id="BF"/>
+    <Carrier id="MX"/>
+    <Carrier id="KZ"/>
+    <Carrier id="NO"/>
+    <Carrier id="Y4"/>
+    <Carrier id="2G"/>
+    <Carrier id="ZG"/>
+    <Carrier id="UP"/>
+    <Carrier id="Y4"/>
+    <Carrier id="VW"/>
+    <Carrier id="KG"/>
+    <Carrier id="AR"/>
+    <Carrier id="XP"/>
+    <Carrier id="G3"/>
+    <Carrier id="WO"/>
+    <Carrier id="BT"/>
+    <Carrier id="KX"/>
+    <Carrier id="NK"/>
+    <Carrier id="F9"/>
+    <Carrier id="3S"/>
+    <Carrier id="3U"/>
+    <Carrier id="3M"/>
+    <Carrier id="VS"/>
+    <Carrier id="PK"/>
+    <Carrier id="FI"/>
+    <Carrier id="FB"/>
+    <Carrier id="TN"/>
+    <Carrier id="YM"/>
+    <Carrier id="HA"/>
+    <Carrier id="SB"/>
+    <Carrier id="SS"/>
+    <Carrier id="M5"/>
+    <Carrier id="LA"/>
+    <Carrier id="SY"/>
+    <Carrier id="AC"/>
+  </CarrierGroup>
+  <FeeRule carrier="U:2">
+    <SequenceNum>1</SequenceNum>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="WS">
+    <SequenceNum>2</SequenceNum>
+    <Origin>N:CA</Origin>
+    <Destination>N:CN</Destination>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="**">
+    <SequenceNum>3</SequenceNum>
+    <PriceSource>WEBSITE</PriceSource>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="**">
+    <SequenceNum>4</SequenceNum>
+    <MaxHoursToDeparture>72</MaxHoursToDeparture>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="**">
+    <SequenceNum>5</SequenceNum>
+    <SliceInterline>true</SliceInterline>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="**">
+    <SequenceNum>6</SequenceNum>
+    <Destination>U:5</Destination>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="WS">
+    <SequenceNum>7</SequenceNum>
+    <Origin>N:CA</Origin>
+    <Destination>N:JP</Destination>
+    <Suppress>true</Suppress>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>8</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:1</Destination>
+    <CabinClass>BUSINESS</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>9</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:1</Destination>
+    <CabinClass>PREMIUM</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>10</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:1</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD1300</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>11</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:1</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD900</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>12</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:1</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD600</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>13</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:2</Destination>
+    <CabinClass>BUSINESS</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>14</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:2</Destination>
+    <CabinClass>PREMIUM</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>15</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:2</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD1300</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>16</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:2</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD900</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>17</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:2</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD600</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>18</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:3</Destination>
+    <CabinClass>BUSINESS</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>19</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:3</Destination>
+    <CabinClass>PREMIUM</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>20</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:3</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD1300</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>21</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:3</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD900</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>22</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>U:3</Destination>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD600</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>23</SequenceNum>
+    <Origin>N:US</Origin>
+    <Destination>N:GB</Destination>
+    <FeePercent>-2</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="U:1">
+    <SequenceNum>24</SequenceNum>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="EK">
+    <SequenceNum>25</SequenceNum>
+    <Origin>N:US</Origin>
+    <CabinClass>BUSINESS</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="EK">
+    <SequenceNum>26</SequenceNum>
+    <Origin>N:US</Origin>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD1300</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="EK">
+    <SequenceNum>27</SequenceNum>
+    <Origin>N:US</Origin>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD900</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule>
+  <FeeRule carrier="EK">
+    <SequenceNum>28</SequenceNum>
+    <Origin>N:US</Origin>
+    <CabinClass>ECONOMY</CabinClass>
+    <CabinClassMatchMode>ALL_SEGMENTS</CabinClassMatchMode>
+    <MinPrice>USD600</MinPrice>
+    <FeePercent>0</FeePercent>
+  </FeeRule> 
+  <FeeRule carrier="**">
+    <SequenceNum>29</SequenceNum>
+    <Origin>N:US</Origin>
+    <FeeAmount>USD-3</FeeAmount>
+  </FeeRule>
+  <FeeRule carrier="WS">
+    <SequenceNum>30</SequenceNum>
+    <Origin>N:CA</Origin>
+    <Destination>N:CA</Destination>
+    <MinPrice>CAD400</MinPrice>
+    <FeeAmount>CAD10</FeeAmount>
+  </FeeRule>
+  <FeeRule carrier="WS">
+    <SequenceNum>31</SequenceNum>
+    <Origin>N:CA</Origin>
+    <Destination>N:US</Destination>
+    <MinPrice>CAD600</MinPrice>
+    <FeeAmount>CAD10</FeeAmount>
+  </FeeRule>
+  <FeeRule carrier="PD">
+    <SequenceNum>32</SequenceNum>
+    <Origin>N:CA</Origin>
+    <Destination>N:CA</Destination>
+    <MinPrice>CAD300</MinPrice>
+    <FeeAmount>CAD10</FeeAmount>
+  </FeeRule>
+  <FeeRule carrier="**">
+    <SequenceNum>33</SequenceNum>
+    <Origin>N:CA</Origin>
+    <FeeAmount>CAD10</FeeAmount>
+  </FeeRule>
+</RuleSet>

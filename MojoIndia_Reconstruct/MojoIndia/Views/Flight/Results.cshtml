@@ -1083,6 +1083,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
 </div>
 <div style="display:none;">
     <form id="formPrePax" action="/flight/PrePax/" method="post">
+        <input type="hidden" name="sMedia" value="@Model.sourceMedia" />
         <input type="hidden" name="sID" value="@Model.userSearchID" />
         <input type="hidden" name="oID" id="oID" value="" />
         <input type="hidden" name="iID" id="iID" value="" />
@@ -1117,14 +1118,14 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
 </style>
 @section scripts {
     @Scripts.Render("~/bundles/MojoIndiaJsResult")
-<script>
-       function setPrePaxR(oID, iID){
-           ShowProPopup();
-           $("#oID").val(oID);
-           $("#iID").val(iID);
-           $('form#formPrePax').submit();
-       }
-</script>
+    <script>
+        function setPrePaxR(oID, iID) {
+            ShowProPopup();
+            $("#oID").val(oID);
+            $("#iID").val(iID);
+            $('form#formPrePax').submit();
+        }
+    </script>
     <script>
         $(function () {
             $("#slider-range").slider({
@@ -1673,7 +1674,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
     </script>
 
 
-<script>
+    <script>
         function FlightLoad() {
 
             var adult = parseInt($("#Adult").val());
@@ -1693,7 +1694,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
+    </script>
 
 
 
@@ -1720,8 +1721,8 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
     </script>
 
 
-<script>
-           function flight_detail() {
+    <script>
+        function flight_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1739,10 +1740,10 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
+    </script>
 
-<script>
-           function Select_detail() {
+    <script>
+        function Select_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1760,8 +1761,8 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
-<script>
+    </script>
+    <script>
         function Modify() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
@@ -1780,5 +1781,5 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
+    </script>
 }

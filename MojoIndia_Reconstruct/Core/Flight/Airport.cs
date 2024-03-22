@@ -35,14 +35,14 @@ namespace Core.Flight
         //[IgnoreDataMember]
         //public string timeZone2 { get; set; }
     }
-    //[DataContract]
-    //public class AirportWithTimeZone
-    //{
-    //    [DataMember]
-    //    public string airportCode { get; set; }
-    //    [DataMember]
-    //    public string timeZone { get; set; }
-    //    [DataMember]
-    //    public string timeZone2 { get; set; }
-    //}
+    [DataContract]
+    public class AirportWithTimeZone
+    {
+        [DataMember]
+        public string airportCode { get; set; }
+        [DataMember]
+        public string timeZone { get; set; }
+        [DataMember]
+        public string timeZone2 { get; set; }
+    }
 }
