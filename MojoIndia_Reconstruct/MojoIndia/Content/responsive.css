@@ -307,7 +307,7 @@
 .close_passen> span{color:#fff; font-size:18px; display:inline-block; text-align:right; text-align:left;}
 .close_passen> i{text-align:right;float: right;font-size: 20px;}
 
-.newslatter input{ font-size:12px;}
+.newslatter input{ font-size:14px;width: 85%;padding: 12px 8px;}
 .fare_quted{ padding:10px;}
 .width_mob {width: 60%;}
 /*.mobpay_header{ display:none; padding:10px 10px 10px 20px;}*/
@@ -322,8 +322,8 @@
 .gray_pay h3{ display:none;}
 .mobile_none,.footer_result{ display:none;}
 
-.ResultProgressPopup .ResultProgressProgressBar{left: 50%; width: 96%;}
-.ResultProgressPopup1 .ResultProgressProgressBar1{left: 50%; width: 96%;}
+.ResultProgressPopup .ResultProgressProgressBar{left: 50%;width:30%; height:102px;}
+.ResultProgressPopup1 .ResultProgressProgressBar1{left: 50%; width:30%; height:102px;}
 .DesktopCon{ display:none;}
 .MobileCon{ display:block;}
 .mobile_container{ width:100%; float:left; padding:10px; background:#f5f7fb;}
@@ -340,7 +340,7 @@
 .footer_company h6{ font-size:16px;}
 .footer_company,.footer_destination{ margin-bottom:20px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
 .footer_destination h6,.footer_touch h6{margin-bottom: 15px;font-size:16px;}
-.newslatter button{left:83px;padding:7px 4px; font-size:12px;}
+.newslatter button{left: 231px;padding: 12px 12px;font-size: 14px;}
 .footer_company ul li a{ font-size:12px;}
 .footer_destination ul li a{font-size:12px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;float: left;padding-right: 8px;}
 .footer_touch{overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
@@ -420,7 +420,7 @@
 .couponCon{ margin-bottom:15px;}
 .callContainerMob{ display:block;width:40%;padding: 10px 0;float:left;}
 .smart_check{ width:16%;}
-.policy_textse{width:64%;}
+.policy_textse{width:64%;font-size: 12px;padding: 10px 15px 9px 15px;}
 .extended_price{width:20%;}
 .main_Refund{ padding:0;}
 .airline_RefundLeft span{ width:15%;padding-left: 5px;padding-top: 6px;}
@@ -431,9 +431,14 @@
 .airline_RefundRight{width: 25%;padding: 13px 9px }
 .Refund_BottomLeft{width:10%;}
 .Refund_BottomRight{width:88%;}
-.payment_div h3{text-align:center;border-radius:0px; font-size:13px;padding: 8px 4px;}
+.para_text{text-align:center;font-size:13px;padding: 8px 4px;}
+.payment_div> h2{text-align:center;font-size:13px;padding: 8px 4px;}
 .extended_con{ padding:0;}
 .para_text p{ margin-top:10px;color:#000;}
+.airline_RefundLeft .input-radio{ margin-top:8px;}
+.extended_bottom p{font-size:11px;}
+.extended_price h5{padding-top: 12px;}
+/*.airline_RefundRight h5{padding-top: 10px;}*/
 }
 
 @media only screen 

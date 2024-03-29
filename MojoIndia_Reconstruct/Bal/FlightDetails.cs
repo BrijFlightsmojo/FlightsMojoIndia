@@ -111,6 +111,71 @@ namespace Bal
                 airContext.flightSearchResponse.response.message = "Request is empty!";
             }
         }
+
+
+        public FlightSearchResponse SearchFlightGF( FlightSearchRequest fsr)
+        {
+            try
+            {
+                if (fsr != null)
+                {
+                    WebClient client = new WebClient();
+                    var url = API_URL + "Flights/SearchFlightGF?authcode=" + authcode;
+                    string serialisedData = JsonConvert.SerializeObject(fsr);
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    System.DateTime dt = DateTime.Now;
+                   
+                    var kk = client.UploadString(url, serialisedData);
+                    FlightSearchResponse flightSearchResponse = JsonConvert.DeserializeObject<FlightSearchResponse>(kk.ToString());
+                 
+
+                    #region setAirline URL
+
+                    foreach (var item in flightSearchResponse.Results)
+                    {
+                        foreach (var result in item)
+                        {
+                            foreach (var fs in result.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    if (airlineArr.Contains(seg.Airline))
+                                    {
+                                        seg.url = "/images/airlinesSvg/" + seg.Airline + ".svg";
+                                    }
+                                    else
+                                    {
+                                        seg.url = "/images/flight_small/" + seg.Airline + ".gif";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+
+                    return flightSearchResponse;
+
+                }
+                else
+                {
+                    FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
+                   flightSearchResponse.response.status = TransactionStatus.Error;
+                   flightSearchResponse.response.message = "Request is empty!";
+                    return flightSearchResponse;
+                }
+            }
+            catch (Exception exrr)
+            {
+                FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
+
+
+                flightSearchResponse.response.status = TransactionStatus.Error;
+                flightSearchResponse.response.message = "Request is empty!";
+                return flightSearchResponse;
+            }
+        }
+
+
         public FlightSearchResponse ReSearchFlight(FlightSearchRequest searchRequest)
         {
             try
@@ -224,6 +289,55 @@ namespace Bal
                 {
                     WebClient client = new WebClient();
                     var url = API_URL + "Flights/FlightVerification?authcode=" + authcode;
+                    string serialisedData = JsonConvert.SerializeObject(airContext.priceVerificationRequest);
+                    #region requestLog
+                    sbLogger.Append(Environment.NewLine + "---------------------------------------------Price Verification Request---------------------------------------------");
+                    sbLogger.Append(Environment.NewLine + "-----------------------" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------");
+                    sbLogger.Append(Environment.NewLine + serialisedData);
+                    sbLogger.Append(Environment.NewLine + "------------------------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
+                    #endregion
+
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    System.DateTime dt = DateTime.Now;
+                    var kk = client.UploadString(url, serialisedData);
+                    #region responseLog
+                    sbLogger.Append(Environment.NewLine + "---------------------------------------------Price Verification response---------------------------------------------");
+                    sbLogger.Append(Environment.NewLine + "-----------------------" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------");
+                    sbLogger.Append(Environment.NewLine + kk.ToString());
+                    sbLogger.Append(Environment.NewLine + "------------------------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
+                    #endregion
+                    airContext.priceVerificationResponse = JsonConvert.DeserializeObject<PriceVerificationResponse>(kk.ToString());
+                }
+                else
+                {
+                    airContext.priceVerificationResponse = new PriceVerificationResponse();
+                    airContext.priceVerificationResponse.responseStatus = new ResponseStatus() { status = TransactionStatus.Error, message = "Request is empty!" };
+
+                }
+            }
+            catch (Exception exrr)
+            {
+                #region Error Log
+                //sbLogger.Append(Environment.NewLine + "--------------------------------------------- Booking Error---------------------------------------------");
+                //sbLogger.Append(Environment.NewLine + "-----------------------" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------");
+                //sbLogger.Append(Environment.NewLine + exrr.ToString());
+                //sbLogger.Append(Environment.NewLine + "------------------------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
+                #endregion
+
+                airContext.priceVerificationResponse = new PriceVerificationResponse();
+                airContext.priceVerificationResponse.responseStatus = new ResponseStatus() { status = TransactionStatus.Error, message = exrr.ToString() };
+            }
+        }
+
+        public void FlightVerificationGF(ref AirContext airContext, ref StringBuilder sbLogger)
+        {
+            FlightBookingResponse fbr;
+            try
+            {
+                if (airContext.priceVerificationRequest != null)
+                {
+                    WebClient client = new WebClient();
+                    var url = API_URL + "Flights/FlightVerificationGF?authcode=" + authcode;
                     string serialisedData = JsonConvert.SerializeObject(airContext.priceVerificationRequest);
                     #region requestLog
                     sbLogger.Append(Environment.NewLine + "---------------------------------------------Price Verification Request---------------------------------------------");

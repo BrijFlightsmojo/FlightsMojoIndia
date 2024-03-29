@@ -9,7 +9,9 @@
 .help-block, .error {color: #f00;padding-left: 10px;font-size: 12px;}
 .field-validation-error {color: #f00 !important;}
 .passengerFlightD{ padding:10px;width:100%; float:left;}
-.payment_div h3 img{width: 36px;padding: 6px 3px;}
+.payment_div> h2{ margin-top: 0;color: #000;font-size: 15px;padding: 8px 15px;font-weight: 600;}
+.payment_div> h2 img{width: 36px;padding: 6px 3px; color:#fff;font-size: 15px;}
+.para_text img{width: 36px;padding: 6px 3px;}
 .passenger_Deapart{width: 100%;float: left; border-radius: 4px; margin-top: 12px;}
 .depat_img {margin: 0;padding: 0;flex: 1;width: 100px;display: flex;align-items: center;color: #034053;text-transform: uppercase;font-size: 13px;font-weight: 600;background-color: #efefef;padding: 5px 14px;margin-top: 15px;position: relative;}
 .depat_img:after{position: absolute;top: 0;right: -30px;content: '';border: 15px solid transparent;border-left: 15px solid #efefef;}
@@ -124,7 +126,7 @@
 .gstSmall label{width:100%; float:left; font-size:14px; color:#000;}
 .gst_bottom{width: 100%;float: left;background: #ddd;padding-bottom: 15px;border-radius: 0 0 10px 10px;}
 .seprator{width:100%; float:left;background:#eee;height:10px; margin-top:15px;}
-.payment_div h2{text-transform:uppercase;margin-top: 0;color: #000;font-size: 18px;padding: 12px 15px 4px 15px;font-weight: 600;border-radius: 12px 12px 0 0;}
+/*.payment_div h2{text-transform:uppercase;margin-top: 0;color: #000;font-size: 18px;padding: 12px 15px 4px 15px;font-weight: 600;border-radius: 12px 12px 0 0;}*/
 .whatsapp{ width:100%; float:left; padding:6px 15px;}
 .whatsapp p input{width:17px; height:17px; margin-right:8px;}
 .whatsapp p{ font-size: 13px;color: #000;position: relative;}

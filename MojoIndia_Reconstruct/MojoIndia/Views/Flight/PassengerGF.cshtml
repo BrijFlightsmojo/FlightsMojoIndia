@@ -414,7 +414,7 @@
                                         </div>
                                     </div>
 
-                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015"|| Model.sourceMedia == "1037")
                                     {
                                         <div class="mobile">
                                             <div class="couponCon">
@@ -925,7 +925,7 @@
                                                     <label class="psen-namehead">Fee &amp; Surcharge</label>
                                                     <label class="rate-amounthead">
                                                         <i class="fa fa-rupee"></i> <font id="Surcharge">
-                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015"|| Model.sourceMedia == "1037")
                                                             {
                                                                 @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
@@ -967,7 +967,7 @@
                                                 <div class="coupn-section">
                                                     <h4 id="emFareDetailsProgress" style="display:block">
                                                         Rechecking Fare.. <em>
-                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013"|| Model.sourceMedia == "1037")
                                                             {
                                                                 @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
@@ -994,14 +994,14 @@
                                                         </em>
                                                         <em>
                                                             <i class="fa fa-rupee"></i>
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                                                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                                                                 {
                                                                     <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt)).ToString("f2"))" />
-                                                                }*@
-                                                            @*else
-                                                                {*@
+                                                                }
+                                                            else
+                                                                {
                                                             <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
-                                                            @*}*@
+                                                            }
 
                                                             <input type="hidden" id="hftotalpax" value="@(Model.adults+Model.child+Model.infants+Model.infantsWs)" />
                                                             @Html.HiddenFor(o => o.CouponAmount)
@@ -1057,7 +1057,7 @@
                                             </div>
                                         }
 
-                                        else if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                        else if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013"|| Model.sourceMedia == "1037")
                                         {*@
                                     <div class="couponCon">
                                         <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
@@ -1127,7 +1127,7 @@
                             <div class="fare_divright">
                                 <span>
                                     <i class="fa fa-rupee"></i>
-                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013"|| Model.sourceMedia == "1037")
                                     {
                                         @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                     }
@@ -1192,7 +1192,7 @@
                                                 <span class="textRight">
                                                     <i class="fa fa-rupee"></i>
                                                     <font id="SurchargeMob">
-                                                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013"|| Model.sourceMedia == "1037")
                                                         {
                                                             @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         }
@@ -1257,7 +1257,7 @@
                                             <span class="AmttextLeft">Final Total Price:</span><span class="AmttextRight">
                                                 <i class="fa fa-rupee"></i>
                                                 <span id="totalAmountMob1">
-                                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                    @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013" || Model.sourceMedia == "1037")
                                                     {
                                                         @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                     }
@@ -1398,7 +1398,7 @@
 
     <script>
         function CancellaionPolicy() {
-
+            debugger;
             if ($('#chbCancellaionPolicyBye').is(':checked')) {
                 $("#CancellaionPolicyYes").show();
                 $("#CancellaionPolicyNo").hide();
@@ -1426,7 +1426,7 @@
 
     <script>
         function RefundPolicy() {
-
+            debugger;
             var mode = $('input[name="pilih"]:checked').val();
             if (mode=="true") {
                 $("#PriceRefundPolicy").show();
@@ -1660,6 +1660,7 @@
         }
 
         function CalculateAmount() {
+            debugger;
             var totalAmt = parseFloat($("#hftotalAmt").val());
             totalAmt -= parseFloat($("#CouponAmount").val());
             if($("#hfStep").val()!="0")
@@ -2073,7 +2074,7 @@
         function verifyFare() {
             $.ajax({
                 type: "POST",
-                url: "/Flight/VerifyPrice/@Model.userSearchID",
+                url: "/Flight/VerifyPriceGF/@Model.userSearchID",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 responseType: "json",

@@ -886,10 +886,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 
 
 ::-webkit-scrollbar-track {background: #fff;height:0px;}
-::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
- 
-}
+::-webkit-scrollbar-thumb {background-color: darkgrey;}
 
 .scrool_top dfn {width: 100%;color: rgb(19, 59, 103);font-style: normal;font-weight: bold;padding-bottom: 5px;display: inherit;border-bottom: 1px solid #ccc;}
 .scrool_top img {width: 35% !important;padding: 4px;border: 1px solid #ff0b00;border-radius: 50%;text-align: center;margin: 6px;}
@@ -1001,21 +998,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .booknow-bt {float: left;width:100%;text-align:right;font-size: 12px;padding:15px 15px 15px 15px; margin:0 auto;}
 .booknow-bt input {color: #fff;font-size: 18px;font-weight: 600;box-shadow: 2px 4px 2px #bdbdbd;padding: 8px 20px;border-radius: 8px;border: none;display: inline-block;background:#ef6614;text-decoration: none;-webkit-transition: background 2s;transition: background 2s;transition: all .2s ease-in-out;width:50%;}
 .booknow-bt .Enablebtn {color: #fff;font-size:16px;font-weight: 600; padding: 10px 30px;border-radius:4px;border: none;background: #ef6614;text-decoration: none;-webkit-transition: background 2s;transition: background 2s;transition: all .2s ease-in-out; cursor:pointer;display: inline-block; }
-.booknow-bt .disabled {font-size:16px;
-    font-weight: 600;
-    padding: 10px 30px;
-    border-radius:4px;
-    border: none;
-    background: #ccc;
-    text-decoration: none;
-    -webkit-transition: background 2s;
-    transition: background 2s;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
-    display: inline-grid;
-    color: #939090;
-   
-    text-align: center;}
+.booknow-bt .disabled {font-size:16px;font-weight: 600;padding: 10px 30px;border-radius:4px;border: none;background: #ccc;text-decoration: none;-webkit-transition: background 2s;transition: background 2s;transition: all .2s ease-in-out;cursor: pointer;display: inline-grid;color: #939090;text-align: center;}
 .booknow-bt button{color: #fff;font-size: 18px;font-weight: 600;box-shadow: 2px 4px 2px #bdbdbd;padding: 8px 20px;border-radius: 8px;border: none;display: inline-block;background:#ef6614;text-decoration: none;-webkit-transition: background 2s;transition: background 2s;transition: all .2s ease-in-out; cursor:pointer;}
 .popupbtn{width:100%; float:left;margin-top:15px;border-top: 1px solid #e9ecef;padding: 25px 15px;text-align:right;}
 .closepopup{white-space: nowrap;background-color: #dc3545;border:none;padding:8px 20px;font-size:16px; color:#fff; margin-right:15px;}
@@ -1192,7 +1175,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .form-control{padding: 4px!important;font-size: 13px!important;}
 .Passenger_info h4{ font-size: 17px; font-weight: 500; color: #ff0b00; margin: 8px 0; padding:0;}
 .lost_baggege{width:100%; float: left; padding: 10px;margin-bottom: 10px;}
-.para_text p{ color:#fff; font-size: 13px!important; margin: 0; padding: 0; font-weight: normal; margin-top: 6px;}
+.para_text p{ color:#000; font-size: 13px!important; margin: 0; padding: 0; font-weight: normal; margin-top: 6px;}
 .lostbaggage_left{width:75%; float: left; margin: 0; padding: 0; background:none;}
 .lostbaggage_left p{color: #4d4c4c; font-size: 13px; line-height:25px; margin: 0; padding: 0;}
 .lostbaggage_left p i{ color: #ff0b00; font-size: 14px;padding-left: 6px;}
@@ -1211,8 +1194,10 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .extended_price h3{ color:#000; font-size:18px; margin:0; padding:0px;}
 .extended_price p{ color:#333; font-size:10px; margin:0; padding:0;}
 .extended_bottom{ width:100%; float:left; padding:15px;}
-.extended_bottom p{width:80%; float:left; font-size:13px; color:#49494a; margin:0;}
+.extended_bottom p{width:80%; float:left; font-size:12px; color:#49494a; margin:0;}
 .extended_bottom p em{ color:#ff0b00;font-size:13px; padding-right:2px;}
+.extended_price h5{font-size: 15px;color:#000; font-weight:bold;}
+.airline_RefundRight h5{font-size: 15px; color:#fff;font-weight:bold;}
 .extended_ploicy{width:20%; float:left; text-align:right;}
 .extended_ploicy a{color:#49494a; font-size:15px; font-weight:bold; text-decoration:underline;}
 .extended_ploicy a:hover{color:#ff0b00;}
@@ -1220,8 +1205,9 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .airline_RefundLeft{width:80%; float:left;text-align:left;}
 .airline_RefundRight{width:20%; float:left;text-align:right;padding: 6px 15px;}
 .airline_RefundLeft span{width:8%;float:left;text-align:center;}
-.airline_RefundLeft h3{ color:#fff;font-size:15px; padding:0; margin:0; border:0px!important;}
+.airline_RefundLeft h2{ color:#fff;font-size:15px; margin:0; border:0px!important;}
 .airline_RefundRight h3{color:#fff;font-size:18px; padding:6px 0 0 0;display:block;}
+.airline_RefundLeft dfn{background: linear-gradient(to right, #e83819, #f3850b);border-radius: 15px;padding: 4px 10px;font-size: 12px;color: #fff;font-style: normal;margin-left: 15px;margin-top: 8px;}
 .main_Refund{ width:100%; float:left; padding:10px;}
 .airline_refundTrem{width:100%; float:left; margin:0; padding:10px;border-bottom:1px solid #ccc;}
 .refund_Text{width:33%; float:left; border-right:1px solid #ccc;height:130px;margin-top:10px;}
@@ -1238,8 +1224,8 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 
 .airline_RefundLeft span label{cursor: pointer;}
 .Refund_BottomLeft label{cursor: pointer;}
-.airline_RefundLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 4px solid #fff; margin-top:8px; background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
-.Refund_BottomLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 4px solid #fff;background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.airline_RefundLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 7px solid #fff; margin-top:8px; background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.Refund_BottomLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 7px solid #fff;background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
 .input-radio.on:checked {box-shadow: 0px 0px 0px 4px #00eb27;background-color: #51ff6e;}
 .input-radio.off:checked {box-shadow: 0px 0px 0px 4px #eb0000;background-color: #ff5151;}
 .main_Refund a{color: #49494a;font-size:15px;font-weight: bold;text-decoration: underline;text-align: right;float: right;display: inline-block;padding-right: 15px;padding-top:10px;}
@@ -1515,35 +1501,38 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .main_footer{width: 100%; float: left; padding: 20px 0;background-color: #49494a;background-image: url(../images/footer_bg.png);background-size: 1366px auto;background-position: center bottom; background-repeat: repeat-x;padding-bottom:320px;}
 .footer_con{width: 100%; float: left; margin: 20px 0 0 0;}
 .footer_company{ width: 100%;display: inline-block;}
-.footer_company h6{ color: #fff; font-size:20px; margin: 0;padding: 0; margin-bottom: 15px;}
+.footer_company h6{ color: #fff; font-size:16px; margin: 0;padding: 0; }
 .footer_company ul{list-style-type: none; margin: 0; padding: 0;}
 .footer_company ul li a{ color: #fff; font-size:13px; line-height: 25px;text-transform: uppercase;}
 .footer_destination{ width: 100%;display: inline-block;text-align:left; }
-.footer_destination h6{ color: #fff; font-size:20px; margin: 0;padding: 0; margin-bottom: 15px;}
+.footer_destination h6{ color: #fff; font-size:16px; margin: 0;padding: 0; }
 .footer_destination ul{list-style-type: none; margin: 0; padding: 0;}
 .footer_destination ul li a{ color: #fff; font-size:13px; line-height: 25px;text-transform: uppercase;}
 .footer_touch{ width: 100%;display: inline-block;text-align: left;}
-.footer_touch h6{color: #fff; font-size:20px; margin: 0;padding: 0; margin-bottom: 15px;}
+.footer_touch h6{color: #fff; font-size:16px; margin: 0;padding: 0;}
 .newslatter{ width: 100%; float: left;position: relative;}
 .sbsribe_div{width: 100%; float: left; margin-bottom: 15px;}
 .newslatter h6{ font-size:18px; color: #fff; margin: 0; padding:10px 0;}
 .newslatter input{ width:70%;float: left;padding:7px 8px;border-radius: 20px;border: 0;margin-right: 8px}
 .newslatter button{ background: linear-gradient(to right,#e83819,#f3850b);font-size:14px;color: #fff;text-align: center;display: inline-block;border-radius: 20px;padding:7px 8px 7px 15px;border: 0;font-weight: 500;position: absolute;left: 151px;}
 .newslatter button i{font-size: 12px;padding: 3px 4px;border: 1.5px solid #fff;border-radius: 50%;}
-.newslatter a{ width: 100%; float: left;color:#fff; font-size:14px; margin-top: 10px; padding-left:5px; text-decoration:none;}
-.newslatter a i{ color:#fff; font-size:15px; padding-right:8px;}
+.newslatter a{ width: 100%; float: left;color:#fff; font-size:15px; margin-top: 10px; padding-left:5px; text-decoration:none;}
+.newslatter a i{ color:#fff; font-size:16px; padding-right:8px;}
 .social_link{width: 100%; float: left; margin-top:10px;}
 .social_link ul{list-style-type: none; margin: 0; padding: 0; }
 .social_link li{ float: left;}
 .social_link li a{color: #fff; font-size:20px; padding: 6px;}
-.fb_icon{background: url(/images/metrial.png) no-repeat -39px -40px;width: 29px;height:29px;float: left;margin-right: 6px;}
+/*.fb_icon{background: url(/images/metrial.png) no-repeat -39px -40px;width: 29px;height:29px;float: left;margin-right: 6px;}
 .insta_icon{background: url(/images/metrial.png) no-repeat -5px -40px;width: 29px;height:29px;float: left;margin-right: 6px;}
-.envelope{background: url(/images/metrial.png) no-repeat -253px -6px;width: 28px; height: 24px;float: left;}
+.envelope{background: url(/images/metrial.png) no-repeat -253px -6px;width: 28px; height: 24px;float: left;}*/
 .footer_bottom{float: left; width: 100%;background: #fff;text-align: center;}
+.social_link li a i {color: #e83719;background: #fff;border-radius:50%;padding: 7px 10px;font-size: 20px;}
 .footer_bottom p{font-size: 13px;width: 100%;padding: 10px 0 0 0;color: #49494a;}
 .flight_footer img {width: 15%;}
 .main_footer2{width:100%; float:left; padding:0; margin:0;}
-
+.footer_company span{display: inline-block;margin: 10px 0 15px 0;padding: 0;width: 60%;border: 1px solid #fff;}
+.footer_destination span{display: inline-block;margin: 10px 0 15px 0;padding: 0;width: 60%;border: 1px solid #fff;}
+.footer_touch span{display: inline-block;margin: 10px 0 15px 0;padding: 0;width: 60%;border: 1px solid #fff;}
 
 
 /*---------- Result Popup Loader--------------*/
@@ -1554,8 +1543,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .ResultProgressProgressBar{ width:100%; float:left; background:#fff;}
 .bookinggif{ width:100%; float:left; text-align:center; padding-bottom:30px;}
 .bookinggif img{width:100%;}
-
-
 .ResultProgressPopup1 {position: fixed;display: none;width: 100%;height: 100%;left: 0;top: 0;margin: 0 auto;z-index: 999999;background: rgba(0, 0, 0, 0.61);}
 .ResultProgressPopup1 .ResultProgressProgressBar1 {top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);position: relative;width:450px; border-radius:0px;background:#fff;text-align:center;
     padding: 27px 15px 15px 15px;}
@@ -1563,11 +1550,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .confirm_progress h2{ font-size:22px; color:#000;line-height:35px; font-weight:bold;}
 .confirm_progress> p{font-size:18px; color:#000; padding:30px 0;}
 .ResultProgress_content h3 {font-size: 16px;font-weight: 600;}
-
 .confirm_progress1{width: 70%;display: inline-block;padding: 10px;text-align: center;}
 .confirm_progress1 h2{ font-size:22px; color:#000;line-height:35px; font-weight:bold;}
 .confirm_progress1> p{font-size:18px; color:#000; padding:30px 0;}
-
 .content_con {width: 100%;float: left;margin-top: 20px;padding: 15px;border: 1px solid #ccc;margin-bottom: 20px;}
 .content_con h4 {color: #fff;width: 100%;background: #e83719;margin: 0;padding: 6px;display: inline-block;font-size: 20px;margin-bottom: 15px;text-transform: uppercase;}
 .content_con p{ font-size:13px; color:#000;font-family: 'Poppins', sans-serif;text-align:justify;}
@@ -1655,130 +1640,24 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .Routes_Con> ul li a{  color:#d80303; font-size:14px; font-weight:bold; text-decoration:none; cursor:pointer; }
 
 /*------------- minisearch page css start here ----------*/
-.searach_popup {display: block;width: 330px;padding: 10px;
-    z-index: 9;
-    background: #49494a;
-    margin-left: 30px;
-    position: absolute;
-}
-
-    .searach_popup::before {
-        left: 80%;
-        top: -11px;
-    }
-
-    .searach_popup::before {
-        content: "";
-        width: 10px;
-        height: 10px;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 12px solid #49494a;
-        position: absolute;
-    }
-    .close_btn {
-    text-align: right;
-    margin-top: -10px;
-    width: 40px;
-    float: right;
-}
-
-    .close_btn a i {
-        color: #fff;
-        text-align: right;
-    }
-
-.destin_name {
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    width: 85%;
-    display: inline-block;
-    margin-bottom: 6px;
-}
-
-.trip_type {
-    width: 100%;
-    display: inline-block;
-}
-
-.one_way_trip {
-    width: 48%;
-    float: left;
-    background: #fff;
-    padding: 3px 6px;
-}
-
-    .one_way_trip input {
-        width: 88%;
-        border: 0;
-        padding-left: 10px;
-        font-size: 11px;
-    }
-
-.round_trip {
-    width: 48%;
-    float: right;
-    background: #fff;
-    padding: 3px 6px;
-}
-
-    .round_trip input {
-        width: 88%;
-        border: 0;
-        padding-left: 10px;
-        font-size: 11px;
-    }
-
-.trip_type {
-    color: #333;
-}
-
-.trip_type2_trav {
-    width: 48%;
-    float: left;
-    background: #fff;
-    padding: 3px 6px;
-}
-
-    .trip_type2_trav input {
-        width: 88%;
-        border: 0;
-        font-size: 11px;
-    }
-
-.round_trip2_btn {
-    width: 48%;
-    float: right;
-    background: #fff;
-    text-align: center;
-}
-
-    .round_trip2_btn input {
-        padding: 3px 6px;
-        background: #ff0f17;
-        color: #fff;
-        font-size: 13px;
-        width: 100%;
-        border: 0;
-        display: inline-block;
-        line-height: 22px;
-    }
-.passenger-div2 {
-    display: block;
-    position: absolute;
-    height: auto !important;
-    width: 256px;
-    top: 105px;
-    margin-left: 0;
-    z-index: 9;
-    box-shadow: 3px 2px 5px grey;
-    padding-bottom: 15px;
-    border: 1px solid #ccc;
-}
-
+.searach_popup {display: block;width: 330px;padding: 10px;z-index: 9;background: #49494a;margin-left: 30px;position: absolute;}
+.searach_popup::before {left: 80%;top: -11px;}
+.searach_popup::before {content: "";width: 10px;height: 10px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 12px solid #49494a;position: absolute;}
+.close_btn {text-align: right;margin-top: -10px;width: 40px;float: right;}
+.close_btn a i {color: #fff;text-align: right;}
+.destin_name {color: #fff;font-size: 12px;font-weight: bold;width: 85%;display: inline-block;margin-bottom: 6px;}
+.trip_type {width: 100%;display: inline-block;}
+.one_way_trip {width: 48%;float: left;background: #fff;padding: 3px 6px;}
+.one_way_trip input {width: 88%;border: 0;padding-left: 10px;font-size: 11px;}
+.round_trip {width: 48%;float: right;background: #fff;padding: 3px 6px;}
+.round_trip input {width: 88%;border: 0;padding-left: 10px;font-size: 11px;}
+.trip_type {color: #333;}
+.trip_type2_trav {width: 48%;float: left;background: #fff;padding: 3px 6px;}
+.trip_type2_trav input {width: 88%;border: 0;font-size: 11px;}
+.round_trip2_btn {width: 48%;float: right;background: #fff;text-align: center;}
+.round_trip2_btn input {padding: 3px 6px;background: #ff0f17;color: #fff;font-size: 13px;width: 100%;border: 0;display: inline-block;line-height: 22px;}
+.passenger-div2 {display: block;position: absolute;height: auto !important;width: 256px;top: 105px;margin-left: 0;z-index: 9;box-shadow: 3px 2px 5px grey;padding-bottom: 15px;border: 1px solid #ccc;}
 .select-class2 {width: 145px;height: 22px;font-size: 12px;}
-
 .airlines_header{ width:100%; float:left; position:relative;}
 .airline_content{position: absolute;top: 378px;width:80%; display:inline-block; right: 0;}
 .airline_content h1{ color: #fff;font-size:36px;font-weight: bold;text-shadow: 1px 1px 1px #333;padding:0; margin:0;text-align:left;}

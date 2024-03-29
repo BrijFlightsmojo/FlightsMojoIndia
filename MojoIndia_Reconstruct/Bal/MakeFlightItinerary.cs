@@ -282,6 +282,7 @@ namespace Bal
             ).OrderBy(k => k.SequenceNum).ToList();
 
             return fareRule.FirstOrDefault();
+
         }
         public Bal.GfMarkup.FeeRule getFareRule(AirContext airContext, decimal totFare)
         {
