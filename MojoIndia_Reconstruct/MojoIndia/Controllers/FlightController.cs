@@ -970,6 +970,7 @@ namespace MojoIndia.Controllers
                             tgy_Search_Key = airContext.flightSearchResponse.tgy_Search_Key,
                             FB_booking_token_id = airContext.flightSearchResponse.FB_booking_token_id,
                             responseStatus = new ResponseStatus(),
+
                             affiliate = airContext.flightSearchResponse.affiliate,
                             //  affiliate = FlightUtility.GetAffiliate(airContext.flightSearchRequest.sourceMedia),
                             redirectID = airContext.flightSearchRequest.redirectID,
@@ -1128,8 +1129,8 @@ namespace MojoIndia.Controllers
                         }
                         #endregion
 
-                        airContext.flightBookingRequest.RefundPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]);
-                        airContext.flightBookingRequest.CancellaionPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]);
+                        airContext.flightBookingRequest.RefundPolicyAmt = (airContext.flightBookingRequest.flightResult.Count)*(Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]));
+                        airContext.flightBookingRequest.CancellaionPolicyAmt = (airContext.flightBookingRequest.flightResult.Count) * (Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]));
 
                         airContext.flightBookingRequest.currencyCode = airContext.flightSearchRequest.currencyCode;
                         airContext.flightBookingRequest.adults = airContext.flightSearchResponse.adults;
