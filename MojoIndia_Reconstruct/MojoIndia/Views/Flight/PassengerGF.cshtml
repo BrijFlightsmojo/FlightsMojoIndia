@@ -1398,7 +1398,7 @@
 
     <script>
         function CancellaionPolicy() {
-            debugger;
+
             if ($('#chbCancellaionPolicyBye').is(':checked')) {
                 $("#CancellaionPolicyYes").show();
                 $("#CancellaionPolicyNo").hide();
@@ -1426,7 +1426,7 @@
 
     <script>
         function RefundPolicy() {
-            debugger;
+
             var mode = $('input[name="pilih"]:checked').val();
             if (mode=="true") {
                 $("#PriceRefundPolicy").show();
@@ -1660,7 +1660,7 @@
         }
 
         function CalculateAmount() {
-            debugger;
+
             var totalAmt = parseFloat($("#hftotalAmt").val());
             totalAmt -= parseFloat($("#CouponAmount").val());
             if($("#hfStep").val()!="0")

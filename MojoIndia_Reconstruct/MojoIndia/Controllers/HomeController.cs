@@ -135,6 +135,72 @@ namespace MojoIndia.Controllers
                 return View("Contact", obj);
             }
         }
+
+
+             //[ActionName("Subscribe")]public JsonResult SaveBookingDetails(
+        public JsonResult Subscribe(string EmailID)
+        {
+            Core.CouponStatusResponse objResponse = new CouponStatusResponse();
+            if (ModelState.IsValid)
+            {
+                Core.SendEmailRequest objSendEmailRequest = new Core.SendEmailRequest();
+                objSendEmailRequest.FromEmail = GlobalData.SendEmail;
+                objSendEmailRequest.ToEmail = EmailID;
+                objSendEmailRequest.BccEmail = "brij@flightsmojo.com";
+                objSendEmailRequest.MailSubject = "Subscribe mail for flightsmojo.in";
+                objSendEmailRequest.MailBody = "Subscribe";
+                objSendEmailRequest.BookingID = 0;
+                objSendEmailRequest.prodID = 0;
+                objSendEmailRequest.MailType = "Subscribe";
+
+                bool isSend = new Bal.SMTP().SendEMail(objSendEmailRequest);
+
+                //obj.sendMsg = isSend ? "We have accepted your query. Our support team will contact you shortly. Thank you!" : "Due to some technical resion we are not accept your query, Please try again After some time, Thankyou!";
+                //obj.Name = "";
+
+            }
+            //if (ModelState.IsValid)
+            //{
+            //    obj.sendMsg = "";
+            //    ViewBag.Message = "contact-us";
+
+            //    StringBuilder sb = new StringBuilder();
+
+            //    sb.Append("<table border='1' cellpadding='10' cellspacing='10' style='width:700PX;'>");
+            //    sb.Append("    <tr><td style='width:30%'>Name</td><td style='width:70%'>" + obj.Name + "</td></tr>");
+            //    sb.Append("    <tr><td>EmailID</td><td>" + obj.EmailID + "</td></tr>");
+            //    sb.Append("    <tr><td>PhoneNo</td><td>" + obj.PhoneNo + "</td></tr>");
+            //    sb.Append("    <tr><td>Massege</td><td>" + obj.Massege + "</td></tr>");
+            //    sb.Append("</table>");
+
+            //    Core.SendEmailRequest objSendEmailRequest = new Core.SendEmailRequest();
+            //    objSendEmailRequest.FromEmail = GlobalData.SendEmail;
+            //    objSendEmailRequest.ToEmail = GlobalData.Email;
+            //    objSendEmailRequest.BccEmail = "kundan@flightsmojo.com";
+            //    objSendEmailRequest.MailSubject = "Contact us mail for flightsmojo.in";
+            //    objSendEmailRequest.MailBody = sb.ToString();
+            //    objSendEmailRequest.BookingID = 0;
+            //    objSendEmailRequest.prodID = 0;
+            //    objSendEmailRequest.MailType = "ContactUs";
+
+            //    bool isSend = new Bal.SMTP().SendEMail(objSendEmailRequest);
+
+            //    obj.sendMsg = isSend ? "We have accepted your query. Our support team will contact you shortly. Thank you!" : "Due to some technical resion we are not accept your query, Please try again After some time, Thankyou!";
+            //    obj.Name = "";
+            //    obj.EmailID = "";
+            //    obj.PhoneNo = "";
+            //    obj.Massege = "";
+            //    return View("Contact", obj);
+            //}
+            //else
+            //{
+            //    obj.sendMsg = "";
+            //  return View("Subscribe", obj);
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+            //}
+        }
+
+
         [ActionName("about-us")]
         public ActionResult about_us()
         {

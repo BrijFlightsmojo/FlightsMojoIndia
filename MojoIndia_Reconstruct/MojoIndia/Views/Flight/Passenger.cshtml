@@ -775,7 +775,7 @@
                                                         </div>
                                                         <div class="Refund_BottomRight"><p><img src="/images/shield.svg" alt="icon" />Non- Protected booking</p></div>
                                                     </div>
-
+                                                   
                                                     <div class="extended_bottom">
                                                         <p><em>*</em>Airline Refund Assurance Is Non-Refundable once Purchased.</p>
                                                         <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
@@ -804,11 +804,11 @@
 
                                                 @if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
                                                 {
-                                                    <span class="d-inline-flex justify-content-center align-items-center">04</span>
+                                                <span class="d-inline-flex justify-content-center align-items-center">04</span>
                                                 }
                                                 else
                                                 {
-                                                    <span class="d-inline-flex justify-content-center align-items-center">03</span>
+                                                <span class="d-inline-flex justify-content-center align-items-center">03</span>
                                                 }
 
                                                 Payment Details
@@ -891,11 +891,11 @@
                                                         <div class="PaynowDiv">
                                                             @if (Model.flightResult.Exists(o => (o.Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || o.Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)))
                                                             {
-                                                                <span class="payment-button" id="btnSubmit_offer_fare" onclick="return ShowGroupFare();">Pay Now </span>
+                                                            <span class="payment-button" id="btnSubmit_offer_fare" onclick="return ShowGroupFare();">Pay Now </span>
                                                             }
                                                             else
                                                             {
-                                                                <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
+                                                            <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
                                                             }
                                                             <span class="ssl_payment"><i class="fa-solid fa-lock"></i> SSL Secure Payment</span>
                                                         </div>
@@ -920,17 +920,17 @@
                                                 </div>
                                                 @if (Model.child > 0)
                                                 {
-                                                    <div class="price-row">
-                                                        <label class="psen-name">@Model.child Traveler(s) : Child</label>
-                                                        <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
+                                                <div class="price-row">
+                                                    <label class="psen-name">@Model.child Traveler(s) : Child</label>
+                                                    <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                </div>
                                                 }
                                                 @if (Model.infants > 0)
                                                 {
-                                                    <div class="price-row">
-                                                        <label class="psen-name">@Model.infants Traveler(s) : infants</label>
-                                                        <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
+                                                <div class="price-row">
+                                                    <label class="psen-name">@Model.infants Traveler(s) : infants</label>
+                                                    <label class="rate-amount"> <i class="fa fa-rupee"></i><font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                </div>
                                                 }
 
                                                 <div class="price-row">
@@ -939,11 +939,11 @@
                                                         <i class="fa fa-rupee"></i> <font id="Surcharge">
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                                                             {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </font>
                                                     </label>
@@ -981,11 +981,11 @@
                                                         Rechecking Fare.. <em>
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
@@ -997,11 +997,11 @@
                                                         <em id="totalAmount">
                                                             @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount + Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                             else
                                                             {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                             }
                                                         </em>
                                                         <em>
@@ -1080,26 +1080,26 @@
                                         </div>
                                         <div class="selectCouponCon">
                                             @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                            {
+                                                {
                                                 <div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
                                                     <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
                                                     <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
                                                     <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
                                                 </div>
-                                            }
+                                                }
                                             @if (Model.sourceMedia != "1013")
-                                            {
+                                                {
                                                 <p style="color:green;" class="Coupon-hide">
                                                     Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
                                                 </p>
-                                            }
-                                            else
-                                            {
+                                                }
+                                                else
+                                                {
                                                 <p style="color:green;" class="Coupon-hide">
                                                     Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
                                                     and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
                                                 </p>
-                                            }
+                                                }
 
                                             <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
                                                 <input id="rbtnNone" name="radio" type="radio" value="None" />
@@ -1141,11 +1141,11 @@
                                     <i class="fa fa-rupee"></i>
                                     @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                     {
-                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                     }
                                     else
                                     {
-                                        @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                     }
                                 </span> <img src="/images/recheckloader.gif" />
                             </div>
@@ -1180,23 +1180,23 @@
 
                                             @if (Model.child > 0)
                                             {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.child Traveler(s) : Child</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
-                                                </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft">@Model.child Traveler(s) : Child</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+                                            </div>
                                             }
                                             @if (Model.infants > 0)
                                             {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
-                                                </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+                                            </div>
                                             }
 
                                             <div class="Fare100">
@@ -1206,11 +1206,11 @@
                                                     <font id="SurchargeMob">
                                                         @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                         {
-                                                            @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         }
                                                         else
                                                         {
-                                                            @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         }
                                                     </font>
                                                 </span>
@@ -1224,30 +1224,30 @@
                                             </div>
 
                                             @if (Model.CancellaionPolicyAmt > 0)
-                                            {
-                                                <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
-                                                    <span class="textLeft">Extended Cancellation Policy Fee</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="SurchargeMob">
-                                                            @((Model.CancellaionPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                        </font>
-                                                    </span>
-                                                </div>
-                                            }
+{
+                                            <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
+                                                <span class="textLeft">Extended Cancellation Policy Fee</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="SurchargeMob">
+                                                        @((Model.CancellaionPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                    </font>
+                                                </span>
+                                            </div>
+}
 
 
                                             @if (Model.RefundPolicyAmt > 0)
                                             {
-                                                <div class="Fare100" style="display:none;" id="RefundAmtMob">
-                                                    <span class="textLeft">Extended Refund Policy Fee</span>
-                                                    <span class="textRight">
-                                                        <i class="fa fa-rupee"></i>
-                                                        <font id="SurchargeMob">
-                                                            @((Model.RefundPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                        </font>
-                                                    </span>
-                                                </div>
+                                            <div class="Fare100" style="display:none;" id="RefundAmtMob">
+                                                <span class="textLeft">Extended Refund Policy Fee</span>
+                                                <span class="textRight">
+                                                    <i class="fa fa-rupee"></i>
+                                                    <font id="SurchargeMob">
+                                                        @((Model.RefundPolicyAmt * (Model.adults + Model.child + Model.infants)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                    </font>
+                                                </span>
+                                            </div>
                                             }
 
 
@@ -1325,7 +1325,7 @@
             <img alt="icon" src="/images/mojoloader.svg" />
         </div>
         <div class="loader_gif">
-            <img alt="gif" src="/images/pay_loader.gif" />
+            <img alt="gif" src="/images/pay_loader.gif"/>
         </div>
         <div class="confirm_progress1">
             <h2>Your booking will be completed in just a few seconds!</h2>
@@ -1471,7 +1471,7 @@
             });
         }
     </script>
-    <script>
+	  <script>
         $(document).ready(function () {
             changeRbtn();
             $(".showSingle").click(function () {
@@ -1681,14 +1681,14 @@
             if($("#hfStepAddon").val()!="0")
             {
                 totalAmt += parseFloat($("#hfAddonCPAmt").val());
-
+               
             }
             if($("#hfStepAddonRP").val()!="0")
             {
                 totalAmt += parseFloat($("#hfAddonRPAmt").val());
-
+              
             }
-
+           
             $("#totalAmount").html("" + totalAmt.toFixed(0));
             $("#totalAmountMobile").html("" + totalAmt.toFixed(0));
             $("#totalAmountMob1").html("" + totalAmt.toFixed(0));
@@ -1889,7 +1889,7 @@
                 data: JSON.stringify(jsonData),
                 responseType: "json",
                 success: function (r) {
-
+        
                     Contactstep.classList.add("success");
                     Contactstep.classList.remove("false");
                     AddOnstep.classList.add("success");
@@ -1990,7 +1990,7 @@
                         data: JSON.stringify(jsonData),
                         responseType: "json",
                         success: function (r) {
-
+                
                             //$("#hfStep").val("2");
                             $("#btn_proceed").hide();
                             $("#btn_disable").show();
@@ -2202,12 +2202,12 @@
             if($("#hfStepAddon").val()!="0")
             {
                 final += parseFloat($("#hfAddonCPAmt").val());
-
+               
             }
             if($("#hfStepAddonRP").val()!="0")
             {
                 final += parseFloat($("#hfAddonRPAmt").val());
-
+              
             }
             $("#hfConvenFee").val(final_con);
             $("#totalAmount").html(+final.toFixed(0));

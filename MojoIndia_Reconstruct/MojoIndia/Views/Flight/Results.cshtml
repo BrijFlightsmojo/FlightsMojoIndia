@@ -1473,10 +1473,14 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
         function ShowProPopup() {
             $('#ResultProgressPopup').show();
             Select_detail();
+			$('#ResultProgressPopup').hide();
         }
     </script>
     <script>
         $(document).ready(function () {
+		
+		$('#ResultProgressPopup').hide();
+		
             $(".modify_click,.button").click(function () {
                 $(".modify_search").slideDown("slow");
             });
@@ -1503,7 +1507,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
     <script type="text/javascript">
         var iL = 1;
         $(document).ready(function () {
-
+$('#ResultProgressPopup').hide();
             $('#mlogoA1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode1() + '.gif');
             $('#mlogoB1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode2() + '.gif');
             $('#mlogoC1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode3() + '.gif');
@@ -1674,7 +1678,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
     </script>
 
 
-    <script>
+<script>
         function FlightLoad() {
 
             var adult = parseInt($("#Adult").val());
@@ -1694,7 +1698,7 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-    </script>
+</script>
 
 
 
@@ -1721,8 +1725,8 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
     </script>
 
 
-    <script>
-        function flight_detail() {
+<script>
+           function flight_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1740,10 +1744,10 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-    </script>
+</script>
 
-    <script>
-        function Select_detail() {
+<script>
+           function Select_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1761,8 +1765,8 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-    </script>
-    <script>
+</script>
+<script>
         function Modify() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
@@ -1781,5 +1785,52 @@ margin-top: 10px!important;padding: 0 6px;left: 0!important;}
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-    </script>
+</script>
+
+<script>
+    function swapdata() {
+        var fromTopCity =  $("#fromTopCity").html();
+        var toTopCity = $("#toTopCity").html();
+        var fromTopCityMob = $("#fromTopCityMob").html();
+        var fromBottamCityMob = $("#fromBottamCityMob").html();
+
+
+        var fromBottamCity = $("#fromBottamCity").html();
+        var toBottamCity = $("#toBottamCity").html();
+        var toTopCityMob = $("#toTopCityMob").html();
+        var toBottamCityMob = $("#toBottamCityMob").html();
+
+
+
+        fromTopCity = $("#toTopCity").html();
+        toTopCity = $("#fromTopCity").html();
+        fromTopCityMob = $("#toTopCityMob").html();
+        fromBottamCityMob = $("#toBottamCityMob").html();
+
+
+        fromBottamCity = $("#toBottamCity").html();
+        toBottamCity = $("#fromBottamCity").html();
+
+        document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
+        document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
+
+        document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
+        document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
+
+
+
+        document.getElementById("fromTopCity").innerHTML = fromTopCity;
+        document.getElementById("toTopCity").innerHTML = toTopCity;
+
+        document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
+        document.getElementById("toBottamCity").innerHTML = toBottamCity;
+
+
+        hfCity_to  =$("#hfCity_to").val();
+        hfCity_from = $("#hfCity_from").val();
+        $("#hfCity_to").val(hfCity_from);
+        $("#hfCity_from").val(hfCity_to);
+    }
+
+</script>
 }

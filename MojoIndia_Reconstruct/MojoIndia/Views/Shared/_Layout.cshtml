@@ -45,60 +45,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>*@
         <div class="MainHead">
             
-                <div class="container ">
-                    <div class="row">
-                        <div class="head_con">
-                            <div class="logo"><a href="/"><img src="/images/logo.svg" alt="logo" /></a></div>
-                            <div class="header_right">
-                                <div id="mainnav" class="main_menu">
-                                    <div id="menu"><i class="fa fa-bars"></i></div>
-                                    <ul>
-                                        @*<li><a class="active" href="/">FLIGHTS </a></li>
-                            <li><a class="" href="#">HOTELS </a></li>
-                                <li><a class="" href="">HOLIDAYS</a></li>*@
-                                    </ul>
-                                </div>
-                                <div class="contact_con" style="display:none;">
-                                    <div class="falg_div">
-                                        <div class="country">
-                                            <div id="country" class="select"><img src="/images/ind_icon.png" alt="icon" /> IND<i class="fa fa-caret-down"></i></div>
-                                            <div id="country-drop" class="dropdown">
-                                                <ul>
-                                                    @*<li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/us_icon.png" /> US </a></li>
-                                        <li data-code="AM" data-name="Armenia" data-cid="c41"><a href="https://www.flightsmojo.com/"><img src="/images/ca_icon.png" /> CA </a></li>*@
-                                                    <li data-code="AW" data-name="Aruba" data-cid="c42"><img src="/images/ind_icon.png" alt="icon" /> IND </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--<p><i class="fa fa-clock-o duration-size"></i>Call US for Support</p>-->
-                                    @*<a href="call-to:@GlobalData.Phone"><img src="/images/ph_icon.png" /> @GlobalData.Phone</a>*@
-                                </div>
-                                @*<div class="mobile_Con">
-                        <a href="/contact-us"><span>Contact Us </span><i class="mobenvelope"></i></a>
-                    </div>*@
-                                <div class="search_con">
-                                    <ul>
-                                        @if (false && ViewBag.pageType != null && ViewBag.pageType == "index")
-                            {
-                                            <li class="dropdown" style="display:none;" id="SearchPad">
-                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                    My Searches <span class="Scratchpad" id="totRecentSearch"></span><span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu" id="MySearches"></ul>
-                                            </li>
-                            }
-
-                                        @*<li><a href="#">My Bookings</a></li>*@
-                                        <li><a class="" href="/contact-us"><dfn class="ph_icon"></dfn>24x7 Helpline</a></li>
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
+            <nav>
+                <div class="container">
+                    <div id="toggle-icon" class="toggle-icon">
+                        <i class="fas fa-bars"></i>
+                       
                     </div>
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/images/logo.svg" alt="logo" />
+                            
+                        </a>
+                    </div>
+                    <div class="callContainerMob">
+                        <a class="" href="/contact-us"><dfn class="ph_icon"></dfn>24x7 Helpline</a>
+                    </div>
+                    <div class="callContainer">
+                        <a class="" href="/contact-us"><dfn class="ph_icon"></dfn>24x7 Helpline</a>
+                    </div>
+                    <div id="menu" class="menu">
+                        <div class="links">
+                            <ul>
+                                <li><a href="/"><img src="/images/logo_white.svg" alt="logo" /></a><i class="fa fa-times menu_none "></i></li>
+                                <li><a href="/">FLIGHTS</a></li>
+                                <li><a class="" href="#">DEALS</a></li>
+                                <li class="parent">
+                                    <a> POPULAR DESTINATIONS <span class="arrow-icon"> <i class="fas fa-caret-right"></i> </span></a>
+                                    <ul class="childs">
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-new-delhi-del ">Flights To New Delhi</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-bangalore-blr">Flights To Bangalore</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-hyderabad-hyd">Flights To Hyderabad</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-chennai-maa">Flights To Chennai</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-mumbai-bom">Flights To Mumbai</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-kolkata-ccu">Flights To Kolkata</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/city/cheap-flights-to-ahmedabad-amd">Flights To Ahmedabad</a></li>
+                                    </ul>
+                                </li>
+                                <li class="parent">
+                                    <a href="#">POPULAR AIRLINE <span class="arrow-icon"> <i class="fas fa-caret-right"></i> </span></a>
+                                    <ul class="childs">
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/spicejet-sg-flight-tickets">Spicejet</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/vistara-vti-flight-tickets">Vistara</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/indigo-igo-flight-tickets">Indigo</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/air-india-ai-flight-tickets">Air India</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/air-india-express-ix-flight-tickets">Air India Express</a></li>
+                                        <li><a class="" href="https://www.flightsmojo.in/airline/akasa-air-qp-flight-tickets">Akasa Air</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="parent">
+                                    <a href="#">QUICK LINKS<span class="arrow-icon"> <i class="fas fa-caret-right"></i> </span></a>
+                                    <ul class="childs">
+                                        <li><a href="/about-us">About Us</a></li>
+                                        <li><a href="/sitemap">Site Map</a></li>
+                                        <li><a href="/contact-us">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                                <li class="parent">
+                                    <a href="#">LEGAL<span class="arrow-icon"> <i class="fas fa-caret-right"></i> </span></a>
+                                    <ul class="childs">
+                                        <li><a href="/terms-condition">Terms & Conditions</a></li>
+                                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                        <li><a href="/user-agreement">User-agreement</a></li>
+                                        <li><a href="/disclaimer">Disclaimer</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
                 </div>
+            </nav>
        
         </div>
     </header>
@@ -147,23 +166,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12 no-padding">
                             <div class="footer_touch">
                                 <h6>GET IN TOUCH</h6>
                                 <span></span>
                                 <div class="newslatter">
-                                    <h6>Newsletter!</h6>
+                                     @*<h6>Newsletter!</h6>
                                     <input type="text" placeholder="Enter Your mail" />
-                                    <button>Subscribe</button>
+                                    <button>Subscribe</button>*@
 
                                     <a href="mailto:@GlobalData.Email"><i class="fa fa-envelope"></i>@GlobalData.Email</a>
                                 </div>
                                 <div class="social_link">
                                     <ul>
-                                         <li><a class="fb_icon" href="https://www.facebook.com/flightsmojoin/" target="_blank" onclick="SetSocialMedia('facebook')"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a class="fb_icon" href="https://www.facebook.com/flightsmojoin/" target="_blank" onclick="SetSocialMedia('facebook')"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                         <li><a class="insta_icon" href="https://www.instagram.com/flightsmojoindia/" target="_blank" onclick="SetSocialMedia('instagram')"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>   
-                                        @*<li><a href=""><i class="fa fa-twitter-square"></i></a></li>*@
-
+                                        <li><a href="https://twitter.com/FlightsMojo" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/company/flightsmojo/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -338,8 +358,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
         }
+        $(document).ready(function () {
+            $(".parent a").click(function (e) {
 
-        countryDropdown('#country');
+                var childs = $(this).next('.childs');
+                $(childs[0]).slideToggle();
+
+
+                var icon = $(this).find('.arrow-icon');
+                $(icon[0]).toggleClass('rotate');
+
+                //e.preventDefault();
+            })
+
+           
+            $("#toggle-icon").click(function () {               
+            $('#menu').toggle('animate');
+                });
+           
+                $(".menu_none").click(function () {
+                    $("#menu").toggle('animate');   
+
+            })
+        });
     </script>
 <!-- Google Tag Manager (noscript) -->
 

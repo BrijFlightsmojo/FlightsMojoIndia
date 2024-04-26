@@ -758,3 +758,47 @@ function empytTextMob(textName, spanArpName, spanName, hiddenName) {
     $("#" + hiddenName).val("");
     $("#" + textName).focus();
 }
+
+function swapdata() {
+    var fromTopCity = $("#fromTopCity").html();
+    var toTopCity = $("#toTopCity").html();
+    var fromTopCityMob = $("#fromTopCityMob").html();
+    var fromBottamCityMob = $("#fromBottamCityMob").html();
+
+
+    var fromBottamCity = $("#fromBottamCity").html();
+    var toBottamCity = $("#toBottamCity").html();
+    var toTopCityMob = $("#toTopCityMob").html();
+    var toBottamCityMob = $("#toBottamCityMob").html();
+
+
+
+    fromTopCity = $("#toTopCity").html();
+    toTopCity = $("#fromTopCity").html();
+    fromTopCityMob = $("#toTopCityMob").html();
+    fromBottamCityMob = $("#toBottamCityMob").html();
+
+
+    fromBottamCity = $("#toBottamCity").html();
+    toBottamCity = $("#fromBottamCity").html();
+
+    document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
+    document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
+
+    document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
+    document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
+
+
+
+    document.getElementById("fromTopCity").innerHTML = fromTopCity;
+    document.getElementById("toTopCity").innerHTML = toTopCity;
+
+    document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
+    document.getElementById("toBottamCity").innerHTML = toBottamCity;
+
+
+    hfCity_to = $("#hfCity_to").val();
+    hfCity_from = $("#hfCity_from").val();
+    $("#hfCity_to").val(hfCity_from);
+    $("#hfCity_from").val(hfCity_to);
+}

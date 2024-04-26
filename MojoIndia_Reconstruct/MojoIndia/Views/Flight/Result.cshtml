@@ -20,7 +20,9 @@
 position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;box-shadow:none;}
 .desktop {display:none;}
 }
-    
+.fixed-left{width:290px;position: fixed;   
+    max-width: 300px;
+    top:0px;}    
 </style>
 <div ng-app="myApp" ng-controller="myCtrl">
 
@@ -28,7 +30,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
         <div class="modify_con">
             <div class="container no_padding">
                 <div class="destinatin_div">
-                    <div class="modify_left">
+                   <div class="modify_left">
                         <div class="from_to"><a href="/" class="back_icon"><i class="fa fa-arrow-left"></i></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><i class="fa fa-exchange"></i><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
                         <div class="modi_date">
                             <span>@Model.segment[0].travelDate.ToString("dd MMM")</span>
@@ -45,77 +47,88 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                             <span>@Model.tripType | <font class="Result-show" style="display:none;">{{(result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:priceRange ).length}}Results Found</font></span>
                         </div>
                     </div>
-                    <div class="modify_right">
+                    @*<div class="modify_right">
                         <button class="button" onclick="Modify()">MODIFY SEARCH</button>
-                    </div>
+                    </div>*@
                     @{ Html.RenderPartial("/Views/Shared/SearchEngineModify.cshtml");}
                 </div>
                 <div class="repon_filter">
                     <a class="filter_click" href="#"><i class="fa fa-filter"></i></a>
-                    <a class="modify_click" href="#"><i class="fa fa-search"></i></a>
+                    <a class="modify_click" href="#"><i class="fa fa-edit"></i></a>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row" id="flightmozoData">
                 <div class="result_main">
+                    
                     <div class="result_left">
-                        <div class="filtor_top">
-                            <div class="fliter_con">
-                                <h4 class="filter_header">Refine your search</h4>
-                                <div class="box-section Result-Progress">
-                                    <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
-                                    <label class="filter_container">NonStop <input type="checkbox">  <span class="checkmark"></span></label>
-                                    <label class="filter_container">1 Stop<input type="checkbox"><span class="checkmark"></span></label>
-                                    <label class="filter_container">2 Stop<input type="checkbox"><span class="checkmark"></span></label>
-                                </div>
-                                <div class="box-section Result-show" style="display:none;">
-                                    <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
-                                    <div data-ng-repeat="stops in flight.stop">
-                                        <label ng-if="stops.stop==1" class="filter_container">NonStop <input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
-                                        <label ng-if="stops.stop==2" class="filter_container">1 Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
-                                        <label ng-if="stops.stop==3" class="filter_container">2+ Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
+                        <div class="fixed_con">
+                            <div class="filtor_top">
+                                <div class="fliter_con">
+                                    <h4 class="filter_header">Refine your search</h4>
+                                    <div class="box-section Result-Progress">
+                                        <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
+                                        <label class="filter_container">NonStop <input type="checkbox">  <span class="checkmark"></span></label>
+                                        <label class="filter_container">1 Stop<input type="checkbox"><span class="checkmark"></span></label>
+                                        <label class="filter_container">2 Stop<input type="checkbox"><span class="checkmark"></span></label>
                                     </div>
-                                </div>
-                                <div class="box-section">
-                                    <a href="#" class="show_data">Price Range  <i class="fa fa-caret-down"></i></a>
-                                    <div class="show-block">
-                                        <div class="pric-range">
-                                            <p>
-                                                <input type="text" id="amount" readonly>
-                                            </p>
-                                            <div id="slider-range"></div>
+                                    <div class="box-section Result-show" style="display:none;">
+                                        <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
+                                        <div data-ng-repeat="stops in flight.stop">
+                                            <label ng-if="stops.stop==1" class="filter_container">NonStop <input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
+                                            <label ng-if="stops.stop==2" class="filter_container">1 Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
+                                            <label ng-if="stops.stop==3" class="filter_container">2+ Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="box-section">
-                                    <a class="show_data">Departure Time  <i class="fa fa-caret-down"></i></a>
-                                    <ul class="filter_flight_time">
-                                        <li class="active" data-ng-repeat="depD in flight.depTimeDur">
-                                            <div class="filter_timeN" ng-if="depD==1" ng-click="filterDepTimeT(depD)">
-                                                <div class="result_depart_time"><div id="dep1Logo" class="res_dep_img res_dep_morn"></div></div>
-                                                <span>Early Morning</span>
-                                                <p>(12:00am - 4:59am)</p>
+                                    <div class="box-section">
+                                        <div class="pricerane_destop">
+                                            <a href="#" class="show_data">Price Range  <i class="fa fa-caret-down"></i></a>
+                                            <div class="show-block">
+                                                <div class="pric-range">
+                                                    <p>
+                                                        <input type="text" id="amount" readonly>
+                                                    </p>
+                                                    <div id="slider-range"></div>
+                                                </div>
                                             </div>
-                                            <div class="filter_timeN" ng-if="depD==2" ng-click="filterDepTimeT(depD)">
-                                                <div class="result_depart_time"><div id="dep2Logo" class="res_dep_img res_dep_aftern"></div></div>
-                                                <span>Morning</span>
-                                                <p>(5:00am - 11:59am)</p>
-                                            </div>
-                                            <div class="filter_timeN" ng-if="depD==3" ng-click="filterDepTimeT(depD)">
-                                                <div class="result_depart_time"><div id="dep3Logo" class="res_dep_img res_dep_evening"></div></div>
-                                                <span>Afternoon</span>
-                                                <p>(12:00pm - 5:59pm)</p>
-                                            </div>
-                                            <div class="filter_timeN" ng-if="depD==4" ng-click="filterDepTimeT(depD)">
-                                                <div class="result_depart_time"><div id="dep4Logo" class="res_dep_img res_dep_night"></div></div>
-                                                <span>Evening</span>
-                                                <p>(6:00pm - 11:59pm)</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                @if (Model.tripType == TripType.RoundTrip)
+                                        </div>
+                                        <div class="pricerange_mobile">
+                                            <h6> <i class="fa fa-rupee"></i> Price</h6>
+                                            <ul>
+                                                <li><a href="#" class="active">Low to High</a></li>
+                                                <li><a href="#">High to Low</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="box-section">
+                                        <a class="show_data">Departure Time  <i class="fa fa-caret-down"></i></a>
+                                        <ul class="filter_flight_time">
+                                            <li class="active" data-ng-repeat="depD in flight.depTimeDur">
+                                                <div class="filter_timeN" ng-if="depD==1" ng-click="filterDepTimeT(depD)">
+                                                    <div class="result_depart_time"><div id="dep1Logo" class="res_dep_img res_dep_morn"></div></div>
+                                                    <span>Early Morning</span>
+                                                    <p>(12:00am - 4:59am)</p>
+                                                </div>
+                                                <div class="filter_timeN" ng-if="depD==2" ng-click="filterDepTimeT(depD)">
+                                                    <div class="result_depart_time"><div id="dep2Logo" class="res_dep_img res_dep_aftern"></div></div>
+                                                    <span>Morning</span>
+                                                    <p>(5:00am - 11:59am)</p>
+                                                </div>
+                                                <div class="filter_timeN" ng-if="depD==3" ng-click="filterDepTimeT(depD)">
+                                                    <div class="result_depart_time"><div id="dep3Logo" class="res_dep_img res_dep_evening"></div></div>
+                                                    <span>Afternoon</span>
+                                                    <p>(12:00pm - 5:59pm)</p>
+                                                </div>
+                                                <div class="filter_timeN" ng-if="depD==4" ng-click="filterDepTimeT(depD)">
+                                                    <div class="result_depart_time"><div id="dep4Logo" class="res_dep_img res_dep_night"></div></div>
+                                                    <span>Evening</span>
+                                                    <p>(6:00pm - 11:59pm)</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @if (Model.tripType == TripType.RoundTrip)
                                 {
                                 <div class="box-section">
                                     <a href="#" class="show_data">Return Time  <i class="fa fa-caret-down"></i></a>
@@ -182,13 +195,14 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                             </div>
                         </div>
 
-                    </div>
-                    <div class="reslt_right">
-                        <div class="logoanimation Result-Progress" style="">
-                            <img src="" id="mlogoA1" alt="icon" />
-                            <img src="" id="mlogoB1" alt="icon" />
-                            <img src="" id="mlogoC1" alt="icon" />
                         </div>
+                    </div>
+                        <div class="reslt_right">
+                            <div class="logoanimation Result-Progress" style="">
+                                <img src="" id="mlogoA1" alt="icon" />
+                                <img src="" id="mlogoB1" alt="icon" />
+                                <img src="" id="mlogoC1" alt="icon" />
+                            </div>
 
                         <div class="seclect_airline Result-show" style="display:none;">
 
@@ -1136,7 +1150,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
 
         $(function () {
             $("#slider-range").slider({
-                range: true,
+                defaults: true,
                 min: 0,
                 max: 500,
                 values: [0, 500],
@@ -1483,10 +1497,13 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
         function ShowProPopup() {
             $('#ResultProgressPopup').show();
             Select_detail();
+			$('#ResultProgressPopup').hide();
         }
     </script>
     <script>
         $(document).ready(function () {
+		
+		    $('#ResultProgressPopup').hide();
             $(".modify_click,.button").click(function () {
                 $(".modify_search").slideDown("slow");
             });
@@ -1514,7 +1531,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
     <script type="text/javascript">
         var iL = 1;
         $(document).ready(function () {
-
+$('#ResultProgressPopup').hide();
             $('#mlogoA1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode1() + '.gif');
             $('#mlogoB1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode2() + '.gif');
             $('#mlogoC1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode3() + '.gif');
@@ -1791,5 +1808,71 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
+        $(document).ready(function () {
+            $('ul li a').click(function () {
+                $('li a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+
+</script>
+<script type="text/javascript">
+        
+        if ($(window).width() > 960) {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 140) {
+                    $(".fixed_con").addClass("fixed-left");
+                } else {
+                    $(".fixed_con").removeClass("fixed-left");
+                }
+            });
+        }
+</script>
+<script>
+    function swapdata() {
+        var fromTopCity =  $("#fromTopCity").html();
+        var toTopCity = $("#toTopCity").html();
+        var fromTopCityMob = $("#fromTopCityMob").html();
+        var fromBottamCityMob = $("#fromBottamCityMob").html();
+
+
+        var fromBottamCity = $("#fromBottamCity").html();
+        var toBottamCity = $("#toBottamCity").html();
+        var toTopCityMob = $("#toTopCityMob").html();
+        var toBottamCityMob = $("#toBottamCityMob").html();
+
+
+
+        fromTopCity = $("#toTopCity").html();
+        toTopCity = $("#fromTopCity").html();
+        fromTopCityMob = $("#toTopCityMob").html();
+        fromBottamCityMob = $("#toBottamCityMob").html();
+
+
+        fromBottamCity = $("#toBottamCity").html();
+        toBottamCity = $("#fromBottamCity").html();
+
+        document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
+        document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
+
+        document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
+        document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
+
+
+
+        document.getElementById("fromTopCity").innerHTML = fromTopCity;
+        document.getElementById("toTopCity").innerHTML = toTopCity;
+
+        document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
+        document.getElementById("toBottamCity").innerHTML = toBottamCity;
+
+
+        hfCity_to  =$("#hfCity_to").val();
+        hfCity_from = $("#hfCity_from").val();
+        $("#hfCity_to").val(hfCity_from);
+        $("#hfCity_from").val(hfCity_to);
+    }
+
 </script>
 }

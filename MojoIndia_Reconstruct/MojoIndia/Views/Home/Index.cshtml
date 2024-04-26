@@ -64,17 +64,34 @@
     </div>
     <div class="populal_main">
         <div class="container">
-            <h2>Popular Routes</h2>
+            
             <div class="row">
-                <div class="row">
-                    <ul id="ulDealDetails"></ul>
-                    <input type="hidden" id="hfdealType" value="3" />
-                    <input type="hidden" id="hforigin" value="" />
-                    <input type="hidden" id="hfdestination" value="" />
-                    <input type="hidden" id="hfairline" value="" />
-                    <input type="hidden" id="hftripType" value="1" />
-                    <input type="hidden" id="hfcabinClass" value="1" />
+                
+                    <div class="col-md-6">
+                        <div class="poular_Routes">
+                            <h2>Popular International Routes</h2>
+                            <ul id="ulDealDetails"></ul>
+                            <input type="hidden" id="hfdealType" value="3" />
+                            <input type="hidden" id="hforigin" value="" />
+                            <input type="hidden" id="hfdestination" value="" />
+                            <input type="hidden" id="hfairline" value="" />
+                            <input type="hidden" id="hftripType" value="1" />
+                            <input type="hidden" id="hfcabinClass" value="1" />
+                        </div>
+                    </div>
+                <div class="col-md-6">
+                    <div class="poular_Routes">
+						<h2>Popular Domestic Routes</h2>
+                        <ul id="ulDealDetailsInt"></ul>
+                        <input type="hidden" id="hfdealTypeInst" value="6" />
+                        <input type="hidden" id="hforiginInst" value="" />
+                        <input type="hidden" id="hfdestinationInst" value="" />
+                        <input type="hidden" id="hfairlineInst" value="" />
+                        <input type="hidden" id="hftripTypeInst" value="1" />
+                        <input type="hidden" id="hfcabinClassInst" value="1" />
+                    </div>
                 </div>
+                
                 <div class="fare_quted">
                     <h6>*All fares are quoted in INR.</h6>
                     <p>Last updated on @DateTime.Today.AddDays(-7).ToString() , the fares mentioned above are for flight tickets and inclusive of fuel surcharges, <a href="/user-agreement">user agreement.</a> Based on historical data, these fares are subject to change without prior notice and cannot be guaranteed at the time of booking. Kindly go through our <a href="/terms-condition">terms and conditions</a>  before booking.</p>
@@ -118,87 +135,6 @@
         </div>
     </div>
 </main>
-
-@*<div id="bkgOverlay" class="backgroundOverlay"></div>
-        <div id="delayedPopup" class="delayedPopupWindow" style="display:none;">
-            <div class="popup_top">
-              <div class="popup_left">
-                        <img src="/images/logo_white.png" alt="logo" />
-                    </div>
-            <div class="popup_middle">
-                <h2>Want help finding the best deal?</h2>
-                <p>Discover unpublished fares by calling our Toll Free Number.</p>
-            </div>
-            <div class="popup_right">
-                <a id="btnClose" title="Click here to close this deal box.">[X]</a>
-            </div>
-        </div>
-        <div class="popup_main_con container">
-            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5 no-padding pop_divcon">
-                <div class="popup_reason">
-                    <div class="reason_header">
-                        <h5>Top 3 Reasons</h5>
-                        <p>Why Call Us?</p>
-                    </div>
-                    <div class="reason_content">
-                        <div><img src="/images/icon_takeof.png" alt="icon" /><p> Get bargain Airfares!</p></div>
-                        <div><img src="/images/ph24.png" alt="icon" /><p> Enjoy outstanding service!</p></div>
-                        <div><img src="/images/stop_icon2.png" alt="icon" /><p> Save your time on researching deals!</p></div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7 pop_divconone ">
-                <p>Talk to one of our experienced Agents to get the best airfares</p>
-                <h3>You may save up to 70%*</h3>
-                <div class="callus_div">
-                    <div class="call_divc">
-                        <p>CALL(TOLL FREE)</p>
-                        <a href="tel:@ViewBag.PhoneNo">
-                            @ViewBag.PhoneNo
-                        </a>
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                    <div class="cllnow_popup">
-                        <a href="tel:@ViewBag.PhoneNo">
-                            <i class="fa fa-phone"></i>Call Now
-                        </a>
-                    </div>
-                    <p> Disclaimer - *The fares displayed on the website are up to 70 % cheaper as compared to the highest fare in the same cabin.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pop_divcon mob">
-            </div>
-        </div>
-    </div>*@
-
-
-@*@section scripts {
-    <script>
-        $(document).ready(function () {
-            $("#bkgOverlay").delay(1000).fadeIn(400);
-            $("#delayedPopup").delay(1000).fadeIn(400);
-            $("#btnClose").click(function (e) {
-                HideDialog();
-                e.preventDefault();
-            });
-        });
-
-        function HideDialog() {
-            $("#bkgOverlay").fadeOut(400);
-            $("#delayedPopup").fadeOut(400);
-        }
-        function closewebsitePopupBanner() {
-            $(".websitePopupBanner").hide();
-        }
-        $('.dropdown-toggle').on('click', function () {
-            $('.dropdown-menu').fadeToggle("slow");
-        });
-    </script>
-}*@
-
-
 
 
 <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>

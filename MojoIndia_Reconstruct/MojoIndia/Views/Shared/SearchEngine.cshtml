@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="desti_mid">
+                    <div class="desti_mid" onclick="swapdata();">
                         <a></a>
                     </div>
                     <div class="desti_con" onclick="OpenAutoComplete('to')" style="position:relative;" id="SeTo">
@@ -177,23 +177,12 @@
         </div>
     </div>
 </form>
-@*<div class="origin_con MobileSearchAutoComplete" style="display:none;" id="mobAutoCompleteFrom">
-        <a class="crossButn" id="MobCrossFrom"></a>
-        <dfn class="icon_takeoff"></dfn>
-        <h4 class="whereHeading">From</h4>
-        <input id="fromCityMob" name="fromCityMob" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
-        <em class="cross_iconpop" onclick="empytTextMob('fromCityMob', 'spanFromArpMob', 'spanDep', 'hfFromCity')"><a></a></em>
-    </div>
-    <div class="desti_con MobileSearchAutoComplete" style="display:none;" id="mobAutoCompleteTo">
-        <a class="crossButn" id="MobCrossTo"></a>
-        <dfn class="icon_takein"></dfn>
-        <h4 class="whereHeading">To</h4>
-        <input id="toCityMob" name="toCityMob" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="" autocomplete="off" />
-        <em class="cross_iconpop" onclick="empytTextMob('toCityMob', 'spanToArpMob', 'spanRet', 'hfToCity')"><a></a></em>
-    </div>*@
+
 <div class="overlay_bg" id="CalOverLay" style="display:none;"></div>
 <script type="text/javascript">
     var minDate = new Date(parseInt("@DateTime.Now.Year", 10), parseInt("@DateTime.Now.Month", 10) - 1, parseInt("@DateTime.Now.Day", 10));
     var maxDate = new Date(parseInt("@DateTime.Now.Year", 10), (parseInt("@DateTime.Now.Month", 10) - 1) + 11, parseInt("@DateTime.Now.Day", 10));
 </script>
+
+
 

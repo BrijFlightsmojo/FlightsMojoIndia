@@ -14,12 +14,7 @@
                 <div class="modify_from" onclick="OpenAutoComplete('from')" style="position:relative;" id="SeFrom">
                     <dfn class="modiicon_takeoff"></dfn>
                     <span class="modify_orgin">Origin</span>
-                    @*<span class="DesktopCon DestopOrgin" id="fromTopCity">Delhi</span>
-                    <span class="DesktopCon city_span" id="fromBottamCity">[DEL] India</span>
-                    <span class="mobile SeacrFont" id="fromTopCityMob">DEL</span>
-                    <span class="mobile city_span" id="fromBottamCityMob">Delhi</span>
-                    <input type="hidden" id="hfCity_from" name="hfCity_from" value="DEL" />*@
-
+                  
                     <span class="DesktopCon DestopOrgin" id="fromTopCity">@Model.segment[0].orgArp.cityName</span>
                     <span class="DesktopCon city_span" id="fromBottamCity">[@Model.segment[0].orgArp.airportCode] India</span>
                     <span class="mobile SeacrFont" id="fromTopCityMob">@Model.segment[0].orgArp.airportCode</span>
@@ -28,8 +23,7 @@
 
 
 
-                    @*<input id="fromCity" name="fromCity" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="@Model.segment[0].orgArp.cityName" autocomplete="off" />*@
-                    <div class="DestSector DestSectorMobile" id="fromAutoComplete" style="display:none;">
+                   <div class="DestSector DestSectorMobile" id="fromAutoComplete" style="display:none;">
                         <div class="DestDrop">
                             <i class="fa fa-search DesktopCon"></i>
                             <i class="fa fa-angle-left mobileArrow"></i>
@@ -41,25 +35,16 @@
                            
                             <ul class="autoSuggest" id="fromAutoSuggest"></ul>
                         </div>
-                        @*<em class="cross_icon" onclick="empytText('fromCity', 'spanDep', 'hfFromCity')"></em>
-                        <span id="spanFromArpMob">@Model.segment[0].orgArp.airportCode</span>
-                        <span class="modify_span" id="spanDep">@Model.segment[0].orgArp.cityName</span>
-                        <input type="hidden" id="hfFromCity" name="hfFromCity" value="@(Model.segment[0].orgArp.airportCode + " - " + Model.segment[0].orgArp.cityName +  ", " + Model.segment[0].orgArp.countryName)" />*@
-
+                       
                     </div>
                     </div>
-                <div class="modify_mid">
+                <div class="modify_mid" onclick="swapdata()">
                     <a></a>
                 </div>
                 <div class="modify_to" onclick="OpenAutoComplete('to')" style="position:relative;" id="SeTo">
                     <dfn class="modicon_takein"></dfn>
                     <span class="modify_orgin">Destination</span>
-                    @*<span class="DesktopCon DestopOrgin" id="toTopCity">Mumbai</span>
-                    <span class="DesktopCon city_span" id="toBottamCity">[BOM] Mumbai</span>
-                    <span class="mobile SeacrFont" id="toTopCityMob">BOM</span>
-                    <span class="mobile city_span" id="toBottamCityMob">Mumbai</span>
-                    <input type="hidden" id="hfCity_to" name="hfCity_to" value="BOM" />*@
-
+                   
                     <span class="DesktopCon DestopOrgin" id="toTopCity">@Model.segment[0].destArp.cityName</span>
                     <span class="DesktopCon city_span" id="toBottamCity">[@Model.segment[0].destArp.airportCode] @Model.segment[0].destArp.cityName</span>
                     <span class="mobile SeacrFont" id="toTopCityMob">@Model.segment[0].destArp.cityName</span>
@@ -67,13 +52,7 @@
                     <input type="hidden" id="hfCity_to" name="hfCity_to" value="@Model.segment[0].destArp.airportCode" />
 
 
-                    @*<input id="toCity" name="toCity" placeholder="Airport" onkeypress="return LettersOnly(event)" type="text" value="@Model.segment[0].destArp.cityName" autocomplete="off" />
-                    <em class="cross_icon2" onclick="empytText('toCity', 'spanRet', 'hfToCity')"></em>
-                    <span id="spanToArpMob">@Model.segment[0].destArp.airportCode</span>
-                    <span class="city_span" id="spanRet">@Model.segment[0].destArp.cityName</span>
-                    <input type="hidden" id="hfToCity" name="hfToCity" value="@(Model.segment[0].destArp.airportCode + " - " + Model.segment[0].destArp.cityName +  ", " + Model.segment[0].destArp.countryName)" />*@
-                    <div class="DestSector DestSectorMobile" id="toAutoComplete" style="display:none;">
-                        @*<div class="SearchMobHead"><a><i class="fa fa-caret-left"></i>Select Destination City</a></div>*@
+                                       <div class="DestSector DestSectorMobile" id="toAutoComplete" style="display:none;">
                         <div class="DestDrop">
                             <i class="fa fa-search DesktopCon"></i>
                             <i class="fa fa-angle-left mobileArrow"></i>

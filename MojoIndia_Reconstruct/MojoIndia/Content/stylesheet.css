@@ -33,8 +33,10 @@ textarea:focus, input:focus{outline: none;}
 .search_con ul li{ float:left; margin-right:30px;position: relative; font-size: 15px;line-height: 15px;margin-top:1px;}
 .search_con ul li:last-child{ margin-right: 0px;}
 .search_con ul li a{color: #000; font-size:13px;text-decoration: none;font-weight: bold;}
-.ph_icon{background: url(/images/customer.svg) no-repeat;width:25px;height:25px;float: left;margin-right: 6px;}
-
+.search_con ul li a:hover{color:#ff0b00;}
+.ph_icon{background: url(/images/customer.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
+.ph_icon:hover{background: url(/images/customer_hov.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
+.search_con ul li a.ph_icon:hover{background: url(/images/customer_hov.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
 .Scratchpad {width: 22px; height: 22px;background-color: #e83819;border-radius: 50%;color: #fff;display: inline-block;text-align: center;vertical-align: middle;padding:2px;font-size: 14px;}
 .dropdown-toggle::after{display: inline-block;margin-left: .255em;vertical-align: .255em;content: "";border-top: 0em solid;
     border-right: 0.0em solid transparent!important;border-bottom: 0!important;border-left:0 solid transparent!important;}
@@ -45,6 +47,43 @@ textarea:focus, input:focus{outline: none;}
 .pr{position:relative;}
 #mainnav ul li { margin: 0;list-style: none; display: inline-block;}
 .falg_div{display: inline-block;text-align: center;padding-top: 5px;width: 25%;}
+.callContainer span:first-child{ padding-right:25px;}
+.callContainer span:first-child a i{ font-size:18px;}
+.callContainer{width: 25%;float: right;padding: 15px 0;text-align:right;}
+.callContainer a{color: #000; font-size:13px;text-decoration: none;font-weight: bold;}
+.callContainer a:hover{ color:#ff0b00;}
+.callContainerMob{width: 20%;float: right;padding: 15px 0;display:none;}
+.callContainerMob a{color: #000; font-size:12px;text-decoration: none;font-weight: bold;width: 100%;display: flex;padding: 3px 0;}
+.callContainerMob a:hover{ color:#ff0b00;}
+.callContainerMob a:last-child{vertical-align:middle;} 
+.callContainerMob a:last-child i{ padding-top:2px; padding-right:5px; font-size:16px; padding-left:10px;}   
+#toggle-icon{display: none;}
+nav{width: 100%;float: left;position: relative; padding:10px;}
+nav .logo{width:20%;float: left;box-sizing: border-box;}
+nav .menu{width:60%;float: left;display:none;}
+nav .menu .links{text-align: center;width:100%;float: left;}
+nav .menu .links ul{ margin:0px; padding:10px 15px;}
+nav .menu .links li{display: inline-block;margin-top: 10px;}
+nav .menu .links li:hover{margin-top: 0px;}
+nav .menu .links li a{display: block;padding:6px;background-color: #fff;color: #fff;letter-spacing: 1px;}
+nav .menu .links li a:hover{background-color: #6dc0e5;color:#fff;}
+nav .menu .links li a img{ width:55%;}
+nav .menu .links li a i{ font-size:25px;}
+nav .menu .links .parent{position: relative; }
+nav .menu .links .parent .arrow-icon{display: inline-block;transition: 0.4s;}
+nav .menu .links .parent .rotate{transform: rotate(90deg);}
+nav .menu .links .parent .childs{position: absolute;top: 100%;left: 0px;width: 200px;text-align: left;display: none;}
+nav .menu .links .parent .childs li{display: block;margin-top: 0px;}
+
+nav .menu .links .parent .childs li a{padding: 10px 3px;}
+nav .menu .icons{text-align: right;width: 20%;float: left;}
+nav .menu .icons li{display: inline-block;margin-top: 10px;}
+nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;line-height:40px;color:#fff;background:#49494a;font-size:16px;}
+
+
+
+
+
 .country {position: relative;margin: 0 auto;}
 .country .select { position: relative;background: #fff;white-space: nowrap;text-overflow: ellipsis;overflow: hidden; cursor: pointer;font-size: 15px;font-weight: bold;color: #000;}
 .country .select img{padding-right:4px;display: inline-block;}
@@ -352,7 +391,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .modify_con {background: #49494a;float: left; padding: 0px 20px;width: 100%;margin-bottom: 25px;position: relative;top: -4px;}
 
 .destinatin_div,.destinatin_Mod {width:100%;float: left;padding: 4px 0px;}
-.modify_left {float: left;width: 80%;margin-top: 10px;}
+.modify_left {float: left;width: 80%;margin-top: 10px; display:none;}
 .modify_right {float: right;}
 .from_to {float: left;padding: 8px 0;}
 .from_to span {font-size: 15px;color: #fff;padding:0 15px 0 0;}
@@ -361,7 +400,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .modi_pase {float: left;color: #fff;padding: 8px 0px;}
 .modi_pase span {font-size: 15px;padding: 0 4px;}
 .modify_right button {text-align: right; background: linear-gradient(to right,#e83819,#f3850b);color: #fff;font-size: 16px;border: 0;padding: 6px 20px;border-radius: 20px;margin: 6px 0;}
-.modify_search { width: 100%;float: left;background: #fff;padding: 10px;border-radius: 20px;margin-bottom: 15px;display: none;position: relative;}
+
 .modify_menu {width: 100%;float: left;margin-bottom: 6px;}
 .modify_menu ul { margin: 0;padding: 0;list-style-type: none;}
 .modify_menu ul li{float: left; margin-right:15px; padding:6px 0;}
@@ -399,7 +438,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .modify_passenger h4{display:none;}
 .modify_btn{width:10%; float: left;}
 .modify_button{text-align: right;background: #ef6614;color: #fff;font-size:17px;width: 100%;border: 0;padding: 16px 20px;border-radius:15px;margin:0px 0 0 4px; float:left;}
-.modify_close {position: absolute;color: #000;right: 4px;top: 4px;cursor: pointer;}
+.modify_close {position: absolute;color: #000;right: 4px;top: 4px;cursor: pointer;display:none;}
 .modify_close i {font-size: 20px;color: #000;padding: 4px 6px;border: 1px solid #000;border-radius: 50%;}
 
 .modify_from h4{ display:none;}
@@ -673,6 +712,19 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .mar_t30{ margin-top:30px;}
 .exclisivdeal{margin-left: 6px;background: #11970e;color: #fff;font-size: 12px;border-radius: 10px;padding: 2px 10px;}
 .severdeal {margin-left: 6px;background: #5e605d;color: #fff;font-size: 12px;border-radius: 10px;padding: 2px 10px;}
+.pricerange_mobile{ width:100%; display:inline-block;padding-bottom: 15px;display:none; }
+.pricerange_mobile> h6{ display:block;width:100%; margin-bottom:15px; font-size:14px;margin-top:5px;}
+.pricerange_mobile ul{list-style-type:none; margin:0; padding:0;width:100%;display:inline-block;}
+.pricerange_mobile ul li{float:left;}
+.pricerange_mobile ul li:last-child{ margin-left:15px;}
+.pricerange_mobile ul li a{color:#000; font-size:12px; border:1px solid #ccc; border-radius:6px; padding:6px 8px;}
+.pricerange_mobile ul li a:hover{ background:#e83819; color:#fff; border:1px solid #e83819;}
+.pricerange_mobile ul li a.active{background:#e83819; color:#fff;text-decoration:none;}
+
+
+
+
+
 
 /*--------no result page --------------*/
 .search-main-div {width:100%; background: #eee;float:left;}
@@ -762,7 +814,8 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .modi_pase span {font-size: 15px;padding: 0 4px;}
 .modify_right {float: right;}
 .modify_right button {text-align: right;background: linear-gradient(to right,#e83819,#f3850b);color: #fff;font-size: 16px;border: 0;padding: 6px 20px;border-radius: 20px;focus: none;margin: 6px 0;}
-.modify_search {width: 100%;float: left;background: #fff;padding: 10px;border-radius: 20px;margin-bottom: 15px;display: none;position: relative;}
+
+.modify_search { width: 100%;float: left;background: #fff;padding: 10px;border-radius: 20px;margin:10px 0;position: relative;}
 
 .whereHeading {
     display: none;
@@ -805,6 +858,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .box-section {width: 100%;float: left;margin-bottom: 6px;border-bottom: 1px solid #000;}
 .box-section> a {color: #333;text-decoration: none;font-size: 14px;font-weight: 400;margin-bottom: 10px;width: 100%;display: inline-block;margin-top: 20px;}
 .box-section> a:hover {color: #333;text-decoration: none;}
+.pricerane_destop> a{color: #333;text-decoration: none;}
 .filter_text input[type=checkbox] {width: 16px;height: 16px;margin: 4px 6px 0 0;float: left;}
 .pric-range {padding: 12px;padding-bottom: 20px;font-size: 12px;font-weight: 400; color: #333;width: 96%;}
 .pric-range input {width: 100%;border: none;font-weight: 500;background: none;color: #000;}
@@ -834,7 +888,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .filter_call p {width: 100%;float: left;margin: 0;padding: 0;font-size: 16px;}
 .filter_call a {color: #fff;font-size: 24px;font-weight: bold;text-decoration: none;}
 .filter_call a:hover {color: #fff;}
-.reslt_right {width: 73%;float: left;}
+.reslt_right {width: 73%;float: right;}
 .listing_con h4 {text-align: center; font-size: 16px;font-weight: bold;color: #fff;background: #49494a;border-radius: 15px 15px 0 0;padding: 8px;}
 .result_div {width: 100%;float: left;padding: 15px;}
 .onewayDeal{display: inline-block;width: 100%;padding-bottom: 6px;}
@@ -922,7 +976,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
 .populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
-.airline-logo {float: left;padding: 10px; vertical-align: middle;}
+.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
 .airport label {font-weight: 400; font-size: 14px;}
@@ -934,7 +988,10 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .fare_quted h6{font-size: 16px; color: #e83719;}
 .fare_quted p{ font-size: 13px; line-height: 20px; text-align: left;}
 .fare_quted p a{ text-decoration: none;color: #e83719; font-weight: bold;}
-
+.poular_Routes{width:100%; display:inline-block;}
+.poular_Routes ul{margin: 0; padding: 0;list-style: none;}
+.poular_Routes ul li {width:100%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
+.poular_Routes h2{font-size:20px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
 /*--------------------india passenger page css------------*/
 
 .payment_con{margin-top: 35px;width: 100%;float: left;}
@@ -1440,6 +1497,15 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .paymenttymob{ display:none;}
 .flight_footer{ width:100%; float:left; text-align:center; padding:0px;}
 
+.SelectAirline{width: 60%;margin: 0 auto;}
+.SelectAirline h1{ font-size:24px; color:#000; text-align:center;}
+.SelectAirline ul{ list-style-type:none; margin:0; padding:0;}
+.SelectAirline ul li{ display:flex; flex-direction:row; border:1px solid #ccc; padding:20px; margin-bottom:15px;border-radius:6px;justify-content:space-between;}
+.SelectAirline ul li a{background: #ff0b00;padding: 6px 10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
+.SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 5px;}
+
+
+
 /*--------------404pages css---------------------*/
 .detnation404_con{width:100%; float:left; margin:0 auto; padding:0; background:url(/images/404page.jpg)no-repeat; background-size:cover;}
 .content404_con{width:100%; float:left;margin:0 auto; text-align:center; padding:200px;}
@@ -1498,7 +1564,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 /*---------- footer css start--------------*/
 
-.main_footer{width: 100%; float: left; padding: 20px 0;background-color: #49494a;background-image: url(../images/footer_bg.png);background-size: 1366px auto;background-position: center bottom; background-repeat: repeat-x;padding-bottom:320px;}
+.main_footer{width: 100%; float: left; padding: 20px 0;background-color: #49494a;background-image: url(../images/footer_bg.png);background-size: 1366px auto;background-position: center bottom; background-repeat: repeat-x;padding-bottom:180px;}
 .footer_con{width: 100%; float: left; margin: 20px 0 0 0;}
 .footer_company{ width: 100%;display: inline-block;}
 .footer_company h6{ color: #fff; font-size:16px; margin: 0;padding: 0; }
@@ -1513,8 +1579,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .newslatter{ width: 100%; float: left;position: relative;}
 .sbsribe_div{width: 100%; float: left; margin-bottom: 15px;}
 .newslatter h6{ font-size:18px; color: #fff; margin: 0; padding:10px 0;}
-.newslatter input{ width:70%;float: left;padding:7px 8px;border-radius: 20px;border: 0;margin-right: 8px}
-.newslatter button{ background: linear-gradient(to right,#e83819,#f3850b);font-size:14px;color: #fff;text-align: center;display: inline-block;border-radius: 20px;padding:7px 8px 7px 15px;border: 0;font-weight: 500;position: absolute;left: 151px;}
+.newslatter input{ width:100%;float: left;padding:7px 100px 7px 8px;border-radius: 20px;border: 0;margin-right: 8px}
+.newslatter button{ background: linear-gradient(to right,#e83819,#f3850b);font-size:14px;color: #fff;text-align: center;display: inline-block;border-radius: 20px;padding:7px 8px 7px 15px;border: 0;font-weight: 500;position: absolute;right:0px;}
 .newslatter button i{font-size: 12px;padding: 3px 4px;border: 1.5px solid #fff;border-radius: 50%;}
 .newslatter a{ width: 100%; float: left;color:#fff; font-size:15px; margin-top: 10px; padding-left:5px; text-decoration:none;}
 .newslatter a i{ color:#fff; font-size:16px; padding-right:8px;}
@@ -1526,7 +1592,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .insta_icon{background: url(/images/metrial.png) no-repeat -5px -40px;width: 29px;height:29px;float: left;margin-right: 6px;}
 .envelope{background: url(/images/metrial.png) no-repeat -253px -6px;width: 28px; height: 24px;float: left;}*/
 .footer_bottom{float: left; width: 100%;background: #fff;text-align: center;}
-.social_link li a i {color: #e83719;background: #fff;border-radius:50%;padding: 7px 10px;font-size: 20px;}
+.social_link li a i {color: #e83719;background: #fff;border-radius:50%;padding:10px 12px;font-size: 20px;}
 .footer_bottom p{font-size: 13px;width: 100%;padding: 10px 0 0 0;color: #49494a;}
 .flight_footer img {width: 15%;}
 .main_footer2{width:100%; float:left; padding:0; margin:0;}
@@ -1632,12 +1698,16 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .faq_box{ border-bottom:2px solid #ccc; padding-bottom:15px; padding-top:8px;}
 .faq_box p b{ padding-bottom:5px; display:inline-block;}
 .Flight_Air{width:100%; float:left; padding:10px;border:1px solid #ccc;}
-.Flight_Air> ul{list-style-type:none; padding:0; margin:0;}
+.Flight_Air> ul{list-style-type: none;padding: 0;margin: 0;display: flex;flex-direction: row;text-align: center;}
 .Flight_Air> ul li{ padding:20px 0; border:1px solid #ccc; float:left; margin-right:25px;width:10%;text-align:center;}
 .Routes_Con{width:100%; float:left; padding:10px;border:1px solid #ccc; text-align:center;}
 .Routes_Con> ul{list-style-type:none; padding:0; margin:0;}
 .Routes_Con> ul li{ float:left; width:32%;padding:10px;}
 .Routes_Con> ul li a{  color:#d80303; font-size:14px; font-weight:bold; text-decoration:none; cursor:pointer; }
+
+.showBtnfaq{display:block; cursor:pointer; background:#e8e8e8; padding:6px 10px;}
+.showBtnfaq i{text-align:right;float:right;}
+.hidemefaq{ display:none;padding:6px 10px; border:1px solid #ccc;}
 
 /*------------- minisearch page css start here ----------*/
 .searach_popup {display: block;width: 330px;padding: 10px;z-index: 9;background: #49494a;margin-left: 30px;position: absolute;}

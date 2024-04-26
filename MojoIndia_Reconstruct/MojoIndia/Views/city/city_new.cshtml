@@ -83,6 +83,9 @@
         .CitypageLink li:last-child {
             border-right: 0;
         }
+.showBtnfaq{display:block; cursor:pointer; background:#e8e8e8; padding:6px 10px;}
+.showBtnfaq i{text-align:right;float:right;}
+.hidemefaq{ display:none;padding:6px 10px; border:1px solid #ccc;}
 </style>
 
 
@@ -186,70 +189,70 @@
                     <h2>FAQs About Flights </h2>
                     <div class="Flight_Info">
                         <div class="faq_box">
-                            <p><b>Q. @Model.FAQQ1</b></p>
-                            <p> <b>A.</b>  @Model.FAQANS1</p>
+                            <p class="showBtnfaq"><b>Q. @Model.FAQQ1</b></p>
+                            <p class="hidemefaq"> <b>A.</b>  @Model.FAQANS1</p>
                         </div>
                         @if (Model.FAQQ2 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ2</b></p>
-                                <p> <b>A.</b>  @Model.FAQANS2</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ2</b></p>
+                                <p class="hidemefaq"> <b>A.</b>  @Model.FAQANS2</p>
                             </div>
                         }
                         @if (Model.FAQQ3 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ3</b></p>
-                                <p> <b>A.</b>  @Model.FAQANS3</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ3</b></p>
+                                <p class="hidemefaq"> <b>A.</b>  @Model.FAQANS3</p>
                             </div>
                         }
                         @if (Model.FAQQ4 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ4</b></p>
-                                <p><b>A.</b>  @Model.FAQANS4</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ4</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS4</p>
                             </div>
                         }
                         @if (Model.FAQQ5 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ5</b></p>
-                                <p><b>A.</b>  @Model.FAQANS5</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ5</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS5</p>
                             </div>
                         }
                         @if (Model.FAQQ6 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ6</b></p>
-                                <p><b>A.</b>  @Model.FAQANS6</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ6</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS6</p>
                             </div>
                         }
                         @if (Model.FAQQ7 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ7</b></p>
-                                <p><b>A.</b>  @Model.FAQANS7</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ7</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS7</p>
                             </div>
                         }
                         @if (Model.FAQQ8 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ8</b></p>
-                                <p><b>A.</b>  @Model.FAQANS8</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ8</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS8</p>
                             </div>
                         }
                         @if (Model.FAQQ9 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ9</b></p>
-                                <p><b>A.</b>  @Model.FAQANS9</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ9</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS9</p>
                             </div>
                         }
                         @if (Model.FAQQ10 != "")
                         {
                             <div class="faq_box">
-                                <p><b>Q. @Model.FAQQ10</b></p>
-                                <p><b>A.</b>  @Model.FAQANS10</p>
+                                <p class="showBtnfaq"><b>Q. @Model.FAQQ10</b></p>
+                                <p class="hidemefaq"><b>A.</b>  @Model.FAQANS10</p>
                             </div>
                         }
 
@@ -347,5 +350,19 @@
     </div>
 
 </main>
+@section scripts {
+    $('.showBtnfaq').click(function () {
+
+    if ($(this).hasClass('active')) {
+    $(this).removeClass('active');
+    $('.hidemefaq').slideUp();
+    } else {
+    $('.hidemefaq').slideUp();
+    $('.showBtnfaq').removeClass('active');
+    $(this).addClass('active');
+    $(this).next().filter('.hidemefaq').slideDown();
+    }
+    });
 <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
 <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
+}

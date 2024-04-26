@@ -31,6 +31,7 @@
         $(".searach_popup").hide();
     });
     SetWebsiteDeal();
+    SetWebsiteDealInt();
     setCookiesDiv();
 });
 
@@ -249,5 +250,82 @@ function SetSocialMedia(name) {
         'event': 'social_media',
         'link_name':name
     });
+}
+
+
+function SetWebsiteDealInt() {
+
+    if ($("#hfdealTypeInst").length > 0 && $("#ulDealDetailsInt").length > 0)
+        try {
+            var jsonDate = {
+                dealType: 6,
+                origin: $("#hforiginInst").val(),
+                destination: $("#hfdestinationInst").val(),
+                airline: $("#hfairlineInst").val(),
+                tripType: $("#hftripTypeInst").val(),
+                cabinClass: $("#hfcabinClassInst").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/service/getWebsiteDeal",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(jsonDate),
+                responseType: "json",
+                success: function (response) {
+                    DealData = response;
+                    var htmlDataTot = "";
+                    if (response.length > 0) {
+                        for (var i = 0; i < response.length; i++) {
+                            var htmlData = "";
+                            htmlData += "<li>";
+                            htmlData += "    <div class='airline-logo'><img src='/images/flight_small/" + response[i].airline.code + ".gif' alt=''></div>";
+                            htmlData += "    <div class='airport'>";
+                            htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
+                            htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
+                            htmlData += "    </div>";
+                            htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                            htmlData += "    <div class='airport return'>";
+                            htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
+                            htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
+                            htmlData += "    </div>";
+                            htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "','" + response[i].origin.airportCode + "', '" + response[i].destination.airportCode + "', '" + response[i].retDate + "', '1', '" + response[i].airline.code + "', '" + response[i].airline.code + "')\">";
+                            htmlData += "        ₹" + response[i].totalFare + "";
+                            htmlData += "    </div>";
+                            htmlData += "</li>";
+                            i++;
+                            if (i < response.length) {
+                                htmlData += "<li>";
+                                htmlData += "    <div class='airline-logo'><img src='/images/flight_small/" + response[i].airline.code + ".gif' alt=''></div>";
+                                htmlData += "    <div class='airport'>";
+                                htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
+                                htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
+                                htmlData += "    </div>";
+                                htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                                htmlData += "    <div class='airport return'>";
+                                htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
+                                htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
+                                htmlData += "    </div>";
+                                htmlData += "    <div class='price eng-open' onclick=\"OpenPage(this,'" + response[i].deepLink + "','" + response[i].origin.airportCode + "', '" + response[i].destination.airportCode + "', '" + response[i].retDate + "', '1', '" + response[i].airline.code + "', '" + response[i].airline.code + "')\">";
+                                htmlData += "        ₹" + response[i].totalFare + "";
+                                htmlData += "    </div>";
+                                htmlData += "</li>";
+                                htmlDataTot += htmlData;
+                            }
+                        }
+                        $("#ulDealDetailsInt").html(htmlDataTot)
+                    }
+                    else {
+                        $("#ulDealDetailsInt").html("");
+                    }
+                },
+                error: function (response) {
+
+                    $("#ulDealDetailsInt").html("");
+                }
+            })
+        } catch (i) {
+            $("#ulDealDetailsInt").html("");
+        }
 }
 
