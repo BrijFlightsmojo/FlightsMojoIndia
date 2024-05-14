@@ -1,0 +1,12 @@
+
+localhost/flight/GF_FlightResult?Adult=4&Child=1&PointOfSaleCountry=IN&DisplayedPrice=129922&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-23&DepartureTime1=04:50&ArrivalDate1=2024-05-23&ArrivalTime1=06:50&Origin1=DEL&Destination1=BDQ&BookingCode1=Y&FlightNumber1=823&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=4&Child=1&PointOfSaleCountry=IN&DisplayedPrice=129922&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-23&DepartureTime1=04:50&ArrivalDate1=2024-05-23&ArrivalTime1=06:50&Origin1=DEL&Destination1=BDQ&BookingCode1=Y&FlightNumber1=823&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=4&Child=1&PointOfSaleCountry=IN&DisplayedPrice=129922&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-23&DepartureTime1=04:50&ArrivalDate1=2024-05-23&ArrivalTime1=06:50&Origin1=DEL&Destination1=BDQ&BookingCode1=Y&FlightNumber1=823&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=4&Child=1&PointOfSaleCountry=IN&DisplayedPrice=129922&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-23&DepartureTime1=04:50&ArrivalDate1=2024-05-23&ArrivalTime1=06:50&Origin1=DEL&Destination1=BDQ&BookingCode1=Y&FlightNumber1=823&ReferralId=GOOG_GFS_0000
+

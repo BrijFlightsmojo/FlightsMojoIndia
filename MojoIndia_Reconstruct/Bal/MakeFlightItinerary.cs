@@ -14,7 +14,7 @@ namespace Bal
         public static string[] airlineArr = new string[] { "6E", "AI", "G8", "I5", "IX", "QP", "SG", "QQ", "UK" };
         public static bool isSetMarkupRule = false;
         public static Bal.GfMarkup.RuleSet ruleSet = null;
-        public Bal.GfMarkup.FeeRule GetFlightResult(AirContext airContext)
+        public Bal.GfMarkup.FeeRule GetFlightResult(AirContext airContext,ref string strAirline)
         {
             string ss = Newtonsoft.Json.JsonConvert.SerializeObject(airContext.flightSearchRequest);
             airContext.flightSearchResponse = new Core.Flight.FlightSearchResponse()
@@ -79,6 +79,10 @@ namespace Bal
                         layOverTime = 0
 
                     };
+                    if (strAirline.IndexOf(seg.Airline) == -1)
+                    {
+                        strAirline += seg.Airline;
+                    }
                     if (airlineArr.Contains(seg.Airline))
                     {
                         seg.url = "/images/airlinesSvg/" + seg.Airline + ".svg";
@@ -282,7 +286,6 @@ namespace Bal
             ).OrderBy(k => k.SequenceNum).ToList();
 
             return fareRule.FirstOrDefault();
-
         }
         public Bal.GfMarkup.FeeRule getFareRule(AirContext airContext, decimal totFare)
         {

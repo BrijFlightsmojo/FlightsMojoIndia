@@ -1,0 +1,3 @@
+
+localhost/flight/GF_FlightResult?Adult=1&PointOfSaleCountry=IN&DisplayedPrice=41896&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-03-30&DepartureTime1=07:20&ArrivalDate1=2024-03-30&ArrivalTime1=10:10&Origin1=BLR&Destination1=DEL&BookingCode1=Y&FlightNumber1=513&ReferralId=GOOG_GFS_0000
+

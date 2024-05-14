@@ -1,0 +1,9 @@
+
+localhost/flight/GF_FlightResult?Adult=1&PointOfSaleCountry=IN&DisplayedPrice=21008&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-28&DepartureTime1=05:30&ArrivalDate1=2024-05-28&ArrivalTime1=07:25&Origin1=BOM&Destination1=AMD&BookingCode1=Y&FlightNumber1=613&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=1&PointOfSaleCountry=IN&DisplayedPrice=21008&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-28&DepartureTime1=05:30&ArrivalDate1=2024-05-28&ArrivalTime1=07:25&Origin1=BOM&Destination1=AMD&BookingCode1=Y&FlightNumber1=613&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=1&PointOfSaleCountry=IN&DisplayedPrice=21008&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-05-28&DepartureTime1=05:30&ArrivalDate1=2024-05-28&ArrivalTime1=07:25&Origin1=BOM&Destination1=AMD&BookingCode1=Y&FlightNumber1=613&ReferralId=GOOG_GFS_0000
+

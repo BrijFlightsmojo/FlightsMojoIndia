@@ -1,0 +1,11 @@
+System.IO.IOException: The process cannot access the file 'D:\30-04-2024\MojoIndia_Addons\MojoIndia\Log\DeepLink_getFlightResult_02May24.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append)
+   at System.IO.File.AppendText(String path)
+   at Bal.LogWriter.LogWrite(String logMessage, String FileName) in D:\30-04-2024\MojoIndia_Addons\Bal\FlightDetails.cs:line 1058
+   at Bal.LogWriter..ctor(String logMessage, String FileName) in D:\30-04-2024\MojoIndia_Addons\Bal\FlightDetails.cs:line 1048
+   at MojoIndia.Controllers.FlightController.searchFlightResult() in D:\30-04-2024\MojoIndia_Addons\MojoIndia\Controllers\FlightController.cs:line 446

@@ -1831,44 +1831,47 @@ $('#ResultProgressPopup').hide();
 </script>
 <script>
     function swapdata() {
-        var fromTopCity =  $("#fromTopCity").html();
+        var fromTopCity = $("#fromTopCity").html();
         var toTopCity = $("#toTopCity").html();
-        var fromTopCityMob = $("#fromTopCityMob").html();
-        var fromBottamCityMob = $("#fromBottamCityMob").html();
-
-
         var fromBottamCity = $("#fromBottamCity").html();
         var toBottamCity = $("#toBottamCity").html();
+
+        var fromTopCityMob = $("#fromTopCityMob").html();
+        var fromBottamCityMob = $("#fromBottamCityMob").html();
         var toTopCityMob = $("#toTopCityMob").html();
         var toBottamCityMob = $("#toBottamCityMob").html();
 
-
-
         fromTopCity = $("#toTopCity").html();
         toTopCity = $("#fromTopCity").html();
-        fromTopCityMob = $("#toTopCityMob").html();
-        fromBottamCityMob = $("#toBottamCityMob").html();
-
-
         fromBottamCity = $("#toBottamCity").html();
         toBottamCity = $("#fromBottamCity").html();
 
+        fromTopCityMob = $("#toBottamCityMob").html();
+        fromBottamCityMob = $("#toTopCityMob").html();
+        toTopCityMob = $("#fromBottamCityMob").html();
+        toBottamCityMob = $("#fromTopCityMob").html();
+
         document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
         document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
-
         document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
         document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
 
-
-
+        document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
+        document.getElementById("fromTopCityMob").innerHTML = document.getElementById("toBottamCityMob").innerHTML;
+        document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromTopCityMob").innerHTML;
+        document.getElementById("fromBottamCityMob").innerHTML = document.getElementById("toTopCityMob").innerHTML;
+        
         document.getElementById("fromTopCity").innerHTML = fromTopCity;
         document.getElementById("toTopCity").innerHTML = toTopCity;
-
         document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
         document.getElementById("toBottamCity").innerHTML = toBottamCity;
 
+        document.getElementById("fromTopCityMob").innerHTML = fromBottamCityMob;
+        document.getElementById("fromBottamCityMob").innerHTML = fromTopCityMob;
+        document.getElementById("toBottamCityMob").innerHTML = toTopCityMob;//toBottamCityMob
+        document.getElementById("toTopCityMob").innerHTML = toBottamCityMob;//toTopCityMob
 
-        hfCity_to  =$("#hfCity_to").val();
+        hfCity_to = $("#hfCity_to").val();
         hfCity_from = $("#hfCity_from").val();
         $("#hfCity_to").val(hfCity_from);
         $("#hfCity_from").val(hfCity_to);

@@ -20,7 +20,7 @@ textarea:focus, input:focus{outline: none;}
 .logo{ width:20%; float:left; position: relative;z-index:1;margin-left: -15px;padding-left: 10px;}
 .top_cut {width: 248px;height: 16px;transform: skew( 301deg);background: #fff;position: absolute;left: -13px;top:60px;z-index: -1;}
 .logo a{width: 100%;float: left;padding:10px 10px;}
-
+.airline-logo img{width:35px;}
 .header_right{width:80%; float:left;margin-top:5px; position: relative;}
 .main_menu{width:30%; float: left;margin-top: 10px;text-align: center;padding-right:40px;padding-top: 5px;}
 .main_menu ul{ margin: 0; padding: 0; list-style-type: none;float: right;}
@@ -37,6 +37,7 @@ textarea:focus, input:focus{outline: none;}
 .ph_icon{background: url(/images/customer.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
 .ph_icon:hover{background: url(/images/customer_hov.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
 .search_con ul li a.ph_icon:hover{background: url(/images/customer_hov.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}
+/*.ph_iconmob{background: url(/images/support12.svg) no-repeat;width: 25px;height: 25px;margin-right: 6px;display: inline-block;vertical-align: middle;}*/
 .Scratchpad {width: 22px; height: 22px;background-color: #e83819;border-radius: 50%;color: #fff;display: inline-block;text-align: center;vertical-align: middle;padding:2px;font-size: 14px;}
 .dropdown-toggle::after{display: inline-block;margin-left: .255em;vertical-align: .255em;content: "";border-top: 0em solid;
     border-right: 0.0em solid transparent!important;border-bottom: 0!important;border-left:0 solid transparent!important;}
@@ -53,7 +54,7 @@ textarea:focus, input:focus{outline: none;}
 .callContainer a{color: #000; font-size:13px;text-decoration: none;font-weight: bold;}
 .callContainer a:hover{ color:#ff0b00;}
 .callContainerMob{width: 20%;float: right;padding: 15px 0;display:none;}
-.callContainerMob a{color: #000; font-size:12px;text-decoration: none;font-weight: bold;width: 100%;display: flex;padding: 3px 0;}
+.callContainerMob a{color: #fff; font-size:12px;text-decoration: none;width: 100%;display: flex;padding: 3px 6px;}
 .callContainerMob a:hover{ color:#ff0b00;}
 .callContainerMob a:last-child{vertical-align:middle;} 
 .callContainerMob a:last-child i{ padding-top:2px; padding-right:5px; font-size:16px; padding-left:10px;}   
@@ -66,7 +67,8 @@ nav .menu .links ul{ margin:0px; padding:10px 15px;}
 nav .menu .links li{display: inline-block;margin-top: 10px;}
 nav .menu .links li:hover{margin-top: 0px;}
 nav .menu .links li a{display: block;padding:6px;background-color: #fff;color: #fff;letter-spacing: 1px;}
-nav .menu .links li a:hover{background-color: #6dc0e5;color:#fff;}
+nav .menu .links li a:hover{background-color: #6dc0e5;color:#fff;display: inline-block;
+    width: 100%;}
 nav .menu .links li a img{ width:55%;}
 nav .menu .links li a i{ font-size:25px;}
 nav .menu .links .parent{position: relative; }
@@ -129,8 +131,8 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 .search_menu{width:100%; display:inline-block;}
 .search_menu ul{list-style-type: none;display: flex;padding: 0;margin: -54px 0 0 -15px;position: absolute;}
 .search_menu ul li{float:left;}
-.search_menu ul li a{text-decoration:none;font-size:20px;font-weight:bold;background: #000;padding: 0px 40px;color: #fff;border-radius:30px;line-height:46px;height:46px;display: inline-block;}
-.search_menu ul li a  a:hover{text-decoration:none; background: linear-gradient(to right,#e83819,#f3850b); color: #fff;border-radius:30px;}
+.search_menu ul li a{text-decoration:none;font-size:20px;font-weight:bold;background: #49494a;padding: 0px 40px;color: #fff;border-radius:30px;line-height:46px;height:46px;display: inline-block;}
+.search_menu ul li a:hover{text-decoration:none; background: linear-gradient(to right,#e83819,#f3850b); color: #fff;border-radius:30px;}
 .search_menu ul li .active{text-decoration:none; background: linear-gradient(to right,#e83819,#f3850b); color: #fff;border-radius:30px;}
 .flight_menu{width:100%; float:left; margin: 0;}
 .flight{position: relative;z-index: 2;margin-right: -33px;}
@@ -976,7 +978,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
 .populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
-.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;}
+.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;float:left;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
 .airport label {font-weight: 400; font-size: 14px;}
@@ -993,6 +995,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .poular_Routes ul li {width:100%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .poular_Routes h2{font-size:20px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
 /*--------------------india passenger page css------------*/
+.airline-logo img{width:35px;}
 
 .payment_con{margin-top: 35px;width: 100%;float: left;}
 .payment-page { position: relative;z-index: 1;}
@@ -1498,9 +1501,10 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .flight_footer{ width:100%; float:left; text-align:center; padding:0px;}
 
 .SelectAirline{width: 60%;margin: 0 auto;}
-.SelectAirline h1{ font-size:24px; color:#000; text-align:center;}
+.SelectAirline> h1{ font-size:24px; color:#000; text-align:center;}
 .SelectAirline ul{ list-style-type:none; margin:0; padding:0;}
 .SelectAirline ul li{ display:flex; flex-direction:row; border:1px solid #ccc; padding:20px; margin-bottom:15px;border-radius:6px;justify-content:space-between;}
+.SelectAirline ul li span img{width:40px;}
 .SelectAirline ul li a{background: #ff0b00;padding: 6px 10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
 .SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 5px;}
 
@@ -1646,8 +1650,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 .cover{background:rgba(0,0,0,0.61);position:fixed;width:100%;height:100%;display:none;top:0;right: 0;bottom: 0;left: 0;margin: 0;padding: 0;z-index: 101;display: none; border-radius:30px;}
 .contents{width:550px;top: 50%;background:#fff;margin:30px auto;position:fixed;text-align:center;transform: translate(-50%, -50%);left:50%;z-index: 102;}
-.contents h1{color: #dc3545;font-size: 18px;padding: 15px 10px 15px 14px;text-align: left;float: left;width: 100%;background-color: #fafafa;border-bottom: 1px solid #e9ecef;}
-
+.contents h1{color: #dc3545;font-size:20px;padding: 15px 10px 15px 14px;text-align: center;float: left;width: 100%;background-color: #fafafa;border-bottom: 1px solid #e9ecef;font-weight:bold;}
+.contents h1 img{width:25px;vertical-align: bottom;}
 .close_group{position: absolute;bottom: 15px;text-align: center;left:94%;cursor: pointer;color: #fff;font-size: 14px;top:12px;background: url(/images/close.svg) no-repeat;width: 20px;height: 20px;
     float: left;}
 .Group_Trip{width:100%; float:left; }

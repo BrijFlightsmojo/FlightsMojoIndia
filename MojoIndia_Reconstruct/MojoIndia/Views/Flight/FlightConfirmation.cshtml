@@ -227,33 +227,25 @@
                 <h1>We are Sorry!</h1>
                 <br />
                 <h4 style="text-align:justify;color:white;">
-                    Your booking has failed. Due to real time availability, your booking was not completed successfully.
-                    We are trying to complete the booking process manually on our end. We will update you the final status within next 30 minutes.
-                    In case we are unable to confirm, a full refund will be processed back to the original form of payment.
-                    Please do not create any duplicate booking until the final status is updated.s
-                    Please call us at 0124-445-2000 for any further clarification.
+                    Your booking is currently in a failed status due to limited seat availability or an expired session, which is an exceptional scenario.
+                    Please rest assured, we are working to resolve the issue and will update you within 30 minutes regarding booking confirmation or refund.
+                    Avoid creating duplicate bookings until the final status is updated.
+                    For queries, contact us at @GlobalData.Phone.
                 </h4>
             }
             else
             {
-                <h1>
-                    Your booking is in Progress! <img src="~/images/1495.gif" />
-                </h1>
-
+                <h1> Your booking is in Progress! <img src="~/images/1495.gif" /> </h1>
                 <br />
                 <h4 style="text-align:justify;color:white;">
-                    Your booking is currently being processed by the airline.
-                    We'll notify you when the ticketing is complete, and your tickets will be sent via email/WhatsApp.
-                    Please do not create duplicate bookings until the final status is updated.
-                    <br />
-                    A full refund will be issued if confirmation isn't possible. For any queries, contact us at 0124-445-2000.
+                    Your booking is currently being processed, Please wait for next 30 minutes while we confirm your booking.
+                    Avoid creating duplicate bookings until the final status is updated.
+                    Once ticketing is completed, tickets will be sent via email/WhatsApp.
+                    Full refund will be issued if booking confirmation isn't possible. For any queries, contact us at @GlobalData.Phone.
                 </h4>
             }
 
-
-
             <div class="conformBot">
-
                 @if (Model.paymentStatus == PaymentStatus.Completed)
                 {
                     <span>Payment Status: @Model.paymentStatus.ToString()</span>
@@ -502,7 +494,7 @@
                         }
                         else
                         {
-                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
                         }
                     </tr>
                 </table>
@@ -608,13 +600,18 @@
                     @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
                     @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType==Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                     { <h6>IMPORTANT INFORMATION</h6>
-                        <ul>
-                           <li>This exclusive deal is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
-                <li>The Fare Selected by You is a <strong> Special Category Group Promotional Fare.</strong></li>
-                <li>This is a 100% Confirmed Ticket.You will be able check the status of your PNR on airline website or call center but names will be update  <strong> 12 to 24hrs </strong> prior to the flight departure.</li>
-                <li>Web check-in is mandatory to board flights.</li>
-                <li>Please reconfirm the Terminal Information with the boarding pass.</li>
-                        </ul>
+                    <ul>
+                        <li>This booking and airline PNR is <strong> 100% confirmed </strong> under Group Fare Category.</li>
+                        <li>The traveller’s name will be displayed on the airline's website within <strong> 12 hours prior </strong>to the departure time, along with other travellers in the group PNR.</li>
+                        <li>Web Check-in for this ticket can be done a day before the journey <strong>after 9 PM.</strong></li>
+                        <li>This fare type is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
+
+                        @*<li>This exclusive deal is <strong> 100% Non-Refundable, Non-Changeable & Non-Cancellable.</strong></li>
+                            <li>The Fare Selected by You is a <strong> Special Category Group Promotional Fare.</strong></li>
+                            <li>This is a 100% Confirmed Ticket.You will be able check the status of your PNR on airline website or call center but names will be update  <strong> 12 to 24hrs </strong> prior to the flight departure.</li>
+                            <li>Web check-in is mandatory to board flights.</li>
+                            <li>Please reconfirm the Terminal Information with the boarding pass.</li>*@
+                    </ul>
                     }
 <h6>Terms & Conditions</h6>
                     <ul>

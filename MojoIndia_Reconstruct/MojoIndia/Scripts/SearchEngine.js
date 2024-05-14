@@ -436,6 +436,9 @@ $(document).ready(function () {
             }
             if ($("#hfTripType").val() == "2") {
                 var dateRetMin = $('#return_date').datepicker("getDate");
+                if (dateRetMin == null) {
+                    dateRetMin = minDate;
+                }
                 var dMin = new Date(dateDepMin.getFullYear(), dateDepMin.getMonth(), dateDepMin.getDate());
                 if (dateRetMin != null) {
                     $("#return_date").datepicker("change", {
@@ -775,27 +778,45 @@ function swapdata() {
 
     fromTopCity = $("#toTopCity").html();
     toTopCity = $("#fromTopCity").html();
-    fromTopCityMob = $("#toTopCityMob").html();
-    fromBottamCityMob = $("#toBottamCityMob").html();
+    fromTopCityMob = $("#toBottamCityMob").html();
+    fromBottamCityMob = $("#toTopCityMob").html();
+    
+    
 
 
     fromBottamCity = $("#toBottamCity").html();
     toBottamCity = $("#fromBottamCity").html();
+    toTopCityMob = $("#fromBottamCityMob").html();
+    toBottamCityMob = $("#fromTopCityMob").html();
+
+
 
     document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
     document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
 
+    document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
+
+    document.getElementById("fromTopCityMob").innerHTML = document.getElementById("toBottamCityMob").innerHTML;
+    document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromTopCityMob").innerHTML;
+
+
     document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
     document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
 
+    document.getElementById("fromBottamCityMob").innerHTML = document.getElementById("toTopCityMob").innerHTML;
+    document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
 
 
     document.getElementById("fromTopCity").innerHTML = fromTopCity;
     document.getElementById("toTopCity").innerHTML = toTopCity;
 
+    document.getElementById("fromTopCityMob").innerHTML = fromTopCityMob;
+    document.getElementById("toBottamCityMob").innerHTML = toBottamCityMob;
+
     document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
     document.getElementById("toBottamCity").innerHTML = toBottamCity;
-
+    document.getElementById("fromBottamCityMob").innerHTML = fromBottamCityMob;
+    document.getElementById("toTopCityMob").innerHTML = toTopCityMob;
 
     hfCity_to = $("#hfCity_to").val();
     hfCity_from = $("#hfCity_from").val();

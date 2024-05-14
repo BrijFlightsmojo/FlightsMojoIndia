@@ -9,17 +9,95 @@
     <title>Flights Searching: Flightsmojo in Travel Deals, Cheap Flight Deals, Airline Deals</title>
 }
 <style>
-.SessionTimeOutFlight {position: fixed;display: none;width: 100%;height: 100%;left: 0;top: 0;margin: 0 auto;z-index: 999999;background: rgba(0, 0, 0, 0.61);}
-.SessionTimeOutFlight .sessionboxFlight {top:70%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);position: relative;height: 214px;width: 460px;}
-.SessionTimeOutFlight .BookingProgressBar {top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);position: relative;height: 214px;width: 460px; }
-.Noprice_match> p{width:100%; font-size:14px;color:#000;line-height:25px; float:left;}
-.noresultmatch{width:100%; float:left; margin:15px; text-align:center;padding-top:20px;}
-.session-2{width:100%; float:left;}
-.session-headflight {background: linear-gradient(to right,#e83819,#f3850b);font-size:20px;color: #fff;margin: 0;border-radius: 6px 6px 0 0;padding: 8px;text-align:center;}
-.session-expflight {width:40%;box-shadow: 1px 0 5px 0 rgba(0,0,0,0.75);background: #fff;background-color: #fff;border-radius: 5px;z-index: 99999;height:350px;}
-.Noprice_match{width: 100%;float: left;padding-bottom: 30px;}
+    .SessionTimeOutFlight {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin: 0 auto;
+        z-index: 999999;
+        background: rgba(0, 0, 0, 0.61);
+    }
+
+        .SessionTimeOutFlight .sessionboxFlight {
+            top: 70%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            position: relative;
+            height: 214px;
+            width: 460px;
+        }
+
+        .SessionTimeOutFlight .BookingProgressBar {
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            position: relative;
+            height: 214px;
+            width: 460px;
+        }
+
+    .Noprice_match > p {
+        width: 100%;
+        font-size: 14px;
+        color: #000;
+        line-height: 25px;
+        float: left;
+    }
+
+    .noresultmatch {
+        width: 100%;
+        float: left;
+        margin: 15px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .session-2 {
+        width: 100%;
+        float: left;
+    }
+
+    .session-headflight {
+        background: linear-gradient(to right,#e83819,#f3850b);
+        font-size: 20px;
+        color: #fff;
+        margin: 0;
+        border-radius: 6px 6px 0 0;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .session-expflight {
+        width: 40%;
+        box-shadow: 1px 0 5px 0 rgba(0,0,0,0.75);
+        background: #fff;
+        background-color: #fff;
+        border-radius: 5px;
+        z-index: 99999;
+        height: 350px;
+    }
+
+    .Noprice_match {
+        width: 100%;
+        float: left;
+        padding-bottom: 30px;
+    }
+    .logo a img {
+    width: 60%;
+    padding-left: 20px;
+}
+    @@media screen and ( max-width:767px){
+        .session-expflight{width:100%;}
+        .session-expflight{height:380px;}
+        .noresultmatch{padding-top: 0px;margin: 0px;}
+    }
 </style>
-<main>  
+<main>
 
     <div class="modify_con">
 
@@ -35,7 +113,7 @@
                         }
                         <font>|</font>
                     </div>
-                    <div class="modi_pase"><span>@Model.cabinType.ToString()</span> | <span>@(Model.adults + Model.child + Model.infants + Model.infantsWs) Passenger(s)</span> | <span>@Model.tripType | <font class="Result-show" style="display:none;">{{(result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:AirlineMatrixFilter | filter:priceRange | filter:FlexiFareFilter | filter:NearByFilter | filter:AllFareFilter | filter:filterByGds | filter:filterByFareType).length}}Results Found</font></span></div>
+                    <div class="modi_pase"><span>@Model.cabinType.ToString()</span> | <span>@(Model.adults + Model.child + Model.infants) Passenger(s)</span> | <span>@Model.tripType | <font class="Result-show" style="display:none;">{{(result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:AirlineMatrixFilter | filter:priceRange | filter:FlexiFareFilter | filter:NearByFilter | filter:AllFareFilter | filter:filterByGds | filter:filterByFareType).length}}Results Found</font></span></div>
                 </div>
                 <div class="modify_right">
                     <button class="button">MODIFY SEARCH</button>
@@ -58,26 +136,26 @@
             <div class="middle-search_no">
                 <div class="no_result">
                     @*<div class="no_result_left">
-                        <div class=""><img src="/images/call_center.jpg" alt="call-center" /></div>
-                        <h1>Sorry! No Result Found</h1>
-                        <p>We have Searched more than million Flights Combination. We didn't find any Flights for Your Search. </p>
-                        <h3>Let Our Agents Help You Find The Best Flight Option!</h3>
-                        <h5> Call Now Toll Free</h5>
-                        <a href="tel:@ViewBag.PhoneNo"><dfn></dfn> @ViewBag.PhoneNo</a>
-                    </div>*@
-                    @*<div class="no_result_right"><img src="/images/call_center.png" alt="call-center" /></div>*@
+                            <div class=""><img src="/images/call_center.jpg" alt="call-center" /></div>
+                            <h1>Sorry! No Result Found</h1>
+                            <p>We have Searched more than million Flights Combination. We didn't find any Flights for Your Search. </p>
+                            <h3>Let Our Agents Help You Find The Best Flight Option!</h3>
+                            <h5> Call Now Toll Free</h5>
+                            <a href="tel:@ViewBag.PhoneNo"><dfn></dfn> @ViewBag.PhoneNo</a>
+                        </div>*@
+                    <div class="no_result_right"><img src="/images/call_center.png" alt="call-center" /></div>
                 </div>
-                <div class="mobile-calling">
-                    <div class="mobile_left"><img src="/images/telephone.png" class="dep-ai-img" alt="phone-icon" /> </div>
-                    <div class="mobile_mid">
-                        <h3>Call us for phone only </h3>
-                        <span>unpublished fares</span>
-                        <div class="deal-code">Deal Code: A2258512</div>
+               <div class="mobile-calling">
+                        <div class="mobile_left"><img src="/images/telephone.png" class="dep-ai-img" alt="phone-icon" /> </div>
+                        <div class="mobile_mid">
+                            <h3>Call us for phone only </h3>
+                            <span>unpublished fares</span>
+                            <div class="deal-code">Deal Code: A2258512</div>
+                        </div>
+                        <div class="mobile_last">
+                            <a href="tel:@ViewBag.PhoneNo" class="btn  float-right" aria-hidden="true" style="background-color: #0b4a80 !important; color:#fff; "> <i class="fa fa-phone"></i> CALL </a>
+                        </div>
                     </div>
-                    <div class="mobile_last">
-                        <a href="tel:@ViewBag.PhoneNo" class="btn  float-right" aria-hidden="true" style="background-color: #0b4a80 !important; color:#fff; "> <i class="fa fa-phone"></i> CALL </a>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -86,29 +164,31 @@
 <div id="divSessionOut" class="SessionTimeOutFlight" style="display:block !important;">
     <div class="sessionboxFlight" style="display:block !important; height:80%; width:80%;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-xs-12">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 session-expflight no_padding">
                     <h2 class="session-headflight">Selected Flight not match, You can see another option</h2>
-                    <div class="session_content"> 
-                        <div class="Noprice_match"><p>
-    We are unable to fetch details for the selected airlines at the moment,
-    but we have alternate airlines with similar fares available.
-    You may check and book from the available airlines.
-    We apologize for the inconvenience caused to you.
-    <b>Please click on 'Go to all result'.</b>
-</p></div>                       
+                    <div class="session_content">
+                        <div class="Noprice_match">
+                            <p>
+                                We are unable to fetch details for the selected airlines at the moment,
+                                but we have alternate airlines with similar fares available.
+                                You may check and book from the available airlines.
+                                We apologize for the inconvenience caused to you.
+                                <b>Please click on 'Go to all result'.</b>
+                            </p>
+                        </div>
                         <div class="noresultmatch"><p class="session-2"><a href="/flight/result/@Model.userSearchID" class="search-button-01 se-05">Go to all result</a></p></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </div>
 
 @section scripts {
     @Scripts.Render("~/bundles/MojoJsResult")
-   <script>
+    <script>
         $(document).ready(function () {
 
             $(".modify_click,.button,.modify_clickNO").click(function () {

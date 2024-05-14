@@ -1,0 +1,6 @@
+
+localhost/flight/itinerary?sec1=BLR|DEL|2024-04-25&sec2=DEL|BLR|2024-05-05&adults=1&child=0&infants=0&cabin=1&airline=all&siteid=2&campain=1015&currency=INR&TranId=020424205026046f135121fa4ebebf24097b7a33e0cf&Id=6642.00_8537_&tt=RoundTrip
+
+
+localhost/flight/itinerary?sec1=BLR|DEL|2024-04-25&sec2=DEL|BLR|2024-05-05&adults=1&child=0&infants=0&cabin=1&airline=all&siteid=2&campain=1015&currency=INR&TranId=020424205026046f135121fa4ebebf24097b7a33e0cf&Id=6642.00_8537_&tt=RoundTrip
+

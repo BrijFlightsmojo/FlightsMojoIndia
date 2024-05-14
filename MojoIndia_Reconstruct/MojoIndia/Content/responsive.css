@@ -30,6 +30,8 @@
 .search_menu ul{margin:-24px 0 0 14px;}
 .flight{margin-right: 41px;top: -11px;
     left: -21PX;}
+.hotel{margin-right: 41px;top: -11px;
+    left: -21PX;position: relative;}
 .search_menu ul li a{    line-height:32px;padding: 0px 34px;font-size: 15px; height:32px;}
 .flight_menu ul li label{margin-left: 3px;}
 .main_menu{width:12%;float: right;padding-right:0px; margin-top: 0;padding-top:0;}
@@ -38,7 +40,7 @@
 .contact_con a{font-size: 12px; top:0;}
 .logo a{ padding:2px 0 0 6px;}	
 #mainnav #menu {display: none;}
-#menu i{font-size:25px;}
+#menu i{font-size:16px;}
 #mainnav ul {display: none;background: #fff;padding: 6px;position: absolute;z-index: 9;right: -20px;width: 200px;top:28px;box-shadow: 2px 2px 2px #ccc;}
 #mainnav ul li {display: block;border-bottom: 1px dashed #ccc;width: 100%;float: left;}
 #mainnav ul li a {display: block;padding: .75em 1.5em .5em 1.5em;}
@@ -347,7 +349,7 @@
 .listing_con,.result_book{border:0px; border-radius:0;}
 /*.contents{ width:100%;height:490px;top:42%;}*/
 .contents {width: 100%;top: 42%;}
-.close_group{left: 82%;}
+.close_group{left: 88%;top: 18px;}
 .booknow-bt{ padding:12px 15px 15px 15px;}
 .airlines_header {display: none;}
 .quick_linck ul li{width:100%; padding:0 15px;}
@@ -408,14 +410,17 @@
 nav .logo { width: 60%;box-sizing: border-box;padding: 5px;}
 nav .logo a img {width: 80%;}
 #toggle-icon {display: block;color: #ea4218;position: absolute;top: 15px;right: 15px;z-index:7;font-size: 18px;border: 1px solid #ea4218;padding: 2px 5px;cursor: pointer;width: 7%;}
-nav .menu .links {text-align: center;width: 94%;background-color: #49494a;position: fixed;z-index: 9;right: 0;top:0px;height: 100%;}
-.menu {content: " ";position: fixed;display: none;width: 100%;height: 100%;left: 0;top: 0;margin: 0 auto;z-index: 8;background: rgba(0, 0, 0, 0.61);}
+nav .menu .links {text-align: center;width: 94%;background-color: #49494a;position: fixed;z-index: 9;right: 0;top:0px;height: 100vh; overflow-y: scroll;overflow:auto;}
+.menu {content: " ";position: fixed;display: none;width: 100%;height: 100%;left: 0;top: 0;margin: 0 auto;z-index: 8;background: rgba(0, 0, 0, 0.8);}
 nav .menu .links li {display: block;margin-top: 0px;text-align: left;padding: 0;border-bottom: 1px dashed #fff;}
-nav .menu .links li a {background-color: #49494a;width: 80%;display: inline-block;}
+nav .menu .links li a {background-color: #49494a;width: 80%;display: inline-block; font-size:13px;}
+nav .menu .links li a:nth-child(1){width:65%;}
+nav .menu .links li a img{width:65%;}
+nav .menu .links li a:nth-child(2){width:20%;}
 nav .menu .links .parent .childs {position: sticky;width: 100%;text-align: center;}
 nav .menu {width: 100%;}
 .active-bar .fa-bars {display: none;}
-.menu_none{font-size: 25px;color: #fff;border: 1px solid #fff;padding: 5px;text-align: left;float: right;cursor:pointer; margin-top:0px;}
+.menu_none{font-size: 25px;color: #fff;border: 1px solid #fff;padding: 5px;text-align: left;float: right;cursor:pointer; margin-top:5px;}
 .toggle-icon .fa-times{ display:none;}
 .smart_check{ width:16%;}
 .policy_textse{width:64%;font-size: 12px;padding: 10px 15px 9px 15px;}

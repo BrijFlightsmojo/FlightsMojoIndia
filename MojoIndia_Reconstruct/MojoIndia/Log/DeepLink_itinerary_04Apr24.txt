@@ -1,0 +1,6 @@
+
+localhost/flight/itinerary?sec1=AMD|BLR|2024-04-15&sec2=BLR|AMD|2024-04-21&adults=1&child=0&infants=0&cabin=1&airline=all&siteid=2&campain=1015&currency=INR&TranId=040424170850dc8d57a2b2e341de84d32aa596a45b94&Id=12354.00_573_586_&tt=RoundTrip
+
+
+localhost/flight/itinerary?sec1=AMD|BLR|2024-04-15&sec2=BLR|AMD|2024-04-21&adults=1&child=0&infants=0&cabin=1&airline=all&siteid=2&campain=1015&currency=INR&TranId=040424170850dc8d57a2b2e341de84d32aa596a45b94&Id=12354.00_573_586_&tt=RoundTrip
+

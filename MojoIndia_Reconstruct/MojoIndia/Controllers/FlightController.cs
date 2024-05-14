@@ -34,6 +34,7 @@ namespace MojoIndia.Controllers
         private static string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private static Random random = new Random();
         public Stopwatch stopwatch = new Stopwatch();
+        public static string[] LccAirline = new string[] { "IX", "QP", "SG", "I5", "6E" };
         // GET: Flight
         [HttpPost]
         public ActionResult SearchingFlight(FormCollection FormColl)
@@ -554,8 +555,7 @@ namespace MojoIndia.Controllers
         public ActionResult GF_FlightResult()
         {
 
-            ///flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=16986&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
-            ///flight/GF_FlightResult?Adult=1&PointOfSaleCountry=US&DisplayedPrice=500&DisplayedPriceCurrency=@GlobalData.ShowCurrency&UserLanguage=en&UserCurrency=@GlobalData.ShowCurrency&TripType=RoundTrip&Slice1=1,2&Slice2=3,4&Cabin1=Economy&Carrier1=AZ&DepartureDate1=2023-03-16&Origin1=JFK&Destination1=FCO&FlightNumber1=611&BookingCode1=V&Cabin2=Economy&Carrier2=AZ&DepartureDate2=2023-03-17&Origin2=FCO&Destination2=LHR&FlightNumber2=204&BookingCode2=V&Cabin3=Economy&Carrier3=AZ&DepartureDate3=2023-03-26&Origin3=LHR&Destination3=FCO&BookingCode3=V&FlightNumber3=209&Cabin4=Economy&Carrier4=AZ&DepartureDate4=2023-03-27&Origin4=FCO&Destination4=JFK&FlightNumber4=608&ReferralId=GOOG_GFS_712
+
             StringBuilder sbLogger = new StringBuilder();
             try
             {
@@ -698,7 +698,7 @@ namespace MojoIndia.Controllers
             //    }
             //}
             fsr.tripType = fsr.segment.Count == 1 ? TripType.OneWay : TripType.RoundTrip;
-
+            fsr.travelType = getTravelType(fsr.segment[0].orgArp.countryCode, fsr.segment[0].destArp.countryCode);
             #endregion
 
             fsr.siteId = SiteId.FlightsMojoIN;
@@ -755,12 +755,16 @@ namespace MojoIndia.Controllers
             fsr.userSearchID = getSearchID();
             string aa = JsonConvert.SerializeObject(fsr);
             FlightOperation.SetAirContext(airContext);
-            bookingLog(ref sbLogger, "GF Search Request", JsonConvert.SerializeObject(fsr));
+
             //new Bal.FlightDetails().SearchFlight_gf(ref fsr, ref airContext);
-            var feeRule = new Bal.MakeFlightItinerary().GetFlightResult(airContext);
-            
+            string strAirLine = string.Empty;
+
+            var feeRule = new Bal.MakeFlightItinerary().GetFlightResult(airContext, ref strAirLine);
             FlightResult result = null;
-            if (false)
+            //if (true)
+            //{   
+            GfPriceVerifyResponse priceVfResponse = null;
+            if (!LccAirline.Contains(strAirLine))
             {
                 GfPriceVerifyRequest pvReq = new GfPriceVerifyRequest()
                 {
@@ -770,88 +774,113 @@ namespace MojoIndia.Controllers
 
                     flightResult = airContext.flightSearchResponse.Results[0]
                 };
-                var priceVfResponse = new Bal.FlightDetails().PriceVerify(pvReq);
 
-                if (priceVfResponse.responseStatus.status == TransactionStatus.Success)
+
+                priceVfResponse = new Bal.FlightDetails().PriceVerify(pvReq);
+            }
+            bool isSerchFlight = true;
+
+            if (priceVfResponse != null && priceVfResponse.responseStatus.status == TransactionStatus.Success)
+            {
+                Fare fare = new Fare();
+                fare.BaseFare = priceVfResponse.fare.BaseFare;
+                fare.Tax = priceVfResponse.fare.Tax;
+                fare.PublishedFare = priceVfResponse.fare.PublishedFare;
+                fare.NetFare = priceVfResponse.fare.NetFare;
+                fare.grandTotal = priceVfResponse.fare.grandTotal;
+                fare.fareBreakdown = priceVfResponse.fare.fareBreakdown;
+                fare.gdsType = GdsType.Amadeus;
+                Core.Flight.FareBreakdown fb = fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
+
+
+                feeRule = new Bal.MakeFlightItinerary().getFareRule(airContext, (fb.BaseFare + fb.Tax));
+                if (feeRule != null)
                 {
-                    Fare fare = new Fare();
-                    fare.BaseFare = priceVfResponse.fare.BaseFare;
-                    fare.Tax = priceVfResponse.fare.Tax;
-                    fare.PublishedFare = priceVfResponse.fare.PublishedFare;
-                    fare.NetFare = priceVfResponse.fare.NetFare;
-                    fare.grandTotal = priceVfResponse.fare.grandTotal;
-                    Core.Flight.FareBreakdown fb = fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
-                    feeRule = new Bal.MakeFlightItinerary().getFareRule(airContext, (fb.BaseFare + fb.Tax));
-                    if (feeRule != null)
+                    if (feeRule.FeeAmount != 0)
                     {
-                        if (feeRule.FeeAmount != 0)
+                        fare.Markup += feeRule.FeeAmount;
+                        if (fsr.child > 0)
                         {
                             fare.Markup += feeRule.FeeAmount;
-                            if (fsr.child > 0)
-                            {
-                                fare.Markup += feeRule.FeeAmount;
-                            }
-                            if (fsr.infants > 0)
-                            {
-                                fare.Markup += feeRule.FeeAmount;
-                            }
                         }
-                        if (feeRule.FeePercent != 0)
+                        if (fsr.infants > 0)
                         {
-                            Core.Flight.FareBreakdown fbAdt = priceVfResponse.fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
-                            fare.Markup += ((priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax) * (feeRule.FeePercent / 100));
-
+                            fare.Markup += feeRule.FeeAmount;
                         }
-                        fare.grandTotal = (priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax + priceVfResponse.fare.Markup);
                     }
-                    result = airContext.flightSearchResponse.Results[0][0];
-                    if (fare.grandTotal > result.Fare.grandTotal)
+                    if (feeRule.FeePercent != 0)
                     {
-                        result.Fare.BaseFare = fare.BaseFare;
-                        result.Fare.Tax = fare.Tax;
-                        result.Fare.PublishedFare = fare.PublishedFare;
-                        result.Fare.NetFare = fare.NetFare;
-                        result.Fare.grandTotal = fare.grandTotal;
-                        result.Fare.Currency = fare.Currency;
-                        result.Fare.Markup = fare.Markup;
-                        result.Fare.fareBreakdown = new List<FareBreakdown>();
-                        foreach (var item in fare.fareBreakdown)
-                        {
-                            FareBreakdown fbreak = new FareBreakdown() { BaseFare = item.BaseFare, Tax = item.Tax, Markup = item.Markup, PassengerType = item.PassengerType };
-                            result.Fare.fareBreakdown.Add(fbreak);
-                        }
+                        Core.Flight.FareBreakdown fbAdt = priceVfResponse.fare.fareBreakdown.Where(o => o.PassengerType == PassengerType.Adult).FirstOrDefault();
+                        fare.Markup += ((priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax) * (feeRule.FeePercent / 100));
+
+                    }
+                    fare.grandTotal = (priceVfResponse.fare.BaseFare + priceVfResponse.fare.Tax + priceVfResponse.fare.Markup);
+                }
+                result = airContext.flightSearchResponse.Results[0][0];
+                if (true || fare.grandTotal > result.Fare.grandTotal)
+                {
+                    result.Fare.BaseFare = fare.BaseFare;
+                    result.Fare.Tax = fare.Tax;
+                    result.Fare.PublishedFare = fare.PublishedFare;
+                    result.Fare.NetFare = fare.NetFare;
+                    result.Fare.grandTotal = fare.grandTotal;
+                    result.Fare.Currency = fare.Currency;
+                    result.Fare.Markup = fare.Markup;
+                    result.Fare.fareBreakdown = new List<FareBreakdown>();
+                    foreach (var item in fare.fareBreakdown)
+                    {
+                        FareBreakdown fbreak = new FareBreakdown() { BaseFare = item.BaseFare, Tax = item.Tax, Markup = item.Markup, PassengerType = item.PassengerType };
+                        result.Fare.fareBreakdown.Add(fbreak);
                     }
                 }
+                isSerchFlight = false;
             }
-            var resultResponse = new Bal.FlightDetails().SearchFlightGF(airContext.flightSearchRequest);
 
-            if (resultResponse != null && resultResponse.Results.Count > 0)
+            //}
+            if (isSerchFlight)
             {
-                string gfItinComb = string.Empty;
-                foreach (var fs in gfd.flightSlice)
+                var resultResponse = new Bal.FlightDetails().SearchFlightGF(airContext.flightSearchRequest);
+
+                if (resultResponse != null && resultResponse.Results.Count > 0)
                 {
-                    gfItinComb += fs.Origin + fs.Destination + fs.FlightNumber + fs.Carrier + fs.depDate;
-                }
-                foreach (var flightResult in resultResponse.Results[0])
-                {
-                    if (result == null)
+                    string gfItinComb = string.Empty;
+                    foreach (var fs in gfd.flightSlice)
                     {
-                        string ItinComb = string.Empty;
-                        foreach (var fs in flightResult.FlightSegments)
+                        gfItinComb += fs.Origin + fs.Destination + fs.FlightNumber + fs.Carrier + fs.depDate;
+                    }
+                    foreach (var flightResult in resultResponse.Results[0])
+                    {
+                        if (result == null)
                         {
-                            foreach (var seg in fs.Segments)
+
+
+
+                            string ItinComb = string.Empty;
+                            foreach (var fs in flightResult.FlightSegments)
                             {
-                                ItinComb += seg.Origin + seg.Destination + seg.FlightNumber + seg.Airline + seg.DepTime.ToString("yyyy-MM-dd");
+                                foreach (var seg in fs.Segments)
+                                {
+                                    ItinComb += seg.Origin + seg.Destination + seg.FlightNumber + seg.Airline + seg.DepTime.ToString("yyyy-MM-dd");
+                                }
                             }
+                            if (gfItinComb.Equals(ItinComb, StringComparison.OrdinalIgnoreCase))
+                                result = flightResult;
                         }
-                        if (gfItinComb.Equals(ItinComb, StringComparison.OrdinalIgnoreCase))
-                            result = flightResult;
                     }
                 }
             }
-            if (result != null)
+            if (result != null)//&& result.fare.grandTotal<=gfd.DisplayedPrice)
             {
                 airContext.flightSearchResponse.Results[0][0] = result;
+                //int i = 0;
+                //foreach (var fs in result.flightSegments)
+                //{
+                //    foreach (var seg in fs.segments)
+                //    {
+                //        seg.resDesignCode = gfd.flightSlice[i].BookingCode;
+                //        i++;
+                //    }
+                //}
                 airContext.IsGFMatch = true;
                 return Redirect("/Flight/passengerGF/" + fsr.userSearchID + "/" + result.ResultID);
             }
@@ -861,6 +890,27 @@ namespace MojoIndia.Controllers
                 result = airContext.flightSearchResponse.Results[0][0];
                 return Redirect("/Flight/flightnotmatch/" + fsr.userSearchID);
             }
+
+            //if (result != null)
+            //{
+            //    airContext.IsGFMatch = true;
+
+            //    if (fsr.sourceMedia=="1037")
+            //    {
+            //        return Redirect("/Flight/passengerGF/" + fsr.userSearchID + "/" + result.ResultID);
+            //    }
+            //    else
+            //    {
+            //        return Redirect("/Flight/passenger/" + fsr.userSearchID + "/" + result.ResultID);
+            //    }
+
+            //}
+            //else
+            //{
+            //    airContext.IsGFMatch = false;
+            //    return Redirect("/Flight/flightnotmatch/" + fsr.userSearchID);
+            //}
+
         }
         public ActionResult Result(string ID)
         {
@@ -912,6 +962,28 @@ namespace MojoIndia.Controllers
             catch (Exception ex)
             {
                 new LogWriter(ex.ToString(), "NoResultException" + DateTime.Today.ToString("ddMMyy"), "Error");
+                return Redirect("/");
+            }
+        }
+
+        public ActionResult flightnotmatch(string ID)
+        {
+            try
+            {
+                AirContext airContext = FlightOperation.GetAirContext(ID);
+                if (airContext != null)
+                {
+                    ViewBag.isShowResult = true;
+                    if (airContext.IsBookingCompleted)
+                    {
+                        return Redirect("/flight/FlightConfirmation/" + airContext.flightSearchRequest.userSearchID);
+                    }
+                    return View(airContext.flightSearchRequest);
+                }
+                else { return Redirect("/"); }
+            }
+            catch (Exception ex)
+            {
                 return Redirect("/");
             }
         }
@@ -970,7 +1042,6 @@ namespace MojoIndia.Controllers
                             tgy_Search_Key = airContext.flightSearchResponse.tgy_Search_Key,
                             FB_booking_token_id = airContext.flightSearchResponse.FB_booking_token_id,
                             responseStatus = new ResponseStatus(),
-
                             affiliate = airContext.flightSearchResponse.affiliate,
                             //  affiliate = FlightUtility.GetAffiliate(airContext.flightSearchRequest.sourceMedia),
                             redirectID = airContext.flightSearchRequest.redirectID,
@@ -1353,8 +1424,9 @@ namespace MojoIndia.Controllers
                         }
                         #endregion
 
-                        airContext.flightBookingRequest.RefundPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]);
-                        airContext.flightBookingRequest.CancellaionPolicyAmt = Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]);
+                        airContext.flightBookingRequest.RefundPolicyAmt = (airContext.flightBookingRequest.flightResult.Count) * (Convert.ToDecimal(ConfigurationManager.AppSettings["RefundPolicyAmt"]));
+                        airContext.flightBookingRequest.CancellaionPolicyAmt = (airContext.flightBookingRequest.flightResult.Count) * (Convert.ToDecimal(ConfigurationManager.AppSettings["CancellaionPolicyAmt"]));
+
 
                         airContext.flightBookingRequest.currencyCode = airContext.flightSearchRequest.currencyCode;
                         airContext.flightBookingRequest.adults = airContext.flightSearchResponse.adults;
@@ -2601,7 +2673,7 @@ namespace MojoIndia.Controllers
                     }
                     else if (airContext.flightBookingRequest.flightResult[0].Fare.gdsType == GdsType.Amadeus)
                     {
-                        #region Check Price Verification GFS
+                        #region Check Price Verification Amadeus
                         airContext.priceVerificationRequest = new PriceVerificationRequest()
                         {
                             adults = airContext.flightSearchResponse.adults,
@@ -3284,7 +3356,7 @@ namespace MojoIndia.Controllers
                             depDate = airContext.flightSearchRequest.segment[0].travelDate.ToString("dd/MM/yyyy")
                         };
 
-                        new Bal.FlightDetails().FlightVerification(ref airContext, ref sbLogger);
+                        new Bal.FlightDetails().FlightVerificationGF(ref airContext, ref sbLogger);
 
                         if (airContext.priceVerificationResponse != null && airContext.priceVerificationResponse.responseStatus.status == TransactionStatus.Success &&
                             airContext.priceVerificationResponse.fareQuoteResponse != null && airContext.priceVerificationResponse.fareQuoteResponse.responseStatus.status == TransactionStatus.Success)
@@ -4102,6 +4174,41 @@ namespace MojoIndia.Controllers
 
         }
 
+        public void groupbookingmsg(string fsr)
+        {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            var url = "https://api.imiconnect.in/resources/v1/messaging";
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            var result = "";
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/json";
+            httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
+            Core.Whatsapp.WA whatsappGB = new Core.Whatsapp.WA();
+            whatsappGB.appid = "a_167149593199252900";
+            whatsappGB.deliverychannel = "whatsapp";
+            whatsappGB.message = new Core.Whatsapp.Message();
+            //  whatsappGB.message.template = "924999868534788";
+            whatsappGB.message.template = "241117392398076";
+            whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
+            whatsappGB.destination = new List<Core.Whatsapp.Destination>();
+            Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
+            whatsappGB.destination.Add(dsGB);
+            dsGB.waid = new List<string>();
+            dsGB.waid.Add(fsr);
+            string output = JsonConvert.SerializeObject(whatsappGB);
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(output);
+            }
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            var statuscode = httpResponse.StatusCode;
+            //CreateLogFile(result.ToString(), "Log\\whatsapp", "GB" + fsr.bookingID.ToString() + ".txt");
+        }
+
         public void groupbookingmsg(FlightBookingResponse fsr)
         {
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
@@ -4115,7 +4222,8 @@ namespace MojoIndia.Controllers
             whatsappGB.appid = "a_167149593199252900";
             whatsappGB.deliverychannel = "whatsapp";
             whatsappGB.message = new Core.Whatsapp.Message();
-            whatsappGB.message.template = "924999868534788";
+            //  whatsappGB.message.template = "924999868534788";
+            whatsappGB.message.template = "241117392398076";
             whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
             whatsappGB.destination = new List<Core.Whatsapp.Destination>();
             Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
@@ -5599,7 +5707,7 @@ namespace MojoIndia.Controllers
         //[HttpPost]
         public JsonResult SaveBookingDetails(string ID, string EmailID, string phoneNo, string GSTNo, string GSTCompany, bool mode)
         {
-
+            
             StringBuilder sbLogger = new StringBuilder();
             Core.CouponStatusResponse objResponse = new CouponStatusResponse();
             try
@@ -5631,7 +5739,7 @@ namespace MojoIndia.Controllers
                         airContext.flightBookingRequest.prodID = kk.prodID;
                         objResponse.BookingID = kk.bookingID;
                         CallDeleteFiles();
-                        // sendInCompletewhatsapp(airContext.flightBookingRequest);
+                        // sendInCompletewhatsapp(airContext.flightBookingRequest); groupbookingmsg(phoneNo);
                         CreateLogFile(sbLogger.ToString(), "Log\\Passenger", kk.bookingID.ToString() + ".txt");
                     }
                     else

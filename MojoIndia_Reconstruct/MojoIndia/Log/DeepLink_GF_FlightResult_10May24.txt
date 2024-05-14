@@ -1,0 +1,6 @@
+
+localhost/flight/GF_FlightResult?Adult=3&PointOfSaleCountry=IN&DisplayedPrice=107085&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=OneWay&Slice1=1&Cabin1=Economy&Carrier1=AI&DepartureDate1=2024-06-02&DepartureTime1=13:25&ArrivalDate1=2024-06-02&ArrivalTime1=15:50&Origin1=VNS&Destination1=BOM&BookingCode1=Y&FlightNumber1=696&ReferralId=GOOG_GFS_0000
+
+
+localhost/flight/GF_FlightResult?Adult=2&PointOfSaleCountry=IN&DisplayedPrice=65224&DisplayedPriceCurrency=INR&UserLanguage=en&TripType=RoundTrip&Slice1=1&Slice2=2&Cabin1=Economy&Carrier1=EK&DepartureDate1=2024-05-22&DepartureTime1=10:00&ArrivalDate1=2024-05-22&ArrivalTime1=12:10&Origin1=HYD&Destination1=DXB&BookingCode1=L&FlightNumber1=527&Cabin2=Economy&Carrier2=EK&DepartureDate2=2024-05-28&DepartureTime2=03:10&ArrivalDate2=2024-05-28&ArrivalTime2=08:25&Origin2=DXB&Destination2=HYD&BookingCode2=L&FlightNumber2=526&ReferralId=GOOG_GFS_0000
+

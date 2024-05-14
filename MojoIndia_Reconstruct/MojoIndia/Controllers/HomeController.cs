@@ -30,8 +30,9 @@ namespace MojoIndia.Controllers
 
             //sendMSG();
             Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
-            OriginDestinationContent acd = ODC.OriginDestinationWithDealHomePage(3, "", "", "", 1, 1);
-            return View(acd);
+            // OriginDestinationContent acd = ODC.OriginDestinationWithDealHomePage(3, "", "", "", 1, 1);
+            //return View(acd);
+            return View(new OriginDestinationContent());
         }
 
         private void sendMSG()
@@ -137,7 +138,7 @@ namespace MojoIndia.Controllers
         }
 
 
-             //[ActionName("Subscribe")]public JsonResult SaveBookingDetails(
+            
         public JsonResult Subscribe(string EmailID)
         {
             Core.CouponStatusResponse objResponse = new CouponStatusResponse();
@@ -452,7 +453,7 @@ namespace MojoIndia.Controllers
 
                 
                 string[] StaticUrl = { "/top-international-destinations", "/first-class-flights", "/last-minute-flights", "/about-us", "/terms-condition", "/privacy-policy", "/user-agreement",
-                    "/disclaimer","/contact-us","/sitemap","/flights","/airline","/deals" };
+                    "/disclaimer","/contact-us","/sitemap","/flights","/airline","/deals","/web-checkin" };
                 for (int i = 0; i < StaticUrl.Length; i++)
                 {
                     XMLDoc.AppendChild(DataNode);
@@ -601,5 +602,14 @@ namespace MojoIndia.Controllers
 
         //    return View("deals");
         //}
+
+
+        [ActionName("web-checkin")]
+        public ActionResult webcheckin()
+        {
+            ViewBag.Message = "Your web-checkin page.";
+
+            return View("webcheckin");
+        }
     }
 }
