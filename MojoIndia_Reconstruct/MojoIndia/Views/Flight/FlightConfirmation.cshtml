@@ -235,7 +235,10 @@
             }
             else
             {
-                <h1> Your booking is in Progress! <img src="~/images/1495.gif" /> </h1>
+                <h1>
+                    Your booking is in Progress! <img src="~/images/1495.gif" />
+                </h1>
+
                 <br />
                 <h4 style="text-align:justify;color:white;">
                     Your booking is currently being processed, Please wait for next 30 minutes while we confirm your booking.
@@ -245,7 +248,10 @@
                 </h4>
             }
 
+
+
             <div class="conformBot">
+
                 @if (Model.paymentStatus == PaymentStatus.Completed)
                 {
                     <span>Payment Status: @Model.paymentStatus.ToString()</span>
@@ -494,7 +500,7 @@
                         }
                         else
                         {
-                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
                         }
                     </tr>
                 </table>

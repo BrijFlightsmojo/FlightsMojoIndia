@@ -315,8 +315,8 @@ namespace Core.Flight
         public decimal tdsOnPLB { get; set; }
         [DataMember]
         public decimal tdsOnIncentive { get; set; }
-        [DataMember]
-        public decimal serviceFee { get; set; }
+        //[DataMember]
+        //public decimal serviceFee { get; set; }
         [DataMember]
         public decimal totalBaggageCharges { get; set; }
         [DataMember]

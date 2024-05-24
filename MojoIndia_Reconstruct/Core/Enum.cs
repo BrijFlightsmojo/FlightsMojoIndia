@@ -55,7 +55,8 @@ namespace Core
         OneDFare = 8,
         SatkarTravel = 9,
         Ease2Fly = 10,
-        Amadeus=11
+        Amadeus=11,
+        Travelopedia = 13
     }
     public enum TransactionStatus : int
     {

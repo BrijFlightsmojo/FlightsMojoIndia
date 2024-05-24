@@ -38,7 +38,7 @@ namespace Core.Flight
         public AirContext(string ip)
         {
             CreationTime = DateTime.Now;
-            if (ip == "::1" || ip == "127.0.0.1" || ip == "182.72.103.98"|| ip == "103.160.243.202"|| ip == "150.129.248.16" || ip == "49.249.114.250")
+            if (ip == "::1" || ip == "127.0.0.1" || ip == "182.72.103.98"|| ip == "103.160.243.202"|| ip == "150.129.248.16" || ip == "49.249.114.250" || ip == "152.52.22.202")
                 isShowDetails = true;
         }
     }

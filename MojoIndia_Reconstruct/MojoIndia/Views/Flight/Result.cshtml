@@ -736,7 +736,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                     </div>
                                                     <div class="destination_code">
                                                         <span>{{fs.segments[0].org.airportCode}}</span>
-                                                        <div style="display:none;" class="airprt_name" ng-bind="{{fs.segments[0].org.airportName}}"></div>
+                                                        <div>{{fs.segments[0].org.cityName}}</div>
                                                         <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
                                                     </div>
                                                     <div class="flight_time_one">
@@ -753,7 +753,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                     </div>
                                                     <div class="destination_code">
                                                         <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                        <div style="display:none;" class="airprt_name">{{fs.segments[fs.segments.length-1].dest.airportName}}</div>
+                                                        <div>{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
                                                         <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
                                                     </div>
                                                 </div>
@@ -907,7 +907,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                         </div>
                                                         <div class="destination_code">
                                                             <span>{{fs.segments[0].org.airportCode}}</span>
-                                                            <div style="display:none;" class="airprt_name" ng-bind="{{fs.segments[0].org.airportName}}"></div>
+                                                            <div>{{fs.segments[0].org.cityName}}</div>
                                                             <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
                                                         </div>
                                                         <div class="flight_time_one">
@@ -924,7 +924,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                         </div>
                                                         <div class="destination_code">
                                                             <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                            <div style="display:none;" class="airprt_name">{{fs.segments[fs.segments.length-1].dest.airportName}}</div>
+                                                            <div>{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
                                                             <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
                                                         </div>
                                                     </div>
@@ -1841,6 +1841,7 @@ $('#ResultProgressPopup').hide();
         var toTopCityMob = $("#toTopCityMob").html();
         var toBottamCityMob = $("#toBottamCityMob").html();
 
+
         fromTopCity = $("#toTopCity").html();
         toTopCity = $("#fromTopCity").html();
         fromBottamCity = $("#toBottamCity").html();
@@ -1860,7 +1861,9 @@ $('#ResultProgressPopup').hide();
         document.getElementById("fromTopCityMob").innerHTML = document.getElementById("toBottamCityMob").innerHTML;
         document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromTopCityMob").innerHTML;
         document.getElementById("fromBottamCityMob").innerHTML = document.getElementById("toTopCityMob").innerHTML;
-        
+        //document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
+
+
         document.getElementById("fromTopCity").innerHTML = fromTopCity;
         document.getElementById("toTopCity").innerHTML = toTopCity;
         document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
