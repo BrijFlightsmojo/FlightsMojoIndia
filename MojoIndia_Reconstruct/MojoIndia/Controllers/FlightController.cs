@@ -474,6 +474,12 @@ namespace MojoIndia.Controllers
                 sseg.destArp = Core.FlightUtility.GetAirport(sseg.destinationAirport);
 
                 sseg.travelDate = DateTime.ParseExact(Request.QueryString["depdate"], "dd-MM-yyyy", new CultureInfo("en-US"));
+                if (!string.IsNullOrEmpty(Request.QueryString.Get("NewDate")))
+                {
+                    string dt = Request.QueryString.Get("NewDate");
+                    sseg.travelDate = Convert.ToDateTime(dt + "-" + sseg.travelDate.Year);
+                }
+
                 fsr.segment.Add(sseg);
                 fsr.tripType = TripType.OneWay;
                 if (sseg.orgArp.countryCode.ToUpper() == "IN" && sseg.destArp.countryCode.ToUpper() == "IN")
@@ -925,6 +931,22 @@ namespace MojoIndia.Controllers
                     }
 
                     ViewBag.isShowResult = false;
+                    airContext.flightSearchRequest.matrixData = FlightOperation.GetMatrixFare(airContext.flightSearchRequest.segment[0].originAirport, airContext.flightSearchRequest.segment[0].destinationAirport, airContext.flightSearchRequest.segment[0].travelDate);
+                    airContext.flightSearchRequest.matrixPos = (int)(airContext.flightSearchRequest.segment[0].travelDate - DateTime.Today).TotalDays;
+                    if (airContext.flightSearchRequest.matrixPos <= 3)
+                    {
+                        airContext.flightSearchRequest.matrixPos = 0;
+                    }
+                    else if (airContext.flightSearchRequest.matrixPos <= 15)
+                    {
+                        airContext.flightSearchRequest.matrixPos -= 3;
+                    }
+                    else
+                    {
+                        airContext.flightSearchRequest.matrixPos = 12;
+                    }
+
+
                     //if (airContext.flightSearchRequest.sourceMedia == "1016" || airContext.flightSearchRequest.sourceMedia == "1000" || airContext.flightSearchRequest.sourceMedia == "1004" || airContext.flightSearchRequest.sourceMedia == "1015" || airContext.flightSearchRequest.sourceMedia == "1001")
                     //{
                     return View("Result", airContext.flightSearchRequest);

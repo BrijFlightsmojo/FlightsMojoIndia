@@ -52,7 +52,7 @@
 .passDepartThird> dfn {font-size: 1.2rem;color: #808080;display: inline-block;font-style: normal;width: 100%;}
 .passDepartThird> span {font-size: 1.2rem;color: #808080;display: inline-block;font-style: normal;width: 100%;padding-top:4px;}
 .passenger_Return{width: 100%;float: left; margin-top: 12px; position:relative;}
-.passenger_Dtailsone{width: 100%;float: left;border: 1px solid #dad6d6;padding: 10px;border-radius: 4px;margin-top: 12px;box-shadow: 0 0 3px rgb(0 0 0 / 20%);-webkit-box-shadow: 0 0 3px rgb(0 0 0 / 20%);}
+.passenger_Dtailsone{width: 100%;float: left;border: 1px solid #dad6d6;padding: 10px;border-radius: 4px;margin-top: 12px;box-shadow: 0 0 3px rgba(0,0,0,0.20);-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.20);}
 .peassenger-inform{ width:100%; float:left; padding:10px;}
 .Passenger_Title{width:20%;float:left;padding-left: 6px;}
 .Passenger_Title label{font-weight: 400; color:#000;font-size: 13px;margin-top: 5px;}
@@ -77,7 +77,7 @@
 .departureItenary> ul li{ float:left; margin-top:15px;}
 .departureItenary> ul li a{ color:#000; font-size:14px;  padding:6px 10px;}
 .departureItenary> ul li a:hover{background:#ddd;border-radius:8px;}
-.FareRulesCon{ margin-top:15px; width:100%; float:left;padding:10px;box-shadow: 0 0 3px rgb(0 0 0 / 20%);-webkit-box-shadow: 0 0 3px rgb(0 0 0 / 20%); }
+.FareRulesCon{ margin-top:15px; width:100%; float:left;padding:10px;box-shadow: 0 0 3px rgba(0,0,0,0.20);-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.20); }
 .FareRulestabel{ margin-bottom:15px; width:100%; float:left; background:#fff;}
 .FareRulestabel table{ border:#ccc;}
 .FareRulestabel table th{ background:#f5f5f5; padding:6px;}
@@ -264,7 +264,7 @@ position: absolute;left:12px;top:6px;}
 .textRight i{ padding-right:3px;}
 .textRight a{ color:#333;font-size:17px; padding-right:5px;}
 .textRight a i{ color:#000;}
-.FlightFare{width:100%; float:left; padding:10px;background:rgb(165 159 159 / 10%); margin-top:10px;}
+.FlightFare{width:100%; float:left; padding:10px;background:rgba(165,159,159,0.10); margin-top:10px;}
 .Fare100{width:100%; float:left; padding:6px 0;}
 .TotalAmountmob{width:100%; float:left; padding:10px 0;}
 .modal-btn {letter-spacing: 1px;border: none;outline: none;cursor: pointer;padding: 10px 25px;background-color: #ef6633;color: #fff;transition: all .3s;}
@@ -287,7 +287,7 @@ position: absolute;left:12px;top:6px;}
 
 
 .passenger_Bg{ background:#f5f7fb}
-@keyframes totop-in {
+/*@keyframes totop-in {
   0% {
     top: 600px;
     opacity: 0;
@@ -307,7 +307,7 @@ position: absolute;left:12px;top:6px;}
     top: -100%;
     opacity: 0;
   }  
-}
+}*/
 
 
 

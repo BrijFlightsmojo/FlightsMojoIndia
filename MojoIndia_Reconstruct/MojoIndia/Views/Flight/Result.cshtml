@@ -4,25 +4,77 @@
 @{
     ViewBag.Title = "Result";
     Layout = "~/Views/Shared/_LayoutFlight.cshtml";
+
 }
 @section AdditionalMeta
 {
     <title>Flights Searching: Flightsmojo in Travel Deals, Cheap Flight Deals, Airline Deals</title>
-
+    <link href="/Content/owl.carousel.css" rel="stylesheet" />
 }
 <style>
 .logo a img{ width: 60%;padding-left: 20px;}
-@@media screen and ( max-width:767px) {
-.rrresult_con {display: none !important;}
+@@media screen and ( max-width:767px) {.rrresult_con {display: none !important;}
 
-.footer_result {display: none;}
-#slider-range {border-bottom: 1px solid #ff565c;width: 100%!important;height: 2px!important;
-position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;box-shadow:none;}
-.desktop {display:none;}
-}
-.fixed-left{width:290px;position: fixed;   
-    max-width: 300px;
-    top:0px;}    
+        .footer_result {
+            display: none;
+        }
+
+        #slider-range {
+            border-bottom: 1px solid #ff565c;
+            width: 100% !important;
+            height: 2px !important;
+            position: relative;
+            margin-top: 10px !important;
+            padding: 0 6px;
+            left: 0 !important;
+            box-shadow: none;
+        }
+
+        .desktop {
+            display: none;
+        }
+    }
+
+    .fixed-left {
+        width: 290px;
+        position: fixed;
+        max-width: 300px;
+        background: #fff;
+        z-index: 9;
+        top: 10px;
+    }
+
+    .grid {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        border-right: 1px solid #ccc; padding:10px 10px 10px 0;
+    }
+
+        .grid p {
+            color: #000;
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+
+        .grid h5 {
+            color: #d63b05;
+            font-size: 14px;
+            text-align: center; font-weight:bold;
+        }
+
+    .price_Calender {
+        width: 100%;
+        float: left;
+        border: 1px solid #ccc;
+        padding: 0px 25px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        background:#fff;
+    }
+    .fareMatrixSelected {
+    background-color:#e9e1d7;
+    }
 </style>
 <div ng-app="myApp" ng-controller="myCtrl">
 
@@ -30,7 +82,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
         <div class="modify_con">
             <div class="container no_padding">
                 <div class="destinatin_div">
-                   <div class="modify_left">
+                    <div class="modify_left">
                         <div class="from_to"><a href="/" class="back_icon"><i class="fa fa-arrow-left"></i></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><i class="fa fa-exchange"></i><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
                         <div class="modi_date">
                             <span>@Model.segment[0].travelDate.ToString("dd MMM")</span>
@@ -48,8 +100,8 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                         </div>
                     </div>
                     @*<div class="modify_right">
-                        <button class="button" onclick="Modify()">MODIFY SEARCH</button>
-                    </div>*@
+                            <button class="button" onclick="Modify()">MODIFY SEARCH</button>
+                        </div>*@
                     @{ Html.RenderPartial("/Views/Shared/SearchEngineModify.cshtml");}
                 </div>
                 <div class="repon_filter">
@@ -61,7 +113,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
         <div class="container">
             <div class="row" id="flightmozoData">
                 <div class="result_main">
-                    
+
                     <div class="result_left">
                         <div class="fixed_con">
                             <div class="filtor_top">
@@ -101,6 +153,17 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="box-section Result-show" style="display:none;">
+                                        <a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
+                                        <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
+                                            <label class="filter_container">
+                                                {{air.name}}
+                                                <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                       
+                                    </div>
                                     <div class="box-section">
                                         <a class="show_data">Departure Time  <i class="fa fa-caret-down"></i></a>
                                         <ul class="filter_flight_time">
@@ -129,104 +192,129 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                         </ul>
                                     </div>
                                     @if (Model.tripType == TripType.RoundTrip)
-                                {
-                                <div class="box-section">
-                                    <a href="#" class="show_data">Return Time  <i class="fa fa-caret-down"></i></a>
-                                    <ul class="filter_flight_time">
-                                        <li data-ng-repeat="arrD in flight.arrTimeDur">
-                                            <div class="filter_timeN" ng-if="arrD==1" ng-click="filterArrTimeT(arrD)">
-                                                <div class="result_depart_time"><div id="arr1Logo" class="res_dep_img res_dep_morn"></div></div>
-                                                <span>Early Morning</span>
-                                                <p>(12:00am - 4:59am)</p>
-                                            </div>
-                                            <div class="filter_timeN" ng-if="arrD==2" ng-click="filterArrTimeT(arrD)">
-                                                <div class="result_depart_time"><div id="arr2Logo" class="res_dep_img res_dep_aftern"></div></div>
-                                                <span>Morning</span>
-                                                <p>(5:00am - 11:59am)</p>
-                                            </div>
-                                            <div class="filter_timeN" ng-if="arrD==3" ng-click="filterArrTimeT(arrD)">
-                                                <div class="result_depart_time"><div id="arr3Logo" class="res_dep_img res_dep_evening"></div></div>
-                                                <span>Afternoon</span>
-                                                <p>(12:00pm - 5:59pm)</p>
-                                            </div>
-                                            <div class="filter_timeN" ng-if="arrD==4" ng-click="filterArrTimeT(arrD)">
-                                                <div class="result_depart_time"><div id="arr4Logo" class="res_dep_img res_dep_night"></div></div>
-                                                <span>Evening</span>
-                                                <p>(6:00pm - 11:59pm)</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                }
-                                <div class="box-section Result-show" style="display:none;">
-                                    <a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
-                                    <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
-                                        <label class="filter_container">
-                                            {{air.name}}
-                                            <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
-                                            <span class="checkmark"></span>
-                                        </label>
+                                    {
+                                        <div class="box-section">
+                                            <a href="#" class="show_data">Return Time  <i class="fa fa-caret-down"></i></a>
+                                            <ul class="filter_flight_time">
+                                                <li data-ng-repeat="arrD in flight.arrTimeDur">
+                                                    <div class="filter_timeN" ng-if="arrD==1" ng-click="filterArrTimeT(arrD)">
+                                                        <div class="result_depart_time"><div id="arr1Logo" class="res_dep_img res_dep_morn"></div></div>
+                                                        <span>Early Morning</span>
+                                                        <p>(12:00am - 4:59am)</p>
+                                                    </div>
+                                                    <div class="filter_timeN" ng-if="arrD==2" ng-click="filterArrTimeT(arrD)">
+                                                        <div class="result_depart_time"><div id="arr2Logo" class="res_dep_img res_dep_aftern"></div></div>
+                                                        <span>Morning</span>
+                                                        <p>(5:00am - 11:59am)</p>
+                                                    </div>
+                                                    <div class="filter_timeN" ng-if="arrD==3" ng-click="filterArrTimeT(arrD)">
+                                                        <div class="result_depart_time"><div id="arr3Logo" class="res_dep_img res_dep_evening"></div></div>
+                                                        <span>Afternoon</span>
+                                                        <p>(12:00pm - 5:59pm)</p>
+                                                    </div>
+                                                    <div class="filter_timeN" ng-if="arrD==4" ng-click="filterArrTimeT(arrD)">
+                                                        <div class="result_depart_time"><div id="arr4Logo" class="res_dep_img res_dep_night"></div></div>
+                                                        <span>Evening</span>
+                                                        <p>(6:00pm - 11:59pm)</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }
+                                    <div class="box-section Result-show" style="display:none;">
+                                        <div class="resetfilter_Div">
+                                            <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="rustfactor_fil">
-                            <h4 class="filter_header">Why Choose Us</h4>
-                            <div>
-                                <div class="promise_div">
-                                    <h5>OUR PROMISE</h5>
-                                    <div class="best_promise">
-                                        <h6><i class="fa fa-chevron-right"></i>Deliver the best</h6>
-                                        <p>Curate perfect itinerary for your needs.</p>
-                                    </div>
-                                    <div class="best_promise">
-                                        <h6><i class="fa fa-chevron-right"></i>Ensuring 100% Satisfaction</h6>
-                                        <p>We make sure you book with complete peace of mind.</p>
-                                    </div>
-                                    <div class="best_promise">
-                                        <h6><i class="fa fa-chevron-right"></i>Preserving your Privacy</h6>
-                                        <p>We make sure that your information is safe with us.</p>
-                                    </div>
-                                    <div class="best_promise">
-                                        <h6><i class="fa fa-chevron-right"></i>No Sneaking & Peaking</h6>
-                                        <p>All our airfares are all-inclusive of taxes & fees.</p>
+                            <div class="rustfactor_fil">
+                                <h4 class="filter_header">Why Choose Us</h4>
+                                <div>
+                                    <div class="promise_div">
+                                        <h5>OUR PROMISE</h5>
+                                        <div class="best_promise">
+                                            <h6><i class="fa fa-chevron-right"></i>Deliver the best</h6>
+                                            <p>Curate perfect itinerary for your needs.</p>
+                                        </div>
+                                        <div class="best_promise">
+                                            <h6><i class="fa fa-chevron-right"></i>Ensuring 100% Satisfaction</h6>
+                                            <p>We make sure you book with complete peace of mind.</p>
+                                        </div>
+                                        <div class="best_promise">
+                                            <h6><i class="fa fa-chevron-right"></i>Preserving your Privacy</h6>
+                                            <p>We make sure that your information is safe with us.</p>
+                                        </div>
+                                        <div class="best_promise">
+                                            <h6><i class="fa fa-chevron-right"></i>No Sneaking & Peaking</h6>
+                                            <p>All our airfares are all-inclusive of taxes & fees.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         </div>
                     </div>
-                        <div class="reslt_right">
-                            <div class="logoanimation Result-Progress" style="">
-                                <img src="" id="mlogoA1" alt="icon" />
-                                <img src="" id="mlogoB1" alt="icon" />
-                                <img src="" id="mlogoC1" alt="icon" />
-                            </div>
-
-                        <div class="seclect_airline Result-show" style="display:none;">
-
-                            <a class="deal_sectionL">
-                                <div class="scrool_top">
-                                    <span style="cursor:pointer;" ng-click="clearFilter()">All Fares </span>
-                                </div>
-
-                            </a>
-                            <div class="deal_sectionR">
-                                <div class="scrollmenu">
-                                    <a class="deal_section" ng-repeat="airM in flight.airlineList" ng-class="{MatrixActive : (matrixActive===airM.code)}">
-                                        <div class="scrool_LOGO" ng-click="MAirline(airM.code);">
-                                            <div class="slide_left"><img src="{{airM.url}}" alt="logo"></div>
-                                            <div class="slide_right">
-                                                <p>{{airM.name}}</p>
-                                                <span><i class="fa fa-rupee"></i> {{airM.fare}}</span>
-                                            </div>
-                                        </div>
-
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="reslt_right">
+                        <div class="logoanimation Result-Progress" style="">
+                            <img src="" id="mlogoA1" alt="icon" />
+                            <img src="" id="mlogoB1" alt="icon" />
+                            <img src="" id="mlogoC1" alt="icon" />
                         </div>
+                        @if (Model.matrixData != null && Model.matrixData.Count > 0&& Model.segment.Count==1)
+                        {
+                            <div class="price_Calender Result-show" style="display:none;">
+                                <div class="col-12 col-carousel">
+                                    <div class="owl-carousel carousel-main">
+                                        @foreach (var item in Model.matrixData)
+                                        {
+                                            if (item.tDate == Model.segment[0].travelDate.ToString("dd-MMM"))
+                                            {
+                                                <div class="grid d-flex flex-column align-items-center justify-content-center fareMatrixSelected">
+                                                    <p>@item.tDate</p>
+                                                    <h5 class="text-center logoFont"><i class="fa fa-rupee"></i> {{flight.airlineList[0].fare}}</h5>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="grid d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;" onclick="MatricSearch('@Model.deepLink','@item.tDate')">
+                                                    <p>@item.tDate</p>
+                                                    <h5 class="text-center logoFont"><i class="fa fa-rupee"></i> @item.fare.ToString("f0")</h5>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="seclect_airline Result-show" style="display:none;">
+
+                                <a class="deal_sectionL">
+                                    <div class="scrool_top">
+                                        <span style="cursor:pointer;" ng-click="clearFilter()">All Fares </span>
+                                    </div>
+
+                                </a>
+                                <div class="deal_sectionR">
+                                    <div class="scrollmenu">
+                                        <a class="deal_section" ng-repeat="airM in flight.airlineList" ng-class="{MatrixActive : (matrixActive===airM.code)}">
+                                            <div class="scrool_LOGO" ng-click="MAirline(airM.code);">
+                                                <div class="slide_left"><img src="{{airM.url}}" alt="logo"></div>
+                                                <div class="slide_right">
+                                                    <p>{{airM.name}}</p>
+                                                    <span><i class="fa fa-rupee"></i> {{airM.fare}}</span>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
 
                         @if (Model.tripType == TripType.RoundTrip)
                         {
@@ -736,7 +824,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                     </div>
                                                     <div class="destination_code">
                                                         <span>{{fs.segments[0].org.airportCode}}</span>
-                                                        <div>{{fs.segments[0].org.cityName}}</div>
+                                                        <div class="AirportName">{{fs.segments[0].org.cityName}}</div>
                                                         <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
                                                     </div>
                                                     <div class="flight_time_one">
@@ -753,7 +841,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                     </div>
                                                     <div class="destination_code">
                                                         <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                        <div>{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                        <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
                                                         <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
                                                     </div>
                                                 </div>
@@ -906,12 +994,15 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                             <font>{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
                                                         </div>
                                                         <div class="destination_code">
-                                                            <span>{{fs.segments[0].org.airportCode}}</span>
-                                                            <div>{{fs.segments[0].org.cityName}}</div>
+                                                            <div class="destopnone">
+                                                                <span>{{fs.segments[0].org.airportCode}}</span>
+                                                                <div class="AirportName">{{fs.segments[0].org.cityName}}</div>
+                                                            </div>
                                                             <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
                                                         </div>
                                                         <div class="flight_time_one">
-                                                            <span class="time_desti">{{fs.segments[0].depTime}} </span><p class="date_day">{{fs.segments[0].depDate}}</p>
+                                                            <p> <span class="AirportName">{{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
+                                                            <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
                                                         </div>
                                                         <div class="flight_time_two">
                                                             <span class="layover_time">{{fs.TotalTime}}</span>
@@ -920,11 +1011,15 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                                             <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
                                                         </div>
                                                         <div class="flight_time_third">
-                                                            <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><p class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</p>
+                                                            <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
+
+                                                            <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
                                                         </div>
                                                         <div class="destination_code">
-                                                            <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                            <div>{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                            <div class="destopnone">
+                                                                <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
+                                                                <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                            </div>
                                                             <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
                                                         </div>
                                                     </div>
@@ -1085,7 +1180,7 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                                 </table>
                             </div>
                         </div>
-                        <div class="fare_book">                           
+                        <div class="fare_book">
                             @*<a id="btnfare" onclick="setPrePaxR({{outBound.resultID}},{{inBound.resultID}})" href="/flight/passenger/@Model.userSearchID/{{outBound.resultID}}/{{inBound.resultID}}">Book Now</a>*@
                            <a ng-click="setPrePaxR(outBound.resultID,inBound.resultID)">Book Now</a>
                         </div>
@@ -1137,13 +1232,20 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
 </style>
 @section scripts {
     @Scripts.Render("~/bundles/MojoIndiaJsResult")
-   <script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        function MatricSearch(totDpl,dat)
+        {
+            window.location.href="../../"+totDpl+"&NewDate="+dat;
+        }
        function setPrePaxR(oID, iID){
            ShowProPopup();
            $("#oID").val(oID);
            $("#iID").val(iID);
            $('form#formPrePax').submit();
-       }      
+       }
     </script>
 
     <script>
@@ -1261,6 +1363,33 @@ position: relative;margin-top: 10px!important;padding: 0 6px;left: 0!important;b
                 $(".airprt_name").html('');
                 $(".Result-show").show();
                 $(".Result-Progress").hide();
+                $('.carousel-main').owlCarousel({
+                    items: 15,
+                    startPosition:@Model.matrixPos,
+                    loop: false,                   
+                    autoplay: false,
+                    autoplayTimeout: 2000,
+                    margin: 0,
+                    nav: true,
+                    dots: false,
+                    navText: ['<span class="fa fa-chevron-left fa-2x"></span>', '<span class="fa fa-chevron-right fa-2x"></span>'],
+                    responsiveClass: true,
+                    responsive: {
+                        0: {
+                            items: 3,
+                            nav: true
+                        },
+                        600: {
+                            items: 6,
+                            nav: false
+                        },
+                        1000: {
+                            items: 7,
+                            nav: true,
+                            loop: true
+                        }
+                    }
+                }); 
             });
 
             $scope.filterByStop = function (flights) {

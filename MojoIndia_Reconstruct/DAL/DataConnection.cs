@@ -27,4 +27,11 @@ public class DataConnection
         return Con;
     }
 
+
+    public static SqlConnection GetConMetaRank()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConMetaRank"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        return Con;
+    }
 }

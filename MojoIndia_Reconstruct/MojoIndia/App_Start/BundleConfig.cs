@@ -46,11 +46,11 @@ namespace MojoIndia
                 "~/Scripts/jquery.custom-scrollbar.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/MojoIndiaJsPayment").Include(
-              "~/Scripts/jquery-3.4.1.js",            
+              "~/Scripts/jquery-3.4.1.js",
               "~/Scripts/jquery.custom-scrollbar.js",
               "~/Scripts/jquery.validate_New.min.js",
               "~/Scripts/PaymentPage.js",
-              "~/Scripts/respond.js",           
+              "~/Scripts/respond.js",
               "~/Scripts/CommanJs.js"));
 
             bundles.Add(new StyleBundle("~/Content/cssIndia").Include(

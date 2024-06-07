@@ -49,7 +49,7 @@ namespace DAL.Deal
                     {
                         Core.ContentPage.WebsiteCustomDeal obj = new Core.ContentPage.WebsiteCustomDeal();
                         obj.origin = Core.FlightUtility.GetAirport(dr["origin"].ToString());
-                        obj.destination = Core.FlightUtility.GetAirport(dr["destination"].ToString());                 
+                        obj.destination = Core.FlightUtility.GetAirport(dr["destination"].ToString());
                         obj.depDate = Convert.ToDateTime(dr["depDate"]).ToString("yyyy-MM-dd");
                         string retDate = dr["retDate"].ToString();
                         obj.retDate = string.IsNullOrEmpty(retDate) ? "" : Convert.ToDateTime(retDate).ToString("yyyy-MM-dd");
@@ -57,8 +57,8 @@ namespace DAL.Deal
                         obj.tripType = ((Core.TripType)Convert.ToInt32(dr["tripType"])).ToString();
                         obj.cabinClass = ((Core.CabinType)Convert.ToInt32(dr["cabinClass"])).ToString();
                         //obj.totalFare = Convert.ToDecimal(dr["TotalFare"]).ToString("C", new System.Globalization.CultureInfo("EN-in"));
-                        obj.totalFare =  Convert.ToDecimal(dr["TotalFare"]).ToString("0,0", new System.Globalization.CultureInfo("HI-in"));
-                        obj.deepLink = "/flight/searchFlightResult?org=" +obj.origin.airportCode + "&dest=" + obj.destination.airportCode + "&depdate=" + Convert.ToDateTime(dr["depDate"]).ToString("dd-MM-yyyy") + "&retdate=" + (obj.tripType.Equals("OneWay") ? "" : Convert.ToDateTime(retDate).ToString("dd-MM-yyyy")) + "&tripType=" + (obj.tripType.Equals("OneWay") ? "O" : "R") + "&adults=1&child=0&infants=0&cabin=" + ((int)((Core.CabinType)Convert.ToInt32(dr["cabinClass"]))) + "&utm_source=1000&currency=inr";
+                        obj.totalFare = Convert.ToDecimal(dr["TotalFare"]).ToString("0,0", new System.Globalization.CultureInfo("HI-in"));
+                        obj.deepLink = "/flight/searchFlightResult?org=" + obj.origin.airportCode + "&dest=" + obj.destination.airportCode + "&depdate=" + Convert.ToDateTime(dr["depDate"]).ToString("dd-MM-yyyy") + "&retdate=" + (obj.tripType.Equals("OneWay") ? "" : Convert.ToDateTime(retDate).ToString("dd-MM-yyyy")) + "&tripType=" + (obj.tripType.Equals("OneWay") ? "O" : "R") + "&adults=1&child=0&infants=0&cabin=" + ((int)((Core.CabinType)Convert.ToInt32(dr["cabinClass"]))) + "&utm_source=1000&currency=inr";
                         objList.Add(obj);
                     }
                 }
@@ -101,6 +101,37 @@ namespace DAL.Deal
             using (SqlConnection con = DataConnection.GetConnection())
             {
                 return SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "usp_WebsiteDealSelectForWebsite", param);
+            }
+        }
+
+        public List<Core.Flight.fareMatrix> GetFareMatrix(string org, string dest)
+        {
+            SqlParameter[] param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@org", SqlDbType.VarChar, 3);
+            param[0].Value = org;
+
+            param[1] = new SqlParameter("@dest", SqlDbType.VarChar, 3);
+            param[1].Value = dest;
+
+
+            using (SqlConnection con = DataConnection.GetConMetaRank())
+            {
+                SqlDataReader dr = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "get_MetaRankO&DFare", param);
+                List<Core.Flight.fareMatrix> objList = new List<Core.Flight.fareMatrix>();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        Core.Flight.fareMatrix obj = new Core.Flight.fareMatrix();
+                        obj.sqNo = objList.Count;
+                        obj.fare =Convert.ToDecimal( dr["fare"]);
+                        obj.tDate = Convert.ToDateTime(dr["depDate"]).ToString("MMM-dd");// dr["depDate"].ToString();
+
+                        objList.Add(obj);
+                    }
+                }
+                return objList;
             }
         }
     }

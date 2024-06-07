@@ -90,6 +90,10 @@ namespace Core.Flight
         public string TvoTraceId { get; set; }
         [DataMember]
         public string ST_ResultSessionID { get; set; }
+        [DataMember]
+        public List<fareMatrix> matrixData { get; set; }
+        [DataMember]
+        public int  matrixPos { get; set; }
     }
     [DataContract]
     public class SearchSegment
@@ -104,5 +108,11 @@ namespace Core.Flight
         public Airport destArp { get; set; }
         [DataMember]
         public DateTime travelDate { get; set; }
+    }
+    public class fareMatrix
+    {
+        public int sqNo { get; set; }
+       public string tDate { get; set; }
+        public decimal fare { get; set; }
     }
 }

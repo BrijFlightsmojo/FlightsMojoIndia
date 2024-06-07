@@ -1956,134 +1956,157 @@
                 }
                 else
                 {
-                    if (isValidate
-                        && $("#Passenger").validate().element("#passengerDetails_" + i + "__title")
-                        && $("#Passenger").validate().element("#passengerDetails_" + i + "__firstName")
-                        && $("#Passenger").validate().element("#passengerDetails_" + i + "__lastName"))
+
+                    if($("#passengerDetails_" + i + "__passengerType").val()=="Adult")
                     {
-                        isValidate = true;
+                        if (isValidate
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__title")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__firstName")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__lastName"))
+                        {
+                            isValidate = true;
+                        }
+                        else
+                        {
+                            isValidate = false;
+                        }
                     }
                     else
                     {
-                        isValidate = false;
+                        if (isValidate
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__title")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__firstName")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__lastName")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__month")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__day")
+                           && $("#Passenger").validate().element("#passengerDetails_" + i + "__year"))
+                        {
+                            isValidate = true;
+                        }
+                        else
+                        {
+                            isValidate = false;
+                        }
                     }
+
                 }
-                if (isValidate) {
-                    var _Paxlst = [];
-                    for (var i = 0; (i < totPax) ; i++) {
-                        var Pax = {
-                            title:$("#passengerDetails_" + i + "__title").val(),
-                            firstName: $("#passengerDetails_" + i + "__firstName").val(),
-                            lastName: $("#passengerDetails_" + i + "__lastName").val(),
-                            day: $("#passengerDetails_" + i + "__day").val(),
-                            month: $("#passengerDetails_" + i + "__month").val(),
-                            year: $("#passengerDetails_" + i + "__year").val(),
-                            passengerType:$("#passengerDetails_" + i + "__passengerType").val(),
-                            passportNumber:$("#passengerDetails_" + i + "__passportNumber").val(),
-                            exYear:$("#passengerDetails_" + i + "__exYear").val(),
-                            exMonth:$("#passengerDetails_" + i + "__exMonth").val(),
-                            exDay:$("#passengerDetails_" + i + "__exDay").val(),
-                        };
-                        _Paxlst.push(Pax);
-                    }
+            }
+            if (isValidate) {
+                var _Paxlst = [];
+                for (var i = 0; (i < totPax) ; i++) {
+                    var Pax = {
+                        title:$("#passengerDetails_" + i + "__title").val(),
+                        firstName: $("#passengerDetails_" + i + "__firstName").val(),
+                        lastName: $("#passengerDetails_" + i + "__lastName").val(),
+                        day: $("#passengerDetails_" + i + "__day").val(),
+                        month: $("#passengerDetails_" + i + "__month").val(),
+                        year: $("#passengerDetails_" + i + "__year").val(),
+                        passengerType:$("#passengerDetails_" + i + "__passengerType").val(),
+                        passportNumber:$("#passengerDetails_" + i + "__passportNumber").val(),
+                        exYear:$("#passengerDetails_" + i + "__exYear").val(),
+                        exMonth:$("#passengerDetails_" + i + "__exMonth").val(),
+                        exDay:$("#passengerDetails_" + i + "__exDay").val(),
+                    };
+                    _Paxlst.push(Pax);
+                }
 
 
-                    var jsonData = {
-                        ID: $("#userSearchID").val(),
-                        Paxlst: _Paxlst
-                    }
-                    $('#ResultProgressPopupSave').show();
-                    $.ajax({
-                        type: "POST",
-                        url: "/Flight/SavePassengerDetails",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(jsonData),
-                        responseType: "json",
-                        success: function (r) {
-                
+                var jsonData = {
+                    ID: $("#userSearchID").val(),
+                    Paxlst: _Paxlst
+                }
+                $('#ResultProgressPopupSave').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/Flight/SavePassengerDetails",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(jsonData),
+                    responseType: "json",
+                    success: function (r) {
+
+                        //$("#hfStep").val("2");
+                        $("#btn_proceed").hide();
+                        $("#btn_disable").show();
+
+                        //$("#PriceCancellaionPolicy").show();
+                        //$("#PriceRefundPolicy").show();
+                        //AddonsStep1.style.display = "block";
+                        //AddonsStep2.style.display = "block";
+
+                        if($("#hfStepShow").val()!="0")
+                        {
+                            $('.AddonsStep1').hide();
+                            $('.AddonsStep2').show();
                             //$("#hfStep").val("2");
-                            $("#btn_proceed").hide();
-                            $("#btn_disable").show();
+                            //step3.style.display = "block";
+                            //update_payment();
+                        }
+                        else
+                        {
+                            $('.AddonsStep1').show();
+                            $('.AddonsStep2').show();
+                        }
 
-                            //$("#PriceCancellaionPolicy").show();
-                            //$("#PriceRefundPolicy").show();
-                            //AddonsStep1.style.display = "block";
-                            //AddonsStep2.style.display = "block";
 
-                            if($("#hfStepShow").val()!="0")
+
+                        Contactstep.classList.add("success");
+                        Contactstep.classList.remove("false");
+                        Passengerstep.classList.add("success");
+                        Passengerstep.classList.remove("false");
+                        var strHtml="", strHtmlChd="",strHtmlInf="";
+                        var adt=0,chd=0,inf=0;
+                        for(var i =0;i<_Paxlst.length;i++)
+                        {
+                            if(_Paxlst[i].passengerType=="Adult")
                             {
-                                $('.AddonsStep1').hide();
-                                $('.AddonsStep2').show();
-                                //$("#hfStep").val("2");
-                                //step3.style.display = "block";
-                                //update_payment();
+                                if(adt==0){
+                                    strHtml+="<span>Adult:</span>";
+                                }
+                                strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                adt++;
+                            }
+                            else if(_Paxlst[i].passengerType=="Child")
+                            { if(chd==0){
+                                strHtmlChd+="<span>Child:</span>";
+                            }
+                                strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                chd++
                             }
                             else
                             {
-                                $('.AddonsStep1').show();
-                                $('.AddonsStep2').show();
+                                if(inf==0){
+                                    strHtmlInf+="<span>Infant:</span>";
+                                }
+                                strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                inf++;
                             }
-
-
-
-                            Contactstep.classList.add("success");
-                            Contactstep.classList.remove("false");
-                            Passengerstep.classList.add("success");
-                            Passengerstep.classList.remove("false");
-                            var strHtml="", strHtmlChd="",strHtmlInf="";
-                            var adt=0,chd=0,inf=0;
-                            for(var i =0;i<_Paxlst.length;i++)
-                            {
-                                if(_Paxlst[i].passengerType=="Adult")
-                                {
-                                    if(adt==0){
-                                        strHtml+="<span>Adult:</span>";
-                                    }
-                                    strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    adt++;
-                                }
-                                else if(_Paxlst[i].passengerType=="Child")
-                                { if(chd==0){
-                                    strHtmlChd+="<span>Child:</span>";
-                                }
-                                    strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    chd++
-                                }
-                                else
-                                {
-                                    if(inf==0){
-                                        strHtmlInf+="<span>Infant:</span>";
-                                    }
-                                    strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    inf++;
-                                }
-                            }
-                            $('#ResultProgressPopupSave').hide();
-                            $("#PaxShowData").html(strHtml);
-                            $("#PaxShowDataChd").html(strHtmlChd);
-                            $("#PaxShowDataInf").html(strHtmlInf);
-
-                            $("#PaxShow").show();
-                            PaxShow.style.display = "block";
-                            $("#PaxShowDataChd").show();
-                            $("#PaxShowDataInf").show();
-                            $("#AddOnstep").show();
-                            step1.style.display = "none";
-                            step2.style.display = "none";
-                            ShowContact.style.display = "block";
-                            //update_payment();
-                            AddPaymentInfo();
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                            $('#ResultProgressPopupSave').hide();
                         }
-                    });
-                }
-            }
+                        $('#ResultProgressPopupSave').hide();
+                        $("#PaxShowData").html(strHtml);
+                        $("#PaxShowDataChd").html(strHtmlChd);
+                        $("#PaxShowDataInf").html(strHtmlInf);
 
+                        $("#PaxShow").show();
+                        PaxShow.style.display = "block";
+                        $("#PaxShowDataChd").show();
+                        $("#PaxShowDataInf").show();
+                        $("#AddOnstep").show();
+                        step1.style.display = "none";
+                        step2.style.display = "none";
+                        ShowContact.style.display = "block";
+                        //update_payment();
+                        AddPaymentInfo();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        $('#ResultProgressPopupSave').hide();
+                    }
+                });
+            }
         }
+
+
 
 
     </script>
@@ -2213,12 +2236,12 @@
             if($("#hfStepAddon").val()!="0")
             {
                 final += parseFloat($("#hfAddonCPAmt").val());
-               
+
             }
             if($("#hfStepAddonRP").val()!="0")
             {
                 final += parseFloat($("#hfAddonRPAmt").val());
-              
+
             }
             $("#hfConvenFee").val(final_con);
             $("#totalAmount").html(+final.toFixed(0));
@@ -2671,15 +2694,15 @@
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'flight_listing',
-                'link_name':'load'
+                'link_name':'load',
                 'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
                 'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
                 'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
                 'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
                 'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
                 'passenger_count': @(Model.passengerDetails.Count()),
-            'airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()'
-        });
+                'airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()'
+            });
         }
     </script>
 

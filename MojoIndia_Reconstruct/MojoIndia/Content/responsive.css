@@ -116,7 +116,7 @@
 .mobr_right h5{font-size:18px;font-weight: bold;color: #000;}
 .mobr_right p{ font-size:9px;}
 .drop_filter label{ font-size:12px;}
-.destination_code span{margin-top: 4px;display: inline-block;}
+.destination_code span{margin-top: 4px;display: inline-block; padding:0px;}
 .flight_icon{ margin-top: 4px;}
 .flight_icon font{font-size: 11px;}
 .mob_time{display: block; font-size:14px;}
@@ -446,6 +446,7 @@ nav .menu {width: 100%;}
 .pricerange_mobile{ display:block;}
 .pricerane_destop{ display:none;}
 .SelectAirline{width: 90%;}
+.destopnone{ display:block;}
 /*.airline_RefundRight h5{padding-top: 10px;}*/
 }
 
@@ -524,6 +525,8 @@ nav .menu {width: 100%;}
 @media (min-width: 1700px) {
   .top_cut {top:50px;left: -23px;}
 .fixed-right {position: fixed;right: 356px;max-width: 335px;top: 98px;} 
+.fixed-left{height: 100vh;overflow-y: auto;}
+.filter_header{padding: 5px 11px;top: 1px;}
 }
 @media (min-width: 1920px){
 .fixed-right {position: fixed;right: 175px;max-width: 440px;top: 98px;}

@@ -412,7 +412,7 @@ button.ui-button::-moz-focus-inner {
 	border-right: 0;
 	border-bottom: 0;width: 100%;
     float: left;
-    text-align: center;
+    text-align: center;display:none;
 }
 .ui-datepicker .ui-datepicker-buttonpane button {
 	
