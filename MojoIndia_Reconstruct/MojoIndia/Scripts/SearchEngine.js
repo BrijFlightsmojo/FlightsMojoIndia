@@ -147,13 +147,20 @@ function submitForm() {
         }
         if (validationFlag == true) {
             setLocalStorage();
-
             $("#SubmitSearchEngine").hide();
             $("#SubmitSearchProgress").show();
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
             var totpax = adult + child + infant;
+
+            var departure_date = new Date($("#departure_date").val());
+            var str_departure_date = new Date(departure_date.toISOString());
+
+            var return_date = new Date($("#return_date").val());
+            var str_return_date = new Date(return_date.toISOString());
+
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'search',
@@ -165,6 +172,16 @@ function submitForm() {
                 'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
                 'passenger_count': totpax,
                 'airline_class': $("#Cabin option:selected").text()
+            });
+
+            webengage.track("Flight searched", {
+                "Source": $("#hfCity_from").val(),
+                "Destination": $("#hfCity_to").val(),
+                "Type": $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+                "Departure Date": str_departure_date,
+                "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
+                "Class": $("#Cabin option:selected").text(),
+                "No of Passengers": totpax,
             });
         }
         return validationFlag;
@@ -408,8 +425,6 @@ function SearchFlightFromHistory(itin) {
                 $("#Infant").val((itinerary[itin].infants != null && itinerary[itin].infants != undefined) ? itinerary[itin].infants : "0");
                 $("#Cabin").val((itinerary[itin].cabinType != null && itinerary[itin].cabinType != undefined) ? itinerary[itin].cabinType : "1");
                 $("#hfTripType").val(itinerary[itin].tripType);
-
-
                 $("#flightSearch").submit();
             }
         }
@@ -608,7 +623,6 @@ function setValInSE(airportCode, airportName, cityName, countryName) {
     $("#" + gCtrName + "BottamCityMob").html(cityName);
     $("#hfCity_" + gCtrName).val(airportCode);
     $("#" + gCtrName + "AutoComplete").hide();
-
 }
 
 
@@ -744,7 +758,6 @@ function se_setPaxDropBox() {
     var infant = parseInt($("#se_Infant").val());
     var InfantWs = parseInt($("#se_InfantWs").val());
     var totpax = adult + child + infant + InfantWs;
-
     $("#se_txtPaxDetail").val(totpax.toString() + " Traveler / " + $("#se_Cabin option:selected").text());
 }
 function empytText(textName, spanName, hiddenName) {
@@ -768,21 +781,14 @@ function swapdata() {
     var fromTopCityMob = $("#fromTopCityMob").html();
     var fromBottamCityMob = $("#fromBottamCityMob").html();
 
-
     var fromBottamCity = $("#fromBottamCity").html();
     var toBottamCity = $("#toBottamCity").html();
     var toTopCityMob = $("#toTopCityMob").html();
     var toBottamCityMob = $("#toBottamCityMob").html();
-
-
-
     fromTopCity = $("#toTopCity").html();
     toTopCity = $("#fromTopCity").html();
     fromTopCityMob = $("#toBottamCityMob").html();
     fromBottamCityMob = $("#toTopCityMob").html();
-    
-    
-
 
     fromBottamCity = $("#toBottamCity").html();
     toBottamCity = $("#fromBottamCity").html();

@@ -39,7 +39,7 @@ namespace DAL.Deal
                 param[5] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
                 param[5].Value = cabinClass;
             }
-            using (SqlConnection con = DataConnection.GetConnection())
+            using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
             {
                 SqlDataReader dr = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "usp_WebsiteDealSelectForWebsite", param);
                 List<Core.ContentPage.WebsiteCustomDeal> objList = new List<Core.ContentPage.WebsiteCustomDeal>();
@@ -66,43 +66,43 @@ namespace DAL.Deal
             }
         }
 
-        public DataSet GetWebsiteDeal(int dealType, string origin, string destination, string airline, Int16 tripType, Int16 cabinClass)
-        {
-            SqlParameter[] param = new SqlParameter[6];
+        //public DataSet GetWebsiteDeal(int dealType, string origin, string destination, string airline, Int16 tripType, Int16 cabinClass)
+        //{
+        //    SqlParameter[] param = new SqlParameter[6];
 
-            param[0] = new SqlParameter("@dealType", SqlDbType.Int);
-            param[0].Value = dealType;
+        //    param[0] = new SqlParameter("@dealType", SqlDbType.Int);
+        //    param[0].Value = dealType;
 
-            if (!string.IsNullOrEmpty(origin))
-            {
-                param[1] = new SqlParameter("@origin", SqlDbType.VarChar, 3);
-                param[1].Value = origin;
-            }
-            if (!string.IsNullOrEmpty(destination))
-            {
-                param[2] = new SqlParameter("@destination", SqlDbType.VarChar, 3);
-                param[2].Value = destination;
-            }
-            if (!string.IsNullOrEmpty(airline))
-            {
-                param[3] = new SqlParameter("@airline", SqlDbType.VarChar, 3);
-                param[3].Value = airline;
-            }
-            if (tripType > 0)
-            {
-                param[4] = new SqlParameter("@tripType", SqlDbType.SmallInt);
-                param[4].Value = tripType;
-            }
-            if (cabinClass > 0)
-            {
-                param[5] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
-                param[5].Value = cabinClass;
-            }
-            using (SqlConnection con = DataConnection.GetConnection())
-            {
-                return SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "usp_WebsiteDealSelectForWebsite", param);
-            }
-        }
+        //    if (!string.IsNullOrEmpty(origin))
+        //    {
+        //        param[1] = new SqlParameter("@origin", SqlDbType.VarChar, 3);
+        //        param[1].Value = origin;
+        //    }
+        //    if (!string.IsNullOrEmpty(destination))
+        //    {
+        //        param[2] = new SqlParameter("@destination", SqlDbType.VarChar, 3);
+        //        param[2].Value = destination;
+        //    }
+        //    if (!string.IsNullOrEmpty(airline))
+        //    {
+        //        param[3] = new SqlParameter("@airline", SqlDbType.VarChar, 3);
+        //        param[3].Value = airline;
+        //    }
+        //    if (tripType > 0)
+        //    {
+        //        param[4] = new SqlParameter("@tripType", SqlDbType.SmallInt);
+        //        param[4].Value = tripType;
+        //    }
+        //    if (cabinClass > 0)
+        //    {
+        //        param[5] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
+        //        param[5].Value = cabinClass;
+        //    }
+        //    using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
+        //    {
+        //        return SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "usp_WebsiteDealSelectForWebsite", param);
+        //    }
+        //}
 
         public List<Core.Flight.fareMatrix> GetFareMatrix(string org, string dest)
         {

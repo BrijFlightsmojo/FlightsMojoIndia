@@ -63,6 +63,8 @@ namespace Core.Flight
 
         [DataMember]
         public string GFS_FlightKey { get; set; }
+        [DataMember]
+        public Device device { get; set; }
         public FlightSearchResponse()
         {
         }
@@ -81,6 +83,7 @@ namespace Core.Flight
             SearchRequest = request;
             userSearchID = request.userSearchID;
             userLogID = request.userLogID;
+            device = request.device;
         }
     }
     [DataContract]

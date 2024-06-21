@@ -133,6 +133,18 @@
                                             <label ng-if="stops.stop==3" class="filter_container">2+ Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
                                         </div>
                                     </div>
+                                    
+                                    <div class="box-section Result-show" style="display:none;">
+                                        <a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
+                                        <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
+                                            <label class="filter_container">
+                                                {{air.name}}
+                                                <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                       
+                                    </div>
                                     <div class="box-section">
                                         <div class="pricerane_destop">
                                             <a href="#" class="show_data">Price Range  <i class="fa fa-caret-down"></i></a>
@@ -153,17 +165,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="box-section Result-show" style="display:none;">
-                                        <a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
-                                        <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
-                                            <label class="filter_container">
-                                                {{air.name}}
-                                                <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                       
-                                    </div>
+
                                     <div class="box-section">
                                         <a class="show_data">Departure Time  <i class="fa fa-caret-down"></i></a>
                                         <ul class="filter_flight_time">
@@ -222,6 +224,14 @@
                                         </div>
                                     }
                                     <div class="box-section Result-show" style="display:none;">
+                                        @*<a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
+                                        <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
+                                            <label class="filter_container">
+                                                {{air.name}}
+                                                <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>*@
                                         <div class="resetfilter_Div">
                                             <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
                                         </div>
@@ -461,6 +471,7 @@
                                                                         <div class="air_class">
                                                                             <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
                                                                             <span>{{seg.equipType}}</span>
+                                                                            <input type="hidden" id="depFlightNo" name="depFlightNo" value="{{seg.airline.code}}-{{seg.flightNo}}" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="airlines_faci "></div>
@@ -471,6 +482,7 @@
                                                                         <b>{{seg.depTime}}</b>
                                                                         <span>{{seg.depDate}}</span>
                                                                         <dfn>{{seg.fTerminal}}</dfn>
+                                                                        <input type="hidden" id="depArrDate" name="depArrDate" value="{{seg.depDate}}">
                                                                     </div>
                                                                     <div class="airline_iteone" style="padding-right:15px;">
                                                                         <div class="stop_timer">
@@ -644,6 +656,7 @@
                                                                         <div class="air_class">
                                                                             <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
                                                                             <span>{{seg.equipType}}</span>
+                                                                            <input type="hidden" name="Return_Flight_number" id="Return_Flight_number" value="{{seg.airline.code}}-{{seg.flightNo}}" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="airlines_faci "></div>
@@ -666,10 +679,12 @@
                                                                         <p>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</p>
                                                                         <b>{{seg.arrTime}}</b>
                                                                         <span>{{seg.arrDate}}</span>
+                                                                        <input type="hidden" id="RetArrDate" name="RetArrDate" value="{{seg.arrDate}}">
                                                                         <dfn>{{seg.tTerminal}}</dfn>
                                                                     </div>
                                                                     <div class="layover_div">
                                                                         <span ng-if="seg.layOverTime!=''">Layover Time: {{seg.layOverTime}}</span>
+                                                                        <input type="hidden" name="seglayOver" id="seglayOver" value="{{seg.layOverTime}}" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -684,6 +699,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                //Return_Flight_number
+
+                                <input type="hidden" name="depDate" id="depDate" value="{{dep.flightSegments[0].segments[0].depTime}}" />
+                                @*<input type="hidden" name="depArrDate" id="depArrDate" value="{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}" />*@
+
+                                <input type="hidden" name="retDate" id="retDate" value="{{ret.flightSegments[0].segments[0].depTime}}" />
+                                <input type="hidden" name="retArrDate" id="retArrDate" value="{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}" />
+
+                                <input type="hidden" name="depPerPaxPrice" id="depPerPaxPrice" value="{{dep.sPrice}}" />
+                                <input type="hidden" name="retPerPaxPrice" id="depPerPaxPrice" value="{{ret.sPrice}}" />
+
+
                             }
                             else
                             {
@@ -821,14 +849,17 @@
                                                         <span class="flight_icon"><img src="{{fs.segments[0].url}}" alt="logo" /></span>
                                                         <p>{{fs.segments[0].airline.name}}</p>
                                                         <font>{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
+
                                                     </div>
                                                     <div class="destination_code">
-                                                        <span>{{fs.segments[0].org.airportCode}}</span>
-                                                        <div class="AirportName">{{fs.segments[0].org.cityName}}</div>
+                                                        @*<span>{{fs.segments[0].org.airportCode}}</span>*@
+                                                        @*<div class="AirportName">{{fs.segments[0].org.cityName}}</div>*@
                                                         <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
                                                     </div>
                                                     <div class="flight_time_one">
-                                                        <span class="time_desti">{{fs.segments[0].depTime}} </span><p class="date_day">{{fs.segments[0].depDate}}</p>
+                                                        @*<span class="time_desti">{{fs.segments[0].depTime}} </span><p class="date_day">{{fs.segments[0].depDate}}</p>*@
+                                                        <p><span class="AirportName"> {{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
+                                                        <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
                                                     </div>
                                                     <div class="flight_time_two">
                                                         <span class="layover_time">{{fs.TotalTime}}</span>
@@ -837,13 +868,17 @@
                                                         <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
                                                     </div>
                                                     <div class="flight_time_third">
-                                                        <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><p class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</p>
+                                                        @*<span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><p class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</p>*@
+
+                                                        <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
+
+                                                        <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
                                                     </div>
-                                                    <div class="destination_code">
+                                                    @*<div class="destination_code">
                                                         <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
                                                         <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
                                                         <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                             <div class="listing_right">
@@ -1182,7 +1217,23 @@
                         </div>
                         <div class="fare_book">
                             @*<a id="btnfare" onclick="setPrePaxR({{outBound.resultID}},{{inBound.resultID}})" href="/flight/passenger/@Model.userSearchID/{{outBound.resultID}}/{{inBound.resultID}}">Book Now</a>*@
-                           <a ng-click="setPrePaxR(outBound.resultID,inBound.resultID)">Book Now</a>
+                            <a ng-click="setPrePaxR(outBound.resultID,inBound.resultID)">Book Now</a>
+
+                            <input type="hidden" id="rdTotValue" value="{{outBound.price+inBound.price}}" />
+
+                            <input type="hidden" id="Layover" value="{{result.flightSegments.segments.layOverTime!='' ? true : false}}" />
+                            <input type="hidden" id="Departure_stops" value="Non Stop" />
+                            <input type="hidden" id="Destination_stops" value="Non Stop" />
+                            <input type="hidden" id="Departure_Price_per_adult" value="{{outBound.price}}" />
+                            <input type="hidden" id="Departure_Brand" value="{{outBound.flightSegments[0].segments[0].airline.name}}" />
+                            <input type="hidden" id="Return_Price_per_adult" value="{{inBound.price}}" />
+                            <input type="hidden" id="Return_Brand" value="{{inBound.flightSegments[0].segments[0].airline.name}}" />
+                            <input type="hidden" id="Departure_duration" value="{{outBound.flightSegments[0].TotalTime}}" />
+                            <input type="hidden" id="Return_duration" value="{{inBound.flightSegments[0].TotalTime}}" />
+
+                            <input type="hidden" id="hf_d_date" value="{{outBound.flightSegments[0].segments[0].depTime}}" />
+                            <input type="hidden" id="hf_darr_date" value="{{outBound.flightSegments[0].segments[outBound.flightSegments[0].segments.length-1].arrTime}}" />
+
                         </div>
                     </div>
                 </div>
@@ -1626,13 +1677,13 @@
         function ShowProPopup() {
             $('#ResultProgressPopup').show();
             Select_detail();
-			$('#ResultProgressPopup').hide();
+            $('#ResultProgressPopup').hide();
         }
     </script>
     <script>
         $(document).ready(function () {
-		
-		    $('#ResultProgressPopup').hide();
+
+            $('#ResultProgressPopup').hide();
             $(".modify_click,.button").click(function () {
                 $(".modify_search").slideDown("slow");
             });
@@ -1660,7 +1711,7 @@
     <script type="text/javascript">
         var iL = 1;
         $(document).ready(function () {
-$('#ResultProgressPopup').hide();
+            $('#ResultProgressPopup').hide();
             $('#mlogoA1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode1() + '.gif');
             $('#mlogoB1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode2() + '.gif');
             $('#mlogoC1').attr('src', 'https://www.flightsmojo.com/images/AirlineLogo/' + GetRandomAirlineCode3() + '.gif');
@@ -1827,7 +1878,7 @@ $('#ResultProgressPopup').hide();
     </script>
 
 
-<script>
+    <script>
         function FlightLoad() {
 
             var adult = parseInt($("#Adult").val());
@@ -1847,13 +1898,12 @@ $('#ResultProgressPopup').hide();
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
+    </script>
 
 
 
     <script>
-        function ResultSuccess() {          
-
+        function ResultSuccess() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1874,8 +1924,8 @@ $('#ResultProgressPopup').hide();
     </script>
 
 
-<script>
-           function flight_detail() {
+    <script>
+        function flight_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1893,14 +1943,27 @@ $('#ResultProgressPopup').hide();
                 'airline_class': $("#Cabin option:selected").text()
             });
         }
-</script>
+    </script>
 
-<script>
-           function Select_detail() {
+    <script>
+        function Select_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
             var totpax = adult + child + infant;
+
+            //var departure_date = new Date($("#departure_date").val());
+            //var str_departure_date =new Date(departure_date.toISOString());
+
+            //var depArrDate = new Date($("#depArrDate").val());
+            //var str_depArrDate =  new Date(depArrDate.toISOString());
+
+            //var return_date = new Date($("#return_date").val());
+            //var str_return_date = new Date(return_date.toISOString());
+
+            //var retArrdate = new Date($("#RetArrDate").val());
+            //var str_retArrDate =  new Date(retArrdate.toISOString());
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'flight_listing',
@@ -1913,13 +1976,98 @@ $('#ResultProgressPopup').hide();
                 'passenger_count': totpax,
                 'airline_class': $("#Cabin option:selected").text()
             });
+
+            if( $("#hfTripType").val() == "2")
+            {  
+                var adult = parseInt($("#Adult").val());
+                var child = parseInt($("#Child").val());
+                var infant = parseInt($("#Infant").val());
+                var totpax = adult + child + infant;
+
+                var departure_date = new Date($("#departure_date").val());
+                var str_departure_date =new Date(departure_date.toISOString());
+
+                var depArrDate = new Date($("#depArrDate").val());
+                var str_depArrDate =  new Date(depArrDate.toISOString());
+
+                var return_date = new Date($("#return_date").val());
+                var str_return_date = new Date(return_date.toISOString());
+
+                var retArrdate = new Date($("#RetArrDate").val());
+                var str_retArrDate =  new Date(retArrdate.toISOString());
+                webengage.track("Flight Selected", {
+                "Departure Source":$("#hfCity_from").val(),
+                "Departure Destination": $("#hfCity_to").val(),
+                "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
+                "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
+                "Departure class": $("#Cabin option:selected").text(),
+                "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
+                "Layover": $("#Layover").val(),
+                "Departure Date": str_departure_date,
+                "Departure arrival date": str_depArrDate,
+                "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
+                "Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
+                "Departure stops": $("#Departure_stops").val(),
+                "Destination stops": $("#Destination_stops").val(),
+                "Departure Price per adult": $("#Departure_Price_per_adult").val(),
+                "Departure Flight number": $("#depFlightNo").val(),
+                "Departure Brand": $("#Departure_Brand").val(),
+                "Return Price per adult": $("#Return_Price_per_adult").val(),
+                "Return Flight number": $("#Return_Flight_number").val(),
+                "Return Brand": $("#Return_Brand").val(),
+                "Departure duration": $("#Departure_duration").val(),
+                "Return duration": $("#Return_duration").val(),
+            });
+            
+            }
+        else
+        {
+                var adult = parseInt($("#Adult").val());
+                var child = parseInt($("#Child").val());
+                var infant = parseInt($("#Infant").val());
+                var totpax = adult + child + infant;
+
+                var departure_date = new Date($("#departure_date").val());
+                var str_departure_date =new Date(departure_date.toISOString());
+
+                var depArrDate ="";
+                var str_depArrDate =  "";
+
+                var return_date = "";
+                var str_return_date ="";
+
+                var retArrdate = "";
+                var str_retArrDate =  "";
+                webengage.track("Flight Selected", {
+                    "Departure Source":$("#hfCity_from").val(),
+                    "Departure Destination": $("#hfCity_to").val(),
+                    "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
+                    "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
+                    "Departure class": $("#Cabin option:selected").text(),
+                    "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
+                    "Layover": $("#Layover").val(),
+                    "Departure Date": str_departure_date,
+                    "Departure arrival date": str_depArrDate,
+                    "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
+                    "Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
+                    "Departure stops": $("#Departure_stops").val(),
+                    "Destination stops": $("#Destination_stops").val(),
+                    "Departure Price per adult": $("#Departure_Price_per_adult").val(),
+                    "Departure Flight number": $("#depFlightNo").val(),
+                    "Departure Brand": $("#Departure_Brand").val(),
+                    "Return Price per adult": $("#Return_Price_per_adult").val(),
+                    "Return Flight number": $("#Return_Flight_number").val(),
+                    "Return Brand": $("#Return_Brand").val(),
+                    "Departure duration": $("#Departure_duration").val(),
+                    "Return duration": $("#Return_duration").val(),
+                });
         }
-</script>
+        }
+    </script>
 
 
-<script>
+    <script>
         function Modify() {
-
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
@@ -1944,9 +2092,8 @@ $('#ResultProgressPopup').hide();
             });
         });
 
-</script>
-<script type="text/javascript">
-        
+    </script>
+    <script type="text/javascript">
         if ($(window).width() > 960) {
             $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
@@ -1957,57 +2104,53 @@ $('#ResultProgressPopup').hide();
                 }
             });
         }
-</script>
-<script>
-    function swapdata() {
-        var fromTopCity = $("#fromTopCity").html();
-        var toTopCity = $("#toTopCity").html();
-        var fromBottamCity = $("#fromBottamCity").html();
-        var toBottamCity = $("#toBottamCity").html();
+    </script>
+    <script>
+        function swapdata() {
+            var fromTopCity = $("#fromTopCity").html();
+            var toTopCity = $("#toTopCity").html();
+            var fromBottamCity = $("#fromBottamCity").html();
+            var toBottamCity = $("#toBottamCity").html();
 
-        var fromTopCityMob = $("#fromTopCityMob").html();
-        var fromBottamCityMob = $("#fromBottamCityMob").html();
-        var toTopCityMob = $("#toTopCityMob").html();
-        var toBottamCityMob = $("#toBottamCityMob").html();
+            var fromTopCityMob = $("#fromTopCityMob").html();
+            var fromBottamCityMob = $("#fromBottamCityMob").html();
+            var toTopCityMob = $("#toTopCityMob").html();
+            var toBottamCityMob = $("#toBottamCityMob").html();
 
+            fromTopCity = $("#toTopCity").html();
+            toTopCity = $("#fromTopCity").html();
+            fromBottamCity = $("#toBottamCity").html();
+            toBottamCity = $("#fromBottamCity").html();
 
-        fromTopCity = $("#toTopCity").html();
-        toTopCity = $("#fromTopCity").html();
-        fromBottamCity = $("#toBottamCity").html();
-        toBottamCity = $("#fromBottamCity").html();
+            fromTopCityMob = $("#toBottamCityMob").html();
+            fromBottamCityMob = $("#toTopCityMob").html();
+            toTopCityMob = $("#fromBottamCityMob").html();
+            toBottamCityMob = $("#fromTopCityMob").html();
 
-        fromTopCityMob = $("#toBottamCityMob").html();
-        fromBottamCityMob = $("#toTopCityMob").html();
-        toTopCityMob = $("#fromBottamCityMob").html();
-        toBottamCityMob = $("#fromTopCityMob").html();
+            document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
+            document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
+            document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
+            document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
 
-        document.getElementById("fromTopCity").innerHTML = document.getElementById("toTopCity").innerHTML;
-        document.getElementById("toTopCity").innerHTML = document.getElementById("fromTopCity").innerHTML;
-        document.getElementById("fromBottamCity").innerHTML = document.getElementById("toBottamCity").innerHTML;
-        document.getElementById("toBottamCity").innerHTML = document.getElementById("fromBottamCity").innerHTML;
+            document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
+            document.getElementById("fromTopCityMob").innerHTML = document.getElementById("toBottamCityMob").innerHTML;
+            document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromTopCityMob").innerHTML;
+            document.getElementById("fromBottamCityMob").innerHTML = document.getElementById("toTopCityMob").innerHTML;
 
-        document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
-        document.getElementById("fromTopCityMob").innerHTML = document.getElementById("toBottamCityMob").innerHTML;
-        document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromTopCityMob").innerHTML;
-        document.getElementById("fromBottamCityMob").innerHTML = document.getElementById("toTopCityMob").innerHTML;
-        //document.getElementById("toTopCityMob").innerHTML = document.getElementById("fromBottamCityMob").innerHTML;
+            document.getElementById("fromTopCity").innerHTML = fromTopCity;
+            document.getElementById("toTopCity").innerHTML = toTopCity;
+            document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
+            document.getElementById("toBottamCity").innerHTML = toBottamCity;
 
+            document.getElementById("fromTopCityMob").innerHTML = fromBottamCityMob;
+            document.getElementById("fromBottamCityMob").innerHTML = fromTopCityMob;
+            document.getElementById("toBottamCityMob").innerHTML = toTopCityMob;//toBottamCityMob
+            document.getElementById("toTopCityMob").innerHTML = toBottamCityMob;//toTopCityMob
 
-        document.getElementById("fromTopCity").innerHTML = fromTopCity;
-        document.getElementById("toTopCity").innerHTML = toTopCity;
-        document.getElementById("fromBottamCity").innerHTML = fromBottamCity;
-        document.getElementById("toBottamCity").innerHTML = toBottamCity;
-
-        document.getElementById("fromTopCityMob").innerHTML = fromBottamCityMob;
-        document.getElementById("fromBottamCityMob").innerHTML = fromTopCityMob;
-        document.getElementById("toBottamCityMob").innerHTML = toTopCityMob;//toBottamCityMob
-        document.getElementById("toTopCityMob").innerHTML = toBottamCityMob;//toTopCityMob
-
-        hfCity_to = $("#hfCity_to").val();
-        hfCity_from = $("#hfCity_from").val();
-        $("#hfCity_to").val(hfCity_from);
-        $("#hfCity_from").val(hfCity_to);
-    }
-
-</script>
+            hfCity_to = $("#hfCity_to").val();
+            hfCity_from = $("#hfCity_from").val();
+            $("#hfCity_to").val(hfCity_from);
+            $("#hfCity_from").val(hfCity_to);
+        }
+    </script>
 }

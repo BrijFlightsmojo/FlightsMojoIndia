@@ -17,13 +17,13 @@ public class DataConnection
     public static SqlConnection GetConnection()
     {
         SqlConnection Con = new SqlConnection();
-        Con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ToString();
         return Con;
     }
     public static SqlConnection GetConnectionFareCaching()
     {
         SqlConnection Con = new SqlConnection();
-        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionFareCaching"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionFareCaching"].ToString();
         return Con;
     }
 
@@ -31,7 +31,14 @@ public class DataConnection
     public static SqlConnection GetConMetaRank()
     {
         SqlConnection Con = new SqlConnection();
-        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConMetaRank"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConMetaRank"].ToString();
+        return Con;
+    }
+
+    public static SqlConnection GetConSearchHistoryAndDeal_RDS()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConSearchHistoryAndDeal_RDS"].ToString();
         return Con;
     }
 }

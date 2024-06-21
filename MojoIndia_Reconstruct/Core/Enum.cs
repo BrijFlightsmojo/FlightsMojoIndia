@@ -34,6 +34,12 @@ namespace Core
         CRM = 3,
         Meta = 4
     }
+    public enum Device : int
+    {
+        None = 0,
+        Desktop = 1,
+        Mobile = 2
+    }
     public enum CabinType : int
     {
         None = 0,

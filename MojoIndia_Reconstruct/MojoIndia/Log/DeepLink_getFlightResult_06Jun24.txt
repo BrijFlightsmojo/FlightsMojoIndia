@@ -1,0 +1,9 @@
+
+localhost/flight/searchFlightResult?org=BLR&dest=CCU&depdate=21-06-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr&NewDate=20-Jun
+
+
+localhost/flight/searchFlightResult?org=BLR&dest=CCU&depdate=20-06-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr&NewDate=23-Jun
+
+
+localhost/flight/searchFlightResult?org=BLR&dest=CCU&depdate=23-06-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr&NewDate=29-Jun
+

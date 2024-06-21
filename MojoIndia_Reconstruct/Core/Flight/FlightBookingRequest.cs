@@ -180,6 +180,8 @@ namespace Core.Flight
         public decimal RefundPolicyAmt { get; set; }
         [DataMember]
         public decimal CancellaionPolicyAmt { get; set; }
+        [DataMember]
+        public Device device { get; set; }
     }
 
 }

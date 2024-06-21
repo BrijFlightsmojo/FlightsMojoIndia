@@ -133,18 +133,18 @@
                 'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
                 'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
                 'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-			    'currency':'@Model.currencyCode',
+                'currency':'@Model.currencyCode',
                 'transaction_id':'@Model.bookingID',
                 'value': '@Model.sumFare.grandTotal',
                 'tax': '@Model.sumFare.Tax',
                 'coupon': 'INSTAMOJO',
-            items: [{
-                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'quantity': @(Model.passengerDetails.Count()),
-                'price':'@Model.sumFare.grandTotal',
-                'index':0
-            }]
-        });
+                items: [{
+                    'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                    'quantity': @(Model.passengerDetails.Count()),
+                    'price':'@Model.sumFare.grandTotal',
+                    'index':0
+                }]
+            });
         }
         else
         {
@@ -163,28 +163,59 @@
                 'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
                 'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
                 'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-				'currency':'@Model.currencyCode',
+                'currency':'@Model.currencyCode',
                 'transaction_id':'@Model.bookingID',
                 'value': '@Model.sumFare.grandTotal',
                 'tax': '@Model.sumFare.Tax',
                 'coupon': 'INSTAMOJO',
-            items: [{
-                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'quantity': @(Model.passengerDetails.Count()),
-                'price':'@(Model.flightResult.FirstOrDefault().Fare.grandTotal)',
-                'index':0
-            },
-           {
-               'item_id': '@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-               'quantity': '@(Model.passengerDetails.Count())',
-               'price': '@(Model.flightResult.LastOrDefault().Fare.grandTotal)',
-               'index':1
-           }]
-        });
+                items: [{
+                    'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                    'quantity': @(Model.passengerDetails.Count()),
+                    'price':'@(Model.flightResult.FirstOrDefault().Fare.grandTotal)',
+                    'index':0
+                },
+               {
+                   'item_id': '@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                   'quantity': '@(Model.passengerDetails.Count())',
+                   'price': '@(Model.flightResult.LastOrDefault().Fare.grandTotal)',
+                   'index':1
+               }]
+            });
         }
 
 
-
+        webengage.track('Flight Booked', {
+            'Departure Source':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+            'Departure Destination':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
+            'Return Source':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin : "")',
+            'Return Destination':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination : "")',
+            'Departure class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+            'Return class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString() : "")',
+            'Layover':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().layOverTime >0 ? true : false)',
+            'Departure Date':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy, HH:mmtt"))',
+            'Departure arrival date':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.ToString("dd MMM yy, HH:mmtt"))',
+            'Return Date':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy, HH:mmtt") : "")',
+            'Return arrival date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.ToString("dd MMM yy, HH:mmtt") : "")',
+            'Departure stops':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().stop-1)',
+            'Destination stops':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().stop-1 : 0)',
+            'Departure Price per adult':'@Model.flightResult.FirstOrDefault().Fare.fareBreakdown.FirstOrDefault().BaseFare',
+            'Departure Flight number':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline-@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber',
+            'Departure Brand':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+            'Return Price per adult':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().Fare.fareBreakdown.FirstOrDefault().BaseFare : 0)',
+            'Return Flight number':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber : "")',
+            'Return Brand':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline : "")',
+            'Departure duration':'@((Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration/60)+"h"+ (Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration % 60) + "mins" ) ',
+            'Return duration':'@(Model.flightResult.Count() == 2 ? (Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Duration / 60) + "h" + (Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration % 60) + "mins" : "")',
+            'Promocode':'INSTAMOJO',
+            //'Mode of Payment':$('[name="payment"]:radio:checked').val(),
+            'Total Price':'@Model.sumFare.grandTotal',
+            'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
+            'Extended Cancellation Policy Fee':'@Model.CancellaionPolicyAmt',
+            'Extended Airline Refund Assurance Fee':'@Model.RefundPolicyAmt',
+            'Coupon discount':'@Model.CouponAmount',
+            'Convenience fee':'@Model.conveniencefee',
+            'Price without tax':'@Model.sumFare.BaseFare'
+        });
 
         //function PaymentSuccess() {
 
@@ -248,10 +279,7 @@
                 </h4>
             }
 
-
-
             <div class="conformBot">
-
                 @if (Model.paymentStatus == PaymentStatus.Completed)
                 {
                     <span>Payment Status: @Model.paymentStatus.ToString()</span>
@@ -448,11 +476,11 @@
                         <th>BaseFare</th>
                         <th>Taxes</th>
                         <th>Convenience Fee</th>
-                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                        @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                         {
                             <th>Coupon</th>
-                        }
-                        @if (Model.CancellaionPolicyAmt>0)
+                        }*@
+                        @if (Model.CancellaionPolicyAmt > 0)
                         {
                             <th>CancellaionPolicyAmt</th>
                         }
@@ -467,21 +495,21 @@
                         <td>₹ @((Model.sumFare.BaseFare).ToString("f2"))</td>
                         <td>
                             ₹
-                            @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                             {
                                 @((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount).ToString("f2"))
                             }
                             else
-                            {
+                            {*@
                                 @((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges).ToString("f2"))
-                            }
+                            @*}*@
                         </td>
 
                         <td>₹ @(Model.conveniencefee)</td>
-                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                         {
                             <td>-₹ @(Model.CouponAmount)</td>
-                        }
+                        }*@
 
                         @if (Model.CancellaionPolicyAmt > 0)
                         {
@@ -494,14 +522,14 @@
 
 
 
-                        @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
+                        @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
                         {
                             <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CouponIncreaseAmount + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
                         }
                         else
-                        {
-                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
-                        }
+                        {*@
+                            <td>₹ @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee  + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt) - CouponAmount).ToString("f2"))</td>
+                        @*}*@
                     </tr>
                 </table>
 
@@ -602,7 +630,7 @@
                     </table>
                 </div>
                 <div class="fareTerms">
-                   
+
                     @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
                     @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType==Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
                     { <h6>IMPORTANT INFORMATION</h6>
@@ -619,7 +647,7 @@
                             <li>Please reconfirm the Terminal Information with the boarding pass.</li>*@
                     </ul>
                     }
-<h6>Terms & Conditions</h6>
+                    <h6>Terms & Conditions</h6>
                     <ul>
                         <li>  All passengers, including children and infants, have to present their valid ID proof at the time of check ­ in.</li>
                         <li>  We recommend you check­in at least 3 hours prior to departure of your domestic flight and 4 hours prior to your international flight.</li>
@@ -678,7 +706,8 @@
 
     @(Model.sourceMedia == "1001" || Model.sourceMedia == "1002")
     {
-    <img src="https://secure.wego.com/analytics/v2/conversions?conversion_id=c-wego-flightsmojo.com&click_id=@(Model.redirectID)&comm_currency_code=INR&bv_currency_code=INR&transaction_id=@(Model.bookingID.ToString())&commission=0&total_booking_value=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.CouponIncreaseAmount) -CouponAmount).ToString("f0"))&status=@(Model.bookingStatus.ToString())" width='1' height='1' border='0' alt='' />
+    @*<img src="https://secure.wego.com/analytics/v2/conversions?conversion_id=c-wego-flightsmojo.com&click_id=@(Model.redirectID)&comm_currency_code=INR&bv_currency_code=INR&transaction_id=@(Model.bookingID.ToString())&commission=0&total_booking_value=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.CouponIncreaseAmount) -CouponAmount).ToString("f0"))&status=@(Model.bookingStatus.ToString())" width='1' height='1' border='0' alt='' />*@
+    <img src="https://secure.wego.com/analytics/v2/conversions?conversion_id=c-wego-flightsmojo.com&click_id=@(Model.redirectID)&comm_currency_code=INR&bv_currency_code=INR&transaction_id=@(Model.bookingID.ToString())&commission=0&total_booking_value=@(((Model.sumFare.grandTotal+Model.fareIncreaseAmount)).ToString("f0"))&status=@(Model.bookingStatus.ToString())" width='1' height='1' border='0' alt='' />
     }
     <script src="/Scripts/jquery.js"></script>
 

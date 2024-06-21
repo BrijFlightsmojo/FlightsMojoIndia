@@ -163,6 +163,8 @@ namespace Core.Flight
         public decimal RefundPolicyAmt { get; set; }
         [DataMember]
         public decimal CancellaionPolicyAmt { get; set; }
+        [DataMember]
+        public Device device { get; set; }
         public FlightBookingResponse()
         {
 
@@ -225,7 +227,7 @@ namespace Core.Flight
             tgy_Search_Key = fbr.tgy_Search_Key;
             RefundPolicyAmt = fbr.RefundPolicyAmt;
             CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
-
+            device = fbr.device;
         }
     }
     [DataContract]

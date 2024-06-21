@@ -94,6 +94,9 @@ namespace Core.Flight
         public List<fareMatrix> matrixData { get; set; }
         [DataMember]
         public int  matrixPos { get; set; }
+        [DataMember]
+        public Device device { get; set; }
+
     }
     [DataContract]
     public class SearchSegment
