@@ -168,12 +168,10 @@ namespace Core.Flight
 
         [DataMember]
         public string STSessionID { get; set; }
-
         [DataMember]
         public bool isBuyCancellaionPolicy { get; set; }
         [DataMember]
         public bool isBuyRefundPolicy { get; set; }
-
         [DataMember]
         public string AQ_ticket_id { get; set; }
         [DataMember]
@@ -182,6 +180,10 @@ namespace Core.Flight
         public decimal CancellaionPolicyAmt { get; set; }
         [DataMember]
         public Device device { get; set; }
+        [DataMember]
+        public string utm_campaign { get; set; }
+        [DataMember]
+        public string utm_medium { get; set; }
     }
 
 }

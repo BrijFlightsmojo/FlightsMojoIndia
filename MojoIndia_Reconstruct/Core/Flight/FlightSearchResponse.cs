@@ -254,7 +254,6 @@ namespace Core.Flight
         public decimal ServiceFee { get; set; }
         [DataMember]
         public decimal GST { get; set; }
-
         [DataMember]
         public decimal Markup { get; set; }
         [DataMember]
@@ -299,27 +298,11 @@ namespace Core.Flight
         [DataMember]
         public decimal artTDS { get; set; }
         [DataMember]
-        public decimal otherCharges { get; set; }
-        [DataMember]
-        public decimal discount { get; set; }
-        [DataMember]
-        public decimal commissionEarned { get; set; }
-        [DataMember]
         public decimal pLBEarned { get; set; }
         [DataMember]
         public decimal incentiveEarned { get; set; }
         [DataMember]
         public decimal artIncentive { get; set; }
-        [DataMember]
-        public decimal offeredFare { get; set; }
-        [DataMember]
-        public decimal tdsOnCommission { get; set; }
-        [DataMember]
-        public decimal tdsOnPLB { get; set; }
-        [DataMember]
-        public decimal tdsOnIncentive { get; set; }
-        //[DataMember]
-        //public decimal serviceFee { get; set; }
         [DataMember]
         public decimal totalBaggageCharges { get; set; }
         [DataMember]
@@ -354,7 +337,6 @@ namespace Core.Flight
         public decimal yqSoldInSwapping { get; set; }
         [DataMember]
         public bool isFareSwapped { get; set; }
-
         [DataMember]
         public string ST_ResultSessionID { get; set; }
 

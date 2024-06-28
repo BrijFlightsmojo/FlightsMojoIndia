@@ -41,4 +41,11 @@ public class DataConnection
         Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConSearchHistoryAndDeal_RDS"].ToString();
         return Con;
     }
+
+    public static SqlConnection GetConnectionUS()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["conUs"].ToString();
+        return Con;
+    }
 }

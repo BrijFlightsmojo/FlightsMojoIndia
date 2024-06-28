@@ -83,12 +83,12 @@
             <div class="container no_padding">
                 <div class="destinatin_div">
                     <div class="modify_left">
-                        <div class="from_to"><a href="/" class="back_icon"><i class="fa fa-arrow-left"></i></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><i class="fa fa-exchange"></i><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
+                        <div class="from_to"><a href="/" class="back_icon"><img src="/images/arrow_white.svg" alt="icon"/></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
                         <div class="modi_date">
                             <span>@Model.segment[0].travelDate.ToString("dd MMM")</span>
                             @if (Model.tripType == TripType.RoundTrip)
                             {
-                                <span><i class="fa fa-minus mobileF"></i></span><span>@Model.segment[1].travelDate.ToString("dd MMM")</span>
+                                <span><i class="mobileF">-</i></span><span>@Model.segment[1].travelDate.ToString("dd MMM")</span>
                             }
                             <span class="mobile_pas">
                                 <font>|</font> @(Model.adults + " Adult" + (Model.child > 0 ? (" " + Model.child + " Child") : "") + (Model.infants > 0 ? (" " + Model.infants + " Infant") : ""))
@@ -105,8 +105,8 @@
                     @{ Html.RenderPartial("/Views/Shared/SearchEngineModify.cshtml");}
                 </div>
                 <div class="repon_filter">
-                    <a class="filter_click" href="#"><i class="fa fa-filter"></i></a>
-                    <a class="modify_click" href="#"><i class="fa fa-edit"></i></a>
+                    <a class="filter_click" href="#"><img src="/images/filter_white.svg"/></a>
+                    <a class="modify_click" href="#"><img src="/images/edit_white.svg" /></a>
                 </div>
             </div>
         </div>
@@ -120,13 +120,13 @@
                                 <div class="fliter_con">
                                     <h4 class="filter_header">Refine your search</h4>
                                     <div class="box-section Result-Progress">
-                                        <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
+                                        <a href="#" class="show_data">Stops  <img src="/images/down.svg" alt="icon"/></a>
                                         <label class="filter_container">NonStop <input type="checkbox">  <span class="checkmark"></span></label>
                                         <label class="filter_container">1 Stop<input type="checkbox"><span class="checkmark"></span></label>
                                         <label class="filter_container">2 Stop<input type="checkbox"><span class="checkmark"></span></label>
                                     </div>
                                     <div class="box-section Result-show" style="display:none;">
-                                        <a href="#" class="show_data">Stops  <i class="fa fa-caret-down"></i></a>
+                                        <a href="#" class="show_data">Stops  <img src="/images/down.svg" alt="icon" /></a>
                                         <div data-ng-repeat="stops in flight.stop">
                                             <label ng-if="stops.stop==1" class="filter_container">NonStop <input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
                                             <label ng-if="stops.stop==2" class="filter_container">1 Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
@@ -135,7 +135,7 @@
                                     </div>
                                     
                                     <div class="box-section Result-show" style="display:none;">
-                                        <a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
+                                        <a href="#" class="show_data">Airlines <img src="/images/down.svg" alt="icon" /></a>
                                         <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
                                             <label class="filter_container">
                                                 {{air.name}}
@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="box-section">
                                         <div class="pricerane_destop">
-                                            <a href="#" class="show_data">Price Range  <i class="fa fa-caret-down"></i></a>
+                                            <a href="#" class="show_data">Price Range  <img src="/images/down.svg" alt="icon" /></a>
                                             <div class="show-block">
                                                 <div class="pric-range">
                                                     <p>
@@ -158,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="pricerange_mobile">
-                                            <h6> <i class="fa fa-rupee"></i> Price</h6>
+                                            <h6> ₹ Price</h6>
                                             <ul>
                                                 <li><a href="#" class="active">Low to High</a></li>
                                                 <li><a href="#">High to Low</a></li>
@@ -167,7 +167,7 @@
                                     </div>
 
                                     <div class="box-section">
-                                        <a class="show_data">Departure Time  <i class="fa fa-caret-down"></i></a>
+                                        <a class="show_data">Departure Time  <img src="/images/down.svg" alt="icon" /></a>
                                         <ul class="filter_flight_time">
                                             <li class="active" data-ng-repeat="depD in flight.depTimeDur">
                                                 <div class="filter_timeN" ng-if="depD==1" ng-click="filterDepTimeT(depD)">
@@ -196,7 +196,7 @@
                                     @if (Model.tripType == TripType.RoundTrip)
                                     {
                                         <div class="box-section">
-                                            <a href="#" class="show_data">Return Time  <i class="fa fa-caret-down"></i></a>
+                                            <a href="#" class="show_data">Return Time  <img src="/images/down.svg" alt="icon" /></a>
                                             <ul class="filter_flight_time">
                                                 <li data-ng-repeat="arrD in flight.arrTimeDur">
                                                     <div class="filter_timeN" ng-if="arrD==1" ng-click="filterArrTimeT(arrD)">
@@ -244,19 +244,19 @@
                                     <div class="promise_div">
                                         <h5>OUR PROMISE</h5>
                                         <div class="best_promise">
-                                            <h6><i class="fa fa-chevron-right"></i>Deliver the best</h6>
+                                            <h6><img src="/images/right_icon.svg"/> Deliver the best</h6>
                                             <p>Curate perfect itinerary for your needs.</p>
                                         </div>
                                         <div class="best_promise">
-                                            <h6><i class="fa fa-chevron-right"></i>Ensuring 100% Satisfaction</h6>
+                                            <h6><img src="/images/right_icon.svg" /> Ensuring 100% Satisfaction</h6>
                                             <p>We make sure you book with complete peace of mind.</p>
                                         </div>
                                         <div class="best_promise">
-                                            <h6><i class="fa fa-chevron-right"></i>Preserving your Privacy</h6>
+                                            <h6><img src="/images/right_icon.svg" /> Preserving your Privacy</h6>
                                             <p>We make sure that your information is safe with us.</p>
                                         </div>
                                         <div class="best_promise">
-                                            <h6><i class="fa fa-chevron-right"></i>No Sneaking & Peaking</h6>
+                                            <h6><img src="/images/right_icon.svg" /> No Sneaking & Peaking</h6>
                                             <p>All our airfares are all-inclusive of taxes & fees.</p>
                                         </div>
                                     </div>
@@ -282,14 +282,14 @@
                                             {
                                                 <div class="grid d-flex flex-column align-items-center justify-content-center fareMatrixSelected">
                                                     <p>@item.tDate</p>
-                                                    <h5 class="text-center logoFont"><i class="fa fa-rupee"></i> {{flight.airlineList[0].fare}}</h5>
+                                                    <h5 class="text-center logoFont">₹ {{flight.airlineList[0].fare}}</h5>
                                                 </div>
                                             }
                                             else
                                             {
                                                 <div class="grid d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;" onclick="MatricSearch('@Model.deepLink','@item.tDate')">
                                                     <p>@item.tDate</p>
-                                                    <h5 class="text-center logoFont"><i class="fa fa-rupee"></i> @item.fare.ToString("f0")</h5>
+                                                    <h5 class="text-center logoFont">₹ @item.fare.ToString("f0")</h5>
                                                 </div>
                                             }
                                         }
@@ -315,7 +315,7 @@
                                                 <div class="slide_left"><img src="{{airM.url}}" alt="logo"></div>
                                                 <div class="slide_right">
                                                     <p>{{airM.name}}</p>
-                                                    <span><i class="fa fa-rupee"></i> {{airM.fare}}</span>
+                                                    <span>₹ {{airM.fare}}</span>
                                                 </div>
                                             </div>
 
@@ -333,11 +333,11 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
                                     <div class="destination_coninbound">
                                         <div class="city_con">
-                                            <p class="city_p"><span>@Model.segment[0].orgArp.cityCode</span><i class="fa fa-arrow-right"></i><span>@Model.segment[0].destArp.cityCode</span></p>
+                                            <p class="city_p"><span>@Model.segment[0].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" /><span>@Model.segment[0].destArp.cityCode</span></p>
                                             <p class="date_p">@Model.segment[0].travelDate.ToString("dd MMM yyyy")</p>
                                         </div>
                                         <div class="nextday_con">
-                                            <a class="prev_day" href=""><i class="fa fa-arrow-circle-left"></i>Prev day</a><a class="next_day" href="#">Next day<i class="fa fa-arrow-circle-right"></i></a>
+                                            <a class="prev_day" href=""><img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" />Prev day</a><a class="next_day" href="#">Next day<img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="width:19px;padding: 0 3px;" /></a>
                                         </div>
                                     </div>
                                     <div class="result_headinbound">
@@ -410,7 +410,7 @@
                                                                 </div>
                                                                 <div class="flight_mob_Pr">
 
-                                                                    <div class="flight_fare_mob"><i class="fa fa-rupee"></i>{{dep.sPrice}}</div>
+                                                                    <div class="flight_fare_mob">₹{{dep.sPrice}}</div>
                                                                 </div>
                                                             </div>
                                                             <div class="flight_itemleft">
@@ -435,7 +435,7 @@
                                                                     <span ng-if="dep.flightSegments[0].segments.length>1">{{dep.flightSegments[0].segments.length-1}} Stop</span>
                                                                 </div>
                                                                 <div class="flight_dep3">
-                                                                    <div class="flight_fare"><i class="fa fa-rupee"></i>{{dep.sPrice}}</div>
+                                                                    <div class="flight_fare">₹{{dep.sPrice}}</div>
                                                                     <p class="mobile"><b>{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}</b></p>
                                                                     <div class="radio_div">
                                                                         <label class="trip_label" ng-if="$index == 0">
@@ -451,7 +451,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flight_itembotm">
-                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <i class="fa fa-angle-down"></i></a></div>
+                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;"/></a></div>
                                                             <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
                                                                 <div class="col-md-6" style="font-size:11px;">
                                                                     <div class="col-md-12">Markup/Dis : <b>{{dep.markupID[dep.markupID.length-1]}}</b></div>
@@ -463,7 +463,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flight_itemdetail" style="display:none;">
-                                                            <div class="detail_header"><a>Flights Detail</a><i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i></div>
+                                                            <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)"/>@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
                                                             <div ng-repeat="seg in dep.flightSegments[0].segments">
                                                                 <div class="airlines">
                                                                     <div class="airlines_detail">
@@ -486,9 +486,9 @@
                                                                     </div>
                                                                     <div class="airline_iteone" style="padding-right:15px;">
                                                                         <div class="stop_timer">
-                                                                            <p><i class="fa fa-clock-o"></i>{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
+                                                                            <p><img src="/images/clock.svg" alt="icon"/>@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
                                                                         </div>
-                                                                        <div class="border_lin"><span></span><i class="fa fa-plane"></i></div>
+                                                                        <div class="border_lin"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;" /></div>
                                                                         <div class="non_stop">Non Stop</div>
                                                                     </div>
                                                                     <div class="airline_itround">
@@ -503,8 +503,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="check_bag">
-                                                                <span class="float-left">Checkin Baggage: <i class="fa fa-suitcase"></i> 15kgs</span>
-                                                                <span class="float-right"><i class="fa fa-cutlery"></i>Paid Meal</span>
+                                                                <span class="float-left">Checkin Baggage:<img src="/images/briefcase.svg" alt="icon"/> @*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
+                                                                <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -516,11 +516,11 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
                                     <div class="destination_coninbound ">
                                         <div class="city_con">
-                                            <p class="city_p"><span>@Model.segment[1].orgArp.cityCode</span><i class="fa fa-arrow-right"></i><span>@Model.segment[1].destArp.cityCode</span></p>
+                                            <p class="city_p"><span>@Model.segment[1].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width: 23px;padding: 0 6px;" />@*<i class="fa fa-arrow-right"></i>*@<span>@Model.segment[1].destArp.cityCode</span></p>
                                             <p class="date_p">@Model.segment[1].travelDate.ToString("dd MMM yyyy")</p>
                                         </div>
                                         <div class="nextday_con">
-                                            <a class="prev_day" href=""><i class="fa fa-arrow-circle-left"></i>Prev day</a><a class="next_day" href="#">Next day<i class="fa fa-arrow-circle-right"></i></a>
+                                            <a class="prev_day" href=""><img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" />@*<i class="fa fa-arrow-circle-left"></i>*@Prev day</a><a class="next_day" href="#">Next day<img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="width:19px;padding: 0 3px;" />@*<i class="fa fa-arrow-circle-right"></i>*@</a>
                                         </div>
                                     </div>
                                     <div class="result_headinbound ">
@@ -593,7 +593,7 @@
                                                                 </div>
                                                                 <div class="flight_mob_Pr">
 
-                                                                    <div class="flight_fare_mob"><i class="fa fa-rupee"></i>{{ret.sPrice}}</div>
+                                                                    <div class="flight_fare_mob">₹{{ret.sPrice}}</div>
                                                                 </div>
                                                             </div>
                                                             <div class="flight_itemleft">
@@ -620,7 +620,7 @@
 
                                                                 <div class="flight_dep3">
 
-                                                                    <div class="flight_fare"><i class="fa fa-rupee"></i>{{ret.sPrice}}</div>
+                                                                    <div class="flight_fare">₹{{ret.sPrice}}</div>
                                                                     <p class="mobile"><b>{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}</b></p>
                                                                     <div class="radio_div">
                                                                         <label class="trip_label" ng-if="$index == 0">
@@ -636,7 +636,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flight_itembotm">
-                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <i class="fa fa-angle-down"></i></a></div>
+                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;" /></a></div>
                                                             <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
                                                                 <div class="col-md-6" style="font-size:11px;">
                                                                     <div class="col-md-12">Markup/Dis : <b>{{ret.markupID[ret.markupID.length-1]}}</b></div>
@@ -648,7 +648,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flight_itemdetail" style="display:none;">
-                                                            <div class="detail_header"><a>Flights Detail</a><i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i></div>
+                                                            <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)" />@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
                                                             <div ng-repeat="seg in ret.flightSegments[0].segments">
                                                                 <div class="airlines">
                                                                     <div class="airlines_detail">
@@ -670,9 +670,9 @@
                                                                     </div>
                                                                     <div class="airline_iteone" style="padding-right:15px;">
                                                                         <div class="stop_timer">
-                                                                            <p><i class="fa fa-clock-o"></i>{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
+                                                                            <p><img src="/images/clock.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
                                                                         </div>
-                                                                        <div class="border_lin pr"><span></span><i class="fa fa-plane plan_in"></i></div>
+                                                                        <div class="border_lin pr"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;"/></div>
                                                                         <div class="non_stop">Non Stop</div>
                                                                     </div>
                                                                     <div class="airline_itround">
@@ -689,8 +689,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="check_bag">
-                                                                <span class="float-left">Checkin Baggage: <i class="fa fa-suitcase"></i> 15kgs</span>
-                                                                <span class="float-right"><i class="fa fa-cutlery"></i>Paid Meal</span>
+                                                                <span class="float-left">Checkin Baggage: <img src="/images/briefcase.svg" alt="icon" />@*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
+                                                                <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -836,7 +836,7 @@
                                             <div class="listing_left">
                                                 <div class="mobresult_btn">
                                                     <div class="mobr_right">
-                                                        <h5><i class="fa fa-rupee"></i>{{x.dPrice}}</h5>
+                                                        <h5>₹{{x.dPrice}}</h5>
                                                         <p>Price per person</p>
                                                     </div>
                                                     <div class="mobl_btn">
@@ -882,7 +882,7 @@
                                                 </div>
                                             </div>
                                             <div class="listing_right">
-                                                <h5><i class="fa fa-rupee"></i>{{x.dPrice}}</h5>
+                                                <h5>₹{{x.dPrice}}</h5>
                                                 <p>Price per person</p>
                                                 @*<p>(Incl.taxes & fees)</p>*@
                                                 @*<a id="listing_right_select" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
@@ -899,7 +899,7 @@
                                             </div>
                                             <div class="result_book">
                                                 <div class="resultbook_left" id="{{x.FlightId}}" onclick="showDetails(this)">
-                                                    <a class="view_result">Flight Details <i class="fa fa-caret-down"></i></a>
+                                                    <a class="view_result">Flight Details <img src="/images/down.svg" alt="icon" /></a>
                                                 </div>
                                             </div>
                                             <div class="resul_deatil">
@@ -1007,8 +1007,8 @@
                                                 <div class="listing_left">
                                                     <div class="mobresult_btn">
                                                         <div class="mobr_right">
-                                                            <del><i class="fa fa-rupee"></i> {{x.CutPrice}}</del>
-                                                            <h5><i class="fa fa-rupee"></i>{{x.sPrice}}</h5>
+                                                            <del>₹ {{x.CutPrice}}</del>
+                                                            <h5>₹{{x.sPrice}}</h5>
                                                             <p>Price per person</p>
                                                         </div>
                                                         <div class="mobl_btn">
@@ -1060,8 +1060,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="listing_right">
-                                                    <del><i class="fa fa-rupee"></i>{{x.CutPrice}}</del>
-                                                    <h5><i class="fa fa-rupee"></i>{{x.sPrice}}</h5>
+                                                    <del>₹{{x.CutPrice}}</del>
+                                                    <h5>₹{{x.sPrice}}</h5>
                                                     <p>Price per person</p>
                                                     @*<p>(Incl.taxes & fees)</p>*@
                                                     @*<a id="listing_right_dPrice" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
@@ -1078,10 +1078,10 @@
                                                 </div>
                                                 <div class="result_book">
                                                     <div class="resultbook_left" id="{{x.FlightId}}" onclick="showDetails(this)">
-                                                        <a class="view_result">Flight Details <i class="fa fa-caret-down"></i></a>
+                                                        <a class="view_result">Flight Details <img src="/images/down.svg" alt="icon" /></a>
                                                     </div>
                                                     <div class="resultbook_right">
-                                                        <a ng-click="setPrePaxO(x.resultID)"><i class="fa-solid fa-circle-info"></i> Instant Offer applied of <i class="fa fa-rupee"></i> {{x.CPrice}}</a>
+                                                        <a ng-click="setPrePaxO(x.resultID)"><img src="/images/info-icon.svg" alt="info" style="width:12px;"/> Instant Offer applied of ₹ {{x.CPrice}}</a>
                                                     </div>
                                                 </div>
                                                 <div class="resul_deatil">
@@ -1197,7 +1197,7 @@
                     <div class="book_footer">
                         <div class="fare_divround">
                             <p>Total Fare</p>
-                            <span><i class="fa fa-rupee"></i> &nbsp;{{ReturnIntWithComma(outBound.price+inBound.price)}}</span>
+                            <span>₹ &nbsp;{{ReturnIntWithComma(outBound.price+inBound.price)}}</span>
                             @*<span><i class="fa fa-rupee"></i>&nbsp;{{ReturnIntWithComma(outBound.dPrice+inBound.dPrice)}}</span>*@
                             <div class="Fare_detail">
                                 <table>
@@ -1207,10 +1207,10 @@
                                         <th>Base Fare</th>
                                         <th>Fee & Taxes</th>
                                     </tr>
-                                    <tr><td>Adult x 1</td><td><i class="fa fa-rupee"></i>3,542</td><td>1,234</td></tr>
+                                    <tr><td>Adult x 1</td><td>₹3,542</td><td>1,234</td></tr>
                                     <tr><td colspan="2"><b>Total :</b></td><td><b>1,234</b></td></tr>
-                                    <tr><td colspan="2"><b>Round Trip Discount (-)</b></td><td><i class="fa fa-rupee"></i>1,234</td></tr>
-                                    <tr><td colspan="2"><b>You Pay</b></td><td><i class="fa fa-rupee"></i>1,234</td></tr>
+                                    <tr><td colspan="2"><b>Round Trip Discount (-)</b></td><td>₹1,234</td></tr>
+                                    <tr><td colspan="2"><b>You Pay</b></td><td>₹1,234</td></tr>
                                     <tr style="background:#fff;"><td colspan="3" style="font-size:10px; color:#666;">Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</td></tr>
                                 </table>
                             </div>
@@ -1262,7 +1262,7 @@
                 <div class="col-md-6 session-exp no_padding">
                     <h2 class="session-head"> Session expired</h2>
                     <div class="session_content">
-                        <h3 class="text-center t-color2"><i class="fa fa-clock-o"></i>Your Session has expired</h3><br />
+                        <h3 class="text-center t-color2"><img src="/images/clock_red.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@Your Session has expired</h3><br />
                         <p class="text-center session-color">
                             Your preferred search session has expired. We regret the inconvenience caused
                         </p><br />
@@ -1666,10 +1666,10 @@
 
         function showDetails(ctr) {
             if ($(ctr).parents(".listing_con").find(".resul_deatil").css('display') == 'none') {
-                $(ctr).find(".view_result").html("Hide Details <i class=\"fa fa-caret-up\"></i>");
+                $(ctr).find(".view_result").html("Hide Details <img src='/images/arrow-up.svg' alt='icon' />");
             }
             if ($(ctr).parents(".listing_con").find(".resul_deatil").css('display') == 'block') {
-                $(ctr).find(".view_result").html("Flight Details <i class=\"fa fa-caret-down\"></i>");
+                $(ctr).find(".view_result").html("Flight Details <img src='/images/down.svg' alt='icon' />");
             }
             $(ctr).parents(".listing_con").find(".resul_deatil").slideToggle();
             flight_detail();

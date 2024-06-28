@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,6 +22,7 @@ namespace MojoIndia.Controllers
 {
     public class HomeController : Controller
     {
+        public static string[] strAllAirportCityCode = new string[] { "AE", "AF", "AM", "AS", "AZ", "BD", "BH", "BN", "BT", "CN", "CY", "GE", "HK", "ID", "IL", "IN", "IQ", "IR", "JO", "JP", "KG", "KH", "KP", "KR", "KW", "KZ", "LA", "LB", "LK", "MH", "MM", "MN", "MO", "MV", "MY", "NP", "OM", "PH", "PK", "QA", "SA", "SG", "SY", "TH", "TJ", "TM", "TW", "UZ", "VN", "YE" };
         public ActionResult Index(string id)
        {
             if (Request.QueryString["utm_source"] != null)
@@ -28,10 +30,57 @@ namespace MojoIndia.Controllers
                 setCookie(Request.QueryString.Get("utm_source"));
             }
 
-            //sendMSG();
+
             Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
-            // OriginDestinationContent acd = ODC.OriginDestinationWithDealHomePage(3, "", "", "", 1, 1);
-            //return View(acd);
+            if (Request.QueryString["location"] == null   )
+            {
+                if (GetIpTrackerCookie() == "")
+                {
+                    IpDetails ipDtl = new DAL.IP_Details().GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+                    if (ipDtl == null)
+                    {
+                        GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+                    }
+                    if (ipDtl != null && !string.IsNullOrEmpty(ipDtl.country_code))
+                    {
+                        if (strAllAirportCityCode.Contains(ipDtl.country_code))
+                        {
+                            return View(new OriginDestinationContent());
+                        }
+                        else if (ipDtl.country_code == "CA")
+                        {
+                            return Redirect("https://www.flightsmojo.ca/");
+                        }
+                        else
+                        {
+                            return Redirect("https://www.flightsmojo.com/");
+                        }
+                    }
+                }
+                else
+                {
+                    if (GetIpTrackerCookie() == "india")
+                    {
+                        return View(new OriginDestinationContent());
+                    }
+                    else if (GetIpTrackerCookie() == "canada")
+                    {
+                        return Redirect("https://www.flightsmojo.ca/");
+                    }
+                    else if (GetIpTrackerCookie() == "usa")
+                    {
+                        return Redirect("https://www.flightsmojo.com/");
+                    }
+                    else
+                    {
+                        return Redirect("https://www.flightsmojo.com/");
+                    }
+                }
+            }
+            else
+            {
+                setIpTrackerCookie(Request.QueryString["location"].ToString());
+            }
             return View(new OriginDestinationContent());
         }
 
@@ -39,14 +88,6 @@ namespace MojoIndia.Controllers
         {
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             String result;
-            //string apiKey = "NDQ3MDY0NmY0NDRiNzAzMTdhNTczNjUyNjQzNzYxNTA=";
-            //string numbers = fsr.phoneNo; // in a comma seperated list
-            //string message = "Dear '" + fsr.passengerDetails + "',Thank you for choosing FlightsMojo.in. You flight to Delhi is confirmed and ticketed.Please find the details below:FM Booking ID: '" + fsr.bookingID + "' Airline PNR: '" + fsr.PNR + "' Travel Date: '" + fsr.bookingID + "' In case of any queries, please reach out to us at 9874563210or email us at care@flightsmojo.in";
-            //string sender = "FLMOJO";
-            //String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
-            //refer to parameters to complete correct url string
-
-
             String url = "https://api.textlocal.in/send/?apikey=NDQ3MDY0NmY0NDRiNzAzMTdhNTczNjUyNjQzNzYxNTA=&numbers=7668677843&message=Dear BRIJ,\n\nThank you for choosing FlightsMojo.in. You flight to LKO is confirmed and ticketed.\nPlease find the details below:\n\nFM Booking ID: 100000\nAirline PNR: ABC123\nTravel Date: 24-JAN\n\nIn case of any queries, please reach out to us at 0124-445-2000 or email us at care@flightsmojo.in&sender=FLMOJO";
             StreamWriter myWriter = null;
             HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -62,7 +103,7 @@ namespace MojoIndia.Controllers
             catch (Exception e)
             {
                 //return e.Message;
-                 e.ToString();
+                e.ToString();
             }
             finally
             {
@@ -75,7 +116,6 @@ namespace MojoIndia.Controllers
                 result = sr.ReadToEnd();
                 sr.Close();
             }
-            //return result;
         }
 
         public ActionResult About()
@@ -138,7 +178,7 @@ namespace MojoIndia.Controllers
         }
 
 
-            
+
         public JsonResult Subscribe(string EmailID)
         {
             Core.CouponStatusResponse objResponse = new CouponStatusResponse();
@@ -378,7 +418,7 @@ namespace MojoIndia.Controllers
                     DateTime dt = SM.OnD[i].Created;
                     lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
                     url.AppendChild(lastmod);
-                    
+
                 }
 
                 for (int i = 0; i < SM.cityContent.Count; i++)
@@ -400,7 +440,7 @@ namespace MojoIndia.Controllers
                     DateTime dt = SM.cityContent[i].InsertedOn;
                     lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
                     url.AppendChild(lastmod);
-                    
+
                 }
 
 
@@ -412,7 +452,7 @@ namespace MojoIndia.Controllers
 
                     System.Xml.XmlNode loc = XMLDoc.CreateElement("loc");
 
-                    string URL = SM.AirlineContent[i].AirlineName.Trim().Replace(" ", "-") + "-" + SM.AirlineContent[i].AirlineCode.Replace(" ", "-")+ "-flight-tickets";
+                    string URL = SM.AirlineContent[i].AirlineName.Trim().Replace(" ", "-") + "-" + SM.AirlineContent[i].AirlineCode.Replace(" ", "-") + "-flight-tickets";
                     loc.AppendChild(XMLDoc.CreateTextNode(GlobalData.URL.ToLower() + "/airline/" + URL));
                     url.AppendChild(loc);
 
@@ -425,9 +465,6 @@ namespace MojoIndia.Controllers
                     lastmod.AppendChild(XMLDoc.CreateTextNode(dt.ToString("yyyy-MM-dd")));
                     url.AppendChild(lastmod);
                 }
-
-
-
 
 
                 for (int i = 0; i < SM.DealsContent.Count; i++)
@@ -451,7 +488,7 @@ namespace MojoIndia.Controllers
                     url.AppendChild(lastmod);
                 }
 
-                
+
                 string[] StaticUrl = { "/top-international-destinations", "/first-class-flights", "/last-minute-flights", "/about-us", "/terms-condition", "/privacy-policy", "/user-agreement",
                     "/disclaimer","/contact-us","/sitemap","/flights","/airline","/deals","/web-checkin" };
                 for (int i = 0; i < StaticUrl.Length; i++)
@@ -495,13 +532,6 @@ namespace MojoIndia.Controllers
             }
         }
 
-        //[ActionName("Affiliate-Programme")]
-        // public ActionResult AffiliateProgramme()
-        // {
-        // ViewBag.Message = "Affiliate-Programme";
-
-        // return View("AffiliateProgramme");
-        //}
 
         [ActionName("us-top-destination")]
         public ActionResult ustopdestination()
@@ -534,10 +564,7 @@ namespace MojoIndia.Controllers
         [ActionName("404")]
         public ActionResult error404()
         {
-            //return Redirect("/");
             Response.StatusCode = 404;
-            //ViewBag.Message = "";
-
             return View("error404");
         }
         [ActionName("500")]
@@ -595,15 +622,6 @@ namespace MojoIndia.Controllers
         }
 
 
-        //[ActionName("deals")]
-        //public ActionResult deals()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View("deals");
-        //}
-
-
         [ActionName("web-checkin")]
         public ActionResult webcheckin()
         {
@@ -611,5 +629,63 @@ namespace MojoIndia.Controllers
 
             return View("webcheckin");
         }
+
+
+        #region Ip Tracker
+        private IpDetails GetIpDetails(string ip)
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                var url = "http://api.ipstack.com/" + ip + "?access_key=b9a92c66d32c538f7cd668d9b8986135";
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                var kk = client.DownloadString(url);
+                Core.IpDetails ipDetails = Newtonsoft.Json.JsonConvert.DeserializeObject<Core.IpDetails>(kk.ToString());
+                saveIpDetails(ipDetails);
+                return ipDetails;
+            }
+            catch { return null; }
+
+        }
+        private void saveIpDetails(Core.IpDetails ip)
+        {
+            var save = Task.Run(async () =>
+            {
+                await saveIP(ip);
+            });
+        }
+        private async System.Threading.Tasks.Task saveIP(Core.IpDetails ipDetails)
+        {
+            try
+            {
+                DAL.IP_Details obj = new DAL.IP_Details();
+
+                if (ipDetails != null)
+                {
+                    obj.saveIpDetails(ipDetails);
+                }
+
+            }
+            catch { }
+
+        }
+
+        public void setIpTrackerCookie(string sourceMedia)
+        {            
+            HttpCookie IpTrackerSite = new HttpCookie("MojoIpTracker");
+            IpTrackerSite["siteID"] = sourceMedia;
+            IpTrackerSite.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(IpTrackerSite);
+        }
+        public string GetIpTrackerCookie()
+        {        
+            HttpCookie IpTrackerSite = Request.Cookies["MojoIpTracker"];
+            if (IpTrackerSite != null)
+            {
+                return IpTrackerSite["siteID"].ToString();
+            }
+            return "";
+        }
+        #endregion
     }
 }

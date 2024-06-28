@@ -132,7 +132,7 @@ function SetWebsiteDeal() {
                             htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
                             htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
                             htmlData += "    </div>";
-                            htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                            htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt='icon'></div>";
                             htmlData += "    <div class='airport return'>";
                             htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                             htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
@@ -149,7 +149,7 @@ function SetWebsiteDeal() {
                                 htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
                                 htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
                                 htmlData += "    </div>";
-                                htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                                htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt='icon'></div>";
                                 htmlData += "    <div class='airport return'>";
                                 htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                                 htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
@@ -284,7 +284,7 @@ function SetWebsiteDealInt() {
                             htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
                             htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
                             htmlData += "    </div>";
-                            htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                            htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt='icon'></div>";
                             htmlData += "    <div class='airport return'>";
                             htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                             htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";
@@ -301,7 +301,7 @@ function SetWebsiteDealInt() {
                                 htmlData += "        <p><span>" + response[i].origin.airportCode + "</span> " + response[i].origin.cityName + "</p>";
                                 htmlData += "        <label>" + getDateDDMMMyyyyy(response[i].depDate) + "</label>";
                                 htmlData += "    </div>";
-                                htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt=''></div>";
+                                htmlData += "    <div class='aeroplane'><img src='/images/airplane.png' alt='icon'></div>";
                                 htmlData += "    <div class='airport return'>";
                                 htmlData += "        <p><span>" + response[i].destination.airportCode + "</span> " + response[i].destination.cityName + "</p>";
                                 htmlData += "        <label>" + (response[i].tripType == "OneWay" ? "One Way" : getDateDDMMMyyyyy(response[i].retDate)) + "</label>";

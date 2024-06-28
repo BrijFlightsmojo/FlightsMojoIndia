@@ -184,7 +184,7 @@ function submitForm() {
                 "No of Passengers": totpax,
             });
         }
-        return validationFlag;
+           return validationFlag;
     }
     else
         return false;
