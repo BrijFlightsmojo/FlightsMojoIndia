@@ -49,11 +49,11 @@ namespace MojoIndia.Controllers
                         }
                         else if (ipDtl.country_code == "CA")
                         {
-                            return Redirect("https://www.flightsmojo.ca/");
+                            return Redirect("https://www.flightsmojo.ca");
                         }
                         else
                         {
-                            return Redirect("https://www.flightsmojo.com/");
+                            return Redirect("https://www.flightsmojo.com");
                         }
                     }
                 }
@@ -65,15 +65,15 @@ namespace MojoIndia.Controllers
                     }
                     else if (GetIpTrackerCookie() == "canada")
                     {
-                        return Redirect("https://www.flightsmojo.ca/");
+                        return Redirect("https://www.flightsmojo.ca");
                     }
                     else if (GetIpTrackerCookie() == "usa")
                     {
-                        return Redirect("https://www.flightsmojo.com/");
+                        return Redirect("https://www.flightsmojo.com");
                     }
                     else
                     {
-                        return Redirect("https://www.flightsmojo.com/");
+                        return Redirect("https://www.flightsmojo.com");
                     }
                 }
             }
@@ -577,6 +577,7 @@ namespace MojoIndia.Controllers
         public ActionResult UpdateStaticData()
         {
             Core.FlightUtility.LoadMasterData();
+            Bal.MakeFlightItinerary.setMarkupRule();
             ViewBag.Message = "";
             return View("error404");
         }

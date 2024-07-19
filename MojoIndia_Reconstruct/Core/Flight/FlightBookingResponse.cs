@@ -165,6 +165,8 @@ namespace Core.Flight
         public decimal CancellaionPolicyAmt { get; set; }
         [DataMember]
         public Device device { get; set; }
+        [DataMember]
+        public int webengCtr { get; set; }
         public FlightBookingResponse()
         {
 

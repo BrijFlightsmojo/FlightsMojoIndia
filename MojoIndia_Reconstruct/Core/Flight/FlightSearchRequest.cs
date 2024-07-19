@@ -96,7 +96,10 @@ namespace Core.Flight
         public int  matrixPos { get; set; }
         [DataMember]
         public Device device { get; set; }
-
+        [DataMember]
+        public string utm_campaign { get; set; }
+        [DataMember]
+        public string utm_medium { get; set; }
     }
     [DataContract]
     public class SearchSegment
@@ -115,7 +118,7 @@ namespace Core.Flight
     public class fareMatrix
     {
         public int sqNo { get; set; }
-       public string tDate { get; set; }
+        public string tDate { get; set; }
         public decimal fare { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Core.Flight
         public bool IsGFMatch { get; set; }
 
         public bool IsBookingRequestSend { get; set; }
-
+       
 
         public AirContext()
         {

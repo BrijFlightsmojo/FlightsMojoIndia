@@ -146,6 +146,7 @@ namespace Core
         Flexible_Economy = 72,
         Business_Comfort = 73,
         Super_Flexible_Business = 74,
+        NDC=75
         //[Description("Economy Lite")]
         //EconomyLite=65
         //Super6E = 65
@@ -164,7 +165,8 @@ namespace Core
         Promo = 9,
         Sale = 10,
         SME = 11,
-        Business = 12
+        Business = 12,
+        NDC=13
     }
     public enum AmountType : byte
     {

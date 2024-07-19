@@ -524,17 +524,17 @@ namespace Bal
                     }
                     if (xnd.SelectSingleNode("FeePercent") != null)
                     {
-                        fee.FeePercent = Convert.ToDecimal(xnd.SelectSingleNode("FeePercent").InnerText.Replace("USD", "").Replace("CAD", ""));
+                        fee.FeePercent = Convert.ToDecimal(xnd.SelectSingleNode("FeePercent").InnerText.Replace("USD", "").Replace("CAD", "").Replace("INR", ""));
                         fee.isKeepMarkup = true;
                     }
                     if (xnd.SelectSingleNode("FeeAmount") != null)
                     {
-                        fee.FeeAmount = Convert.ToDecimal(xnd.SelectSingleNode("FeeAmount").InnerText.Replace("USD", "").Replace("CAD", ""));
+                        fee.FeeAmount = Convert.ToDecimal(xnd.SelectSingleNode("FeeAmount").InnerText.Replace("USD", "").Replace("CAD", "").Replace("INR", ""));
                         fee.isKeepMarkup = true;
                     }
                     if (xnd.SelectSingleNode("MinPrice") != null)
                     {
-                        fee.MinPrice = Convert.ToDecimal(xnd.SelectSingleNode("MinPrice").InnerText.Replace("USD", "").Replace("CAD", ""));
+                        fee.MinPrice = Convert.ToDecimal(xnd.SelectSingleNode("MinPrice").InnerText.Replace("USD", "").Replace("CAD", "").Replace("INR", ""));
                     }
                     _ruleSet.feeRule.Add(fee);
                 }

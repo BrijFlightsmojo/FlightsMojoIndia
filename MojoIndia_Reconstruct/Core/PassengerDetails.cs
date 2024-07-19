@@ -60,6 +60,17 @@ namespace Core
         public string RedressNumber { get; set; }
         [DataMember]
         public string ticketNo { get; set; }
+
+        [DataMember]
+        public string issueDay { get; set; }
+        [DataMember]
+        public string issueMonth { get; set; }
+        [DataMember]
+        public string issueYear { get; set; }
+
+        [DataMember]
+        public DateTime? passportIssueDate { get; set; }
+
         public PassengerDetails()
         {
             firstName = "";

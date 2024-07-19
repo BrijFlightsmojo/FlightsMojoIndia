@@ -73,5 +73,7 @@ namespace Core
         public bool IsReturnHashMatched { get; set; }
         [DataMember]
         public bool IsAmountMatch { get; set; }
+        [DataMember]
+        public string Rz_Amt { get; set; }
     }
 }
