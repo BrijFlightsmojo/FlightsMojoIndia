@@ -167,5 +167,29 @@ namespace MojoIndia.Models
             }
             return month;
         }
+
+
+        public static List<SelectListItem> getIssuePassYear(string id, DateTime travelDate)
+        {
+            List<SelectListItem> yearData = new List<SelectListItem>();
+            // int IssueYear = DateTime.Today.AddYears(-1).Year;
+            int IssueYear = travelDate.AddYears(-20).Year;
+            for (int i = 0; i < 20; i++)
+            {
+                yearData.Add(new SelectListItem() { Text = (i + IssueYear).ToString(), Value = (i + IssueYear).ToString() });
+            }
+            return yearData;
+
+
+            //List<SelectListItem> yearData = new List<SelectListItem>();
+            ////   int exYear = DateTime.Today.Year;travelDate.AddYears(-11).Year;
+            //int exYear = DateTime.Today.AddYears(-12).Year;
+            //for (int i = 0; i <30; i++)
+            //{
+            //    yearData.Add(new SelectListItem() { Text = (i + exYear).ToString(), Value = (i + exYear).ToString() });
+            //}
+            //return yearData;
+
+        }
     }
 }

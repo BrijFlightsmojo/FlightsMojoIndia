@@ -12,8 +12,15 @@
     <link href="/Content/owl.carousel.css" rel="stylesheet" />
 }
 <style>
-.logo a img{ width: 60%;padding-left: 20px;}
-@@media screen and ( max-width:767px) {.rrresult_con {display: none !important;}
+    .logo a img {
+        width: 60%;
+        padding-left: 20px;
+    }
+.paymentmodal.paymentmodal2{display:none;}
+    @@media screen and ( max-width:767px) {
+        .rrresult_con {
+            display: none !important;
+        }
 
         .footer_result {
             display: none;
@@ -48,7 +55,8 @@
         width: 100%;
         display: inline-block;
         text-align: center;
-        border-right: 1px solid #ccc; padding:10px 10px 10px 0;
+        border-right: 1px solid #ccc;
+        padding: 10px 10px 10px 0;
     }
 
         .grid p {
@@ -60,7 +68,8 @@
         .grid h5 {
             color: #d63b05;
             font-size: 14px;
-            text-align: center; font-weight:bold;
+            text-align: center;
+            font-weight: bold;
         }
 
     .price_Calender {
@@ -70,10 +79,11 @@
         padding: 0px 25px;
         border-radius: 6px;
         margin-bottom: 20px;
-        background:#fff;
+        background: #fff;
     }
+
     .fareMatrixSelected {
-    background-color:#e9e1d7;
+        background-color: #e9e1d7;
     }
 </style>
 <div ng-app="myApp" ng-controller="myCtrl">
@@ -83,7 +93,7 @@
             <div class="container no_padding">
                 <div class="destinatin_div">
                     <div class="modify_left">
-                        <div class="from_to"><a href="/" class="back_icon"><img src="/images/arrow_white.svg" alt="icon"/></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
+                        <div class="from_to"><a href="/" class="back_icon"><img src="/images/arrow_white.svg" alt="icon" /></a><span>@(Model.segment[0].orgArp != null ? Model.segment[0].orgArp.cityName : Model.segment[0].originAirport)</span><span><font>to</font></span><span>@(Model.segment[0].destArp != null ? Model.segment[0].destArp.cityName : Model.segment[0].destinationAirport)</span></div>
                         <div class="modi_date">
                             <span>@Model.segment[0].travelDate.ToString("dd MMM")</span>
                             @if (Model.tripType == TripType.RoundTrip)
@@ -105,7 +115,7 @@
                     @{ Html.RenderPartial("/Views/Shared/SearchEngineModify.cshtml");}
                 </div>
                 <div class="repon_filter">
-                    <a class="filter_click" href="#"><img src="/images/filter_white.svg"/></a>
+                    <a class="filter_click" href="#"><img src="/images/filter_white.svg" /></a>
                     <a class="modify_click" href="#"><img src="/images/edit_white.svg" /></a>
                 </div>
             </div>
@@ -116,11 +126,17 @@
 
                     <div class="result_left">
                         <div class="fixed_con">
+                            <div class="filterMob_Top">
+                                <div class="Filter_Closecon">
+                                    <button class="close_Filter">X</button><a ng-click="clearFilter()">Clear All</a>
+                                </div>
+                                <div class="FilterMob_header"><p>Filter by</p></div>
+                            </div>
                             <div class="filtor_top">
                                 <div class="fliter_con">
                                     <h4 class="filter_header">Refine your search</h4>
                                     <div class="box-section Result-Progress">
-                                        <a href="#" class="show_data">Stops  <img src="/images/down.svg" alt="icon"/></a>
+                                        <a href="#" class="show_data">Stops  <img src="/images/down.svg" alt="icon" /></a>
                                         <label class="filter_container">NonStop <input type="checkbox">  <span class="checkmark"></span></label>
                                         <label class="filter_container">1 Stop<input type="checkbox"><span class="checkmark"></span></label>
                                         <label class="filter_container">2 Stop<input type="checkbox"><span class="checkmark"></span></label>
@@ -133,7 +149,7 @@
                                             <label ng-if="stops.stop==3" class="filter_container">2+ Stop<input type="checkbox" ng-model="selectedStop[stops.stop]" /><span class="checkmark"></span></label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="box-section Result-show" style="display:none;">
                                         <a href="#" class="show_data">Airlines <img src="/images/down.svg" alt="icon" /></a>
                                         <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
@@ -143,7 +159,7 @@
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="box-section">
                                         <div class="pricerane_destop">
@@ -223,20 +239,15 @@
                                             </ul>
                                         </div>
                                     }
-                                    <div class="box-section Result-show" style="display:none;">
-                                        @*<a href="#" class="show_data">Airlines <i class="fa fa-caret-down"></i></a>
-                                        <div class="listing checkbox" data-ng-repeat="air in flight.airlineList">
-                                            <label class="filter_container">
-                                                {{air.name}}
-                                                <input type="checkbox" checked="checked" id="{{air.code}}" ng-model="selectedAirline[air.code]" ng-click="clearMatrixFilter()" />
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>*@
-                                        <div class="resetfilter_Div">
-                                            <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
-                                        </div>
-                                    </div>
+                                    @*<div class="box-section Result-show" style="display:none;">
+        <div class="resetfilter_Div">
+               <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
+           </div>
+    </div>*@
                                 </div>
+                            </div>
+                            <div class="applyFilter_Con">
+                                <button>Apply Filter</button>
                             </div>
                             <div class="rustfactor_fil">
                                 <h4 class="filter_header">Why Choose Us</h4>
@@ -244,7 +255,7 @@
                                     <div class="promise_div">
                                         <h5>OUR PROMISE</h5>
                                         <div class="best_promise">
-                                            <h6><img src="/images/right_icon.svg"/> Deliver the best</h6>
+                                            <h6><img src="/images/right_icon.svg" /> Deliver the best</h6>
                                             <p>Curate perfect itinerary for your needs.</p>
                                         </div>
                                         <div class="best_promise">
@@ -271,7 +282,7 @@
                             <img src="" id="mlogoB1" alt="icon" />
                             <img src="" id="mlogoC1" alt="icon" />
                         </div>
-                        @if (Model.matrixData != null && Model.matrixData.Count > 0&& Model.segment.Count==1)
+                        @if (Model.matrixData != null && Model.matrixData.Count > 0 && Model.segment.Count == 1)
                         {
                             <div class="price_Calender Result-show" style="display:none;">
                                 <div class="col-12 col-carousel">
@@ -301,12 +312,10 @@
                         else
                         {
                             <div class="seclect_airline Result-show" style="display:none;">
-
                                 <a class="deal_sectionL">
                                     <div class="scrool_top">
                                         <span style="cursor:pointer;" ng-click="clearFilter()">All Fares </span>
                                     </div>
-
                                 </a>
                                 <div class="deal_sectionR">
                                     <div class="scrollmenu">
@@ -318,11 +327,9 @@
                                                     <span>₹ {{airM.fare}}</span>
                                                 </div>
                                             </div>
-
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         }
 
@@ -330,181 +337,182 @@
                         {
                             if (Model.travelType == TravelType.Domestic)
                             {
-                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
-                                    <div class="destination_coninbound">
-                                        <div class="city_con">
-                                            <p class="city_p"><span>@Model.segment[0].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" /><span>@Model.segment[0].destArp.cityCode</span></p>
-                                            <p class="date_p">@Model.segment[0].travelDate.ToString("dd MMM yyyy")</p>
-                                        </div>
-                                        <div class="nextday_con">
-                                            <a class="prev_day" href=""><img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" />Prev day</a><a class="next_day" href="#">Next day<img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="width:19px;padding: 0 3px;" /></a>
-                                        </div>
-                                    </div>
-                                    <div class="result_headinbound">
-                                        <ul>
-                                            <li><a>DEPART</a></li>
-                                            <li><a>ARRIVE</a></li>
-                                            <li><a>DURATION</a></li>
-                                            <li><a>PRICE PER ADULT</a></li>
-                                        </ul>
-                                    </div>
+                                <div>
 
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
+                                        <div class="destination_coninbound">
+                                            <div class="city_con">
+                                                <p class="city_p"><span>@Model.segment[0].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" /><span>@Model.segment[0].destArp.cityCode</span></p>
+                                                <p class="date_p">@Model.segment[0].travelDate.ToString("dd MMM yyyy")</p>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="result_headinbound">
+                                            <ul>
+                                                <li><a>Departure</a></li>
+                                                <li><a>Arrival</a></li>
+                                                <li><a>Duration</a></li>
+                                                <li><a>Price</a></li>
+                                            </ul>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="Result-show" style="display:none;">
-                                        <div class="scrollMob ">
-                                            <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
-                                                <div class="flight_item_inbound borderRight" id="div{{dep.resultID}}" ng-class="$index == 0?'flight_item  allDepColor flight_itemDepColor':'flight_item allDepColor'" ng-repeat="dep in result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay" ng-click="DepChange(dep.resultID)">
-                                                    <div class="flight_tulip">
-                                                        <div class="flight_itemtop">
-                                                            <div class="result_mob">
-                                                                <div class="flight_logo_mob">
-                                                                    <img src="{{dep.flightSegments[0].segments[0].url}}" alt="logo" />
-                                                                    <font>{{dep.flightSegments[0].segments[0].airline.code}}-{{dep.flightSegments[0].segments[0].flightNo}}</font>
-                                                                </div>
-                                                                <div class="flight_mob_Pr">
+                                        <div class="Result-show" style="display:none;">
+                                            <div class="scrollMob ">
+                                                <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
+                                                    <div class="flight_item_inbound borderRight" id="div{{dep.resultID}}" ng-class="$index == 0?'flight_item  allDepColor flight_itemDepColor':'flight_item allDepColor'" ng-repeat="dep in result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay" ng-click="DepChange(dep.resultID)">
+                                                        <div class="flight_tulip">
+                                                            <div class="flight_itemtop">
+                                                                <div class="result_mob">
+                                                                    <div class="flight_logo_mob">
+                                                                        <img src="{{dep.flightSegments[0].segments[0].url}}" alt="logo" />
+                                                                        <font>{{dep.flightSegments[0].segments[0].airline.code}}-{{dep.flightSegments[0].segments[0].flightNo}}</font>
+                                                                    </div>
+                                                                    <div class="flight_mob_Pr">
 
-                                                                    <div class="flight_fare_mob">₹{{dep.sPrice}}</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flight_itemleft">
-                                                                <div class="flight_logo">
-                                                                    <img src="{{dep.flightSegments[0].segments[0].url}}" alt="logo" />
-                                                                </div>
-                                                                <div class="flight_deprt">
-                                                                    <p class="desktop"><b>{{dep.flightSegments[0].segments[0].depTime}}</b></p>
-                                                                    <span>{{dep.flightSegments[0].segments[0].airline.name}}</span>
-                                                                </div>
-                                                                <div class="flight_br"><img src="/images/result_line2.png" alt="icon" /></div>
-                                                                <div class="flight_arriv ">
-                                                                    <p class="desktop"><b>{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}</b></p>
-                                                                    <p class="mobile"><b>{{dep.flightSegments[0].segments[0].depTime}}</b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flight_itemright">
-                                                                <div class="flight_dep1">
-                                                                    <p>{{dep.flightSegments[0].TotalTime}}</p>
-                                                                    <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
-                                                                    <span ng-if="dep.flightSegments[0].segments.length==1">Non Stop</span>
-                                                                    <span ng-if="dep.flightSegments[0].segments.length>1">{{dep.flightSegments[0].segments.length-1}} Stop</span>
-                                                                </div>
-                                                                <div class="flight_dep3">
-                                                                    <div class="flight_fare">₹{{dep.sPrice}}</div>
-                                                                    <p class="mobile"><b>{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}</b></p>
-                                                                    <div class="radio_div">
-                                                                        <label class="trip_label" ng-if="$index == 0">
-                                                                            <input type="radio" checked="checked" name="Deprture" id="{{dep.resultID}}" ng-click="DepChange(dep.resultID)">
-                                                                            <span class="checkmar"></span>
-                                                                        </label>
-                                                                        <label class="trip_label" ng-if="$index > 0">
-                                                                            <input type="radio" name="Deprture" id="{{dep.resultID}}" ng-click="DepChange(dep.resultID)">
-                                                                            <span class="checkmar"></span>
-                                                                        </label>
+                                                                        <div class="flight_fare_mob">₹{{dep.sPrice}}</div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flight_itembotm">
-                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;"/></a></div>
-                                                            <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
-                                                                <div class="col-md-6" style="font-size:11px;">
-                                                                    <div class="col-md-12">Markup/Dis : <b>{{dep.markupID[dep.markupID.length-1]}}</b></div>
-                                                                    <div class="col-md-12" ng-repeat="k in dep.markupID"><b ng-if="dep.markupID[dep.markupID.length-1]!=k">{{k}}</b></div>
+                                                                <div class="flight_itemleft">
+                                                                    <div class="flight_logo">
+                                                                        <img src="{{dep.flightSegments[0].segments[0].url}}" alt="logo" />
+                                                                    </div>
+                                                                    <div class="flight_deprt">
+                                                                        <p class="desktop"><b>{{dep.flightSegments[0].segments[0].depTime}}</b></p>
+                                                                        <span>{{dep.flightSegments[0].segments[0].airline.name}}</span>
+                                                                    </div>
+                                                                    <div class="flight_br"><img src="/images/result_line2.png" alt="icon" /></div>
+                                                                    <div class="flight_arriv ">
+                                                                        <p class="desktop"><b>{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}</b></p>
+                                                                        <p class="mobile"><b>{{dep.flightSegments[0].segments[0].depTime}}</b></p>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{dep.airlineClass}}/{{dep.fareType}}</b></div>
-                                                                <div class="col-md-2" style="font-size:11px;">GDS :<b> {{dep.GDS}}</b></div>
-                                                                <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{dep.mojofare}}</b></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flight_itemdetail" style="display:none;">
-                                                            <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)"/>@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
-                                                            <div ng-repeat="seg in dep.flightSegments[0].segments">
-                                                                <div class="airlines">
-                                                                    <div class="airlines_detail">
-                                                                        <div class="flight_logo"><img src="{{seg.url}}" alt="logo" /></div>
-                                                                        <div class="air_class">
-                                                                            <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
-                                                                            <span>{{seg.equipType}}</span>
-                                                                            <input type="hidden" id="depFlightNo" name="depFlightNo" value="{{seg.airline.code}}-{{seg.flightNo}}" />
+                                                                <div class="flight_itemright">
+                                                                    <div class="flight_dep1">
+                                                                        <p>{{dep.flightSegments[0].TotalTime}}</p>
+                                                                        <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
+                                                                        <span ng-if="dep.flightSegments[0].segments.length==1">Non Stop</span>
+                                                                        <span ng-if="dep.flightSegments[0].segments.length>1">{{dep.flightSegments[0].segments.length-1}} Stop</span>
+                                                                    </div>
+                                                                    <div class="flight_dep3">
+                                                                        <div class="flight_fare">₹{{dep.sPrice}}</div>
+                                                                        <p class="mobile"><b>{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}</b></p>
+                                                                        <div class="radio_div">
+                                                                            <label class="trip_label" ng-if="$index == 0">
+                                                                                <input type="radio" checked="checked" name="Deprture" id="{{dep.resultID}}" ng-click="DepChange(dep.resultID)">
+                                                                                <span class="checkmar"></span>
+                                                                            </label>
+                                                                            <label class="trip_label" ng-if="$index > 0">
+                                                                                <input type="radio" name="Deprture" id="{{dep.resultID}}" ng-click="DepChange(dep.resultID)">
+                                                                                <span class="checkmar"></span>
+                                                                            </label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="airlines_faci "></div>
-                                                                </div>
-                                                                <div class="airlines_itenery">
-                                                                    <div class="airline_iteone">
-                                                                        <p>{{seg.org.cityName}} ({{seg.org.airportCode}})</p>
-                                                                        <b>{{seg.depTime}}</b>
-                                                                        <span>{{seg.depDate}}</span>
-                                                                        <dfn>{{seg.fTerminal}}</dfn>
-                                                                        <input type="hidden" id="depArrDate" name="depArrDate" value="{{seg.depDate}}">
-                                                                    </div>
-                                                                    <div class="airline_iteone" style="padding-right:15px;">
-                                                                        <div class="stop_timer">
-                                                                            <p><img src="/images/clock.svg" alt="icon"/>@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
-                                                                        </div>
-                                                                        <div class="border_lin"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;" /></div>
-                                                                        <div class="non_stop">Non Stop</div>
-                                                                    </div>
-                                                                    <div class="airline_itround">
-                                                                        <p>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</p>
-                                                                        <b>{{seg.arrTime}}</b>
-                                                                        <span>{{seg.arrDate}}</span>
-                                                                        <dfn>{{seg.tTerminal}}</dfn>
-                                                                    </div>
-                                                                    <div class="layover_div">
-                                                                        <span ng-if="seg.layOverTime!=''">Layover Time: {{seg.layOverTime}}</span>
-                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="check_bag">
-                                                                <span class="float-left">Checkin Baggage:<img src="/images/briefcase.svg" alt="icon"/> @*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
-                                                                <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
+                                                            <div class="flight_itembotm">
+                                                                <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;" /></a></div>
+                                                                <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
+                                                                    <div class="col-md-6" style="font-size:11px;">
+                                                                        <div class="col-md-12">Markup/Dis : <b>{{dep.markupID[dep.markupID.length-1]}}</b></div>
+                                                                        <div class="col-md-12" ng-repeat="k in dep.markupID"><b ng-if="dep.markupID[dep.markupID.length-1]!=k">{{k}}</b></div>
+                                                                    </div>
+                                                                    <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{dep.airlineClass}}/{{dep.fareType}}</b></div>
+                                                                    <div class="col-md-2" style="font-size:11px;">GDS :<b> {{dep.GDS}}</b></div>
+                                                                    <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{dep.mojofare}}</b></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flight_itemdetail" style="display:none;">
+                                                                <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)" />@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
+                                                                <div ng-repeat="seg in dep.flightSegments[0].segments">
+                                                                    <div class="airlines">
+                                                                        <div class="airlines_detail">
+                                                                            <div class="flight_logo"><img src="{{seg.url}}" alt="logo" /></div>
+                                                                            <div class="air_class">
+                                                                                <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
+                                                                                <span>{{seg.equipType}}</span>
+                                                                                <input type="hidden" id="depFlightNo" name="depFlightNo" value="{{seg.airline.code}}-{{seg.flightNo}}" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="airlines_faci "></div>
+                                                                    </div>
+                                                                    <div class="airlines_itenery">
+                                                                        <div class="airline_iteone">
+                                                                            <p>{{seg.org.cityName}} ({{seg.org.airportCode}})</p>
+                                                                            <b>{{seg.depTime}}</b>
+                                                                            <span>{{seg.depDate}}</span>
+                                                                            <dfn>{{seg.fTerminal}}</dfn>
+                                                                            <input type="hidden" id="depArrDate" name="depArrDate" value="{{seg.depDate}}">
+                                                                        </div>
+                                                                        <div class="airline_iteone" style="padding-right:15px;">
+                                                                            <div class="stop_timer">
+                                                                                <p><img src="/images/clock.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
+                                                                            </div>
+                                                                            <div class="border_lin"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;" /></div>
+                                                                            <div class="non_stop">Non Stop</div>
+                                                                        </div>
+                                                                        <div class="airline_itround">
+                                                                            <p>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</p>
+                                                                            <b>{{seg.arrTime}}</b>
+                                                                            <span>{{seg.arrDate}}</span>
+                                                                            <dfn>{{seg.tTerminal}}</dfn>
+                                                                        </div>
+                                                                        <div class="layover_div">
+                                                                            <span ng-if="seg.layOverTime!=''">Layover Time: {{seg.layOverTime}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="check_bag">
+                                                                    <span class="float-left">Checkin Baggage:<img src="/images/briefcase.svg" alt="icon" /> @*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
+                                                                    <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -512,185 +520,183 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
-                                    <div class="destination_coninbound ">
-                                        <div class="city_con">
-                                            <p class="city_p"><span>@Model.segment[1].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width: 23px;padding: 0 6px;" />@*<i class="fa fa-arrow-right"></i>*@<span>@Model.segment[1].destArp.cityCode</span></p>
-                                            <p class="date_p">@Model.segment[1].travelDate.ToString("dd MMM yyyy")</p>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
+                                        <div class="destination_coninbound ">
+                                            <div class="city_con">
+                                                <p class="city_p"><span>@Model.segment[1].orgArp.cityCode</span><img src="/images/arrow.svg" alt="icon" style="transform:rotate(180deg);width: 23px;padding: 0 6px;" />@*<i class="fa fa-arrow-right"></i>*@<span>@Model.segment[1].destArp.cityCode</span></p>
+                                                <p class="date_p">@Model.segment[1].travelDate.ToString("dd MMM yyyy")</p>
+                                            </div>
                                         </div>
-                                        <div class="nextday_con">
-                                            <a class="prev_day" href=""><img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="transform:rotate(180deg);width:19px;padding: 0 3px;" />@*<i class="fa fa-arrow-circle-left"></i>*@Prev day</a><a class="next_day" href="#">Next day<img src="/images/arrow-pointing-to-right-in-a-circle.svg" alt="icon" style="width:19px;padding: 0 3px;" />@*<i class="fa fa-arrow-circle-right"></i>*@</a>
+                                        <div class="result_headinbound ">
+                                            <ul>
+                                                <li><a>Departure</a></li>
+                                                <li><a>Arrival</a></li>
+                                                <li><a>Duration</a></li>
+                                                <li><a>Price</a></li>
+                                            </ul>
                                         </div>
-                                    </div>
-                                    <div class="result_headinbound ">
-                                        <ul>
-                                            <li><a>DEPART</a></li>
-                                            <li><a>ARRIVE</a></li>
-                                            <li><a>DURATION</a></li>
-                                            <li><a>PRICE PER ADULT</a></li>
-                                        </ul>
-                                    </div>
+                                        <div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                            <div class="gradient_slider margin_left8 Result-Progress">
+                                                <div class="gradient70 ">
+                                                    <div class="gradient element2"></div>
+                                                    <div class="gradient element4"></div>
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                                <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                            </div>
+                                        </div>
+                                        <div class="Result-show" style="display:none;">
+                                            <div class="scrollMob">
+                                                <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
+                                                    <div class="flight_item_inbound " id="div{{ret.resultID}}" ng-class="$index == 0?'flight_item allArrColor flight_itemArrColor':'flight_item allArrColor'" ng-repeat="ret in flight.resultReturn | filter:filterByStop | filter:filterByAirline | filter:filterArrTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay" ng-click="RetChange(ret.resultID)">
+                                                        <div class="flight_tulip">
+                                                            <div class="flight_itemtop">
+                                                                <div class="result_mob">
+                                                                    <div class="flight_logo_mob">
+                                                                        <img src="{{ret.flightSegments[0].segments[0].url}}" alt="logo" />
+                                                                        <font>{{ret.flightSegments[0].segments[0].airline.code}}-{{ret.flightSegments[0].segments[0].flightNo}}</font>
+                                                                    </div>
+                                                                    <div class="flight_mob_Pr">
 
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider margin_left8 Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="Result-show" style="display:none;">
-                                        <div class="scrollMob">
-                                            <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
-                                                <div class="flight_item_inbound " id="div{{ret.resultID}}" ng-class="$index == 0?'flight_item allArrColor flight_itemArrColor':'flight_item allArrColor'" ng-repeat="ret in flight.resultReturn | filter:filterByStop | filter:filterByAirline | filter:filterArrTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay" ng-click="RetChange(ret.resultID)">
-                                                    <div class="flight_tulip">
-                                                        <div class="flight_itemtop">
-                                                            <div class="result_mob">
-                                                                <div class="flight_logo_mob">
-                                                                    <img src="{{ret.flightSegments[0].segments[0].url}}" alt="logo" />
-                                                                    <font>{{ret.flightSegments[0].segments[0].airline.code}}-{{ret.flightSegments[0].segments[0].flightNo}}</font>
-                                                                </div>
-                                                                <div class="flight_mob_Pr">
-
-                                                                    <div class="flight_fare_mob">₹{{ret.sPrice}}</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flight_itemleft">
-                                                                <div class="flight_logo">
-                                                                    <img src="{{ret.flightSegments[0].segments[0].url}}" alt="logo" />
-                                                                </div>
-                                                                <div class="flight_deprt">
-                                                                    <p class="desktop"><b>{{ret.flightSegments[0].segments[0].depTime}}</b></p>
-                                                                    <span>{{ret.flightSegments[0].segments[0].airline.name}}</span>
-                                                                </div>
-                                                                <div class="flight_br"><img src="/images/result_line2.png" alt="icon" /></div>
-                                                                <div class="flight_arriv ">
-                                                                    <p class="desktop"><b>{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}</b></p>
-                                                                    <p class="mobile"><b>{{ret.flightSegments[0].segments[0].depTime}}</b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flight_itemright">
-                                                                <div class="flight_dep1">
-                                                                    <p>{{ret.flightSegments[0].TotalTime}}</p>
-                                                                    <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
-                                                                    <span ng-if="ret.flightSegments[0].segments.length==1">Non Stop</span>
-                                                                    <span ng-if="ret.flightSegments[0].segments.length>1">{{ret.flightSegments[0].segments.length-1}} Stop</span>
-                                                                </div>
-
-                                                                <div class="flight_dep3">
-
-                                                                    <div class="flight_fare">₹{{ret.sPrice}}</div>
-                                                                    <p class="mobile"><b>{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}</b></p>
-                                                                    <div class="radio_div">
-                                                                        <label class="trip_label" ng-if="$index == 0">
-                                                                            <input type="radio" checked="checked" name="Retrun" id="{{ret.resultID}}" ng-click="RetChange(ret.resultID)" />
-                                                                            <span class="checkmar"></span>
-                                                                        </label>
-                                                                        <label class="trip_label" ng-if="$index > 0">
-                                                                            <input type="radio" name="Retrun" id="{{ret.resultID}}" ng-click="RetChange(ret.resultID)" />
-                                                                            <span class="checkmar"></span>
-                                                                        </label>
+                                                                        <div class="flight_fare_mob">₹{{ret.sPrice}}</div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flight_itembotm">
-                                                            <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;" /></a></div>
-                                                            <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
-                                                                <div class="col-md-6" style="font-size:11px;">
-                                                                    <div class="col-md-12">Markup/Dis : <b>{{ret.markupID[ret.markupID.length-1]}}</b></div>
-                                                                    <div class="col-md-12" ng-repeat="k in ret.markupID"><b ng-if="ret.markupID[ret.markupID.length-1]!=k">{{k}}</b></div>
+                                                                <div class="flight_itemleft">
+                                                                    <div class="flight_logo">
+                                                                        <img src="{{ret.flightSegments[0].segments[0].url}}" alt="logo" />
+                                                                    </div>
+                                                                    <div class="flight_deprt">
+                                                                        <p class="desktop"><b>{{ret.flightSegments[0].segments[0].depTime}}</b></p>
+                                                                        <span>{{ret.flightSegments[0].segments[0].airline.name}}</span>
+                                                                    </div>
+                                                                    <div class="flight_br"><img src="/images/result_line2.png" alt="icon" /></div>
+                                                                    <div class="flight_arriv ">
+                                                                        <p class="desktop"><b>{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}</b></p>
+                                                                        <p class="mobile"><b>{{ret.flightSegments[0].segments[0].depTime}}</b></p>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{ret.airlineClass}}/{{ret.fareType}}</b></div>
-                                                                <div class="col-md-2" style="font-size:11px;">GDS :<b> {{ret.GDS}}</b></div>
-                                                                <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{ret.mojofare}}</b></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flight_itemdetail" style="display:none;">
-                                                            <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)" />@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
-                                                            <div ng-repeat="seg in ret.flightSegments[0].segments">
-                                                                <div class="airlines">
-                                                                    <div class="airlines_detail">
-                                                                        <div class="flight_logo"><img src="{{seg.url}}" alt="logo" /></div>
-                                                                        <div class="air_class">
-                                                                            <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
-                                                                            <span>{{seg.equipType}}</span>
-                                                                            <input type="hidden" name="Return_Flight_number" id="Return_Flight_number" value="{{seg.airline.code}}-{{seg.flightNo}}" />
+                                                                <div class="flight_itemright">
+                                                                    <div class="flight_dep1">
+                                                                        <p>{{ret.flightSegments[0].TotalTime}}</p>
+                                                                        <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
+                                                                        <span ng-if="ret.flightSegments[0].segments.length==1">Non Stop</span>
+                                                                        <span ng-if="ret.flightSegments[0].segments.length>1">{{ret.flightSegments[0].segments.length-1}} Stop</span>
+                                                                    </div>
+
+                                                                    <div class="flight_dep3">
+
+                                                                        <div class="flight_fare">₹{{ret.sPrice}}</div>
+                                                                        <p class="mobile"><b>{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}</b></p>
+                                                                        <div class="radio_div">
+                                                                            <label class="trip_label" ng-if="$index == 0">
+                                                                                <input type="radio" checked="checked" name="Retrun" id="{{ret.resultID}}" ng-click="RetChange(ret.resultID)" />
+                                                                                <span class="checkmar"></span>
+                                                                            </label>
+                                                                            <label class="trip_label" ng-if="$index > 0">
+                                                                                <input type="radio" name="Retrun" id="{{ret.resultID}}" ng-click="RetChange(ret.resultID)" />
+                                                                                <span class="checkmar"></span>
+                                                                            </label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="airlines_faci "></div>
-                                                                </div>
-                                                                <div class="airlines_itenery">
-                                                                    <div class="airline_iteone">
-                                                                        <p>{{seg.org.cityName}} ({{seg.org.airportCode}})</p>
-                                                                        <b>{{seg.depTime}}</b>
-                                                                        <span>{{seg.depDate}}</span>
-                                                                        <dfn>{{seg.fTerminal}}</dfn>
-                                                                    </div>
-                                                                    <div class="airline_iteone" style="padding-right:15px;">
-                                                                        <div class="stop_timer">
-                                                                            <p><img src="/images/clock.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
-                                                                        </div>
-                                                                        <div class="border_lin pr"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;"/></div>
-                                                                        <div class="non_stop">Non Stop</div>
-                                                                    </div>
-                                                                    <div class="airline_itround">
-                                                                        <p>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</p>
-                                                                        <b>{{seg.arrTime}}</b>
-                                                                        <span>{{seg.arrDate}}</span>
-                                                                        <input type="hidden" id="RetArrDate" name="RetArrDate" value="{{seg.arrDate}}">
-                                                                        <dfn>{{seg.tTerminal}}</dfn>
-                                                                    </div>
-                                                                    <div class="layover_div">
-                                                                        <span ng-if="seg.layOverTime!=''">Layover Time: {{seg.layOverTime}}</span>
-                                                                        <input type="hidden" name="seglayOver" id="seglayOver" value="{{seg.layOverTime}}" />
-                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="check_bag">
-                                                                <span class="float-left">Checkin Baggage: <img src="/images/briefcase.svg" alt="icon" />@*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
-                                                                <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
+                                                            <div class="flight_itembotm">
+                                                                <div class="detai_button" onclick="showFlightDetails(this)"><a class="show_head">Flight Details <img src="/images/downarrow_red.svg" alt="icon" style="width:15px;" /></a></div>
+                                                                <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
+                                                                    <div class="col-md-6" style="font-size:11px;">
+                                                                        <div class="col-md-12">Markup/Dis : <b>{{ret.markupID[ret.markupID.length-1]}}</b></div>
+                                                                        <div class="col-md-12" ng-repeat="k in ret.markupID"><b ng-if="ret.markupID[ret.markupID.length-1]!=k">{{k}}</b></div>
+                                                                    </div>
+                                                                    <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{ret.airlineClass}}/{{ret.fareType}}</b></div>
+                                                                    <div class="col-md-2" style="font-size:11px;">GDS :<b> {{ret.GDS}}</b></div>
+                                                                    <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{ret.mojofare}}</b></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flight_itemdetail" style="display:none;">
+                                                                <div class="detail_header"><a>Flights Detail</a><img src="/images/close_circlewhite.svg" alt="icon" class="pull-right cross_close" onclick="hideFlightDetails(this)" />@*<i class="fa fa-times-circle pull-right cross_close" onclick="hideFlightDetails(this)"></i>*@</div>
+                                                                <div ng-repeat="seg in ret.flightSegments[0].segments">
+                                                                    <div class="airlines">
+                                                                        <div class="airlines_detail">
+                                                                            <div class="flight_logo"><img src="{{seg.url}}" alt="logo" /></div>
+                                                                            <div class="air_class">
+                                                                                <p><b>{{seg.airline.name}}, {{seg.airline.code}}-{{seg.flightNo}}</b>({{seg.cabinType}})</p>
+                                                                                <span>{{seg.equipType}}</span>
+                                                                                <input type="hidden" name="Return_Flight_number" id="Return_Flight_number" value="{{seg.airline.code}}-{{seg.flightNo}}" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="airlines_faci "></div>
+                                                                    </div>
+                                                                    <div class="airlines_itenery">
+                                                                        <div class="airline_iteone">
+                                                                            <p>{{seg.org.cityName}} ({{seg.org.airportCode}})</p>
+                                                                            <b>{{seg.depTime}}</b>
+                                                                            <span>{{seg.depDate}}</span>
+                                                                            <dfn>{{seg.fTerminal}}</dfn>
+                                                                        </div>
+                                                                        <div class="airline_iteone" style="padding-right:15px;">
+                                                                            <div class="stop_timer">
+                                                                                <p><img src="/images/clock.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</p>
+                                                                            </div>
+                                                                            <div class="border_lin pr"><span></span><img src="/images/black-plane.svg" alt="icon" style="width: 17px;margin-top: 5px;" /></div>
+                                                                            <div class="non_stop">Non Stop</div>
+                                                                        </div>
+                                                                        <div class="airline_itround">
+                                                                            <p>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</p>
+                                                                            <b>{{seg.arrTime}}</b>
+                                                                            <span>{{seg.arrDate}}</span>
+                                                                            <input type="hidden" id="RetArrDate" name="RetArrDate" value="{{seg.arrDate}}">
+                                                                            <dfn>{{seg.tTerminal}}</dfn>
+                                                                        </div>
+                                                                        <div class="layover_div">
+                                                                            <span ng-if="seg.layOverTime!=''">Layover Time: {{seg.layOverTime}}</span>
+                                                                            <input type="hidden" name="seglayOver" id="seglayOver" value="{{seg.layOverTime}}" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="check_bag">
+                                                                    <span class="float-left">Checkin Baggage: <img src="/images/briefcase.svg" alt="icon" />@*<i class="fa fa-suitcase"></i>*@ 15kgs</span>
+                                                                    <span class="float-right"><img src="/images/breakfast.svg" alt="icon" />@*<i class="fa fa-cutlery"></i>*@Paid Meal</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -698,373 +704,204 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <input type="hidden" name="depDate" id="depDate" value="{{dep.flightSegments[0].segments[0].depTime}}" />
+                                    @*<input type="hidden" name="depArrDate" id="depArrDate" value="{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}" />*@
+
+                                    <input type="hidden" name="retDate" id="retDate" value="{{ret.flightSegments[0].segments[0].depTime}}" />
+                                    <input type="hidden" name="retArrDate" id="retArrDate" value="{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}" />
+
+                                    <input type="hidden" name="depPerPaxPrice" id="depPerPaxPrice" value="{{dep.sPrice}}" />
+                                    <input type="hidden" name="retPerPaxPrice" id="depPerPaxPrice" value="{{ret.sPrice}}" />
                                 </div>
-
-                                //Return_Flight_number
-
-                                <input type="hidden" name="depDate" id="depDate" value="{{dep.flightSegments[0].segments[0].depTime}}" />
-                                @*<input type="hidden" name="depArrDate" id="depArrDate" value="{{dep.flightSegments[0].segments[dep.flightSegments[0].segments.length-1].arrTime}}" />*@
-
-                                <input type="hidden" name="retDate" id="retDate" value="{{ret.flightSegments[0].segments[0].depTime}}" />
-                                <input type="hidden" name="retArrDate" id="retArrDate" value="{{ret.flightSegments[0].segments[ret.flightSegments[0].segments.length-1].arrTime}}" />
-
-                                <input type="hidden" name="depPerPaxPrice" id="depPerPaxPrice" value="{{dep.sPrice}}" />
-                                <input type="hidden" name="retPerPaxPrice" id="depPerPaxPrice" value="{{ret.sPrice}}" />
-
-
                             }
                             else
                             {
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gradient_con Result-Progress">
-                                    <div class="gradient_left">
-                                        <div class="gradient element1"></div>
-                                        <div class="gradient element3"></div>
-                                        <div class="gradient element4"></div>
-                                        <div class="gradient element5"></div>
-                                        <div class="gardient_mar">
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                    </div>
-                                    <div class="gradient_right">
-                                        <div class="gradient element1">
-                                        </div>
-                                        <div class="gradient element2">
-                                        </div>
-                                        <div class="gradient element3">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="Result-show" style="display:none;">
-                                    <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
-                                        <div class="listing_con" ng-repeat="x in result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay">
-                                            <div class="listing_left">
-                                                <div class="mobresult_btn">
-                                                    <div class="mobr_right">
-                                                        <h5>₹{{x.dPrice}}</h5>
-                                                        <p>Price per person</p>
-                                                    </div>
-                                                    <div class="mobl_btn">
-                                                        @*<a id="mobl_btn_select" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
-                                                        <a ng-click="setPrePaxO(x.resultID)">SELECT</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flight_time_con dashed" ng-repeat="fs in x.flightSegments">
-                                                    <div class="ailines_detail">
-                                                        <span class="flight_icon"><img src="{{fs.segments[0].url}}" alt="logo" /></span>
-                                                        <p>{{fs.segments[0].airline.name}}</p>
-                                                        <font>{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
-
-                                                    </div>
-                                                    <div class="destination_code">
-                                                        @*<span>{{fs.segments[0].org.airportCode}}</span>*@
-                                                        @*<div class="AirportName">{{fs.segments[0].org.cityName}}</div>*@
-                                                        <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
-                                                    </div>
-                                                    <div class="flight_time_one">
-                                                        @*<span class="time_desti">{{fs.segments[0].depTime}} </span><p class="date_day">{{fs.segments[0].depDate}}</p>*@
-                                                        <p><span class="AirportName"> {{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
-                                                        <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
-                                                    </div>
-                                                    <div class="flight_time_two">
-                                                        <span class="layover_time">{{fs.TotalTime}}</span>
-                                                        <span class="line_img"><img src="/images/result_line.png" alt="line" /></span>
-                                                        <span class="stop" ng-if="fs.segments.length==1">Non Stop</span>
-                                                        <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
-                                                    </div>
-                                                    <div class="flight_time_third">
-                                                        @*<span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><p class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</p>*@
-
-                                                        <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
-
-                                                        <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
-                                                    </div>
-                                                    @*<div class="destination_code">
-                                                        <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                        <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
-                                                        <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
-                                                    </div>*@
+                                <div>
+                                    <div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
                                                 </div>
                                             </div>
-                                            <div class="listing_right">
-                                                <h5>₹{{x.dPrice}}</h5>
-                                                <p>Price per person</p>
-                                                @*<p>(Incl.taxes & fees)</p>*@
-                                                @*<a id="listing_right_select" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
-                                                <a ng-click="setPrePaxO(x.resultID)">SELECT</a>
-                                            </div>
-                                            <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
-                                                <div class="col-md-6" style="font-size:11px;">
-                                                    <div class="col-md-12" style="font-size:11px;">Markup/Dis : <b>{{x.markupID[x.markupID.length-1]}}</b></div>
-                                                    <div class="col-md-12" ng-repeat="k in x.markupID"><b ng-if="x.markupID[x.markupID.length-1]!=k">{{k}}</b></div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
                                                 </div>
-                                                <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{x.airlineClass}}/{{x.fareType}}</b></div>
-                                                <div class="col-md-2" style="font-size:11px;">GDS :<b> {{x.GDS}}</b></div>
-                                                <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{x.mojofare}}</b></div>
-                                            </div>
-                                            <div class="result_book">
-                                                <div class="resultbook_left" id="{{x.FlightId}}" onclick="showDetails(this)">
-                                                    <a class="view_result">Flight Details <img src="/images/down.svg" alt="icon" /></a>
+                                                <div class="gradient element2">
                                                 </div>
-                                            </div>
-                                            <div class="resul_deatil">
-                                                <div class="outbond" ng-repeat="fs in x.flightSegments">
-                                                    <div class="outbond_top" ng-if="fs.segName=='Depart'">
-                                                        <div class="outbond_topL"><h2><img src="/images/outbond.png" alt="icon" /> DEPART</h2></div>
-                                                        <div class="outbond_topR">
-                                                            <span>{{fs.segments[0].org.cityName}} ({{fs.segments[0].org.airportCode}})</span> - <span>{{fs.segments[fs.segments.length-1].dest.cityName}} ({{fs.segments[fs.segments.length-1].dest.airportCode}})</span> | <span>{{fs.segments[0].depDate}} | {{fs.TotalTime}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="outbond_top" ng-if="fs.segName=='Return'">
-                                                        <div class="outbond_topL"><h2><img src="/images/inbond.png" alt="icon" /> RETURN</h2></div>
-                                                        <div class="outbond_topR">
-                                                            <span>{{fs.segments[0].org.cityName}} ({{fs.segments[0].org.airportCode}})</span> - <span>{{fs.segments[fs.segments.length-1].dest.cityName}} ({{fs.segments[fs.segments.length-1].dest.airportCode}})</span> | <span>{{fs.segments[0].depDate}} | {{fs.TotalTime}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="outbond_flight" ng-repeat="seg in fs.segments">
-                                                        <div class="outbond_icon">
-                                                            <img src="{{seg.url}}" alt="logo" />
-                                                        </div>
-                                                        <div class="outbond_one">
-                                                            <p>{{seg.airline.name}} | {{seg.airline.code}} {{seg.flightNo}}</p>
-                                                            <span ng-if="seg.airline.code!=seg.operatedBy.code">Operated By {{seg.operatedBy.name}}</span>
-                                                        </div>
-                                                        <div class="outbond_two">
-                                                            <p><b>{{seg.org.cityName}} ({{seg.org.airportCode}})</b></p>
-                                                            <span>{{seg.depTime}} | {{seg.depDate}}</span>
-                                                        </div>
-                                                        <div class="outbond_third">
-                                                            <p><b>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</b></p>
-                                                            <span>{{seg.arrTime}} | {{seg.arrDate}}</span>
-                                                        </div>
-                                                        <div class="outbond_four">
-                                                            <span class="outbond_eco">{{seg.cabinType}}</span>
-                                                            <span class="eco_time" ng-if="seg.eft>0">{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</span>
-                                                            <span class="eco_time" ng-if="seg.eft==0">Non Stop</span>
-                                                        </div>
-                                                        <div class="layover_con" ng-if="seg.layOverTime!=''">
-                                                            <span></span>
-                                                            <p>Layover Time: {{seg.layOverTime}}</p>
-                                                        </div>
-                                                    </div>
+                                                <div class="gradient element3">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <div class="width100">
-                                <div class="">
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
+                                                </div>
+                                                <div class="gradient element2">
+                                                </div>
+                                                <div class="gradient element3">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
+                                                </div>
+                                                <div class="gradient element2">
+                                                </div>
+                                                <div class="gradient element3">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
+                                                </div>
+                                                <div class="gradient element2">
+                                                </div>
+                                                <div class="gradient element3">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
+                                                </div>
+                                                <div class="gradient element2">
+                                                </div>
+                                                <div class="gradient element3">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
+                                        <div class="gradient_con Result-Progress">
+                                            <div class="gradient_left">
+                                                <div class="gradient element1"></div>
+                                                <div class="gradient element3"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element5"></div>
+                                                <div class="gardient_mar">
+                                                    <div class="gradient element4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gradient_right">
+                                                <div class="gradient element1">
+                                                </div>
+                                                <div class="gradient element2">
+                                                </div>
+                                                <div class="gradient element3">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
-                                    </div>
-                                    <div class="gradient_slider Result-Progress">
-                                        <div class="gradient70 ">
-                                            <div class="gradient element2"></div>
-                                            <div class="gradient element4"></div>
-                                            <div class="gradient element4"></div>
-                                        </div>
-                                        <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
                                     </div>
                                     <div class="Result-show" style="display:none;">
                                         <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
                                             <div class="listing_con" ng-repeat="x in result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay">
                                                 <div class="listing_left">
-                                                    <div class="mobresult_btn">
-                                                        <div class="mobr_right">
-                                                            <del>₹ {{x.CutPrice}}</del>
-                                                            <h5>₹{{x.sPrice}}</h5>
-                                                            <p>Price per person</p>
-                                                        </div>
-                                                        <div class="mobl_btn">
-                                                            @*<a id="mobl_btn_select_relt" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
-                                                            <a ng-click="setPrePaxO(x.resultID)">SELECT</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flight_time_con dashed" ng-repeat="fs in x.flightSegments">
-
-                                                        @*<div class="onewayDeal">*@
-                                                        <div>
-                                                            <span class="severdeal" ng-if="x.dealType=='Saver Fare'">{{x.dealType}}</span>
-                                                            <span class="exclisivdeal" ng-if="x.dealType=='Exclusive Offer'">{{x.dealType}}</span>
-                                                        </div>
-                                                        <div class="ailines_detail">
-                                                            <span class="flight_icon"><img src="{{fs.segments[0].url}}" alt="logo" /></span>
-                                                            <p>{{fs.segments[0].airline.name}}</p>
-                                                            <font>{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
-                                                        </div>
-                                                        <div class="destination_code">
-                                                            <div class="destopnone">
-                                                                <span>{{fs.segments[0].org.airportCode}}</span>
-                                                                <div class="AirportName">{{fs.segments[0].org.cityName}}</div>
+                                                    <div class="flight_round_mob">
+                                                        <a class="openpop" ng-click="OpenPopup(x.resultID)">
+                                                            <div class="round_mobPrice">
+                                                                <h5>₹{{x.dPrice}}</h5>
                                                             </div>
-                                                            <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
-                                                        </div>
-                                                        <div class="flight_time_one">
-                                                            <p> <span class="AirportName">{{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
-                                                            <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
-                                                        </div>
-                                                        <div class="flight_time_two">
-                                                            <span class="layover_time">{{fs.TotalTime}}</span>
-                                                            <span class="line_img"><img src="/images/result_line.png" alt="line" /></span>
-                                                            <span class="stop" ng-if="fs.segments.length==1">Non Stop</span>
-                                                            <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
-                                                        </div>
-                                                        <div class="flight_time_third">
-                                                            <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
+                                                            <div class="Round_trip_mob dashed" ng-repeat="fs in x.flightSegments">
+                                                                <div class="ailines_detail">
+                                                                    <span class="flight_icon"><img src="{{fs.segments[0].url}}" alt="logo" /></span>
+                                                                    <p>{{fs.segments[0].airline.name}}</p>
+                                                                    <font class="airline_Code">{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
 
-                                                            <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
-                                                        </div>
-                                                        <div class="destination_code">
-                                                            <div class="destopnone">
-                                                                <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
-                                                                <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                                </div>
+                                                                <div class="mob_round_mid">
+                                                                    <div class="destination_coderound">
+                                                                        <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
+                                                                        <span class="AirportNamemob"> {{fs.segments[0].org.cityName}}</span>
+                                                                    </div>
+                                                                    <div class="flight_time_one">
+                                                                        <p><span class="AirportName"> {{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
+                                                                        <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
+                                                                    </div>
+                                                                    <div class="flight_time_two">
+                                                                        <span class="layover_time">{{fs.TotalTime}}</span>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==1">
+                                                                            <span class="line_img" ></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                        </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==2">
+                                                                            <span class="line_img1" ><dfn></dfn></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                        </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==3">
+                                                                            <span class="line_img2" ></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                        </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length>3">
+                                                                            <span class="line_img3" ><dfn></dfn></span>
+                                                                            <span class="line_img2"></span>
+                                                                        </div>
+                                                                        <span class="stop" ng-if="fs.segments.length==1">Non Stop</span>
+                                                                        <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
+                                                                    </div>
+                                                                    <div class="flight_time_third">
+                                                                        <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
+
+                                                                        <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
+                                                                    </div>
+                                                                    <div class="destination_coderound2">
+                                                                        <div class="destopnone">
+                                                                            <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
+                                                                            <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+
+                                                                        </div>
+                                                                        <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
+                                                                        <div class="AirportNamemob">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="listing_right">
-                                                    <del>₹{{x.CutPrice}}</del>
-                                                    <h5>₹{{x.sPrice}}</h5>
+                                                    <h5>₹{{x.dPrice}}</h5>
                                                     <p>Price per person</p>
-                                                    @*<p>(Incl.taxes & fees)</p>*@
-                                                    @*<a id="listing_right_dPrice" onclick="ShowProPopup()" href="/flight/passenger/@Model.userSearchID/{{x.resultID}}">SELECT</a>*@
                                                     <a ng-click="setPrePaxO(x.resultID)">SELECT</a>
                                                 </div>
                                                 <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
@@ -1079,9 +916,6 @@
                                                 <div class="result_book">
                                                     <div class="resultbook_left" id="{{x.FlightId}}" onclick="showDetails(this)">
                                                         <a class="view_result">Flight Details <img src="/images/down.svg" alt="icon" /></a>
-                                                    </div>
-                                                    <div class="resultbook_right">
-                                                        <a ng-click="setPrePaxO(x.resultID)"><img src="/images/info-icon.svg" alt="info" style="width:12px;"/> Instant Offer applied of ₹ {{x.CPrice}}</a>
                                                     </div>
                                                 </div>
                                                 <div class="resul_deatil">
@@ -1103,7 +937,222 @@
                                                                 <img src="{{seg.url}}" alt="logo" />
                                                             </div>
                                                             <div class="outbond_one">
-                                                                <p>{{seg.airline.name}} | {{seg.airline.code}} {{seg.flightNo}}</p>
+                                                                <p>{{seg.airline.name}} </p><p> {{seg.airline.code}} {{seg.flightNo}}</p>
+                                                                <span ng-if="seg.airline.code!=seg.operatedBy.code">Operated By {{seg.operatedBy.name}}</span>
+                                                            </div>
+                                                            <div class="outbond_two">
+                                                                <p><b>{{seg.org.cityName}} ({{seg.org.airportCode}})</b></p>
+                                                                <span>{{seg.depTime}} | {{seg.depDate}}</span>
+                                                            </div>
+                                                            <div class="outbond_third">
+                                                                <p><b>{{seg.dest.cityName}} ({{seg.dest.airportCode}})</b></p>
+                                                                <span>{{seg.arrTime}} | {{seg.arrDate}}</span>
+                                                            </div>
+                                                            <div class="outbond_four">
+                                                                <span class="outbond_eco">{{seg.cabinType}}</span>
+                                                                <span class="eco_time" ng-if="seg.eft>0">{{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</span>
+                                                                <span class="eco_time" ng-if="seg.eft==0">Non Stop</span>
+                                                            </div>
+                                                            <div class="layover_con" ng-if="seg.layOverTime!=''">
+                                                                <span></span>
+                                                                <p>Layover Time: {{seg.layOverTime}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="width100">
+                                <div class="">
+                                    <div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                        <div class="gradient_slider Result-Progress">
+                                            <div class="gradient70 ">
+                                                <div class="gradient element2"></div>
+                                                <div class="gradient element4"></div>
+                                                <div class="gradient element4"></div>
+                                            </div>
+                                            <div class="gradient30 margin_left8"><div class="gradient element2"></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="Result-show" style="display:none;">
+                                        <div infinite-scroll="loadMore()" infinite-scroll-distance='1'>
+                                            <div class="listing_con" ng-repeat="x in result | filter:filterByStop | filter:filterByAirline | filter:filterDepTimeDur | filter:filterArrTimeDur | filter:priceRange | filter:AirlineMatrixFilter | limitTo:numberToDisplay">
+                                                <div class="listing_left">
+                                                    <div class="flight_time_con dashed">
+                                                        <div>
+                                                            <span class="severdeal" ng-if="x.dealType=='Saver Fare'">{{x.dealType}}</span>
+                                                            <span class="exclisivdeal" ng-if="x.dealType=='Exclusive Offer'">{{x.dealType}}</span>
+                                                        </div>
+                                                        <div ng-repeat="fs in x.flightSegments">
+                                                            <a class="openpop" ng-click="OpenPopup(x.resultID)">
+                                                                <div class="ailines_detail">
+                                                                    <span class="flight_icon"><img src="{{fs.segments[0].url}}" alt="logo" /></span>
+                                                                    <p>{{fs.segments[0].airline.name}}</p>
+                                                                    <font class="airline_Code">{{fs.segments[0].airline.code}}-{{fs.segments[0].flightNo}}</font>
+                                                                </div>
+                                                                <div class="mob_oneway_mid">
+                                                                    <div class="destination_code">
+                                                                        <div class="destopnone">
+                                                                            <span>{{fs.segments[0].org.airportCode}}</span>
+                                                                            <div class="AirportName">{{fs.segments[0].org.cityName}}</div>
+                                                                        </div>
+                                                                        <p class="mob_time"><b>{{fs.segments[0].depTime}}</b></p>
+                                                                    </div>
+                                                                    <div class="flight_time_one">
+                                                                        <p> <span class="AirportName">{{fs.segments[0].org.cityName}}</span> <span class="Airport_Code">({{fs.segments[0].org.airportCode}})</span></p>
+                                                                        <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
+                                                                    </div>
+                                                                    <div class="flight_time_two2">
+                                                                        <span class="layover_time">{{fs.TotalTime}}</span>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==1">
+                                                                            <span class="line_img"></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                        </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==2">
+                                                                            <span class="line_img1"><dfn></dfn></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length==3">
+                                                                            <span class="line_img2"></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        <div class="layover_Sep" ng-if="fs.segments.length>3">
+                                                                            <span class="line_img3"><dfn></dfn></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                        </div>
+                                                                            <span class="stop" ng-if="fs.segments.length==1">Non Stop</span>
+                                                                            <span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
+                                                                        </div>
+                                                                    <div class="mob_line">
+                                                                        <div class="layover_Sep2" ng-if="fs.segments.length==1">
+                                                                            <span class="lineo_img"></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        <div class="layover_Sep2" ng-if="fs.segments.length==2">
+                                                                            <span class="lineo_img1"><dfn></dfn></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        <div class="layover_Sep2" ng-if="fs.segments.length==3">
+                                                                            <span class="lineo_img2"></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        <div class="layover_Sep2" ng-if="fs.segments.length>3">
+                                                                            <span class="lineo_img3"><dfn></dfn></span>
+                                                                            <img src="/images/map.svg" alt="icon" />
+                                                                            </div>
+                                                                        </div>
+                                                                    <div class="flight_time_third">
+                                                                        <p><span class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</span> <span class="Airport_Code">({{fs.segments[fs.segments.length-1].dest.airportCode}})</span></p>
+
+                                                                        <span class="time_desti">{{fs.segments[fs.segments.length-1].arrTime}} </span><span class="date_day">{{fs.segments[fs.segments.length-1].arrDate}}</span>
+                                                                    </div>
+                                                                    <div class="destination_code">
+                                                                        <div class="destopnone">
+                                                                            <span>{{fs.segments[fs.segments.length-1].dest.airportCode}}</span>
+                                                                            <div class="AirportName">{{fs.segments[fs.segments.length-1].dest.cityName}}</div>
+                                                                        </div>
+                                                                        <p class="mob_time"><b>{{fs.segments[fs.segments.length-1].arrTime}}</b></p>
+                                                                    </div>
+                                                                    <div class="mob_timeStop">
+                                                                        <span class="layover_time">{{fs.TotalTime}}</span>|<span class="stop" ng-if="fs.segments.length==1">Non Stop</span><span class="stop" ng-if="fs.segments.length>1">{{fs.segments.length-1}} Stop</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mob_oneway_price" ng-if="$index == 0">
+                                                                    <h5>₹{{x.sPrice}}</h5>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="listing_right">
+                                                    <del>₹{{x.CutPrice}}</del>
+                                                    <h5>₹{{x.sPrice}}</h5>
+                                                    <p>Price per person</p>
+                                                    <a ng-click="setPrePaxO(x.resultID)">SELECT</a>
+                                                </div>
+                                                <div ng-if="flight.isShowDetails==true" class="row" style="float:left;">
+                                                    <div class="col-md-6" style="font-size:11px;">
+                                                        <div class="col-md-12" style="font-size:11px;">Markup/Dis : <b>{{x.markupID[x.markupID.length-1]}}</b></div>
+                                                        <div class="col-md-12" ng-repeat="k in x.markupID"><b ng-if="x.markupID[x.markupID.length-1]!=k">{{k}}</b></div>
+                                                    </div>
+                                                    <div class="col-md-2" style="font-size:11px;">Airline Class/Ftype :<b> {{x.airlineClass}}/{{x.fareType}}</b></div>
+                                                    <div class="col-md-2" style="font-size:11px;">GDS :<b> {{x.GDS}}</b></div>
+                                                    <div class="col-md-2" style="font-size:11px;">Mojo Fare :<b> {{x.mojofare}}</b></div>
+                                                </div>
+                                                <div class="result_book">
+                                                    <div class="resultbook_left" id="{{x.FlightId}}" onclick="showDetails(this)">
+                                                        <a class="view_result">Flight Details <img src="/images/down.svg" alt="icon" /></a>
+                                                    </div>
+                                                    <div class="resultbook_right">
+                                                        <a ng-click="setPrePaxO(x.resultID)"><img src="/images/info-icon.svg" alt="info" style="width:12px;" /> Instant Offer applied of ₹ {{x.CPrice}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="resul_deatil">
+                                                    <div class="outbond" ng-repeat="fs in x.flightSegments">
+                                                        <div class="outbond_top" ng-if="fs.segName=='Depart'">
+                                                            <div class="outbond_topL"><h2><img src="/images/outbond.png" alt="icon" /> DEPART</h2></div>
+                                                            <div class="outbond_topR">
+                                                                <span>{{fs.segments[0].org.cityName}} ({{fs.segments[0].org.airportCode}})</span> - <span>{{fs.segments[fs.segments.length-1].dest.cityName}} ({{fs.segments[fs.segments.length-1].dest.airportCode}})</span> | <span>{{fs.segments[0].depDate}} | {{fs.TotalTime}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="outbond_top" ng-if="fs.segName=='Return'">
+                                                            <div class="outbond_topL"><h2><img src="/images/inbond.png" alt="icon" /> RETURN</h2></div>
+                                                            <div class="outbond_topR">
+                                                                <span>{{fs.segments[0].org.cityName}} ({{fs.segments[0].org.airportCode}})</span> - <span>{{fs.segments[fs.segments.length-1].dest.cityName}} ({{fs.segments[fs.segments.length-1].dest.airportCode}})</span> | <span>{{fs.segments[0].depDate}} | {{fs.TotalTime}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="outbond_flight" ng-repeat="seg in fs.segments">
+                                                            <div class="outbond_icon">
+                                                                <img src="{{seg.url}}" alt="logo" />
+                                                            </div>
+                                                            <div class="outbond_one">
+                                                                <p>{{seg.airline.name}} </p><p>{{seg.airline.code}} {{seg.flightNo}}</p>
                                                                 <span ng-if="seg.airline.code!=seg.operatedBy.code">Operated By {{seg.operatedBy.name}}</span>
                                                             </div>
                                                             <div class="outbond_two">
@@ -1197,7 +1246,7 @@
                     <div class="book_footer">
                         <div class="fare_divround">
                             <p>Total Fare</p>
-                            <span>₹ &nbsp;{{ReturnIntWithComma(outBound.price+inBound.price)}}</span>
+                            <span>₹{{ReturnIntWithComma(outBound.price+inBound.price)}}</span>
                             @*<span><i class="fa fa-rupee"></i>&nbsp;{{ReturnIntWithComma(outBound.dPrice+inBound.dPrice)}}</span>*@
                             <div class="Fare_detail">
                                 <table>
@@ -1217,7 +1266,7 @@
                         </div>
                         <div class="fare_book">
                             @*<a id="btnfare" onclick="setPrePaxR({{outBound.resultID}},{{inBound.resultID}})" href="/flight/passenger/@Model.userSearchID/{{outBound.resultID}}/{{inBound.resultID}}">Book Now</a>*@
-                            <a ng-click="setPrePaxR(outBound.resultID,inBound.resultID)">Book Now</a>
+                            <a ng-click="setPrePaxR(outBound.resultID,inBound.resultID)">Continue</a>
 
                             <input type="hidden" id="rdTotValue" value="{{outBound.price+inBound.price}}" />
 
@@ -1240,41 +1289,238 @@
             </div>
         </section>
     }
-</div>
-<div id="ResultProgressPopup" class="ResultProgressPopup" style="display:none;">
-    <div class="ResultProgressProgressBar">
-        <div class="ResultProgress-logo"><img src="/images/732.gif" /></div>
+
+    <div id="ResultProgressPopup" class="ResultProgressPopup" style="display:none;">
+        <div class="ResultProgressProgressBar">
+            <div class="ResultProgress-logo"><img src="/images/732.gif" /></div>
+        </div>
     </div>
-</div>
-<div style="display:none;">
-    <form id="formPrePax" action="/flight/PrePax/" method="post">
-        <input type="hidden" name="sMedia" value="@Model.sourceMedia" />
-        <input type="hidden" name="sID" value="@Model.userSearchID" />
-        <input type="hidden" name="oID" id="oID" value="" />
-        <input type="hidden" name="iID" id="iID" value="" />
-    </form>
-</div>
-<div id="divSessionOut" class="SessionTimeOut">
-    <div class="sessionbox">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 session-exp no_padding">
-                    <h2 class="session-head"> Session expired</h2>
-                    <div class="session_content">
-                        <h3 class="text-center t-color2"><img src="/images/clock_red.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@Your Session has expired</h3><br />
-                        <p class="text-center session-color">
-                            Your preferred search session has expired. We regret the inconvenience caused
-                        </p><br />
-                        <div class="col-md-6  col-xs-6"><p class="session-2"><a href="/" class="search-button-01 se-05">Go to Home</a></p></div>
-                        <div class="col-md-6  col-xs-6 pull-right"><p class="sessionP"><a class="search-button-02" href="@Model.deepLink">Search Again</a></p></div>
+    <div style="display:none;">
+        <form id="formPrePax" action="/flight/PrePax/" method="post">
+            <input type="hidden" name="sMedia" value="@Model.sourceMedia" />
+            <input type="hidden" name="sID" value="@Model.userSearchID" />
+            <input type="hidden" name="oID" id="oID" value="" />
+            <input type="hidden" name="iID" id="iID" value="" />
+        </form>
+    </div>
+
+    <div id="divSessionOut" class="SessionTimeOut">
+        <div class="sessionbox">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 session-exp no_padding">
+                        <h2 class="session-head"> Session expired</h2>
+                        <div class="session_content">
+                            <h3 class="text-center t-color2"><img src="/images/clock_red.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@Your Session has expired</h3><br />
+                            <p class="text-center session-color">
+                                Your preferred search session has expired. We regret the inconvenience caused
+                            </p><br />
+                            <div class="col-md-6  col-xs-6"><p class="session-2"><a href="/" class="search-button-01 se-05">Go to Home</a></p></div>
+                            <div class="col-md-6  col-xs-6 pull-right"><p class="sessionP"><a class="search-button-02" href="@Model.deepLink">Search Again</a></p></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="paymentmodal" id="paymentmodal1">
+        <div class="modal-content1">
+            <div class="paymentmod_head">
+                <span class="close-button1" onclick="closeModel('paymentmodal1');">×</span>
+                <h1>Flight Details</h1>
+            </div>
+            <div class="Scroll_Div">
+                <div class="Oneway_FlightDetail">
+                    <div class="Oneway_flightTop">
+                        <div class="Depart_flight">
+                            <span>@Model.segment[0].orgArp.cityName</span><em class="posR">-</em><span>@Model.segment[0].destArp.cityName</span>
+                        </div>
+                        <p>Departing Flight |<em>@Model.segment[0].travelDate.ToString("ddd dd MMM")</em> </p>
+                    </div>
+                    <div ng-repeat="fs in outBound.flightSegments">
+                        <div ng-repeat="seg in fs.segments">
+                            <div class="oneway_flightbottom">
+                                <div class="oneway_Airlines">
+                                    <span><img src="{{seg.url}}" /><dfn>{{seg.airline.name}}</dfn></span>
+                                </div>
+                                <div class="oneway_Mobdetail">
+                                    <div class="onewaydetail_left" ng-if="$index < fs.segments.length-1">
+                                        <span>.</span>
+                                        <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                        <span>.</span>
+                                    </div>
+                                    <div class="onewaydetail_left" ng-if="$index == fs.segments.length-1">
+                                        <span>.</span>
+                                        <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                        <img src="/images/map.svg" alt="icon" />
+                                    </div>
+                                    <div class="onewaydetail_Right">
+                                        <div class="onewayinbond">
+                                            <div class="Oneway_Time"><span>{{seg.depTime}}</span><em></em></div>
+                                            <div class="terminal">{{seg.fFullAprName}}</div>
+                                            <div class="duration" ng-if="seg.eft>0">Duration {{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</div>
+
+                                        </div>
+                                        <div class="oneoutinbond">
+                                            <div class="Oneway_Time"><span>{{seg.arrTime}}</span><em></em></div>
+                                            <div class="terminal">{{seg.tFullAprName}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layover_con" ng-if="seg.layOverTime!=''">
+                                <p>Layover Time: {{seg.layOverTime}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="booking_Upgrade" style="display:none;">
+                        <h1>Upgrade your booking</h1>
+                        <p>Fare for 1 Traveller</p>
+                        <div class="fare_Type">
+                            <div class="radio_payment">
+                                <dfn>
+                                    <input type="radio" />
+                                </dfn>
+                                <h2>SAVER</h2>
+                                <span><em>₹</em>3454</span>
+                            </div>
+                            <div class="facilityDiv">
+                                <span><img src="/images/seat-airline.svg" />Cabin Bag :</span>
+                                <span>7KG</span>
+                            </div>
+
+                            <div class="facilityDiv">
+                                <span><img src="/images/briefcase.svg" />Check-in Bag :</span>
+                                <span>15KG</span>
+                            </div>
+                            <div class="facilityDiv">
+                                <span><img src="/images/no-money.svg" />Cancellation :</span>
+                                <span>₹ 2999 onwards</span>
+                            </div>
+
+                            <div class="facilityDiv">
+                                <span><img src="/images/calendar1.svg" />Date Change : </span>
+                                <span>₹ 2250 onwards</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="payment_Proced1">
+            <button ng-click="setPrePaxO(outBound.resultID)">Proceed</button>
+        </div>
+    </div>
+    <div class="paymentmodal" id="paymentmodal2">
+        <div class="modal-content2">
+            <div class="paymentmod_head">
+                <span class="close-button2" onclick="closeModel('paymentmodal2');">×</span>
+                <h1>Flight Details</h1>
+            </div>
+            <div class="fare_nav">
+                <ul>
+                    <li onclick="openTripTab('divOB')"><a class="active showBtn">@Model.segment[0].orgArp.cityCode - @Model.segment[0].destArp.cityCode</a></li>
+                    <li onclick="openTripTab('divIB')"><a class="showBtn">@Model.segment[0].destArp.cityCode - @Model.segment[0].orgArp.cityCode</a></li>
+                </ul>
+            </div>
+            <div class="Scroll_Div_Int">
+                <div class="Oneway_FlightDetail" id="divOB">
+                    <div class="Oneway_flightTop">
+                        <div class="Depart_flight">
+                            <span>@Model.segment[0].orgArp.cityName</span><em class="posR">-</em><span>@Model.segment[0].destArp.cityName</span>
+                        </div>
+                        <p>Departing Flight |<em>@Model.segment[0].travelDate.ToString("ddd dd MMM")</em> </p>
+                    </div>
+                    <div ng-repeat="seg in outBound.flightSegments[0].segments">
+                        <div class="oneway_flightbottom">
+                            <div class="oneway_Airlines">
+                                <span><img src="{{seg.url}}" /><dfn>{{seg.airline.name}}</dfn></span>
+                            </div>
+                            <div class="oneway_Mobdetail">
+                                <div class="onewaydetail_left" ng-if="$index < outBound.flightSegments[0].segments.length-1">
+                                    <span>.</span>
+                                    <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                    <span>.</span>
+                                </div>
+                                <div class="onewaydetail_left" ng-if="$index == outBound.flightSegments[0].segments.length-1">
+                                    <span>.</span>
+                                    <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                    <img src="/images/map.svg" alt="icon" />
+                                </div>
+                                <div class="onewaydetail_Right">
+                                    <div class="onewayinbond">
+                                        <div class="Oneway_Time"><span>{{seg.depTime}}</span><em></em></div>
+                                        <div class="terminal">{{seg.fFullAprName}}</div>
+                                        <div class="duration" ng-if="seg.eft>0">Duration {{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</div>
+
+                                    </div>
+                                    <div class="oneoutinbond">
+                                        <div class="Oneway_Time"><span>{{seg.arrTime}}</span><em></em></div>
+                                        <div class="terminal">{{seg.tFullAprName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layover_con" ng-if="seg.layOverTime!=''">
+                            <p>Layover Time: {{seg.layOverTime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Oneway_FlightDetail" id="divIB" style="display:none;">
+                    <div class="Oneway_flightTop">
+                        <div class="Depart_flight">
+                            <span>@Model.segment[0].destArp.cityName</span><em class="posR">-</em><span>@Model.segment[0].orgArp.cityName</span>
+                        </div>
+                        <p>Departing Flight |<em>@(Model.segment.Count > 1 ? Model.segment[1].travelDate.ToString("ddd dd MMM") : "")</em> </p>
+                    </div>
+                    <div ng-repeat="seg in outBound.flightSegments[1].segments">
+                        <div class="oneway_flightbottom">
+                            <div class="oneway_Airlines">
+                                <span><img src="{{seg.url}}" /><dfn>{{seg.airline.name}}</dfn></span>
+                            </div>
+                            <div class="oneway_Mobdetail">
+                                <div class="onewaydetail_left" ng-if="$index < outBound.flightSegments[1].segments.length-1">
+                                    <span>.</span>
+                                    <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                    <span>.</span>
+                                </div>
+                                <div class="onewaydetail_left" ng-if="$index == outBound.flightSegments[1].segments.length-1">
+                                    <span>.</span>
+                                    <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                    <img src="/images/map.svg" alt="icon" />
+                                </div>
+                                <div class="onewaydetail_Right">
+                                    <div class="onewayinbond">
+                                        <div class="Oneway_Time"><span>{{seg.depTime}}</span><em></em></div>
+                                        <div class="terminal">{{seg.fFullAprName}}</div>
+                                        <div class="duration" ng-if="seg.eft>0">Duration {{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</div>
+
+                                    </div>
+                                    <div class="oneoutinbond">
+                                        <div class="Oneway_Time"><span>{{seg.arrTime}}</span><em></em></div>
+                                        <div class="terminal">{{seg.tFullAprName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layover_con" ng-if="seg.layOverTime!=''">
+                            <p>Layover Time: {{seg.layOverTime}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="payment_Proced">
+            <button ng-click="setPrePaxO(outBound.resultID)">Proceed</button>
+        </div>
+    </div>
+</div>
 <style>
     .MatrixActive {
         color: #f00 !important;
@@ -1287,16 +1533,76 @@
 
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script>
+        function closeModel( valModel)
+        {
+            $("#"+valModel).removeClass("show-modal");
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            $body.css("overflow-y", "auto");
+            $body.width(oldWidth); 
+        }
+        function ShowModel()
+        {
+            $("#paymentmodal"+$("#hfTripType").val()).addClass("show-modal");
+            if ($(window).width() < 765) 
+            {
+                var $body = $(document.body);
+                var oldWidth = $body.innerWidth();
+                $body.css("overflow", "hidden");
+                $body.width(oldWidth);
+            }
+        }
+        function openTripTab(tabID)
+        {
+            $("#divOB").hide();
+            $("#divIB").hide();
+            $("#"+tabID).show();
+        }
+    </script>
+
+    <script>
+        //var modal = document.querySelector(".paymentmodal2");
+        //var openpop = document.querySelector(".openpop2");
+        //var closeButton = document.querySelector(".close-button2");
+
+        //function toggleModal() {
+
+        //    modal.classList.toggle("show-modal");
+
+        //}
+
+        //function windowOnClick(event) {
+        //    if (event.target === modal) {
+        //        toggleModal();
+        //    }
+        //}
+
+        //open.addEventListener("click", toggleModal);
+        //closeButton.addEventListener("click", toggleModal);
+        //window.addEventListener("click", windowOnClick);
+
+
+        $(document).ready(function(){
+            $('ul li a').click(function(){
+                $('li a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+
+
+
+    </script>
+    <script>
         function MatricSearch(totDpl,dat)
         {
             window.location.href="../../"+totDpl+"&NewDate="+dat;
         }
-       function setPrePaxR(oID, iID){
-           ShowProPopup();
-           $("#oID").val(oID);
-           $("#iID").val(iID);
-           $('form#formPrePax').submit();
-       }
+        function setPrePaxR(oID, iID){
+            ShowProPopup();
+            $("#oID").val(oID);
+            $("#iID").val(iID);
+            $('form#formPrePax').submit();
+        }
     </script>
 
     <script>
@@ -1379,6 +1685,16 @@
                     $("#div" + rIndex).addClass("flight_itemDepColor")
                     $("#" + rIndex).prop("checked", true);
                 }
+                $scope.OpenPopup = function (rIndex) {
+                    angular.forEach($scope.flight.result, function (value, index) {
+                        if (value.resultID == rIndex) {
+                            $scope.outBound = value;
+                        }
+                    });
+                    ShowModel();
+
+                }
+
                 $scope.RetChange = function (rIndex) {
                     angular.forEach($scope.flight.resultReturn, function (value, index) {
                         if (value.resultID == rIndex) {
@@ -1417,7 +1733,7 @@
                 $('.carousel-main').owlCarousel({
                     items: 15,
                     startPosition:@Model.matrixPos,
-                    loop: false,                   
+                    loop: false,
                     autoplay: false,
                     autoplayTimeout: 2000,
                     margin: 0,
@@ -1427,7 +1743,7 @@
                     responsiveClass: true,
                     responsive: {
                         0: {
-                            items: 3,
+                            items:5,
                             nav: true
                         },
                         600: {
@@ -1440,7 +1756,7 @@
                             loop: true
                         }
                     }
-                }); 
+                });
             });
 
             $scope.filterByStop = function (flights) {
@@ -1700,9 +2016,18 @@
             });
             $(".modify_click").click(function () {
                 $(".modi_overlay").slideToggle("slow");
+                $(".result_left").hide();
+                
             });
             $(".modify_close").click(function () {
                 $(".modi_overlay").slideToggle("slow");
+            });
+            $(".filter_click").click(function () {                
+                $(".reslt_right").hide();
+            });
+            $(".close_Filter,.applyFilter_Con").click(function () {  
+                $(".result_left").slideToggle("slow");
+                $(".reslt_right").show();
             });
             FlightLoad();
         });
@@ -1978,50 +2303,50 @@
             });
 
             if( $("#hfTripType").val() == "2")
-            {  
+            {
                 var adult = parseInt($("#Adult").val());
                 var child = parseInt($("#Child").val());
                 var infant = parseInt($("#Infant").val());
                 var totpax = adult + child + infant;
 
-                var departure_date = new Date($("#departure_date").val());
-                var str_departure_date =new Date(departure_date.toISOString());
+                //var departure_date = new Date($("#departure_date").val());
+                //var str_departure_date =new Date(departure_date.toISOString());
 
-                var depArrDate = new Date($("#depArrDate").val());
-                var str_depArrDate =  new Date(depArrDate.toISOString());
+                //var depArrDate = new Date($("#depArrDate").val());
+                //var str_depArrDate =  new Date(depArrDate.toISOString());
 
-                var return_date = new Date($("#return_date").val());
-                var str_return_date = new Date(return_date.toISOString());
+                //var return_date = new Date($("#return_date").val());
+                //var str_return_date = new Date(return_date.toISOString());
 
-                var retArrdate = new Date($("#RetArrDate").val());
-                var str_retArrDate =  new Date(retArrdate.toISOString());
+                //var retArrdate = new Date($("#RetArrDate").val());
+                //var str_retArrDate =  new Date(retArrdate.toISOString());
                 webengage.track("Flight Selected", {
-                "Departure Source":$("#hfCity_from").val(),
-                "Departure Destination": $("#hfCity_to").val(),
-                "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
-                "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
-                "Departure class": $("#Cabin option:selected").text(),
-                "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
-                "Layover": $("#Layover").val(),
-                "Departure Date": str_departure_date,
-                "Departure arrival date": str_depArrDate,
-                "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
-                "Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
-                "Departure stops": $("#Departure_stops").val(),
-                "Destination stops": $("#Destination_stops").val(),
-                "Departure Price per adult": $("#Departure_Price_per_adult").val(),
-                "Departure Flight number": $("#depFlightNo").val(),
-                "Departure Brand": $("#Departure_Brand").val(),
-                "Return Price per adult": $("#Return_Price_per_adult").val(),
-                "Return Flight number": $("#Return_Flight_number").val(),
-                "Return Brand": $("#Return_Brand").val(),
-                "Departure duration": $("#Departure_duration").val(),
-                "Return duration": $("#Return_duration").val(),
-            });
-            
+                    "Departure Source":$("#hfCity_from").val(),
+                    "Departure Destination": $("#hfCity_to").val(),
+                    "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
+                    "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
+                    "Departure class": $("#Cabin option:selected").text(),
+                    "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
+                    "Layover": $("#Layover").val(),
+                    //"Departure Date": str_departure_date,
+                    //"Departure arrival date": str_depArrDate,
+                    //"Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
+                    //"Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
+                    "Departure stops": $("#Departure_stops").val(),
+                    "Destination stops": $("#Destination_stops").val(),
+                    "Departure Price per adult": $("#Departure_Price_per_adult").val(),
+                    "Departure Flight number": $("#depFlightNo").val(),
+                    "Departure Brand": $("#Departure_Brand").val(),
+                    "Return Price per adult": $("#Return_Price_per_adult").val(),
+                    "Return Flight number": $("#Return_Flight_number").val(),
+                    "Return Brand": $("#Return_Brand").val(),
+                    "Departure duration": $("#Departure_duration").val(),
+                    "Return duration": $("#Return_duration").val(),
+                });
+
             }
-        else
-        {
+            else
+            {
                 var adult = parseInt($("#Adult").val());
                 var child = parseInt($("#Child").val());
                 var infant = parseInt($("#Infant").val());
@@ -2061,7 +2386,7 @@
                     "Departure duration": $("#Departure_duration").val(),
                     "Return duration": $("#Return_duration").val(),
                 });
-        }
+            }
         }
     </script>
 

@@ -62,7 +62,9 @@ namespace Core
         SatkarTravel = 9,
         Ease2Fly = 10,
         Amadeus=11,
-        Travelopedia = 13
+        Travelopedia = 13,
+        TripShope = 14
+
     }
     public enum TransactionStatus : int
     {
@@ -456,6 +458,12 @@ namespace Core
         STARTRAVELSANDHOLIDAY = 38,
         OMSAITOURSANDTRAVELS = 39,
         AIRTB = 40
+    }
+
+    public enum SubSourceMedia : int
+    {
+        None = 0,
+        WebEngage = 1
     }
 
 }

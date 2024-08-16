@@ -355,6 +355,17 @@ namespace Core.Flight
         [DataMember]
         public string GFS_FlightKey { get; set; }
 
+
+        // Trip Shope
+        [DataMember]
+        public string flightdeeplinkurl { get; set; }
+
+        [DataMember]
+        public string nextraflightkey { get; set; }
+        [DataMember]
+        public string nextracustomstr { get; set; }
+        //
+
     }
 
     [DataContract]

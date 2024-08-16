@@ -134,6 +134,54 @@ namespace DAL.Deal
                 return objList;
             }
         }
+
+
+        public Core.Flight.ResearchFlight GetResearch(string ID)
+        {
+            try
+            {
+                Core.Flight.ResearchFlight objList = null;
+                SqlParameter[] param = new SqlParameter[1];
+
+                param[0] = new SqlParameter("@Id", SqlDbType.VarChar, 100);
+                param[0].Value = ID;
+
+                using (SqlConnection con = DataConnection.GetConnection())
+                {
+                    DataSet ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "Get_UserResearch", param);
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        objList = new Core.Flight.ResearchFlight()
+                        {
+                            bookingID = Convert.ToInt32(ds.Tables[0].Rows[0]["BookingID"]),
+                            adults = Convert.ToInt32(ds.Tables[0].Rows[0]["adult"]),
+                            child = Convert.ToInt32(ds.Tables[0].Rows[0]["child"]),
+                            infants = Convert.ToInt32(ds.Tables[0].Rows[0]["infant"]),
+                            infantsWs = Convert.ToInt32(ds.Tables[0].Rows[0]["infantWs"]),
+                            device = (Core.Device)Convert.ToInt32(ds.Tables[0].Rows[0]["device"]),
+                            travelType = (Core.TravelType)Convert.ToInt32(ds.Tables[0].Rows[0]["TravelType"]),
+                            TripType = (Core.TripType)Convert.ToInt32(ds.Tables[0].Rows[0]["TripType"]),
+                            TravelDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["TravelDate"].ToString()),
+                            
+                            ReturnDate = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["ReturnDate"].ToString()) ? (DateTime?)null : Convert.ToDateTime(ds.Tables[0].Rows[0]["ReturnDate"]),
+                            CabinType = (Core.CabinType)Convert.ToInt32(ds.Tables[0].Rows[0]["CabinClass"]),
+                            Origin = ds.Tables[0].Rows[0]["Origin"].ToString(),
+                            Destination = ds.Tables[0].Rows[0]["Destination"].ToString()
+
+                        };
+                    }
+                }
+                return objList;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 
 }

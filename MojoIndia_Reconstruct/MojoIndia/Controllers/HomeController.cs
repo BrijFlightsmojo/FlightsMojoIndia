@@ -29,59 +29,83 @@ namespace MojoIndia.Controllers
             {
                 setCookie(Request.QueryString.Get("utm_source"));
             }
-
+            //String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes("flight_mojo" + ":" + "I2a3WxM&[2W0"));
 
             Dal.DALOriginDestinationContent ODC = new DALOriginDestinationContent();
-            if (Request.QueryString["location"] == null   )
-            {
-                if (GetIpTrackerCookie() == "")
-                {
-                    IpDetails ipDtl = new DAL.IP_Details().GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
-                    if (ipDtl == null)
-                    {
-                        GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
-                    }
-                    if (ipDtl != null && !string.IsNullOrEmpty(ipDtl.country_code))
-                    {
-                        if (strAllAirportCityCode.Contains(ipDtl.country_code))
-                        {
-                            return View(new OriginDestinationContent());
-                        }
-                        else if (ipDtl.country_code == "CA")
-                        {
-                            return Redirect("https://www.flightsmojo.ca");
-                        }
-                        else
-                        {
-                            return Redirect("https://www.flightsmojo.com");
-                        }
-                    }
-                }
-                else
-                {
-                    if (GetIpTrackerCookie() == "india")
-                    {
-                        return View(new OriginDestinationContent());
-                    }
-                    else if (GetIpTrackerCookie() == "canada")
-                    {
-                        return Redirect("https://www.flightsmojo.ca");
-                    }
-                    else if (GetIpTrackerCookie() == "usa")
-                    {
-                        return Redirect("https://www.flightsmojo.com");
-                    }
-                    else
-                    {
-                        return Redirect("https://www.flightsmojo.com");
-                    }
-                }
-            }
-            else
-            {
-                setIpTrackerCookie(Request.QueryString["location"].ToString());
-            }
+            //if (Request.QueryString["location"] == null   )
+            //{
+            //    if (GetIpTrackerCookie() == "")
+            //    {
+            //        IpDetails ipDtl = new DAL.IP_Details().GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            //        if (ipDtl == null)
+            //        {
+            //            GetIpDetails(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            //        }
+            //        if (ipDtl != null && !string.IsNullOrEmpty(ipDtl.country_code))
+            //        {
+            //            if (strAllAirportCityCode.Contains(ipDtl.country_code))
+            //            {
+            //                return View(new OriginDestinationContent());
+            //            }
+            //            else if (ipDtl.country_code == "CA")
+            //            {
+            //                return Redirect("https://www.flightsmojo.ca");
+            //            }
+            //            else
+            //            {
+            //                return Redirect("https://www.flightsmojo.com");
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (GetIpTrackerCookie() == "india")
+            //        {
+            //            return View(new OriginDestinationContent());
+            //        }
+            //        else if (GetIpTrackerCookie() == "canada")
+            //        {
+            //            return Redirect("https://www.flightsmojo.ca");
+            //        }
+            //        else if (GetIpTrackerCookie() == "usa")
+            //        {
+            //            return Redirect("https://www.flightsmojo.com");
+            //        }
+            //        else
+            //        {
+            //            return Redirect("https://www.flightsmojo.com");
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    setIpTrackerCookie(Request.QueryString["location"].ToString());
+            //}
             return View(new OriginDestinationContent());
+        }
+
+        private void get_Auth()
+        {
+
+            //string url = @"https://iqwhatsapp.airtel.in/gateway/airtel-xchange/basic/whatsapp-manager/v1/template/send";
+            //WebRequest request = WebRequest.Create(url);
+            //request.Credentials = GetCredential();
+            //request.PreAuthenticate = true;
+            //string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{username}:{password}"));
+            //var client = new RestClient(url);
+            //var request = new RestRequest(method);
+            //request.AddHeader("Authorization", $"Basic {encoded}");
+            //IRestResponse response = client.Execute(request);
+            //return response;
+        }
+
+        private ICredentials GetCredential()
+        {
+            string url = @"https://iqwhatsapp.airtel.in/gateway/airtel-xchange/basic/whatsapp-manager/v1/template/send";
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            CredentialCache credentialCache = new CredentialCache();
+            credentialCache.Add(new System.Uri(url), "Basic_", new NetworkCredential("flight_mojo", "I2a3WxM&[2W0"));
+            return credentialCache;
         }
 
         private void sendMSG()
@@ -631,7 +655,61 @@ namespace MojoIndia.Controllers
             return View("webcheckin");
         }
 
+        [ActionName("fm")]
+        public ActionResult fm(string id)
+        {
+            ViewBag.Message = "Your web-checkin page.";
+            string strId = Decode(id);
+            int sid;
 
+            bool success = int.TryParse(strId, out sid);
+            if (success)
+            {
+                var strDtl = new DAL.ShortLink.DalShortLinkOperation().getSearchDetails(sid);
+                if (!string.IsNullOrEmpty(strDtl))
+                {
+                    Core.Flight.FlightSearchRequest fsr = Newtonsoft.Json.JsonConvert.DeserializeObject<Core.Flight.FlightSearchRequest>(StringHelper.DecompressString(strDtl));
+                    fsr.userIP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                    fsr.userSessionID = Session.SessionID;
+                    fsr.userLogID = fsr.userSearchID = getSearchID();
+                    fsr.utm_medium = "retrageting";
+                    fsr.utm_campaign = "webengage";
+                    Core.Flight.AirContext airContext = new Core.Flight.AirContext(fsr.userIP);
+                 
+                    airContext.flightSearchRequest = fsr;
+                    airContext.IsSearchCompleted = false;
+                    airContext.flightRef = new List<string>();
+                   
+                    FlightOperation.SetAirContext(airContext);
+                    return Redirect("/Flight/Result/" + fsr.userSearchID);
+                }
+            }
+
+            return Redirect("/");
+        }
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+        public static string Decode(string text)
+        {
+            text = text.Replace('_', '/').Replace('-', '+');
+            switch (text.Length % 4)
+            {
+                case 2:
+                    text += "==";
+                    break;
+                case 3:
+                    text += "=";
+                    break;
+            }
+            return Encoding.UTF8.GetString(Convert.FromBase64String(text));
+        }
+        private string getSearchID()
+        {
+            return (DateTime.Now.ToString("ddMMyyHHmmss") + Guid.NewGuid().ToString("N"));
+        }
         #region Ip Tracker
         private IpDetails GetIpDetails(string ip)
         {
@@ -672,14 +750,14 @@ namespace MojoIndia.Controllers
         }
 
         public void setIpTrackerCookie(string sourceMedia)
-        {            
+        {
             HttpCookie IpTrackerSite = new HttpCookie("MojoIpTracker");
             IpTrackerSite["siteID"] = sourceMedia;
             IpTrackerSite.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(IpTrackerSite);
         }
         public string GetIpTrackerCookie()
-        {        
+        {
             HttpCookie IpTrackerSite = Request.Cookies["MojoIpTracker"];
             if (IpTrackerSite != null)
             {

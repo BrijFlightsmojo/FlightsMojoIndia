@@ -65,7 +65,10 @@
 /*.why_con h4{font-size: 15px;padding: 4px;}*/
 .modify_right{width: 35%;float: right;text-align: right;}
 .modify_cal_left{width: 47%;margin-left: 0;margin-right: 8px;}
-.modify_con{padding:0px; margin-bottom:0;top:0;}
+.modify_con{padding:0px; margin-bottom:0;top:0;top: 0;
+        position: fixed;
+        z-index: 9;
+        height: 50px;}
 .modify_calendr{margin:10px 0;}
 .modify_passenger{ margin-bottom:15px;}
 .modify_cal_right{width: 48%;}
@@ -74,23 +77,25 @@
 .gradient70{width:70%;}
 .gradient30{width:24%;}
 .from_to {width:90%;padding:0 8px;}
-.modi_date {padding: 0;padding-left:27px;}
+.modi_date {padding: 0;padding-left:27px;font-size:13px;}
 .modi_pase {padding: 3px;display:none;}
 .back_icon{ padding-right:6px;}
 .back_icon i{ font-size:15px;} 
 .flight_itemtop{padding:6px 8px}
 .modify_right button{font-size: 13px; padding: 6px; margin-top: 20px;}
-.result_main{ margin-top:5px;}
+.result_main{ margin-top:50px;}
+.openpop{display:inline-block;width:100%;}
+.openpop2{display:inline-block;width:100%;}
 .flight_item_inbound{box-shadow:none; border-radius:0;width:100%;}
 .flight_logo_mob font{width: 100%;display: inline-block;font-size:11px;color:#333;}
-.flight_logo_mob img{width:60%;}
+.flight_logo_mob img{width:30%;display: flex;padding-right: 5px;}
 .result_left{width: 100%; margin-right: 0;}
 .contact_result{width: 65%;}
 .modifyleft_one,.modify_calendr,.modify_passenger,.modify_btn{width: 100%;}
 .modify_button{ text-align:center;    padding: 10px 0;border-radius:4px; font-weight:bold;
     width: 100%;}
 .repon_filter{display: block;}
-.reslt_right{width: 100%;  background:#ddd;padding: 0 3px;}
+.reslt_right{width: 100%;  background:#fff;padding: 0 3px;}
 .gradient_slider{background:#fff;}
 .country .dropdown{z-index: 9;    top: 27px;}
 .slider_logo p{width:100%; float: left; text-align: center;}
@@ -99,7 +104,7 @@
 .airlines_slide_right{width: 60%; float: left;}
 .owl-prev,.owl-next{display: none;}
 .passen_left_mob> p{ font-size: 13px;padding-right: 6px;}
-.filtor_top, .seclect_airline{margin-top: 20px;}	
+ .seclect_airline{margin-top: 20px;}	
 .mobile_con{display: block;}
 .desti_mid img,.calden_mid img {width: 50%; padding-top: 30px;}
 .from_wherediv,.to_wherediv,.passenger_mob,.airclass_popupmob{ z-index: 9999;position: fixed; overflow: hidden;height: 100vh; top: 0;left: 0; background: #fff; width: 100%; padding: 15px; display:none;}
@@ -107,7 +112,11 @@
 .from_header{position: relative;}
 .from_header h3{ font-size: 16px; color: #000;margin: 0 0 15px 0;}
 .from_header a{position: absolute; right: 6px; font-size:20px;color: #000;top: -7px;text-decoration: none;}
-.flight_time_con{padding-bottom:10px;}
+.flight_time_con{padding:4px 10px;border: 1px solid #ccc;border-radius: 12px;margin-bottom: 16px;position:relative;position: relative;
+    box-shadow: 1px 1px 6px #ccc;
+  }
+.flight_round_mob{padding:8px 10px;border: 1px solid rgba(16, 16, 16, .22);border-radius: 12px;margin-bottom: 16px;position:relative;display:flex; flex-direction:row;}
+.Round_trip_mob{width:100%; display:flex; flex-direction:row;}
 .top_cut{left: -103px;top: 45px; display: none;}
 .listing_left{width: 100%; background:#fff;}
 .mobresult_btn{width: 100%; float: left; padding: 6px 0; display:block;}
@@ -120,11 +129,21 @@
 .destination_code span{margin-top: 4px;display: inline-block; padding:0px;}
 .flight_icon{ margin-top: 4px;}
 .flight_icon font{font-size: 11px;}
-.mob_time{display: block; font-size:20px;padding-top: 18px;}
-.listing_right,.flight_time_one,.flight_time_third, .ailines_detail p{display:none!important;}
+.mob_time{display: block; font-size:14px;padding-top:8px;color:#101010;}
+.listing_right,.flight_time_one{display:none!important;}
 .mobl_btn a{background:#ef6614 ;border: none;color: #fff;font-size:14px;padding:7px 18px;border-radius:4px;font-weight: bold; display: inline-block;margin-top: 14px;}
-.flight_time_two{width:25%;}
+.flight_time_two{width:25%;line-height:12px;}
+.flight_time_two2{width:25%;line-height:12px;display:none;}
 .destination_code{width:30%;}
+.Airport_Code{font-size:12px;}
+.AirportName{font-size:12px;display: inline-block;}
+.AirportNamemob{font-size:12px;display:block;}
+.destination_coderound{width:36%;display: inline-block;
+        float: left;
+        text-align: left;}
+.destination_coderound2{width:36%;display: inline-block;
+        float: left;
+        text-align: right;}
 .resultbook_left{width:35%;padding: 6px 8px;}
 .resultbook_right{ width:65%;padding: 6px 8px;}
 .pos_top{top: 0px;}
@@ -132,18 +151,18 @@
 .drop_filter> ul li{padding-right: 5px;}
 .modi_pase span{ font-size:13px;}
 .modify_left{width:100%; margin:0;display:block;}
-.from_to span{ font-size: 18px; padding:0 4px;}
-.modi_date span{ font-size:14px;padding:0 2px;}
+.from_to span{ font-size: 15px; padding:0 4px;}
+.modi_date span{ font-size:13px;padding:0 2px;}
 .modi_date font,.logoanimation{display:none;}
 .mobile_pas{ display:inline-block; font-size:13px!important;}
 .mobile_pas font{display:inline-block;}
 .grey-row .third-scc{width:25%;}
 .payment_con{background: #f5f7fb; padding:10px; margin-top:0px;}
 .flight_dep1{width: 50%;}
-.flight_dep3{width: 49%;}
-.dotLeft{width: 7px;height: 7px;background: #fff;border: 1px solid #333;border-radius: 50%;position: absolute;left: 0;top: -1px;}
-.dotRight{height: 7px;width: 7px;background: #fff;border: 1px solid #333;border-radius: 50%;position: absolute;top: -1px;right: 0px;}
-.flight_dep1> span{color:#333;}
+.flight_dep3{width: 49%;padding-top: 8px;}
+/*.dotLeft{width: 7px;height: 7px;background: #fff;border: 1px solid #333;border-radius: 50%;position: absolute;left: 0;top: -1px;}*/
+.dotRight{height:5px;width: 5px;background: #333;border: 1px solid #333;border-radius: 50%;position: absolute;top: 0px;right:27px;}
+.flight_dep1> span{color: #7e7e7e;font-size: 10px;}
 .destination_coninbound{background: #fff;width:100%; border-radius:0; padding:0; margin-bottom:0;}
 .nextday_con{padding:6px; border:1px solid #ccc; margin-top:0; background:#d8d7d7;}
 .flight_itemDepColor{background:rgba(232, 56, 25, 0.1);}
@@ -152,7 +171,7 @@
 .from_to span font{display:inline-block;}
 .city_con{padding:6px; border:1px solid #ccc;}
 .resul_deatil{ padding:6px;top: -1px; background:#fff;}
-.flight_icon img{width:100%;}
+.flight_icon img{width:30px;}
 .outbond_icon{ padding:0 4px;width:12%;}
 .outbond_one{ display:none;}
 .outbond_two{width: 35%;    padding-right: 3px;}
@@ -165,8 +184,10 @@
   /*result page css*/
 .Filter_left{float: left;width: 100%;padding: 0 15px;}
 .all_airline,   .feature_prev, .feature_next{ display:none;}
-.date_p{display:none;}
-.slide_left img{width:100%;}
+.date_p{color: #7e7e7e;font-size: 11px;}
+.city_p{margin-bottom: 3px;font-size: 15px;}
+.deal_section p{padding: 0px 0;}
+.slide_left img{width:80%;margin-top: 6px;}
 .airline_slider{ margin:0; background:#fff; margin-bottom:15px;}
 .ca-container{ width:100%; margin:0;}
 .anim_box{width: 25%;}
@@ -192,26 +213,32 @@
 .modify_search {top:-10px;background: #fff;z-index: 99;overflow: auto;left: 0;height:55vh;overflow-y: hidden;position: fixed;border-radius: 0px;padding-top: 20px;    box-shadow: 0 7px 13px 1px rgba(0,0,0,.50); display:none;}
 .modify_close{display:block;}
 .flight_item {margin-bottom:0px;}
-.result_mob {display: block;width: 100%;float: left;margin-bottom: 8px; padding:0 6px;}
+.result_mob {display: block;width: 100%;float: left;margin-bottom:5px; padding:0 6px;}
 .flight_itembotm, .flight_deprt, .flight_br, .radio_div, .flight_dep2 {display: none;}
-    
-.flight_logo_mob {width:30%;float: left;display:block;}
-
+.flight_time_third{display:none;}    
+.flight_logo_mob {width:50%;float: left;display: flex;flex-direction: row;}
+.line_img::before{width:0px;height:0px;content:none;}
+.line_img::after    {width:0px;height:0px;content:none;}
+.line_img{top: -3px;}
+.line_img1 dfn{left: 30px;}
+.line_img3::before{left: 28px;}
+.line_img3::after{right: 48px;}
+.line_img3 dfn{left: 42px;}
 .flight_fare_mob i{ font-size:15px; padding-right:6px;}
 .outbond_icon img{ border:0; width:100%;}
-.flight_mob_Pr {width: 70%;float: left;display: block;}
+.flight_mob_Pr {width:50%;float: left;display: block;}
 .flight_itemleft {border-right: 0;width:35%;}
 .flight_logo {text-align: center; display:none;}
-.flight_fare, .city_con {width: 100%;}
-.flight_arriv{ width:100%;}
+.flight_fare, .city_con {width: 100%;text-align:center;}
+.flight_arriv{ width:100%; padding-top:8px;}
 /*.booknow-bt .Enablebtn{position: absolute;width:42%;border-radius:0;right: 0;bottom: 0;text-align:center;}*/ 
 .booknow-bt button {position: absolute;width: 100%;border-radius:0;left: 0;bottom:10px;}  
-.flight_arriv p{ font-size:16px; font-weight:bold;text-align:left;}
-.mobile {display: block;}
+.flight_arriv p{ font-size:13px; font-weight:bold;text-align:left;}
+.mobile {display: block; font-size:13px;}
 .flight_itemright {width:65%;}
 .flight_logo img, .flight_fare {display: none;}
 .flight_dep1 {margin-top:0px; border:0px;padding:0px;text-align:center;}
-.flight_dep1 p {font-size: 11px;text-align:center;}
+.flight_dep1 p {font-size: 10px;text-align:center;color: #7e7e7e;}
 .mobile_br{ display:block;}
 .mobile_br{border-bottom: 1px solid #333; position: relative;padding-bottom: 2px;font-size: 11px; float:left;width:100%;}
 .oneway_left {width: 55%;}
@@ -225,7 +252,13 @@
 .book_effct {width:55px;margin: 0 0 0px 6px;}
 .round_fourth h2 {font-size: 14px;}
 .round_fourth{ padding:0px;}
-
+.flight_time_two .stop{font-size:12px; padding-top: 5px;display: inline-block;}
+.round_mobPrice{width:100%; display:inline-block;text-align:right; padding-bottom:10px;}
+.round_mobPrice h5{font-size: 18px;
+    color: #101010;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -.41px;}
 .pament_left{ width:100%; float:left; position:relative;}
 .payment_right{width:100%; margin:0; padding:15px;}
 .pay_pax_detail_Title{width:30%;padding-left:0;}
@@ -236,7 +269,7 @@
 .contactDivright{float: left;width: 100%;padding: 15px;}
 .payment_div .airline-information{ padding:0px;}
 .departed img, .departed img{width: 8%;}
-.middle-search_no{ padding:15px;}
+.middle-search_no{ padding:15px;margin-top: 60%;}
 .no_result{ width:100%;}
 .no_result h1{ font-size:31px;}
 .no_result_left img{ width:100%;}
@@ -245,10 +278,11 @@
 .fare_div span i{ padding-right:7px;}
 .fare_divround span i{ padding-right:7px;}
 .nextday_con{ display:none;}
-.fare_book {background: linear-gradient(to right,#e83819,#f3850b);text-align: center;position: absolute;right: 0px;border: 7px solid#333;}
+.bg_gray{ background:#fff;}
+.fare_book {background: linear-gradient(to right,#e83819,#f3850b);text-align: center;position: absolute;right: 0px;border: 7px solid#fff;border-radius:20px;}
 .fare_div {padding: 8px 0 9px 20px;text-align: left;width: 100%;}
 .fare_divround {padding: 8px 0 9px 20px;text-align: left;width: 100%;}
-.fare_book a{margin-top:0px;width:100%;font-size: 20px; background:none;}
+.fare_book a{margin-top:0px;width:100%;font-size:15px; background:none;box-shadow:none;}
 .colunm1{width:12%;}
 .colunm2{display:none;}
 .colunm3{width:30%;}
@@ -340,8 +374,8 @@
 /*.mobilepassenger_btn{display:block; margin-top:15px;position:fixed;left:0; bottom:0;width:100%;}*/
 .mobile_none{display:none;}
 .passDepartThird> span,.passDepartOne> span{font-size:11px;}
-.fare_div> span,.fare_book a{ font-size:20px;}
-.fare_divround> span,.fare_book a{ font-size:20px;}
+.fare_div> span{ font-size:20px;}
+.fare_divround> span{ font-size:20px;}
 .border_radius{border-radius:0;}
 .border_radius h3{ display:none;}
 .contact_top{padding:0;}
@@ -357,8 +391,8 @@
 .popular_Routs> ul li{width:100%; padding:0 15px;}
 .deal_sectionR{width: 100%;float: left;padding: 0 4px; background:#fff;}
 .deal_sectionL{ display:none;}
-.deal_section{ width:33.1%;}
-.seclect_airline{margin-bottom:10px; margin-top:10px;}
+.deal_section{ width:25.1%;height:50px!important;}
+.seclect_airline{margin-bottom:0px; margin-top:0px;}
 .deal_Banner {float: left;width: 100%;margin-left: 0px;padding:5px 0px;}
 .add_Banner{margin-top: 0px;box-shadow:none;}
 .bannerhead h1{font-size:15px;padding-left:15px;}
@@ -452,8 +486,45 @@ nav .menu {width: 100%;}
 .pricerane_destop{ display:none;}
 .SelectAirline{width: 90%;}
 .destopnone{ display:none;}
+.ailines_detail{width: 20%;line-height:12px;}
 .line_img img{display: none;}
-/*.airline_RefundRight h5{padding-top: 10px;}*/
+
+.ailines_detail p{font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.flight_round_mob {width: 100%;float: left;margin-top: 10px;}
+.result_book{display:none;}
+.mob_oneway_mid{ width:55%;float:left;display:inline-block;}
+.mob_oneway_price{width:25%; float:left;text-align: right;padding-top:15px;}
+.mob_oneway_price h5{ font-size:16px; font-weight:bold; color:#000;}
+.mob_line{width:25%; float:left; padding-top:10px;}
+
+.mob_timeStop{width: 100%;float: left;padding-left: 22px;font-size: 12px;color: #666; padding-top:4px;}
+.layover_time{font-size: 12px;color: #666;padding-right: 5px;}
+.stop{ padding-left:4px;}
+.mob_timeStop{ display:block;}
+.mob_round_mid{width:80%;float:left;display:inline-block;}
+.exclisivdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #11970e;font-weight: bold;border-radius: 6px;}
+.severdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #11970e;font-weight: bold;border-radius: 6px;}
+.price_Calender{padding: 0px 0px!important;}
+.listing_con{box-shadow:none;}
+.listing_con:hover{box-shadow:none;}
+.flight_time_con:hover{box-shadow: 0 0 6px #f3850b;}
+.paymentmodal,.paymentmodal2,.mob_oneway_price{display:block;}
+
+.lineo_img {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img1 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img1 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:21px;content: "";top: -3px;background: #ccc;}
+.lineo_img2 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img2::before{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:27px;content: "";top: -3px;background: #ccc;}
+.lineo_img2::after{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;right:27px;content: "";top: -3px;background: #ccc;}
+.lineo_img3 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img3 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:19px;content: "";top: -3px;background: #ccc;}
+.lineo_img3::before{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:30px;content: "";top: -3px;background: #ccc;}
+.lineo_img3::after{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;right:30px;content: "";top: -3px;background: #ccc;}
+.filterMob_Top,.applyFilter_Con{display:block;}
+.layover_Sep2,.layover_Sep2 img,.layover_Sep2::after{ display:block;}
+.filter_header{display:none;}
+.fixed_con{width: 100%;position: absolute;background: #fff;height: 100vh;z-index: 99;top: 0px;}
+.filtor_top{overflow-y: auto;width: 100%;height:450px;}
 }
 
 @media only screen 
@@ -499,6 +570,7 @@ nav .menu {width: 100%;}
 .modi_pase span{font-size:13px;}
 .payment_right{margin-left: 14px;width:27%;}
 .coupn-section h4 em{ font-size:14px;}
+
 
 }
 @media (min-width :1024px) and (max-width:1366px) {

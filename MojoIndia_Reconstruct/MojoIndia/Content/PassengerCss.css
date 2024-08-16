@@ -264,26 +264,81 @@ position: absolute;left:12px;top:6px;}
 .textRight i{ padding-right:3px;}
 .textRight a{ color:#333;font-size:17px; padding-right:5px;}
 .textRight a i{ color:#000;}
-.FlightFare{width:100%; float:left; padding:10px;background:rgba(165,159,159,0.10); margin-top:10px;}
+.FlightFare{width:100%; float:left; padding-bottom:20px;background:rgba(165,159,159,0.10); margin-top:0px;}
 .Fare100{width:100%; float:left; padding:6px 0;}
 .TotalAmountmob{width:100%; float:left; padding:10px 0;}
 .modal-btn {letter-spacing: 1px;border: none;outline: none;cursor: pointer;padding: 10px 25px;background-color: #ef6633;color: #fff;transition: all .3s;}
 .modal-btn:hover {background-color: #d25729;}
 .modalprice {background-color: rgba(0,0,0,.65);display: none;overflow: auto;position: fixed;z-index: 9999;top: 0;left: 0;width: 100%;height: 100%;}
-.modal-content {position: absolute;width:96%;margin: 0 auto;background-color: #fff;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);bottom: 0px;left: 0;right: 0;}
+.modal-content {position: absolute;width:100%;margin: 0 auto;background-color: #fff;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);bottom: 0px;left: 0;right: 0;}
 .modal-animated-in {animation: totop-in .3s ease;}
 .modal-animated-out {animation: totop-out .3s ease forwards;}
-.modal-header {background-color:#fff;width: 100%;height: 60px;line-height:50px;padding-left: 20px;box-sizing: border-box;}
-.modal-content .close {position: absolute;right: 0;top: 0; width:45px;height:45px;color: #000;line-height:50px;text-align: center;cursor: pointer;transition: all .3s;opacity: .5;z-index:999;}
-.modal-content .close:hover {background-color: #fff;color: #222;}
+.modal-header {width: 100%;height: 60px;line-height:50px;padding-left: 20px;box-sizing: border-box;position:relative;}
+.modal-content .close {float: right;position:absolute;right:6px;opacity: .8;top:15px;
+    width: 25px;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #666!important;
+    color: #fff;
+    height: 25px;
+    font-size:16px;
+    border-radius: 50%;
+}
+.model-Footer{width: 100%;
+    display: inline-block;
+    padding: 10px;}
+.model-Footer button {
+    background: #ef6614;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 12px 10px;
+    width: 99%;
+    display: inline-block;
+    border-radius: 8px;
+    border: 0px;
+    font-weight: bold;
+    line-height: 30px;cursor:pointer;
+    
+    bottom: 0px;
+    left: 2px;
+}
 .modal-body {padding:10px 10px;background: #fff;width: 100%;float: left;}
-.modal-header h3 {color: #333; font-size:18px;text-align:left;}
+.modal-header h3 {color: #333; font-size:18px;text-align:left;width:80%;}
 .AmttextLeft{text-align:left; color:#333;width:49%; float:left; font-size:16px; font-weight:bold;}
+.AmttextLeft dfn{width: 100%;
+    display: inline-block;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;}
 .AmttextRight{text-align:right; color:#000;width:49%; float:left;font-size:18px; font-weight:bold;}
 .AmttextRight em{ font-style:normal;}
 .passdata_show span img{width:30px; padding-right:6px;}
 .fare_checkingDiv{display:none;}
-
+.mobile_iteneray{width:100%; display:inline-block;display:none;}
+.mobItenary_logo{width:13%;  display:inline-block;position:relative;}
+.mobItenary_logo img{width: 35px;position: absolute;top:-30px;}
+.mobItenary_detail{width:64%; display:inline-block;}
+.mobItenary_btn{width:20%;display:inline-block;position:relative;}
+.mobItenary_btn a{ color:#ef6614; font-size:13px; font-weight:bold; position:absolute;top:-36px;}
+.City_name{width:100%;display:flex;flex-direction:row;align-content:space-between;}
+.City_name span{ font-size:13px; color:#000; font-weight:bold;}
+.City_name em{display:inline-block; font-weight:bold;margin: 0 6px;}
+.itenary_type{display:flex;flex-direction:row;align-content:space-between;}
+.itenary_type span{font-size:12px; color:#333;}
+.itenary_type em{ margin: 0 6px;
+    font-size: 12px;
+    color: #7e7e7e;
+    font-weight: bolder;
+    line-height: 16px;}
+.fareType{display:flex;flex-direction:row;align-content:space-between;}
+.fareType span{font-size:12px; color:#333;}
+.fareType em{ margin: 0 6px;
+    font-size: 12px;
+    color: #7e7e7e;
+    font-weight: bolder;
+    line-height: 16px;}
 
 
 .passenger_Bg{ background:#f5f7fb;width: 100%;
@@ -400,6 +455,13 @@ margin-bottom: 20px;}
 .fare_checkingDiv{display:block; width:100%; float:left;}
 .pricemob_sticky{ position:fixed;left:0; bottom:0;z-index:+1;}
 .passDepartLogo img{width:50%;}
+.onewayItenary{display:none;}
+.payment_div h3{display:none;}
+.mobile h3{padding: 0 10PX 10PX 10PX;
+    font-size: 14px;
+    font-weight: bold;}
+.mobile h3 img{ padding-right:5px;}
+.mobile_iteneray{display:block;}
 }
 
 

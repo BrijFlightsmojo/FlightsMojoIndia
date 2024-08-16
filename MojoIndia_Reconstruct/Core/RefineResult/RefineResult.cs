@@ -116,10 +116,12 @@ namespace Core.RefineResult
         public string equipDesc { get; set; }
         public Airport org { get; set; }
         public string fTerminal { get; set; }
+        public string fFullAprName { get; set; }
         public string depDate { get; set; }
         public string depTime { get; set; }
         public Airport dest { get; set; }
         public string tTerminal { get; set; }
+        public string tFullAprName { get; set; }
         public string arrDate { get; set; }
         public string arrTime { get; set; }
         public Airline operatedBy { get; set; }
@@ -131,6 +133,8 @@ namespace Core.RefineResult
         public bool isNearByOrg { get; set; }
         public bool isNearByDest { get; set; }
         public bool isFlexiFare { get; set; }
+		public string fTerShort { get; set; }
+		 public string tTerShort { get; set; }
     }
     public class Airline
     {
@@ -139,6 +143,7 @@ namespace Core.RefineResult
     }
     public class Airport
     {
+        public string airportName { get; set; }
         public string airportCode { get; set; }
         public string cityName { get; set; }
     }

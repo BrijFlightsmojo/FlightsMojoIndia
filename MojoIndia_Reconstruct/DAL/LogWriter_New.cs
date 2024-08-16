@@ -26,7 +26,7 @@ namespace DAL
         }
         public void LogWrite(string logMessage, string FileName)
         {
-            using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\Log\\" + FileName + ".txt"))
+            using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\NewLog\\" + FileName + ".txt"))
             {
                 Log(logMessage, w);
             }
@@ -35,7 +35,7 @@ namespace DAL
         {
             try
             {
-                using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\Log\\" + FolderName + "\\" + FileName + ".txt"))
+                using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\NewLog\\" + FolderName + "\\" + FileName + ".txt"))
                 {
                     Log(logMessage, w);
                 }
@@ -48,6 +48,8 @@ namespace DAL
         {
             txtWriter.WriteLine("  :{0}", logMessage);
         }
+
+
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
         {
             sbLogger.Append(Environment.NewLine + "---------------------------------------------" + requestTitle + "" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------------------------------");
@@ -55,6 +57,7 @@ namespace DAL
             sbLogger.Append(Environment.NewLine + "------------------------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
         }
     }
+
     public class LogCreaterNew
     {
         public static void CreateDirectory(string dirPath)

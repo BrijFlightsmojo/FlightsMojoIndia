@@ -91,8 +91,7 @@ namespace Bal
                     }
                     #endregion
 
-
-                    LogCreater.CreateLogFile(kk, "Log\\Search", airContext.flightSearchRequest.userSearchID + ".txt");
+                    LogCreater.CreateLogFile(kk, "NewLog\\Search", airContext.flightSearchRequest.userSearchID + ".txt");
                 }
                 else
                 {

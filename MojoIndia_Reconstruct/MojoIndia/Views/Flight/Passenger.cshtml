@@ -12,9 +12,15 @@
 }
 
 <style>
+    .fixed_price {
+        position: fixed;
+        width: 24%;
+        display: inline-block;
+    }
+
     .logo a img {
-        width:60%;
-        padding-left:20px;
+        width: 60%;
+        padding-left: 20px;
     }
 
     #form .form-group label.error {
@@ -91,10 +97,12 @@
             max-width: 1550px;
         }
     }
-    @@media screen and ( max-width:767px){
-         .logo a img{width:72%;
-        padding-left:0px;} 
-        
+
+    @@media screen and ( max-width:767px) {
+        .logo a img {
+            width: 72%;
+            padding-left: 0px;
+        }
     }
 </style>
 <div class="clearfix"></div>
@@ -110,12 +118,11 @@
                                     <a href="/flight/result/@Model.userSearchID"><i class="fa fa-caret-left"></i>BACK TO RESULT</a><span> You have selected the best offer.</span>
                                 </div>
                                 <div class="pament_left">
-
+                                    <div class="mobile"><h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;" />Flight Detail </h3></div>
                                     <div class="payment_div">
-                                        <h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;"/>@*<i class="fa-solid fa-plane"></i>*@ Flight Detail </h3>
+                                        <h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;" />Flight Detail </h3>
                                         <div class="passengerFlightD">
                                             <div class="onewayItenary">
-
                                                 <div class="passenger_Deapart">
 
                                                     @foreach (var flightResult in Model.flightResult)
@@ -183,7 +190,7 @@
                                                                             <div class="passDSline"><span class="passIcon"></span></div>
                                                                             <div class="clearfix"></div>
                                                                             <div class="PassReundale">
-                                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                                                 {
                                                                                     <span style="color: #e94117;border: 1px solid #e94117;padding: 2px 0px; font-weight:600;">
                                                                                         NON REFUNDABLE
@@ -252,7 +259,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Cancel Before 72 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;">  NON REFUNDABLE</td>
@@ -266,7 +273,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Cancel within 72 hours & before 4 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -298,7 +305,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Reschedule before 72 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -311,7 +318,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Reschedule within 72 hours & before 4 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -328,7 +335,7 @@
 
                                                         <ul>
 
-                                                            @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                            @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                                             {
                                                                 <h6>IMPORTANT INFORMATION</h6>
                                                                 <li>This booking and airline PNR is <strong> 100% confirmed </strong> under Group Fare Category.</li>
@@ -413,10 +420,6 @@
                                                                                         <td> 7 kg</td>
                                                                                     </tr>
                                                                                 }
-
-
-
-
                                                                             }
                                                                         }
                                                                     }
@@ -426,38 +429,61 @@
                                                     </div>
                                                 }
                                             </div>
+
+                                        
+                                                @foreach (var fr in Model.flightResult)
+                                                {
+                                                    foreach (var fs in fr.FlightSegments)
+                                                    {
+                                                        <div class="mobile_iteneray" style="padding-bottom:15px;">
+                                                            <div class="mobItenary_logo">
+                                                                <img src="@fs.Segments[0].url" />
+                                                            </div>
+                                                            <div class="mobItenary_detail">
+                                                                <div class="City_name">
+                                                                    <span>@(Core.FlightUtility.GetAirport(fs.Segments[0].Origin).cityName)</span>
+                                                                    <em>-</em>
+                                                                    <span>@(Core.FlightUtility.GetAirport(fs.Segments.LastOrDefault().Destination).cityName)</span>
+
+                                                                </div>
+                                                                <div class="itenary_type">
+                                                                    <span class="itenaryDate">@fs.Segments[0].DepTime.ToString("ddd dd MMM")</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mobItenary_btn">
+                                                                <a onclick="ShowModel('@(Model.flightResult.Count==2 || Model.flightResult[0].FlightSegments.Count==2?"2":"1")')">Detail <i class="fa fa-caret-down"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
                                         </div>
                                     </div>
 
-                                    @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                    {*@
-                                        <div class="mobile">
-                                            <div class="couponCon">
-                                                <h4>Enter Promo Code <img src="/images/right.svg" alt="icon" style="width:13px; transform:rotate(180deg);"/> @*<i class="fa-solid fa-angles-down"></i>*@</h4>
-                                                <div class="couponapplyCon">
-                                                    <span class="applycoupon"> @*onclick="ChangeCouponMob('INSTAMOJO')"*@
-                                                    <input type="text" id="CouponCodeMob" readonly="readonly" value="@Model.CouponCode" placeholder="##COUPON" /></span>
-                                                    <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCouponMob"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                                    <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCouponMob"><a onclick="ClearCouponCode()">CLEAR X</a></span>
+
+                                    <div class="mobile">
+                                        <div class="couponCon">
+                                            <h4>Enter Promo Code <img src="/images/right.svg" alt="icon" style="width:13px; transform:rotate(180deg);" /> @*<i class="fa-solid fa-angles-down"></i>*@</h4>
+                                            <div class="couponapplyCon">
+                                                <span class="applycoupon">
+                                                    <input type="text" id="CouponCodeMob" readonly="readonly" value="@Model.CouponCode" placeholder="##COUPON" />
+                                                </span>
+                                                <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCouponMob"><a onclick="ApplyCouponCode()">Apply</a></span>
+                                                <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCouponMob"><a onclick="ClearCouponCode()">CLEAR X</a></span>
+                                            </div>
+                                            <div class="selectCouponCon">
+                                                <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
+                                                    <input id="rbtnNone" name="radio" type="radio" value="None">
+                                                    <label for="rbtnNone" class="radioCoupon-label">None</label>
+                                                    <p>No Coupon Applied. </p>
                                                 </div>
-                                                <div class="selectCouponCon">
-                                                    @*<p style="color:green;" class="Coupon-hide">
-                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
-                                                    </p>*@
-                                                    <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
-                                                        <input id="rbtnNone" name="radio" type="radio" value="None">
-                                                        <label for="rbtnNone" class="radioCoupon-label">None</label>
-                                                        <p>No Coupon Applied. </p>
-                                                    </div>
-                                                    <div class="radioCoupon" style="display:none;"> @*onclick="ChangeCouponMob('INSTAMOJO')"*@
-                                                        <input id="INSTAMOJOMob" name="radio" type="radio" value="INSTAMOJO" checked="checked">
-                                                        <label for="INSTAMOJOMob" class="radioCoupon-label">INSTAMOJO</label>
-                                                        @*<p> Get Upto 33% Off on Flight Bookings.</p>*@
-                                                    </div>
+                                                <div class="radioCoupon" style="display:none;">
+                                                    <input id="INSTAMOJOMob" name="radio" type="radio" value="INSTAMOJO" checked="checked">
+                                                    <label for="INSTAMOJOMob" class="radioCoupon-label">INSTAMOJO</label>
                                                 </div>
                                             </div>
                                         </div>
-                                    @*}*@
+                                    </div>
+
                                     <div class="ProgrssDiv">
                                         <div id="Contactstep" class="passenger_step false">
                                             <div class="progess_Step">
@@ -634,6 +660,14 @@
                                                                             @Html.TextBoxFor(o => o.passengerDetails[i].passportNumber, new { @class = "form-control", @maxlength = "15", @onkeypress = "return LettersNoOnlyPassport(event)", @oncopy = "return false;", @onpaste = "return false;", @placeholder = "Passport No*" })
                                                                         </div>
                                                                         <div class="pay_pax_birth">
+                                                                            <label>Passport Issue Date*</label>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].issueMonth, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].issueMonth), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].issueDay, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].issueDay), new { @class = "form-control" })</span>
+                                                                            <span>@Html.DropDownListFor(o => o.passengerDetails[i].issueYear, MojoIndia.Models.StaticWebsiteData.getIssuePassYear(Model.passengerDetails[i].issueYear, Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime), new { @class = "form-control" })</span>
+                                                                        </div>
+
+
+                                                                        <div class="pay_pax_birth">
                                                                             <label>Passport Expiry Date*</label>
                                                                             <span>@Html.DropDownListFor(o => o.passengerDetails[i].exMonth, MojoIndia.Models.StaticWebsiteData.getMonth(Model.passengerDetails[i].exMonth), new { @class = "form-control" })</span>
                                                                             <span>@Html.DropDownListFor(o => o.passengerDetails[i].exDay, MojoIndia.Models.StaticWebsiteData.getDay(Model.passengerDetails[i].exDay), new { @class = "form-control" })</span>
@@ -682,62 +716,66 @@
                                                 Add on
                                             </div>
 
-                                            @if (Model.flightResult[0].Fare.subProvider != 48 && Model.flightResult[0].Fare.subProvider != 66)
+                                            @if (Model.travelType != Core.TravelType.International && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown)
                                             {
-                                                if (Model.flightResult[0].Fare.gdsType == GdsType.Tbo
-                                                    || Model.flightResult[0].Fare.gdsType == GdsType.TripJack
-|| Model.flightResult[0].Fare.gdsType == GdsType.FareBoutique || Model.flightResult[0].Fare.gdsType == GdsType.AirIQ
-|| Model.flightResult[0].Fare.gdsType == GdsType.OneDFare || Model.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                                                if (Model.flightResult[0].Fare.subProvider != 48 && Model.flightResult[0].Fare.subProvider != 66)
                                                 {
-                                                    if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
+                                                    if (Model.flightResult[0].Fare.gdsType == GdsType.Tbo
+                                                        || Model.flightResult[0].Fare.gdsType == GdsType.TripJack
+                                || Model.flightResult[0].Fare.gdsType == GdsType.FareBoutique || Model.flightResult[0].Fare.gdsType == GdsType.AirIQ
+                                || Model.flightResult[0].Fare.gdsType == GdsType.OneDFare || Model.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
                                                     {
-                                                        <input type="hidden" id="hfStepShow" value="0" />
+                                                        if ((Model.flightResult.FirstOrDefault().FlightSegments.LastOrDefault().Segments.FirstOrDefault().DepTime - DateTime.Today).TotalDays > 8)
+                                                        {
+                                                            <input type="hidden" id="hfStepShow" value="0" />
 
 
-                                                        <div class="payment_div AddonsStep1" style="display:none;">
-                                                            <h2 class="para_text">
-                                                                <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
-                                                                <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
-                                                            </h2>
-                                                            <div class="cancel_policy">
-                                                                <ul>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="extended_con" onclick="CancellaionPolicy();">
-                                                                <div class="smart_check">
-                                                                    <label class="switch" for="chbCancellaionPolicyBye">
-                                                                        <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
-                                                                        <div class="slider round"></div>
-                                                                    </label>
+                                                            <div class="payment_div AddonsStep1" style="display:none;">
+                                                                <h2 class="para_text">
+                                                                    <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
+                                                                    <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
+                                                                </h2>
+                                                                <div class="cancel_policy">
+                                                                    <ul>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
+                                                                    </ul>
                                                                 </div>
-                                                                <div class="policy_textse">
-                                                                    <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
-                                                                    <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
+                                                                <div class="extended_con" onclick="CancellaionPolicy();">
+                                                                    <div class="smart_check">
+                                                                        <label class="switch" for="chbCancellaionPolicyBye">
+                                                                            <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
+                                                                            <div class="slider round"></div>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="policy_textse">
+                                                                        <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
+                                                                        <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
+                                                                    </div>
+                                                                    <div class="extended_price">
+                                                                        <h5>₹ @Model.CancellaionPolicyAmt</h5>
+                                                                        <p>Per person</p>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="extended_price">
-                                                                    <h5>₹ @Model.CancellaionPolicyAmt</h5>
-                                                                    <p>Per person</p>
+                                                                <div class="extended_bottom">
+                                                                    <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
+                                                                    <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="extended_bottom">
-                                                                <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
-                                                                <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
-                                                            </div>
-                                                        </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="hidden" id="hfStepHide" value="0" />
+                                                        }
                                                     }
+
                                                     else
                                                     {
                                                         <input type="hidden" id="hfStepHide" value="0" />
                                                     }
                                                 }
 
-                                                else
-                                                {
-                                                    <input type="hidden" id="hfStepHide" value="0" />
-                                                }
                                             }
                                             <div class="payment_div AddonsStep2" style="display:none;">
                                                 <div class="main_Refund">
@@ -922,16 +960,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @*Mobile*@
+
                                 </div>
-                                @*desktop*@
+
 
                                 <div class="payment_right mobile_none">
-                                    <div class="passenger_price">
-                                        <div class="price-section">
-                                            <h3>Price Details</h3>
-                                            <div class="pricing">
-                                                <div class="price-row">
+                                    <div class="fixed_price">
+                                        <div class="passenger_price">
+                                            <div class="price-section">
+                                                <h3>Price Details</h3>
+                                                <div class="pricing">
+                                                    <div class="price-row">
 
                                                     <label class="psen-name">@Model.adults Traveler(s) : Adult</label>
                                                     <label class="rate-amount"> ₹ <font id="AdultFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
@@ -955,23 +994,13 @@
                                                     <label class="psen-namehead">Fee &amp; Surcharge</label>
                                                     <label class="rate-amounthead">
                                                         ₹ <font id="Surcharge">
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                                            {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
+
+                                                            @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+
                                                         </font>
                                                     </label>
                                                 </div>
-                                                @*<div class="price-row" id="CouponPriceDetails" style="display:@(Model.CouponAmount>0?"block":"none");">
-                                                    <label class="psen-namehead">Coupon Discount</label>
-                                                    <label class="rate-amounthead">
-                                                        ₹<span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
-                                                    </label>
-                                                </div>*@
+
 
                                                 <div class="price-row" id="PriceCancellaionPolicy" style="display:none;">
                                                     <label class="psen-name ">Extended Cancellation Policy Fee</label>
@@ -997,14 +1026,9 @@
                                                 <div class="coupn-section">
                                                     <h4 id="emFareDetailsProgress" style="display:block">
                                                         Rechecking Fare.. <em>
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                                            {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
+
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+
                                                         </em>
                                                         <em>
                                                             <img src="/images/1495.gif" />  ₹
@@ -1013,25 +1037,15 @@
                                                     <h4 id="emFareDetails" style="display:none;">
                                                         Final Total Price:
                                                         <em id="totalAmount">
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                                            {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount + Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
+
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+
                                                         </em>
                                                         <em>
                                                             ₹
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                                                {
-                                                                    <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt)).ToString("f2"))" />
-                                                                }*@
-                                                            @*else
-                                                                {*@
+
                                                             <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
-                                                            @*}*@
+
 
                                                             <input type="hidden" id="hftotalpax" value="@(Model.adults+Model.child+Model.infants+Model.infantsWs)" />
                                                             @Html.HiddenFor(o => o.CouponAmount)
@@ -1092,44 +1106,48 @@
                                     <div class="couponCon">
                                         <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
                                         <div class="couponapplyCon">
-                                            <span class="applycoupon"> @*onclick="ChangeCoupon('INSTAMOJO')"*@
-                                            @Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code", @readonly = "readonly" })</span>
+                                            <span class="applycoupon">
+                                                @*onclick="ChangeCoupon('INSTAMOJO')"*@
+                                                @Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code", @readonly = "readonly" })
+                                            </span>
                                             <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
                                             <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
                                         </div>
                                         <div class="selectCouponCon">
                                             @if (!string.IsNullOrEmpty(Model.CouponCode))
                                             {
-                                                <div class="radioCoupon"> @*onclick="ChangeCoupon('INSTAMOJO')"*@
+                                                <div class="radioCoupon">
+                                                    @*onclick="ChangeCoupon('INSTAMOJO')"*@
                                                     <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
                                                     <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
                                                     <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
                                                 </div>
                                             }
                                             @*@if (Model.sourceMedia != "1013")
-                                            {
-                                                <p style="color:green;" class="Coupon-hide">
-                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
-                                                </p>
-                                            }
-                                            else
-                                            {
-                                                <p style="color:green;" class="Coupon-hide">
-                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
-                                                    and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
-                                                </p>
-                                            }*@
+                                                {
+                                                    <p style="color:green;" class="Coupon-hide">
+                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="color:green;" class="Coupon-hide">
+                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
+                                                        and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
+                                                    </p>
+                                                }*@
 
-                                            <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
-                                                <input id="rbtnNone" name="radio" type="radio" value="None" />
-                                                <label for="rbtnNone" class="radioCoupon-label">None</label>
-                                                <p>No Coupon Applied. </p>
+                                                <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
+                                                    <input id="rbtnNone" name="radio" type="radio" value="None" />
+                                                    <label for="rbtnNone" class="radioCoupon-label">None</label>
+                                                    <p>No Coupon Applied. </p>
+                                                </div>
+                                                @*<div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
+                        <input id="INSTAMOJO" name="radio" type="radio" value="INSTAMOJO" checked="checked" />
+                        <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
+                        <p> Get Upto 33% Off on Flight Bookings.</p>
+                    </div>*@
                                             </div>
-                                        @*<div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
-                                            <input id="INSTAMOJO" name="radio" type="radio" value="INSTAMOJO" checked="checked" />
-                                            <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
-                                            <p> Get Upto 33% Off on Flight Bookings.</p>
-                                        </div>*@
                                         </div>
                                     </div>
                                     @*}*@
@@ -1176,53 +1194,82 @@
                             <div class="TotalAmount">
                                 <span class="textLeft">Total</span>
                                 <span class="textRight">
-                                    ₹
-                                    <a id="modBtn"><span><font id="totalAmountMobile"> @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></span><img src="/images/info-icon-black.svg" alt="icon" style="width:15px;position: relative;top:-2px;"/> @*<i class="fa fa-info-circle"></i>*@ </a>
+                                    ₹<a id="modBtn"><span><font id="totalAmountMobile"> @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></span> <img src="/images/info-icon-black.svg" alt="icon" style="width:15px;position: relative;top:-2px;" /> @*<i class="fa fa-info-circle"></i>*@ </a>
                                 </span>
                             </div><!---->
                             <div id="modal" class="modalprice">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="header-title">Fare Summary</h3>
-                                        <div class="close"><img src="/images/close.svg" alt="icon" style="width:15px;" /></div>
+                                        <h3 class="header-title" style="font-size:24px;">Fare Breakup</h3>
+                                        <div class="close">X</div>
                                     </div>
 
                                     <div class="modal-body">
                                         <div class="FlightFare">
                                             <div class="Fare100">
-                                                <span class="textLeft">@Model.adults Traveler(s) : Adult</span>
+
+                                                <span class="textLeft"> Base Fare</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <font id="AdultFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                    ₹<font id="AdultFare">@((Model.sumFare.BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
                                                 </span>
                                             </div>
+                                            <div class="Fare100">
 
-                                            @if (Model.child > 0)
+                                                <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.adults Traveler(s) : Adult</span>
+                                                <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                    ₹<font id="AdultFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare) ).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+
+                                                @if (Model.child > 0)
+                                                {
+                                                    <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.child Traveler(s) : Child</span>
+                                                    <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                        ₹<font id="ChildFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                    </span>
+                                                }
+
+                                                @if (Model.infants > 0)
+                                                {
+                                                    <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.infants Traveler(s) : Infant</span>
+                                                    <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                        ₹<font id="InfantFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                    </span>
+                                                }
+
+                                            </div>
+
+                                            @*@if (Model.child > 0)
                                             {
                                                 <div class="Fare100">
-                                                    <span class="textLeft">@Model.child Traveler(s) : Child</span>
-                                                    <span class="textRight">
-                                                        ₹
-                                                        <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
+
                                                 </div>
-                                            }
-                                            @if (Model.infants > 0)
+                                            }*@
+                                            @*@if (Model.infants > 0)
                                             {
                                                 <div class="Fare100">
-                                                    <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
-                                                    <span class="textRight">
-                                                        ₹
-                                                        <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
-                                                    </span>
+                                                   
                                                 </div>
-                                            }
+                                            }*@
 
                                             <div class="Fare100">
-                                                <span class="textLeft">Fee & Surcharge</span>
+                                                <span class="textLeft">Taxes & Fees</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <font id="SurchargeMob">
+                                                    ₹<font id="SurchargeMob">
+                                                        @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                            {
+                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            }
+                                                            else
+                                                            {*@
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @*}*@
+                                                    </font>
+                                                </span>
+                                            </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">Airline Taxes & Fees</span>
+                                                <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                    ₹<font id="SurchargeMob">
                                                         @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                         {
                                                             @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
@@ -1237,8 +1284,7 @@
                                             <div class="Fare100" id="CouponPriceDetailsMob" style="display:@(Model.CouponAmount>0?" block":"none");">
                                                 <span class="textLeft">Coupon Discount</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
+                                                    ₹<span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
                                                 </span>
                                             </div>
 
@@ -1247,10 +1293,7 @@
                                                 <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
                                                     <span class="textLeft">Extended Cancellation Policy Fee</span>
                                                     <span class="textRight">
-                                                       ₹
-                                                        <font id="CancellationMob">
-                                                            @(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                        </font>
+                                                        ₹<font id="CancellationMob">@(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in"))) </font>
                                                     </span>
                                                 </div>
                                             }
@@ -1261,8 +1304,7 @@
                                                 <div class="Fare100" style="display:none;" id="RefundAmtMob">
                                                     <span class="textLeft">Extended Refund Policy Fee</span>
                                                     <span class="textRight">
-                                                       ₹
-                                                        <font id="RefundMob">
+                                                        ₹<font id="RefundMob">
                                                             @(((Model.RefundPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         </font>
                                                     </span>
@@ -1278,16 +1320,18 @@
                                                     Convenience fee
                                                 </span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <span><font id="ConFeeAmtMob"></font></span>
+                                                    ₹<span><font id="ConFeeAmtMob"></font></span>
                                                 </span>
                                             </div>
 
                                         </div>
                                         <div class="TotalAmountmob">
-                                            <span class="AmttextLeft">Final Total Price:</span><span class="AmttextRight">
-                                                ₹
-                                                <span id="totalAmountMob1">
+                                            <span class="AmttextLeft">
+                                                Grand Total:
+                                                <dfn>(Excluding convenience fee)</dfn>
+                                            </span>
+                                            <span class="AmttextRight">
+                                                ₹<span id="totalAmountMob1">
                                                     @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                     {
                                                         @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
@@ -1299,6 +1343,9 @@
                                                 </span>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="model-Footer">
+                                        <button onclick="CloseFare();">Continue</button>
                                     </div>
                                 </div>
                             </div>
@@ -1381,6 +1428,323 @@
         </div>
     </div>
 </div>
+
+<div class="paymentmodal" id="paymentmodal1">
+    <div class="modal-content1">
+        <div class="paymentmod_head">
+            <span class="close-button1" onclick="closeModel('paymentmodal1');">×</span>
+            <h1>Flight Details</h1>
+        </div>
+        <div class="Scroll_Div2">
+            <div class="Oneway_FlightDetail">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>@(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)</span>
+                        <em class="posR">-</em>
+                        <span>@(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)</span>
+                    </div>
+                    <p>Departing Flight |<em>@Model.flightResult[0].FlightSegments[0].Segments[0].DepTime.ToString("ddd dd MMM")</em> </p>
+                </div>
+                <div>
+                    <div>
+                        @foreach (var fs in Model.flightResult)
+                        {
+                            foreach (var fsegg in fs.FlightSegments)
+                            {
+                                int segCtrr = 0;
+                                foreach (var seg in fsegg.Segments)
+                                {
+
+                                    Airline airline = null;
+                                    Airline OptAirline = null;
+                                    airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                                    OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                                    var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                                    var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                                    segCtrr++;
+
+                                    <div class="oneway_flightbottom">
+                                        <div class="oneway_Airlines">
+
+                                            <span>
+                                                <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                                <dfn>@airline.name</dfn>
+                                                <dfn>@airline.code - @seg.FlightNumber</dfn>
+                                            </span>
+                                        </div>
+                                        <div class="oneway_Mobdetail">
+                                            @if (segCtrr < fsegg.Segments.Count)
+                                            {
+                                                <div class="onewaydetail_left">
+                                                    <span>.</span>
+                                                    <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                                    <span>.</span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="onewaydetail_left">
+                                                    <span>.</span>
+                                                    <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                                    <img src="/images/map.svg" alt="icon" />
+                                                </div>
+                                            }
+                                            <div class="onewaydetail_Right">
+                                                <div class="onewayinbond">
+                                                    <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                                    <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                                    <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                                </div>
+                                                <div class="oneoutinbond">
+                                                    <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                                    <div class="terminal">@toAirPort.cityName  . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layover_con">
+                                        @if (seg.layOverTime > 0)
+                                        {
+                                            <p>
+                                                Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")
+                                            </p>
+                                        }
+                                    </div>
+                                }
+                            }
+                        }
+
+
+                    </div>
+                </div>
+                <div class="booking_Upgrade" style="display:none;">
+                    <h1>Upgrade your booking</h1>
+                    <p>Fare for 1 Traveller</p>
+                    <div class="fare_Type">
+                        <div class="radio_payment">
+                            <dfn>
+                                <input type="radio" />
+                            </dfn>
+                            <h2>SAVER</h2>
+                            <span><em>₹</em>3454</span>
+                        </div>
+                        <div class="facilityDiv">
+                            <span><img src="/images/seat-airline.svg" />Cabin Bag :</span>
+                            <span>7KG</span>
+                        </div>
+
+                        <div class="facilityDiv">
+                            <span><img src="/images/briefcase.svg" />Check-in Bag :</span>
+                            <span>15KG</span>
+                        </div>
+                        <div class="facilityDiv">
+                            <span><img src="/images/no-money.svg" />Cancellation :</span>
+                            <span>₹ 2999 onwards</span>
+                        </div>
+
+                        <div class="facilityDiv">
+                            <span><img src="/images/calendar1.svg" />Date Change : </span>
+                            <span>₹ 2250 onwards</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="paymentmodal" id="paymentmodal2">
+    <div class="modal-content1">
+        <div class="paymentmod_head">
+            <span class="close-button2" onclick="closeModel('paymentmodal2');">×</span>
+            <h1>Flight Details</h1>
+        </div>
+        <div class="fare_nav">
+            <ul>
+                <li onclick="openTripTab('divOB')">
+                    <a class="active showBtn">
+                        @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        - @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                    </a>
+                </li>
+                <li onclick="openTripTab('divIB')">
+                    <a class="showBtn">
+                        @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        - @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="Scroll_Div_Int2">
+            <div class="Oneway_FlightDetail" id="divOB">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        </span>
+                        <em class="posR">-</em>
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        </span>
+                    </div>
+                    <p>Departing Flight |<em>@Model.flightResult[0].FlightSegments[0].Segments[0].DepTime.ToString("ddd dd MMM")</em> </p>
+                </div>
+                <div>
+
+
+
+                    @{
+                        var fseg = Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault();
+                        int segCtr = 0;
+                        foreach (var seg in fseg.Segments)
+                        {
+                            Airline airline = null;
+                            Airline OptAirline = null;
+                            airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                            OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                            var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                            var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                            segCtr++;
+                            <div class="oneway_flightbottom">
+                                <div class="oneway_Airlines">
+                                    <span>
+                                        <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                        <dfn>@airline.name</dfn>
+                                    </span>
+                                </div>
+                                <div class="oneway_Mobdetail">
+                                    @if (segCtr < fseg.Segments.Count)
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <span>.</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <img src="/images/map.svg" alt="icon" />
+                                        </div>
+                                    }
+                                    <div class="onewaydetail_Right">
+                                        <div class="onewayinbond">
+                                            <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                            <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                        </div>
+                                        <div class="oneoutinbond">
+                                            <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@toAirPort.cityName  . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layover_con" ng-if="seg.layOverTime!=''">
+                                @if (seg.layOverTime > 0)
+                                {
+                                    <div class="layover_con">
+                                        <span></span>
+                                        <p> Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
+
+
+
+
+                </div>
+            </div>
+            <div class="Oneway_FlightDetail" id="divIB" style="display:none;">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        </span>
+                        <em class="posR">-</em>
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        </span>
+                    </div>
+                    <p>Departing Flight |<em>@Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().DepTime.ToString("ddd dd MMM")</em> </p>
+                </div>
+                <div>
+
+                    @{
+                        var fseg1 = Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault();
+                        int segCtr1 = 0;
+                        foreach (var seg in fseg1.Segments)
+                        {
+                            Airline airline = null;
+                            Airline OptAirline = null;
+                            airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                            OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                            var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                            var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                            segCtr1++;
+                            <div class="oneway_flightbottom">
+                                <div class="oneway_Airlines">
+                                    <span>
+                                        <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                        <dfn>@airline.name</dfn>
+                                    </span>
+                                </div>
+                                <div class="oneway_Mobdetail">
+                                    @if (segCtr1 < fseg1.Segments.Count)
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <span>.</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <img src="/images/map.svg" alt="icon" />
+                                        </div>
+                                    }
+                                    <div class="onewaydetail_Right">
+                                        <div class="onewayinbond">
+                                            <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                            <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                        </div>
+                                        <div class="oneoutinbond">
+                                            <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@toAirPort.cityName . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            if (seg.layOverTime > 0)
+                            {
+                                <div class="layover_con">
+                                    <span></span>
+                                    <p> Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")</p>
+                                </div>
+                            }
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 @if (Model.sourceMedia.Equals("1015"))
 {
     string ss = string.Empty, cabin = string.Empty;
@@ -1422,9 +1786,53 @@
 @section scripts {
     @Scripts.Render("~/bundles/mojoFlightIndiaPassenger")
 
+    <script>
+        function closeModel( valModel)
+        {
+            $("#"+valModel).removeClass("show-modal");
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            $body.css("overflow-y", "auto");
+            $body.width(oldWidth); 
+        }
+        function ShowModel(val)
+        {
+            $("#paymentmodal"+val).addClass("show-modal");
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            $body.css("overflow", "hidden");
+            $body.width(oldWidth);
+        }
+        function openTripTab(tabID)
+        {
+            $("#divOB").hide();
+            $("#divIB").hide();
+            $("#"+tabID).show();
+        }
+    </script>
 
+    <script>
+        $(document).ready(function(){
+            $('ul li a').click(function(){
+                $('li a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+
+    </script>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+
+        function CloseFare() {
+            $(".modalprice").hide();
+        }
+
+    </script>
+
+
+
 
     <script>
         function CancellaionPolicy() {
@@ -1571,15 +1979,15 @@
 
 
 
-    <script type="text/javascript">
+   <script type="text/javascript">
         var totPax=@Model.passengerDetails.Count;
         if ($(window).width() > 960) {
             $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
                 if (scroll >= 140) {
-                    $(".payment_right").addClass("fixed-right");
+                    $(".payment_right").addClass("");
                 } else {
-                    $(".payment_right").removeClass("fixed-right");
+                    $(".payment_right").removeClass("");
                 }
             });
         }
@@ -1984,6 +2392,8 @@
                         webengage.user.login( $("#emailID").val());
                         webengage.user.setAttribute('we_phone', $("#phoneNo").val());
                         webengage.user.setAttribute('we_email', $("#emailID").val());
+                        webengage.user.setAttribute('Category', @Model.sourceMedia);
+                        webengage.user.setAttribute('abc_url', 'https://www.flightsmojo.in/fm/@Model.tinyUrlID');
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -2055,7 +2465,11 @@
                     && $("#Passenger").validate().element("#passengerDetails_" + i + "__passportNumber")
                     && $("#Passenger").validate().element("#passengerDetails_" + i + "__exMonth")
                     && $("#Passenger").validate().element("#passengerDetails_" + i + "__exDay")
-                    && $("#Passenger").validate().element("#passengerDetails_" + i + "__exYear"))
+                    && $("#Passenger").validate().element("#passengerDetails_" + i + "__exYear")
+                    && $("#Passenger").validate().element("#passengerDetails_" + i + "__issueMonth")
+                    && $("#Passenger").validate().element("#passengerDetails_" + i + "__issueDay")
+                    && $("#Passenger").validate().element("#passengerDetails_" + i + "__issueYear")
+                        )
                     {
                         isValidate = true;
                     }
@@ -2116,90 +2530,94 @@
                         exYear:$("#passengerDetails_" + i + "__exYear").val(),
                         exMonth:$("#passengerDetails_" + i + "__exMonth").val(),
                         exDay:$("#passengerDetails_" + i + "__exDay").val(),
+                        issueDay:$("#passengerDetails_" + i + "__issueDay").val(),
+                        issueMonth:$("#passengerDetails_" + i + "__issueMonth").val(),
+                        issueYear:$("#passengerDetails_" + i + "__issueYear").val(),
+
                     };
                     _Paxlst.push(Pax);
                 }
 
 
-                    var jsonData = {
-                        ID: $("#userSearchID").val(),
-                        Paxlst: _Paxlst
-                    }
-                    $('#ResultProgressPopupSave').show();
-                    $.ajax({
-                        type: "POST",
-                        url: "/Flight/SavePassengerDetails",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(jsonData),
-                        responseType: "json",
-                        success: function (r) {
-                            $("#btn_proceed").hide();
-                            $("#btn_disable").show();
-                            if($("#hfStepShow").val()!="0")
+                var jsonData = {
+                    ID: $("#userSearchID").val(),
+                    Paxlst: _Paxlst
+                }
+                $('#ResultProgressPopupSave').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/Flight/SavePassengerDetails",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(jsonData),
+                    responseType: "json",
+                    success: function (r) {
+                        $("#btn_proceed").hide();
+                        $("#btn_disable").show();
+                        if($("#hfStepShow").val()!="0")
+                        {
+                            $('.AddonsStep1').hide();
+                            $('.AddonsStep2').show();
+                        }
+                        else
+                        {
+                            $('.AddonsStep1').show();
+                            $('.AddonsStep2').show();
+                        }
+                        Contactstep.classList.add("success");
+                        Contactstep.classList.remove("false");
+                        Passengerstep.classList.add("success");
+                        Passengerstep.classList.remove("false");
+                        var strHtml="", strHtmlChd="",strHtmlInf="";
+                        var adt=0,chd=0,inf=0;
+                        for(var i =0;i<_Paxlst.length;i++)
+                        {
+                            if(_Paxlst[i].passengerType=="Adult")
                             {
-                                $('.AddonsStep1').hide();
-                                $('.AddonsStep2').show();
+                                if(adt==0){
+                                    strHtml+="<span>Adult:</span>";
+                                }
+                                strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                adt++;
+                            }
+                            else if(_Paxlst[i].passengerType=="Child")
+                            { if(chd==0){
+                                strHtmlChd+="<span>Child:</span>";
+                            }
+                                strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                chd++
                             }
                             else
                             {
-                                $('.AddonsStep1').show();
-                                $('.AddonsStep2').show();
+                                if(inf==0){
+                                    strHtmlInf+="<span>Infant:</span>";
+                                }
+                                strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                inf++;
                             }
-                            Contactstep.classList.add("success");
-                            Contactstep.classList.remove("false");
-                            Passengerstep.classList.add("success");
-                            Passengerstep.classList.remove("false");
-                            var strHtml="", strHtmlChd="",strHtmlInf="";
-                            var adt=0,chd=0,inf=0;
-                            for(var i =0;i<_Paxlst.length;i++)
-                            {
-                                if(_Paxlst[i].passengerType=="Adult")
-                                {
-                                    if(adt==0){
-                                        strHtml+="<span>Adult:</span>";
-                                    }
-                                    strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    adt++;
-                                }
-                                else if(_Paxlst[i].passengerType=="Child")
-                                { if(chd==0){
-                                    strHtmlChd+="<span>Child:</span>";
-                                }
-                                    strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    chd++
-                                }
-                                else
-                                {
-                                    if(inf==0){
-                                        strHtmlInf+="<span>Infant:</span>";
-                                    }
-                                    strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    inf++;
-                                }
-                            }
-                            $('#ResultProgressPopupSave').hide();
-                            $("#PaxShowData").html(strHtml);
-                            $("#PaxShowDataChd").html(strHtmlChd);
-                            $("#PaxShowDataInf").html(strHtmlInf);
-
-                            $("#PaxShow").show();
-                            PaxShow.style.display = "block";
-                            $("#PaxShowDataChd").show();
-                            $("#PaxShowDataInf").show();
-                            $("#AddOnstep").show();
-                            step1.style.display = "none";
-                            step2.style.display = "none";
-                            ShowContact.style.display = "block";
-                            AddPaymentInfo();
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                            $('#ResultProgressPopupSave').hide();
                         }
-                    });
-                }
+                        $('#ResultProgressPopupSave').hide();
+                        $("#PaxShowData").html(strHtml);
+                        $("#PaxShowDataChd").html(strHtmlChd);
+                        $("#PaxShowDataInf").html(strHtmlInf);
+
+                        $("#PaxShow").show();
+                        PaxShow.style.display = "block";
+                        $("#PaxShowDataChd").show();
+                        $("#PaxShowDataInf").show();
+                        $("#AddOnstep").show();
+                        step1.style.display = "none";
+                        step2.style.display = "none";
+                        ShowContact.style.display = "block";
+                        AddPaymentInfo();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        $('#ResultProgressPopupSave').hide();
+                    }
+                });
             }
+        }
 
 
 
@@ -2226,6 +2644,7 @@
                         $("#Surcharge").html((Math.ceil(r.TaxWithMakrup)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#SurchargeMob").html((Math.ceil(r.TaxWithMakrup)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totalAmount").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+                        $("#hftotalAmt").val(r.grandTotal+r.fareIncreaseAmount);
                         $("#totalAmountMobile").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totA").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totalAmountMob1").html(Math.ceil(r.grandTotal + r.fareIncreaseAmount));
@@ -2694,7 +3113,8 @@
                 'Total Price':'@Model.sumFare.grandTotal',
                 'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
                 'Coupon discount':'@Model.CouponAmount',
-                'Price without tax':'@Model.sumFare.BaseFare'
+                'Price without tax':'@Model.sumFare.BaseFare',
+                'abc_url':'https://www.flightsmojo.in/fm/@Model.tinyUrlID'
             });
         }
 
@@ -2743,7 +3163,7 @@
             var str_RetArrDate = new Date(RetArrDate.toISOString());
 
 
-         @*'Departure arrival date':  '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime)',
+            @*'Departure arrival date':  '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime)',
             'Return Date':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy, HH:mmtt") : "")',
             'Return arrival date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.ToString("dd MMM yy, HH:mmtt") : "")',*@
 
@@ -2799,7 +3219,8 @@
                 'Total Price':'@Model.sumFare.grandTotal',
                 'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
                 'Coupon discount':'@Model.CouponAmount',
-                'Price without tax':'@Model.sumFare.BaseFare'
+                'Price without tax':'@Model.sumFare.BaseFare',
+                'abc_url':'https://www.flightsmojo.in/fm/@Model.tinyUrlID'
             });
         }
     </script>
@@ -2903,7 +3324,8 @@
                 'Total Price':'@Model.sumFare.grandTotal',
                 'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
                 'Coupon discount':'@Model.CouponAmount',
-                'Price without tax':'@Model.sumFare.BaseFare'
+                'Price without tax':'@Model.sumFare.BaseFare',
+                'abc_url':'https://www.flightsmojo.in/fm/@Model.tinyUrlID'
             });
         }
 
@@ -2923,7 +3345,7 @@
 
             var RetArrDate = new Date(@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.ToString("MM-dd-yyyy")));
             var str_RetArrDate = new Date(RetArrDate.toISOString());
-            
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'pay_now_click',
@@ -2976,7 +3398,8 @@
                 'Extended Airline Refund Assurance Fee':'@Model.RefundPolicyAmt',
                 'Coupon discount':'@Model.CouponAmount',
                 'Convenience fee':'@Model.convenienceFee',
-                'Price without tax':'@Model.sumFare.BaseFare'
+                'Price without tax':'@Model.sumFare.BaseFare',
+                'abc_url':'https://www.flightsmojo.in/fm/@Model.tinyUrlID'
             });
         }
     </script>

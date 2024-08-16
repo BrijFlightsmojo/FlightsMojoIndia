@@ -34,6 +34,12 @@ public class DataConnection
         Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConMetaRank"].ToString();
         return Con;
     }
+    public static SqlConnection GetConFlightsmojoindia_RDS()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConFlightsmojoindia_RDS"].ToString();
+        return Con;
+    }
 
     public static SqlConnection GetConSearchHistoryAndDeal_RDS()
     {
