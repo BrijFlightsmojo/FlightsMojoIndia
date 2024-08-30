@@ -250,6 +250,17 @@ namespace Core
         Refund = 4,
     }
 
+    public enum CouponType : int
+    {
+        PerBooking = 1,
+        PerUnit = 2
+    }
+    public enum CouponAmountType : int
+    {
+        None=0,
+        Flat = 1,
+        Percentage = 2
+    }
     public enum WebsiteDeal : int
     {
         NONE = 0,
@@ -466,4 +477,25 @@ namespace Core
         WebEngage = 1
     }
 
+    public enum SourceMedia : int
+    {
+        None = 0,
+        Online = 1000,
+        WGO = 1001,
+        KAYAK = 1013,
+        //KYK Display Banners = 1003,
+        KYKInline = 1004,
+        //KYK Flights Spnsrd Results = 1005,
+        //Compare to Modal = 1006,
+        //Compare to Results = 1007,
+        JETCOST = 1010,
+        SKYIN = 1015,
+        GA = 1016,
+        GAW = 1017,
+        GAD = 1018,
+        //WEGO DISPLAY = 1002,
+        GoogleFlights = 1037,
+        whatsapplead = 1041,
+        Webengage = 1042,
+    }
 }

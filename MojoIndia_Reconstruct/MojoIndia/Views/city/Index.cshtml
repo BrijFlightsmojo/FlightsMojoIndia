@@ -14,6 +14,11 @@
     <meta name="language" content="en" />
     <meta name="robots" content="INDEX, FOLLOW" />
     <meta name="Copyright" content="https://www.flightsmojo.in/" />
+    <meta property="og:title" content="@Model.PageTitle" />
+    <meta property="og:description" content="@Model.MetaDescription" />
+    <meta property="og:url" content="https://www.flightsmojo.in/city/cheap-flights-to-@(Model.CityName.Trim().Replace(" ","-") + "-" + Model.CityCode)" />
+    <meta property="og:type" content="Travel Agency" />
+    <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />
 }
 
 <main>
@@ -25,15 +30,8 @@
                 right: 0px;
                 text-align: left;
             }
-            .Flight_Air>ul li {
-        width: 30%;
-        text-align: center;
-        display: inline-block;
-        height: 130px;
-        margin-bottom: 15px;
-    }
         }
-
+.banner_section{margin-top:-4px;}
         .showBtnfaq {
             display: block;
             cursor: pointer;
@@ -51,13 +49,6 @@
             padding: 6px 10px;
             border: 1px solid #ccc;
         }
-        .Flight_Air>ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    text-align: center;
-}
     </style>
 
     <section class="banner_section" style="background:#6dc0e5;    position: relative;">

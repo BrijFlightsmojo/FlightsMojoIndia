@@ -14,7 +14,7 @@ namespace Core
         public int NoOfUsedCoupon { get; set; }
         public ClientType ClientType { get; set; }
         public string SourceMedia { get; set; }
-        //public CouponType CouponType { get; set; }
+        public CouponType CouponType { get; set; }
         public CabinType CabinClass { get; set; }
         public decimal MinimumAmount { get; set; }
         public decimal MaximumAmount { get; set; }
@@ -45,11 +45,60 @@ namespace Core
 
         public long BookingID { get; set; }
         public decimal CouponAmount { get; set; }
+        public bool isLessConvenceFee { get; set; }
         public ResponseStatus responseStatus { get; set; }
         public CouponStatusResponse()
         {
             responseStatus = new ResponseStatus();
         }
         public string RedirectUrl { get; set; }
+    }
+
+    public class CouponDetails
+    {
+        public ResponseStatus responseStatus { get; set; }
+
+        public List<CouponDetail> couponDetailList { get; set; }
+    }
+    public class CouponDetail
+    {
+        public int id { get; set; }
+        public string CouponCode { get; set; }
+        public int couponAmount { get; set; }
+        public CouponAmountType amountType { get; set; }
+        public int maxAmount { get; set; }
+        public bool isValidateSourceMedia { get; set; }
+        public bool isValidateByEmail { get; set; }
+        public bool isValidateByCount { get; set; }
+        public bool isValidateByNoOfPax { get; set; }
+        public bool isValidateByTotalAmt { get; set; }
+        public bool isValidateByCabinClass { get; set; }
+        public bool isValidateByAirline { get; set; }
+        public bool isValidateByBookingDate { get; set; }
+        public bool isValidateByTravelDate { get; set; }
+        public bool isValidationByUTFCampaign { get; set; }
+        public bool isLessConvenceFee { get; set; }
+        public bool isValidNoOfCoupon { get; set; }
+        public string sourceMedia { get; set; }
+        public string emailID { get; set; }
+        public int noOfCoupon { get; set; }
+        public int noOfPax { get; set; }
+        public int totalConsume { get; set; }
+        public int minAmount { get; set; }
+        public CabinType cabinClass { get; set; }
+        public string airline { get; set; }
+        public DateTime bookingDateFrom { get; set; }
+        public DateTime bookingDateTo { get; set; }
+        public DateTime travelDateFrom { get; set; }
+        public DateTime travelDateTo { get; set; }
+        public string UTFCampaign { get; set; }
+        public bool isActive { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public int updatedBy { get; set; }
+        public DateTime updatedOn { get; set; }
+        public string Counter { get; set; }
+
+
     }
 }

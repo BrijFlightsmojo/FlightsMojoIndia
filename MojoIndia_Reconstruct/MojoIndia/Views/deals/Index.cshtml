@@ -13,6 +13,12 @@
     <meta name="author" content="Flights Mojo" />
     <meta name="robots" content="INDEX, FOLLOW" />
     <meta name="Copyright" content="https://www.flightsmojo.in/" />
+
+    <meta property="og:title" content="@Model.PageTitle" />
+    <meta property="og:description" content="@Model.MetaDescription" />
+    <meta property="og:url" content="https://www.flightsmojo.in/deals/@(Model.ThemeName.Replace(" ", "-"))" />
+    <meta property="og:type" content="Travel Agency" />
+    <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />
 }
 
 <style>
@@ -132,6 +138,7 @@
                 .CitypageLink li:last-child {
                     border-right: 0;
                 }
+				.banner_section{margin-top:-4px;}
     </style>
 
 

@@ -145,26 +145,15 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 
 .mobile_Country{text-align: center;width:367px;background-color: #fff;position: fixed;z-index: 9;right: 0;top:-22px;height: 100vh;overflow-y: scroll;overflow: auto; display:none;}
 .mobile_Country ul{list-style-type:none; margin-top:30px; padding:0;}
-.mobile_Country ul li {padding: 0;line-height: 25px;font-size: 13px;color: #6e6d6d;cursor: pointer;text-align: left;float: left;width:100%;font-weight: 500;padding-bottom: 10px;}
-.mobile_Country ul a{ font-size:14px; font-style:normal; color:#000;}
-.mobile_Country ul li{font-size:14px; font-style:normal; color:#000;line-height:30px; padding-left:15px;}
+.mobile_Country ul li {padding: 0;line-height: 25px;font-size: 12px;color: #6e6d6d;cursor: pointer;text-align: left;float: left;width:100%;font-weight: 500;padding-bottom: 10px;}
+.mobile_Country ul a{ font-size:12px; font-style:normal; color:#000;}
+.mobile_Country ul li{font-size:12px; font-style:normal; color:#000;line-height:30px; padding-left:15px;}
 .mobile_Country ul dfn{width: 80%;float: left;font-style: normal;}
 .mobile_Country ul em {font-size: 12px;font-style: normal;text-align: center;width: 20%;}
 .mobile_Country ul a dfn {width: 80%;float: left;font-style: normal;}
 .mobile_Country ul a em {font-size: 12px;font-style: normal;text-align: center;width: 20%;}
 .mobile_Country ul img {padding-right: 2px;display: inline-block;width: 26px;}
-.menu_flag{width: 100%;
-    display: inline-block;
-    text-align: left;
-    padding-left: 15px;
-    position: fixed;
-    bottom: 0px;
-    z-index: 9;
-    left: 30px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    background: #fff;
-    height: 50px;}
+.menu_flag{width: 100%;display: inline-block;text-align: left;padding-left: 15px;position: fixed;bottom: 16px;z-index: 9;left: 30px;border-top: 1px solid #ccc;padding-top:10px;background: #fff;height: 50px;}
 .menu_flag a dfn{font-size: 13px;color: #000;font-style: normal;text-decoration: none;cursor: pointer;width: 60%;display: inline-block; }
 .menu_flag a em{font-size:13px;color: #000;font-style: normal;display: inline-block;width: 20%;}
 .menu_flag a dfn img{width:25px;}
@@ -190,7 +179,7 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 .contact_result p{color: #ef4123;font-size: 13px; margin: 0;}
 .contact_result p i{padding-right:4px;}
 .searc_bg{width:100%;float:left;margin-top: -4px;background: #6dc0e5;}
-.banner_section{width:100%;float:left;margin-top: -14px;background: #6dc0e5;    padding: 0 5px;}
+.banner_section{width:100%;float:left;margin-top: -4px;background: #6dc0e5;    padding: 0 5px;}
 .search_main{width:48%;float:left;background:#fff;border-radius:25px;padding:15px;margin:50px 10px;position: relative;box-shadow:0 5px 15px 0 #484747;}
 .deal_Banner{float: left;width: 48%;margin-left:22px;padding-top:60px;}
 .bannerhead{width: 100%;float: left;text-align: right;   margin-bottom: 15px;}
@@ -247,6 +236,87 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
     border: 1px solid #e6e5e7;border-bottom: 0;top: 66%;}
 .CopnDeal:before {-webkit-transform: rotate(-270deg);transform: rotate(-270deg);left: -0.7rem;}
 .CopnDeal:after {top: 66%;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);right: -0.7rem;}
+
+.coupon_Container{width:100%;display:inline-block; padding:30px 0;}
+.coupon_Container h1{font-size:20px; font-weight:bold;color:#000; padding:10px 0 0 15px;}
+.coupon_Container p{ font-size:13px; color:#333; margin:10px 0; padding:0 0 0 15px;}
+.couponcard {background-color: #fff;background-repeat: no-repeat;border: 1px solid #e6e5e7;border-radius: 1.6rem;display: flex;flex-direction: column;justify-content: space-between;
+min-height:21rem;padding: 1.6rem;position: relative;width: 38.2rem;}
+.couponcard:before {left: -.7rem;transform: rotate(-270deg);}
+.couponcard:after {right: -.7rem;top: 66%;transform: rotate(-90deg);}
+.couponcard:after, .couponcard:before {background-color: #fafaff;border: 1px solid #e6e5e7;border-bottom: 0;border-top-left-radius: 1.2rem;border-top-right-radius: 1.2rem;content: "";
+height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
+.couponcard_top {display: flex;}
+.couponcard_content {margin-left: 1.6rem;}
+.couponcard_top img {border-radius: .8rem;height: 10rem;object-fit: contain;width: 10rem;}
+.couponcard_title {color: #1e1c4c;font-size: 1.8rem;line-height: 2.4rem;}
+.couponcard_subtitle {color: #818087;font-size: 1.4rem;line-height: 2rem;margin-top: .8rem;}
+.couponcard_tc{color: #03000f;font-size: 1.2rem;font-weight: 400;line-height: 16px;padding-top:1rem; }
+.couponcard_dashed {border: 1px dashed #cdcccf;position: absolute;top: 70%;width: calc(100% - 3.2rem);}
+.couponcard_bottom {align-items: center;display: flex;}
+.couponcard_promo {color: #818087;font-size: 12px;font-style: normal;font-weight: 700;letter-spacing: 1px;line-height: 16px;text-transform: uppercase;}
+.couponcard_code {color: #03000f;font-size: 1.2rem;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
+.couponcard_link {font-size: 12px;font-style: normal;font-weight: 400;left: calc(50% + 115.5px);line-height: 16px;margin-top: -6px;position: absolute;text-align: right;}
+.couponcard_link a{color: #643de3;}
+.coupon_leftCon{width:75%;display:inline-block; padding:10px;margin-right:15px; float:left;}
+.coupon_leftTop{width:100%; display:inline-block;display:flex;}
+.dicount_heading{width:78%; display:inline-block; margin-right:15px;}
+.dicount_heading h1 {font-size:23px; line-height:25px;margin-bottom: 30px;font-weight: 400;color: #000;margin-top: 20px;}
+.discont_desg{width:20%; display:inline-block;margin-bottom: 30px;margin-top: 20px;}
+.dicount_code{background: #ea4018;border:1px dashed #ea4018;height: 80px;width:165px;position: relative;display: inline-block;text-align: center;
+    border-radius: 3px;margin-bottom: 15px;float: right;}
+.dicount_code:before {content: "";position: absolute;width: 15px;height: 15px;top: 50%;left: 0;transform: translate(-50%, -50%);background: #fff;border-radius: 100%;}
+.dicount_code:after {content: "";position: absolute;width: 15px;height: 15px;top: 50%;right: 0;transform: translate(50%, -50%);background: #fff;border-radius: 100%;}
+.Code_Top{text-align: center;
+    color: #fff;
+    font-size: 16px;
+    padding: 9px 0;
+    font-weight: 600;}
+.dicount_code .cop_Dashed {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: 0 15px;
+    border-bottom: 2px dotted #fff;
+    width: 80%;
+}
+.dicount_code .Code_Bottom {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.Code_Bottom a img{width: 15px;
+    vertical-align: middle;}
+.discount_content{border: 1px solid #ccc;background-color: #fff;margin-bottom: 20px;padding-bottom: 10px;width:100%; display:inline-block;}
+.discount_content h2 {
+    padding: 13px 15px;
+    border-bottom-color: #d6d6d6;
+    font-size: 18px;
+    background: #d6d6d6;
+    color: #000;
+    margin-bottom: 15px;
+}
+.discount_content ul{ padding-left:25px;}
+.discount_content ul li {
+    padding: 5px 15px 5px 0;
+    position: relative;
+    vertical-align: middle;
+    color: #333;
+    font-size: 13px;
+}
+.discount_content p{padding: 0 15px; font-size: 15px;}
+.coupon_RightCon{width:23%;display:inline-block;}
+.coupon_banner{width:100%;display:inline-block;margin-top: 145px;padding-top: 10px;position:relative;}
+.coupon_RightCon img{width:100%;}
+.coupon_banner span{position: absolute;
+    top: 60px;
+    right: 26px;
+    font-size: 16px;
+    font-weight: bold;}
+.coupon_banner>span a img{width: 20px;}
 /*----------------destop css-------------*/
 
 
@@ -602,18 +672,6 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 
 .airline_div ul{ width:100%; float:left;}
 .airline_div ul li{width:50%; float:left;}
-.filterMob_Top{width: 100%;display:inline-block;padding:15px 10px;border: 1px solid #ccc;display:none;}
-.Filter_Closecon{width: 100%;display: inline-block;}
-.Filter_Closecon button{border: 0;font-size: 20px;padding: 2px 4px;width: 48%;display: inline-block;text-align: left;background: #fff;font-weight: bold;color: #000;}
-.Filter_Closecon a{color: #ef6614;font-size: 14px;font-weight: bold;display: inline-block;width: 50%;text-align: right;vertical-align: text-top;}
-.FilterMob_header{width:100%; display:inline-block;}
-.FilterMob_header p{color:#000; font-weight:bold; font-size:18px;text-align:left;display:inline-block;width:100%; padding-top:15px;}
-.applyFilter_Con{width: 100%;position: fixed;padding: 10px;bottom: 0;display:none;background:#fff;}
-.applyFilter_Con button{width: 100%;padding: 13px;border: 0;background: #ef6614;color: #fff;font-size: 16px;border-radius: 8px; font-weight:bold;}
-
-
-
-
 /*-----------------result modify css------------*/
 .modify_con {background: #49494a;float: left; padding: 0px 20px;width: 100%;margin-bottom: 25px;position: relative;top: -4px;}
 
@@ -1103,7 +1161,7 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .result_left {width: 25%;float: left;margin-right: 15px;display: block;}
 .filtor_top {background: #fff;padding: 10px;position: relative;border-radius: 10px;margin-bottom: 20px;display: inline-block;border: 1px solid #f5f5f5;box-shadow: 0 0 6px #00000029;    width: 100%;
     float: left;}
-
+.fliter_con {overflow-y: auto;width: 100%;}
 
 .fliter_con:hover::-webkit-scrollbar-thumb {background: linear-gradient(to right,#e83819,#f3850b);}
 .fliter_con:hover::-webkit-scrollbar-thumb:hover {background: linear-gradient(to right,#e83819,#f3850b);}
@@ -1238,7 +1296,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
 .populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
-.airline-logo {padding: 10px;vertical-align: middle;text-align: center;display: inline-block;float: left;width: 100%;}
+.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;float:left;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
 .airport label {font-weight: 400; font-size: 14px;}
@@ -1391,7 +1449,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .passenger_back span{ color: #fff; font-size:12px; text-align: right; float: right;}
 
 
-.couponCon{width: 100%;padding:10px;float: left;border-radius: 15px;border: 1px solid #ccc;background: #fff;display:none;}
+.couponCon{width: 100%;padding:10px;float: left;border-radius: 15px;border: 1px solid #ccc;background: #fff;display:block;}
 .couponapplyCon{width: 100%;float: left;padding: 10px 6px;}
 .applycoupon{width: 65%;float: left;border: 1px solid #ccc;padding: 10px;background: #fff;}
 .applycoupon input{ font-size: 13px;border: 0px;font-weight:400;color: #000;text-transform: uppercase;width:100%; background:#fff;}
@@ -1969,6 +2027,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .faq_con{ width:100%; float:left; border-bottom:1px solid #ccc; margin-bottom:15px; padding-bottom:8px;}
 .faq_con p{ font-size:14px; line-height:20px; text-align:justify;}
 .Flight_Info p{font-size:14px; line-height:20px; text-align:justify;}
+.Flight_Info h3{font-size: 18px;color:#000;font-weight: bold;margin: 20px 0 0 0;}
 .faq_box{ border-bottom:2px solid #ccc; padding-bottom:15px; padding-top:8px;}
 .faq_box p b{ padding-bottom:5px; display:inline-block;}
 .Flight_Air{width:100%; float:left; padding:10px;border:1px solid #ccc;}

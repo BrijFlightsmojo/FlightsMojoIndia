@@ -15,15 +15,15 @@ namespace Core.Whatsapp
     {
         public string appid { get; set; }
         public string deliverychannel { get; set; }
-        public Message message { get; set; }
+        //public Message message { get; set; }
         public List<Destination> destination { get; set; }
     }
 
-    public class Message
-    {
-        public string template { get; set; }
-        public Parameters parameters { get; set; }
-    }
+    //public class Message
+    //{
+    //    public string template { get; set; }
+    //    public Parameters parameters { get; set; }
+    //}
 
     public class Parameters
     {

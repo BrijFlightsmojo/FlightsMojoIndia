@@ -41,7 +41,8 @@
 .contact_con a{font-size: 12px; top:0;}
 .logo a{ padding:2px 0 0 6px;}	
 #mainnav #menu {display: none;}
-#menu i{font-size:16px;}
+#menu i{font-size:16px;vertical-align: text-bottom;
+        padding-left: 3px;}
 #mainnav ul {display: none;background: #fff;padding: 6px;position: absolute;z-index: 9;right: -20px;width: 200px;top:28px;box-shadow: 2px 2px 2px #ccc;}
 #mainnav ul li {display: block;border-bottom: 1px dashed #ccc;width: 100%;float: left;}
 #mainnav ul li a {display: block;padding: .75em 1.5em .5em 1.5em;}
@@ -104,7 +105,7 @@
 .airlines_slide_right{width: 60%; float: left;}
 .owl-prev,.owl-next{display: none;}
 .passen_left_mob> p{ font-size: 13px;padding-right: 6px;}
- .seclect_airline{margin-top: 20px;}	
+.filtor_top, .seclect_airline{margin-top: 20px;}	
 .mobile_con{display: block;}
 .desti_mid img,.calden_mid img {width: 50%; padding-top: 30px;}
 .from_wherediv,.to_wherediv,.passenger_mob,.airclass_popupmob{ z-index: 9999;position: fixed; overflow: hidden;height: 100vh; top: 0;left: 0; background: #fff; width: 100%; padding: 15px; display:none;}
@@ -520,11 +521,10 @@ nav .menu {width: 100%;}
 .lineo_img3 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:19px;content: "";top: -3px;background: #ccc;}
 .lineo_img3::before{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:30px;content: "";top: -3px;background: #ccc;}
 .lineo_img3::after{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;right:30px;content: "";top: -3px;background: #ccc;}
-.filterMob_Top,.applyFilter_Con{display:block;}
+
 .layover_Sep2,.layover_Sep2 img,.layover_Sep2::after{ display:block;}
-.filter_header{display:none;}
-.fixed_con{width: 100%;position: absolute;background: #fff;height: 100vh;z-index: 99;top: 0px;}
-.filtor_top{overflow-y: auto;width: 100%;height:450px;}
+.filter_header { z-index: 0;}
+
 }
 
 @media only screen 
@@ -570,7 +570,6 @@ nav .menu {width: 100%;}
 .modi_pase span{font-size:13px;}
 .payment_right{margin-left: 14px;width:27%;}
 .coupn-section h4 em{ font-size:14px;}
-
 
 }
 @media (min-width :1024px) and (max-width:1366px) {

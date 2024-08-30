@@ -125,7 +125,7 @@ namespace DAL.Deal
                     {
                         Core.Flight.fareMatrix obj = new Core.Flight.fareMatrix();
                         obj.sqNo = objList.Count;
-                        obj.fare =Convert.ToDecimal( dr["fare"]);
+                        obj.fare = Convert.ToDecimal(dr["fare"]);
                         obj.tDate = Convert.ToDateTime(dr["depDate"]).ToString("MMM-dd");// dr["depDate"].ToString();
 
                         objList.Add(obj);

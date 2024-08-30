@@ -24,7 +24,7 @@ namespace MojoIndia.Controllers
     {
         public static string[] strAllAirportCityCode = new string[] { "AE", "AF", "AM", "AS", "AZ", "BD", "BH", "BN", "BT", "CN", "CY", "GE", "HK", "ID", "IL", "IN", "IQ", "IR", "JO", "JP", "KG", "KH", "KP", "KR", "KW", "KZ", "LA", "LB", "LK", "MH", "MM", "MN", "MO", "MV", "MY", "NP", "OM", "PH", "PK", "QA", "SA", "SG", "SY", "TH", "TJ", "TM", "TW", "UZ", "VN", "YE" };
         public ActionResult Index(string id)
-       {
+        {
             if (Request.QueryString["utm_source"] != null)
             {
                 setCookie(Request.QueryString.Get("utm_source"));
@@ -83,20 +83,52 @@ namespace MojoIndia.Controllers
             //}
             return View(new OriginDestinationContent());
         }
-
-        private void get_Auth()
+        private void sendwa()
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            var url = System.Configuration.ConfigurationManager.AppSettings["UrlWhatsapp"];
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/json";
+            httpRequest.Headers["Authorization"] = System.Configuration.ConfigurationManager.AppSettings["WhatsappAuth"]; ;
+            string output = string.Empty;
 
-            //string url = @"https://iqwhatsapp.airtel.in/gateway/airtel-xchange/basic/whatsapp-manager/v1/template/send";
-            //WebRequest request = WebRequest.Create(url);
-            //request.Credentials = GetCredential();
-            //request.PreAuthenticate = true;
-            //string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{username}:{password}"));
-            //var client = new RestClient(url);
-            //var request = new RestRequest(method);
-            //request.AddHeader("Authorization", $"Basic {encoded}");
-            //IRestResponse response = client.Execute(request);
-            //return response;
+            Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+            {
+                templateId = System.Configuration.ConfigurationManager.AppSettings["TempIdRoundTrip"],
+                from = System.Configuration.ConfigurationManager.AppSettings["FromNo"],
+                to = "917668677843",
+                message = new Core.Whatsapp.Message()
+                {
+                    variables = new List<string>()
+                },
+                mediaAttachment = new Core.Whatsapp.MediaAttachment() { type = "DOCUMENT", url = GlobalData.URL + "/Uploadedpdf/525043.pdf", fileName = "525043" }
+            };
+            whatsapp.message.variables.Add("Brij");
+            whatsapp.message.variables.Add("524771");
+            whatsapp.message.variables.Add("DEL");
+            whatsapp.message.variables.Add("BOM");
+            whatsapp.message.variables.Add("12-Nov");
+            whatsapp.message.variables.Add("09:30 AM");
+            whatsapp.message.variables.Add("UK-159");
+            whatsapp.message.variables.Add("ASD123");
+            whatsapp.message.variables.Add("BOM");
+            whatsapp.message.variables.Add("DEL");
+            whatsapp.message.variables.Add("20-Nov");
+            whatsapp.message.variables.Add("04:45 PM");
+            whatsapp.message.variables.Add("6E-1597");
+            whatsapp.message.variables.Add("WER73F");
+            output = Newtonsoft.Json.JsonConvert.SerializeObject(whatsapp);
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(output);
+            }
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            var statuscode = httpResponse.StatusCode;
         }
 
         private ICredentials GetCredential()

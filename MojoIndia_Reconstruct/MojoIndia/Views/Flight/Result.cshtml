@@ -126,12 +126,6 @@
 
                     <div class="result_left">
                         <div class="fixed_con">
-                            <div class="filterMob_Top">
-                                <div class="Filter_Closecon">
-                                    <button class="close_Filter">X</button><a ng-click="clearFilter()">Clear All</a>
-                                </div>
-                                <div class="FilterMob_header"><p>Filter by</p></div>
-                            </div>
                             <div class="filtor_top">
                                 <div class="fliter_con">
                                     <h4 class="filter_header">Refine your search</h4>
@@ -239,15 +233,12 @@
                                             </ul>
                                         </div>
                                     }
-                                    @*<div class="box-section Result-show" style="display:none;">
-        <div class="resetfilter_Div">
-               <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
-           </div>
-    </div>*@
+                                    <div class="box-section Result-show" style="display:none;">
+                                        <div class="resetfilter_Div">
+                                            <button class="clear_filter" ng-click="clearFilter()">Reset All</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="applyFilter_Con">
-                                <button>Apply Filter</button>
                             </div>
                             <div class="rustfactor_fil">
                                 <h4 class="filter_header">Why Choose Us</h4>
@@ -294,6 +285,7 @@
                                                 <div class="grid d-flex flex-column align-items-center justify-content-center fareMatrixSelected">
                                                     <p>@item.tDate</p>
                                                     <h5 class="text-center logoFont">₹ {{flight.airlineList[0].fare}}</h5>
+                                                    <input type="hidden" id="FBfare" name="FBfare" value="{{flight.airlineList[0].fare}}">
                                                 </div>
                                             }
                                             else
@@ -436,7 +428,7 @@
                                                                 </div>
                                                                 <div class="flight_itemright">
                                                                     <div class="flight_dep1">
-                                                                        <p>{{dep.flightSegments[0].TotalTime}}</p>
+                                                                        <p ng-if="dep.flightSegments[0].TotalTime!='0h 0m'">{{dep.flightSegments[0].TotalTime}}</p>
                                                                         <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
                                                                         <span ng-if="dep.flightSegments[0].segments.length==1">Non Stop</span>
                                                                         <span ng-if="dep.flightSegments[0].segments.length>1">{{dep.flightSegments[0].segments.length-1}} Stop</span>
@@ -617,7 +609,7 @@
                                                                 </div>
                                                                 <div class="flight_itemright">
                                                                     <div class="flight_dep1">
-                                                                        <p>{{ret.flightSegments[0].TotalTime}}</p>
+                                                                        <p ng-if="ret.flightSegments[0].TotalTime!='0h 0m'">{{ret.flightSegments[0].TotalTime}}</p>
                                                                         <div class="mobile_br"><span class="dotLeft"></span><span class="dotRight"></span></div>
                                                                         <span ng-if="ret.flightSegments[0].segments.length==1">Non Stop</span>
                                                                         <span ng-if="ret.flightSegments[0].segments.length>1">{{ret.flightSegments[0].segments.length-1}} Stop</span>
@@ -860,7 +852,7 @@
                                                                         <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
                                                                     </div>
                                                                     <div class="flight_time_two">
-                                                                        <span class="layover_time">{{fs.TotalTime}}</span>
+                                                                        <span class="layover_time" ng-if="fs.TotalTime!='0h 0m'">{{fs.TotalTime}}</span>
                                                                         <div class="layover_Sep" ng-if="fs.segments.length==1">
                                                                             <span class="line_img" ></span>
                                                                             <img src="/images/map.svg" alt="icon" />
@@ -1049,7 +1041,7 @@
                                                                         <span class="time_desti">{{fs.segments[0].depTime}} </span><span class="date_day">{{fs.segments[0].depDate}}</span>
                                                                     </div>
                                                                     <div class="flight_time_two2">
-                                                                        <span class="layover_time">{{fs.TotalTime}}</span>
+                                                                        <span class="layover_time" ng-if="fs.TotalTime!='0h 0m'">{{fs.TotalTime}}</span>
                                                                         <div class="layover_Sep" ng-if="fs.segments.length==1">
                                                                             <span class="line_img"></span>
                                                                             <img src="/images/map.svg" alt="icon" />
@@ -1212,7 +1204,7 @@
                             </div>
                         </div>
                         <div class="footer_airdetail2" style="border:none;">
-                            <p>{{outBound.flightSegments[0].TotalTime}}</p>
+                            <p ng-if="outBound.flightSegments[0].TotalTime!='0h 0m'">{{outBound.flightSegments[0].TotalTime}}</p>
                             <dfn ng-if="outBound.flightSegments[0].segments.length==1">Non Stop</dfn>
                             <dfn ng-if="outBound.flightSegments[0].segments.length>1">{{outBound.flightSegments[0].segments.length-1}} Stop</dfn>
                         </div>
@@ -1236,7 +1228,7 @@
                             </div>
                         </div>
                         <div class="footer_airdetail2" style="border:none;">
-                            <p>{{inBound.flightSegments[0].TotalTime}}</p>
+                            <p ng-if="inBound.flightSegments[0].TotalTime!='0h 0m'">{{inBound.flightSegments[0].TotalTime}}</p>
                             <dfn ng-if="inBound.flightSegments[0].segments.length==1">Non Stop</dfn>
                             <dfn ng-if="inBound.flightSegments[0].segments.length>1">{{inBound.flightSegments[0].segments.length-1}} Stop</dfn>
                         </div>
@@ -1542,8 +1534,7 @@
             $body.width(oldWidth); 
         }
         function ShowModel()
-        {
-            $("#paymentmodal"+$("#hfTripType").val()).addClass("show-modal");
+        { $("#paymentmodal"+$("#hfTripType").val()).addClass("show-modal");
             if ($(window).width() < 765) 
             {
                 var $body = $(document.body);
@@ -1651,6 +1642,7 @@
                     window.location.replace(response.data.redirectURl);
                 }
                 ResultSuccess();
+                Facebook();
                 $scope.flight = response.data;
                 $scope.outBound = $scope.flight.result[0];
                 if ($scope.flight.resultReturn != null) {
@@ -2022,14 +2014,8 @@
             $(".modify_close").click(function () {
                 $(".modi_overlay").slideToggle("slow");
             });
-            $(".filter_click").click(function () {                
-                $(".reslt_right").hide();
-            });
-            $(".close_Filter,.applyFilter_Con").click(function () {  
-                $(".result_left").slideToggle("slow");
-                $(".reslt_right").show();
-            });
             FlightLoad();
+            //Facebook();
         });
 
     </script>
@@ -2476,6 +2462,45 @@
             hfCity_from = $("#hfCity_from").val();
             $("#hfCity_to").val(hfCity_from);
             $("#hfCity_from").val(hfCity_to);
+        }
+    </script>
+
+
+    <script>
+        function Facebook() {
+            var adult = parseInt($("#Adult").val());
+            var child = parseInt($("#Child").val());
+            var infant = parseInt($("#Infant").val());
+            var totpax = adult + child + infant;
+
+            var departure_date = new Date($("#departure_date").val());
+            var str_departure_date =new Date(departure_date.toISOString());
+
+            fbq('track', 'Search', {
+                //content_type: 'flight',
+                //search_string: 'Flights from' +$("#hfCity_from").val() +'to'+$("#hfCity_to").val(),
+                //origin_airport: $("#hfCity_from").val(),
+                //destination_airport: $("#hfCity_to").val(),
+                //departing_departure_date: $("#departure_date").val(),
+                //returning_departure_date:  $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+                //number_of_passengers: totpax, 
+                //travel_class: $("#Cabin option:selected").text(),
+
+
+                content_type: 'flight',
+                departing_departure_date:  '2024-12-12',
+                returning_departure_date:  '2024-12-12',
+                origin_airport: $("#hfCity_from").val(),
+                destination_airport:  $("#hfCity_to").val(),
+                departing_arrival_date: '2024-12-12',
+                returning_arrival_date: '2024-12-12',
+                num_adults: $("#Adult").val(),
+                num_children: $("#Child").val(),
+                num_infants: $("#Infant").val(),
+                travel_class :  $("#Cabin option:selected").text(),
+                price :  $("#FBfare").val(),
+                currency: 'INR'
+            });
         }
     </script>
 }

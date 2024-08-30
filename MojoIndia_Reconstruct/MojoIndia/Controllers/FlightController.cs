@@ -349,7 +349,7 @@ namespace MojoIndia.Controllers
             setCookie(fsr.sourceMedia);
             fsr.utm_campaign = "";
             fsr.utm_medium = "";
-          
+
 
             fsr.currencyCode = (Request.QueryString["currency"] != null && !string.IsNullOrEmpty(Request.QueryString.Get("currency"))) ? Request.QueryString.Get("currency").ToUpper() : "INR";
             fsr.googleFlightRequest = new GoogleFlightDeepLink();
@@ -358,7 +358,7 @@ namespace MojoIndia.Controllers
             fsr.userIP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             fsr.device = GetDevice();
             fsr.deepLink = "/flight/searchFlightResult?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr";
-           
+
 
             AirContext airContext = new AirContext(fsr.userIP);
             airContext.flightSearchRequest = fsr;
@@ -366,12 +366,12 @@ namespace MojoIndia.Controllers
             airContext.flightRef = new List<string>();
             fsr.userSessionID = Guid.NewGuid().ToString();
             fsr.userSearchID = getSearchID();
-         
+
             FlightOperation.SetAirContext(airContext);
             fsr.tgy_Request_id = DateTime.Now.ToString("ddMMyyyyHHmmsss");
             stopwatch.Stop();
 
-        airContext.flightSearchResponse = new Bal.FlightDetails().SearchFlightGF( fsr);
+            airContext.flightSearchResponse = new Bal.FlightDetails().SearchFlightGF(fsr);
             FlightResult result = null;
             if (true)
             {
@@ -380,7 +380,7 @@ namespace MojoIndia.Controllers
                 if (airContext.flightSearchResponse != null && airContext.flightSearchResponse.Results.Count > 0)
                 {
                     string gfItinComb = Request.QueryString.Get("rdtl"); ;
-                   
+
                     foreach (var flightResult in airContext.flightSearchResponse.Results[0])
                     {
                         if (result == null)
@@ -397,7 +397,7 @@ namespace MojoIndia.Controllers
                             {
                                 result = flightResult;
 
-                                
+
                                 if (result.Fare.grandTotal < fsr.googleFlightRequest.DisplayedPrice)
                                 {
                                     result.Fare.Markup += (fsr.googleFlightRequest.DisplayedPrice - result.Fare.grandTotal);
@@ -410,7 +410,7 @@ namespace MojoIndia.Controllers
             }
             if (result != null)
             {
-               
+
                 //airContext.flightSearchResponse.Results[0][0] = result;
                 airContext.IsGFMatch = true;
                 return Redirect("/Flight/passengerGF/" + fsr.userSearchID + "/" + result.ResultID);
@@ -1176,14 +1176,14 @@ namespace MojoIndia.Controllers
             fsr.segment = new List<SearchSegment>();
 
 
-            
-                fsr.tripType = (TripType)Convert.ToByte(kk.TripType);
+
+            fsr.tripType = (TripType)Convert.ToByte(kk.TripType);
             SearchSegment sseg = new SearchSegment();
             sseg.originAirport = GetAirportCode(kk.Origin);
             sseg.orgArp = FlightUtility.GetAirport(sseg.originAirport);
             sseg.destinationAirport = GetAirportCode(kk.Destination);
             sseg.travelDate = kk.TravelDate;
-           // sseg.travelDate = DateTime.ParseExact(kk.TravelDate.ToString(), "dd MMM yy", new CultureInfo("en-US"));
+            // sseg.travelDate = DateTime.ParseExact(kk.TravelDate.ToString(), "dd MMM yy", new CultureInfo("en-US"));
             sseg.destArp = FlightUtility.GetAirport(sseg.destinationAirport);
             fsr.segment.Add(sseg);
             if (sseg.orgArp.countryCode.ToUpper() == "IN" && sseg.destArp.countryCode.ToUpper() == "IN")
@@ -1201,14 +1201,14 @@ namespace MojoIndia.Controllers
                 sseg1.destArp = FlightUtility.GetAirport(sseg1.destinationAirport);
                 fsr.segment.Add(sseg1);
             }
-           
-                fsr.cabinType = (CabinType)Convert.ToByte(kk.CabinType);
 
-           
-                fsr.airline = "ALL";
+            fsr.cabinType = (CabinType)Convert.ToByte(kk.CabinType);
+
+
+            fsr.airline = "ALL";
 
             fsr.adults = kk.adults != 0 ? Convert.ToByte(kk.adults.ToString()) : (byte)0;
-            fsr.child = kk.child!= 0 ? Convert.ToByte(kk.child.ToString()) : (byte)0;
+            fsr.child = kk.child != 0 ? Convert.ToByte(kk.child.ToString()) : (byte)0;
             fsr.infants = kk.infants != 0 ? Convert.ToByte(kk.infants.ToString()) : (byte)0;
             //fsr.searchDirectFlight = FormColl["NonStop"] != null ? true : false;
             //fsr.flexibleSearch = FormColl["FlexDate"] != null ? true : false;
@@ -1340,17 +1340,15 @@ namespace MojoIndia.Controllers
             {
                 return Redirect("/flight/Passenger/" + fc["sID"].ToString() + "/" + fc["oID"].ToString() + (string.IsNullOrEmpty(fc["iID"].ToString()) ? "" : ("/" + fc["iID"].ToString())));
             }
-
-
         }
         [HttpGet]
         public ActionResult Passenger(string ID, string lid, string rid)
         {
             ViewBag.isShowResult = true;
             StringBuilder sbLogger = new StringBuilder();
+            AirContext airContext = FlightOperation.GetAirContext(ID);
             try
             {
-                AirContext airContext = FlightOperation.GetAirContext(ID);
                 if (airContext != null || (!string.IsNullOrEmpty(lid)))
                 {
                     if (airContext.IsBookingCompleted)
@@ -1387,7 +1385,7 @@ namespace MojoIndia.Controllers
                             redirectID = airContext.flightSearchRequest.redirectID,
                             isBuyCancellaionPolicy = false,
                             device = GetDevice(),
-                            utm_medium= airContext.flightSearchRequest.utm_medium,
+                            utm_medium = airContext.flightSearchRequest.utm_medium,
                             utm_campaign = airContext.flightSearchRequest.utm_campaign,
                         };
                         try
@@ -1549,12 +1547,10 @@ namespace MojoIndia.Controllers
             }
             catch (Exception ex)
             {
-                new LogWriter(ex.ToString(), "GetPassengerException" + DateTime.Today.ToString("ddMMyy"), "Error");
+                new LogWriter(ex.ToString(), "GetPassengerException"+ airContext.flightSearchRequest.userSearchID, "Error");
                 return Redirect("/");
             }
         }
-
-
         [HttpGet]
         public ActionResult PassengerGF(string ID, string lid, string rid)
         {
@@ -1746,7 +1742,6 @@ namespace MojoIndia.Controllers
                 return Redirect("/");
             }
         }
-
         public JsonResult VerifyPrice(string ID)
         {
             VerifyPriceResponse objVps = new VerifyPriceResponse();
@@ -2981,12 +2976,12 @@ namespace MojoIndia.Controllers
                             tgy_Search_Key = airContext.flightSearchResponse.tgy_Search_Key,
                             PhoneNo = "9876543210",
                             tgy_Request_id = airContext.flightSearchRequest.tgy_Request_id,
-                            nextracustomstr= airContext.flightBookingRequest.flightResult[0].Fare.nextracustomstr,
-                            nextraflightkey= airContext.flightBookingRequest.flightResult[0].Fare.nextraflightkey,
-                            flightdeeplinkurl= airContext.flightBookingRequest.flightResult[0].Fare.flightdeeplinkurl,
-                            TravelType = airContext.flightSearchRequest.travelType == TravelType.Domestic? "domestic" : "international",
+                            nextracustomstr = airContext.flightBookingRequest.flightResult[0].Fare.nextracustomstr,
+                            nextraflightkey = airContext.flightBookingRequest.flightResult[0].Fare.nextraflightkey,
+                            flightdeeplinkurl = airContext.flightBookingRequest.flightResult[0].Fare.flightdeeplinkurl,
+                            TravelType = airContext.flightSearchRequest.travelType == TravelType.Domestic ? "domestic" : "international",
                             TripType = airContext.flightSearchRequest.tripType == TripType.OneWay ? "onward" : "return",
-                            selectedflighttw=(airContext.flightSearchRequest.tripType == TripType.RoundTrip? airContext.flightBookingRequest.flightResult[1].Fare.nextraflightkey : ""),
+                            selectedflighttw = (airContext.flightSearchRequest.tripType == TripType.RoundTrip ? airContext.flightBookingRequest.flightResult[1].Fare.nextraflightkey : ""),
                         };
 
 
@@ -3068,7 +3063,6 @@ namespace MojoIndia.Controllers
             }
             return Json(objVps, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult VerifyPriceGF(string ID)
         {
             VerifyPriceResponse objVps = new VerifyPriceResponse();
@@ -4300,7 +4294,6 @@ namespace MojoIndia.Controllers
             return Json(objVps, JsonRequestBehavior.AllowGet);
         }
 
-
         #region Razorpay
         [HttpGet]
         public ActionResult Payment(string ID)
@@ -4347,7 +4340,7 @@ namespace MojoIndia.Controllers
                         airContext.flightBookingRequest.RefundPolicyAmt = 0;
                     }
 
-                    decimal totAmt = ((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.RefundPolicyAmt + airContext.flightBookingRequest.CancellaionPolicyAmt));
+                    decimal totAmt = (((airContext.flightBookingRequest.sumFare.grandTotal + airContext.flightBookingRequest.fareIncreaseAmount + airContext.flightBookingRequest.RefundPolicyAmt + airContext.flightBookingRequest.CancellaionPolicyAmt) - airContext.flightBookingRequest.CouponAmount));
                     decimal convFee = 0;
                     airContext.flightBookingRequest.paymentMode = getPayementMode(mode, ref convFee, airContext.flightBookingRequest.affiliate, airContext.flightBookingRequest.flightResult.Count, totAmt, airContext.flightBookingRequest.passengerDetails.Count);
                     airContext.flightBookingRequest.convenienceFee = convFee;
@@ -4392,7 +4385,7 @@ namespace MojoIndia.Controllers
             }
             bookingLog(ref sbLogger, "Original Payment Request", JsonConvert.SerializeObject(RP));
             CreateLogFile(sbLogger.ToString(), "NewLog\\Booking", airContext.flightBookingRequest.bookingID.ToString() + ".txt");
-          //  new DAL.LogWriter_New(JsonConvert.SerializeObject(airContext.flightBookingRequest), airContext.flightBookingRequest.bookingID.ToString() + "Request", "PaymentRequest");
+            //  new DAL.LogWriter_New(JsonConvert.SerializeObject(airContext.flightBookingRequest), airContext.flightBookingRequest.bookingID.ToString() + "Request", "PaymentRequest");
             return Json(RP, JsonRequestBehavior.AllowGet);
         }
         public Core.PaymentMode getPayementMode(string PMode, ref decimal ConvenceFee, Affiliate aff, int tripCount, decimal totalAmt, int totPax)
@@ -4551,7 +4544,6 @@ namespace MojoIndia.Controllers
                         StartAgainWebHook:
                         Core.RP.Webhook.RazorPay_WebhooksDetails wsd = new DAL.PayU.RazorpayWebhook().GetRazorPay_WebhooksDetails(paymentid);
                         bookingLog(ref sbLogger, "Original Final Payment Webhook Details", JsonConvert.SerializeObject(wsd));
-                      //  LogCreater.CreateLogFile(JsonConvert.SerializeObject(wsd), "Log\\PaymentException\\", paymentid.ToString(), "_Payment33.txt");
                         if (wsd == null && wCtr < 3)
                         {
                             System.Threading.Thread.Sleep(1000);
@@ -4561,8 +4553,7 @@ namespace MojoIndia.Controllers
                         if (wsd != null)
                         {
                             airContext.flightBookingRequest.paymentDetails.OnlinePaymentStauts = wsd.status;
-                            //LogCreater.CreateLogFile(airContext.flightBookingRequest.paymentDetails.OnlinePaymentStauts, "Log\\PaymentException\\", paymentid.ToString(), "_Payment34.txt");
-                            bookingLog(ref sbLogger, "Original Final Payment OnlinePaymentStauts", airContext.flightBookingRequest.paymentDetails.OnlinePaymentStauts);
+                             bookingLog(ref sbLogger, "Original Final Payment OnlinePaymentStauts", airContext.flightBookingRequest.paymentDetails.OnlinePaymentStauts);
                         }
                         else
                         {
@@ -4615,13 +4606,13 @@ namespace MojoIndia.Controllers
                                 }
                                 if (!string.IsNullOrEmpty(airContext.flightBookingResponse.ReturnPNR))
                                 {
-                                   // sendsms(airContext.flightBookingResponse, airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
-                                   //airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime,
-                                   //airContext.flightBookingResponse.ReturnPNR, airContext.flightBookingResponse.phoneNo);
+                                    // sendsms(airContext.flightBookingResponse, airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                                    //airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime,
+                                    //airContext.flightBookingResponse.ReturnPNR, airContext.flightBookingResponse.phoneNo);
 
-                                   // sendsms(airContext.flightBookingResponse, airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
-                                   //     airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime,
-                                   //     airContext.flightBookingResponse.ReturnPNR, "9310313497");
+                                    // sendsms(airContext.flightBookingResponse, airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                                    //     airContext.flightBookingResponse.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime,
+                                    //     airContext.flightBookingResponse.ReturnPNR, "9310313497");
                                 }
                                 #region S2S pixel for Kayak
                                 if (airContext.flightSearchRequest.sourceMedia == "1013")
@@ -4714,69 +4705,69 @@ namespace MojoIndia.Controllers
 
         public void groupbookingmsg(string fsr)
         {
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            var url = "https://api.imiconnect.in/resources/v1/messaging";
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            var result = "";
-            httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/json";
-            httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
-            Core.Whatsapp.WA whatsappGB = new Core.Whatsapp.WA();
-            whatsappGB.appid = "a_167149593199252900";
-            whatsappGB.deliverychannel = "whatsapp";
-            whatsappGB.message = new Core.Whatsapp.Message();
-            whatsappGB.message.template = "241117392398076";
-            whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
-            whatsappGB.destination = new List<Core.Whatsapp.Destination>();
-            Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
-            whatsappGB.destination.Add(dsGB);
-            dsGB.waid = new List<string>();
-            dsGB.waid.Add(fsr);
-            string output = JsonConvert.SerializeObject(whatsappGB);
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(output);
-            }
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                result = streamReader.ReadToEnd();
-            }
-            var statuscode = httpResponse.StatusCode;
+            //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            //var url = "https://api.imiconnect.in/resources/v1/messaging";
+            //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            //var result = "";
+            //httpRequest.Method = "POST";
+            //httpRequest.ContentType = "application/json";
+            //httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
+            //Core.Whatsapp.WA whatsappGB = new Core.Whatsapp.WA();
+            //whatsappGB.appid = "a_167149593199252900";
+            //whatsappGB.deliverychannel = "whatsapp";
+            //whatsappGB.message = new Core.Whatsapp.Message();
+            //whatsappGB.message.template = "241117392398076";
+            //whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
+            //whatsappGB.destination = new List<Core.Whatsapp.Destination>();
+            //Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
+            //whatsappGB.destination.Add(dsGB);
+            //dsGB.waid = new List<string>();
+            //dsGB.waid.Add(fsr);
+            //string output = JsonConvert.SerializeObject(whatsappGB);
+            //using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            //{
+            //    streamWriter.Write(output);
+            //}
+            //var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    result = streamReader.ReadToEnd();
+            //}
+            //var statuscode = httpResponse.StatusCode;
         }
 
-        public void groupbookingmsg(FlightBookingResponse fsr)
+        public void groupbookingmsgOLD(FlightBookingResponse fsr)
         {
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            var url = "https://api.imiconnect.in/resources/v1/messaging";
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            var result = "";
-            httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/json";
-            httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
-            Core.Whatsapp.WA whatsappGB = new Core.Whatsapp.WA();
-            whatsappGB.appid = "a_167149593199252900";
-            whatsappGB.deliverychannel = "whatsapp";
-            whatsappGB.message = new Core.Whatsapp.Message();
-            whatsappGB.message.template = "241117392398076";
-            whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
-            whatsappGB.destination = new List<Core.Whatsapp.Destination>();
-            Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
-            whatsappGB.destination.Add(dsGB);
-            dsGB.waid = new List<string>();
-            dsGB.waid.Add(fsr.phoneNo);
-            string output = JsonConvert.SerializeObject(whatsappGB);
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(output);
-            }
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                result = streamReader.ReadToEnd();
-            }
-            var statuscode = httpResponse.StatusCode;
-            CreateLogFile(result.ToString(), "Log\\whatsapp", "GB" + fsr.bookingID.ToString() + ".txt");
+            //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            //var url = "https://api.imiconnect.in/resources/v1/messaging";
+            //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            //var result = "";
+            //httpRequest.Method = "POST";
+            //httpRequest.ContentType = "application/json";
+            //httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
+            //Core.Whatsapp.WA whatsappGB = new Core.Whatsapp.WA();
+            //whatsappGB.appid = "a_167149593199252900";
+            //whatsappGB.deliverychannel = "whatsapp";
+            //whatsappGB.message = new Core.Whatsapp.Message();
+            //whatsappGB.message.template = "241117392398076";
+            //whatsappGB.message.parameters = new Core.Whatsapp.Parameters();
+            //whatsappGB.destination = new List<Core.Whatsapp.Destination>();
+            //Core.Whatsapp.Destination dsGB = new Core.Whatsapp.Destination();
+            //whatsappGB.destination.Add(dsGB);
+            //dsGB.waid = new List<string>();
+            //dsGB.waid.Add(fsr.phoneNo);
+            //string output = JsonConvert.SerializeObject(whatsappGB);
+            //using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            //{
+            //    streamWriter.Write(output);
+            //}
+            //var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    result = streamReader.ReadToEnd();
+            //}
+            //var statuscode = httpResponse.StatusCode;
+            //CreateLogFile(result.ToString(), "Log\\whatsapp", "GB" + fsr.bookingID.ToString() + ".txt");
         }
 
         public ActionResult sendAttachment(FlightBookingResponse fsr)
@@ -5011,135 +5002,135 @@ namespace MojoIndia.Controllers
             }
         }
 
-        private void sendwhatsapp(FlightBookingResponse fsr)
+        private void sendwhatsappOLD(FlightBookingResponse fsr)
         {
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            var url = "https://api.imiconnect.in/resources/v1/messaging";
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/json";
-            httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
-            string output = string.Empty;
+            //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            //var url = "https://api.imiconnect.in/resources/v1/messaging";
+            //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            //httpRequest.Method = "POST";
+            //httpRequest.ContentType = "application/json";
+            //httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
+            //string output = string.Empty;
 
-            if (!string.IsNullOrEmpty(fsr.ReturnPNR))
-            {
-                Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-                whatsapp.appid = "a_167149593199252900";
-                whatsapp.deliverychannel = "whatsapp";
-                whatsapp.message = new Core.Whatsapp.Message();
-                whatsapp.message.template = "1494430417783268";
-                whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-                whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
-                whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-                whatsapp.message.parameters.variable3 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
-                whatsapp.message.parameters.variable4 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
-                whatsapp.message.parameters.variable5 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
-                whatsapp.message.parameters.variable6 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
-                whatsapp.message.parameters.variable7 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
-                whatsapp.message.parameters.variable8 = fsr.PNR;
-                whatsapp.message.parameters.variable9 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
-                whatsapp.message.parameters.variable10 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
-                whatsapp.message.parameters.variable11 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
-                whatsapp.message.parameters.variable12 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
-                whatsapp.message.parameters.variable13 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
-                whatsapp.message.parameters.variable14 = fsr.ReturnPNR;
-                whatsapp.message.parameters.document = new Core.Whatsapp.document();
-                whatsapp.message.parameters.document.link = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf";
-                whatsapp.message.parameters.document.filename = "e-Ticket";
-                whatsapp.destination = new List<Core.Whatsapp.Destination>();
-                Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-                whatsapp.destination.Add(ds);
-                ds.waid = new List<string>();
-                ds.waid.Add(fsr.phoneNo);
-                output = JsonConvert.SerializeObject(whatsapp);
-            }
-            else if (!string.IsNullOrEmpty(fsr.PNR))
-            {
-                Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-                whatsapp.appid = "a_167149593199252900";
-                whatsapp.deliverychannel = "whatsapp";
-                whatsapp.message = new Core.Whatsapp.Message();
-                whatsapp.message.template = "1075029163764892";
-                whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-                whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
-                whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-                whatsapp.message.parameters.variable3 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin;
-                whatsapp.message.parameters.variable4 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
-                whatsapp.message.parameters.variable5 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
-                whatsapp.message.parameters.variable6 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
-                whatsapp.message.parameters.variable7 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
-                whatsapp.message.parameters.variable8 = fsr.PNR;
-                whatsapp.message.parameters.document = new Core.Whatsapp.document();
-                whatsapp.message.parameters.document.link = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf";
-                whatsapp.message.parameters.document.filename = "e-Ticket";
-                whatsapp.destination = new List<Core.Whatsapp.Destination>();
-                Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-                whatsapp.destination.Add(ds);
-                ds.waid = new List<string>();
-                ds.waid.Add(fsr.phoneNo);
-                output = JsonConvert.SerializeObject(whatsapp);
-            }
-            else if (fsr.bookingStatus == Core.BookingStatus.Failed)
-            {
-                Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-                whatsapp.appid = "a_167149593199252900";
-                whatsapp.deliverychannel = "whatsapp";
-                whatsapp.message = new Core.Whatsapp.Message();
-                whatsapp.message.template = "3381846288779813";
-                whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-                whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
-                whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-                whatsapp.destination = new List<Core.Whatsapp.Destination>();
-                Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-                whatsapp.destination.Add(ds);
-                ds.waid = new List<string>();
-                ds.waid.Add(fsr.phoneNo);
-                output = JsonConvert.SerializeObject(whatsapp);
-            }
-            else if (fsr.bookingStatus == Core.BookingStatus.InProgress)
-            {
-                Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-                whatsapp.appid = "a_167149593199252900";
-                whatsapp.deliverychannel = "whatsapp";
-                whatsapp.message = new Core.Whatsapp.Message();
-                whatsapp.message.template = "317661550864529";
-                whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-                whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
-                whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-                whatsapp.destination = new List<Core.Whatsapp.Destination>();
-                Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-                whatsapp.destination.Add(ds);
-                ds.waid = new List<string>();
-                ds.waid.Add(fsr.phoneNo);
-                output = JsonConvert.SerializeObject(whatsapp);
-            }
-            else if (fsr.bookingStatus == Core.BookingStatus.NONE)
-            {
-                Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-                whatsapp.appid = "a_167149593199252900";
-                whatsapp.deliverychannel = "whatsapp";
-                whatsapp.message = new Core.Whatsapp.Message();
-                whatsapp.message.template = "317661550864529";
-                whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-                whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
-                whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-                whatsapp.destination = new List<Core.Whatsapp.Destination>();
-                Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-                whatsapp.destination.Add(ds);
-                ds.waid = new List<string>();
-                ds.waid.Add(fsr.phoneNo);
-                output = JsonConvert.SerializeObject(whatsapp);
-            }
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(output);
-            }
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }
-            var statuscode = httpResponse.StatusCode;
+            //if (!string.IsNullOrEmpty(fsr.ReturnPNR))
+            //{
+            //    Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //    whatsapp.appid = "a_167149593199252900";
+            //    whatsapp.deliverychannel = "whatsapp";
+            //    whatsapp.message = new Core.Whatsapp.Message();
+            //    whatsapp.message.template = "1494430417783268";
+            //    whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //    whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
+            //    whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //    whatsapp.message.parameters.variable3 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
+            //    whatsapp.message.parameters.variable4 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
+            //    whatsapp.message.parameters.variable5 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
+            //    whatsapp.message.parameters.variable6 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
+            //    whatsapp.message.parameters.variable7 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
+            //    whatsapp.message.parameters.variable8 = fsr.PNR;
+            //    whatsapp.message.parameters.variable9 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
+            //    whatsapp.message.parameters.variable10 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
+            //    whatsapp.message.parameters.variable11 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
+            //    whatsapp.message.parameters.variable12 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
+            //    whatsapp.message.parameters.variable13 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
+            //    whatsapp.message.parameters.variable14 = fsr.ReturnPNR;
+            //    whatsapp.message.parameters.document = new Core.Whatsapp.document();
+            //    whatsapp.message.parameters.document.link = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf";
+            //    whatsapp.message.parameters.document.filename = "e-Ticket";
+            //    whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //    Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //    whatsapp.destination.Add(ds);
+            //    ds.waid = new List<string>();
+            //    ds.waid.Add(fsr.phoneNo);
+            //    output = JsonConvert.SerializeObject(whatsapp);
+            //}
+            //else if (!string.IsNullOrEmpty(fsr.PNR))
+            //{
+            //    Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //    whatsapp.appid = "a_167149593199252900";
+            //    whatsapp.deliverychannel = "whatsapp";
+            //    whatsapp.message = new Core.Whatsapp.Message();
+            //    whatsapp.message.template = "1075029163764892";
+            //    whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //    whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
+            //    whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //    whatsapp.message.parameters.variable3 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin;
+            //    whatsapp.message.parameters.variable4 = fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination;
+            //    whatsapp.message.parameters.variable5 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy");
+            //    whatsapp.message.parameters.variable6 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm");
+            //    whatsapp.message.parameters.variable7 = fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber;
+            //    whatsapp.message.parameters.variable8 = fsr.PNR;
+            //    whatsapp.message.parameters.document = new Core.Whatsapp.document();
+            //    whatsapp.message.parameters.document.link = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf";
+            //    whatsapp.message.parameters.document.filename = "e-Ticket";
+            //    whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //    Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //    whatsapp.destination.Add(ds);
+            //    ds.waid = new List<string>();
+            //    ds.waid.Add(fsr.phoneNo);
+            //    output = JsonConvert.SerializeObject(whatsapp);
+            //}
+            //else if (fsr.bookingStatus == Core.BookingStatus.Failed)
+            //{
+            //    Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //    whatsapp.appid = "a_167149593199252900";
+            //    whatsapp.deliverychannel = "whatsapp";
+            //    whatsapp.message = new Core.Whatsapp.Message();
+            //    whatsapp.message.template = "3381846288779813";
+            //    whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //    whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
+            //    whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //    whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //    Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //    whatsapp.destination.Add(ds);
+            //    ds.waid = new List<string>();
+            //    ds.waid.Add(fsr.phoneNo);
+            //    output = JsonConvert.SerializeObject(whatsapp);
+            //}
+            //else if (fsr.bookingStatus == Core.BookingStatus.InProgress)
+            //{
+            //    Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //    whatsapp.appid = "a_167149593199252900";
+            //    whatsapp.deliverychannel = "whatsapp";
+            //    whatsapp.message = new Core.Whatsapp.Message();
+            //    whatsapp.message.template = "317661550864529";
+            //    whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //    whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
+            //    whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //    whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //    Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //    whatsapp.destination.Add(ds);
+            //    ds.waid = new List<string>();
+            //    ds.waid.Add(fsr.phoneNo);
+            //    output = JsonConvert.SerializeObject(whatsapp);
+            //}
+            //else if (fsr.bookingStatus == Core.BookingStatus.NONE)
+            //{
+            //    Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //    whatsapp.appid = "a_167149593199252900";
+            //    whatsapp.deliverychannel = "whatsapp";
+            //    whatsapp.message = new Core.Whatsapp.Message();
+            //    whatsapp.message.template = "317661550864529";
+            //    whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //    whatsapp.message.parameters.variable1 = fsr.passengerDetails.FirstOrDefault().firstName;
+            //    whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //    whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //    Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //    whatsapp.destination.Add(ds);
+            //    ds.waid = new List<string>();
+            //    ds.waid.Add(fsr.phoneNo);
+            //    output = JsonConvert.SerializeObject(whatsapp);
+            //}
+            //using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            //{
+            //    streamWriter.Write(output);
+            //}
+            //var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    var result = streamReader.ReadToEnd();
+            //}
+            //var statuscode = httpResponse.StatusCode;
         }
 
 
@@ -6188,6 +6179,11 @@ namespace MojoIndia.Controllers
                     }
                     obj.stop = obj.stop.OrderBy(o => o.stop).ToList();
                 }
+                else if (airContext.flightSearchRequest.segment[0].travelDate< DateTime.Today)
+                {
+                    LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\NoResult", "PastDate_" + DateTime.Today.ToString("ddMMMyy"), airContext.flightSearchRequest.userSearchID + ".txt");
+                    obj.redirectURl = "/";
+                }
                 else
                 {
                     LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\NoResult", "NoResult_" + DateTime.Today.ToString("ddMMMyy"), airContext.flightSearchRequest.userSearchID + ".txt");
@@ -6223,14 +6219,10 @@ namespace MojoIndia.Controllers
 
         public JsonResult SaveBookingDetails(string ID, string EmailID, string phoneNo, string GSTNo, string GSTCompany, bool mode)
         {
-            //StringBuilder sbLogger = new StringBuilder();
-            Core.CouponStatusResponse objResponse = new CouponStatusResponse();
+            CouponStatusResponse objResponse = new CouponStatusResponse();
             try
             {
                 AirContext airContext = FlightOperation.GetAirContext(ID);
-
-                //if (priceVerificationRequest.userSearchID != priceVerificationRequest.userLogID)
-                //{
                 StringBuilder sbLogger = new StringBuilder();
                 string pathFlightSearch = System.IO.Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, "NewLog\\Search", airContext.flightSearchRequest.userSearchID + ".txt");
                 if (System.IO.Directory.Exists(pathFlightSearch))
@@ -6261,11 +6253,7 @@ namespace MojoIndia.Controllers
 
                     }
                 }
-                //   new ServicesHub.LogWriter_New(sbLogger.ToString(), priceVerificationRequest.userSearchID, "Search", "");
                 CreateLogFile(sbLogger.ToString(), "NewLog\\Search", airContext.flightSearchRequest.userSearchID + ".txt");
-                //}
-                //new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(priceVerificationRequest), priceVerificationRequest.userSearchID, "Search", "FlightVerification Original Request");
-
 
                 if (airContext.IsBookingCompleted == true)
                 {
@@ -6291,6 +6279,8 @@ namespace MojoIndia.Controllers
                         airContext.flightBookingRequest.bookingID = kk.bookingID;
                         airContext.flightBookingRequest.prodID = kk.prodID;
                         objResponse.BookingID = kk.bookingID;
+                        // groupbooking(phoneNo);
+                        //sendwhatsappAT(phoneNo);
                         CallDeleteFiles();
                         //CreateLogFile(sbLogger.ToString(), "Log\\Passenger", kk.bookingID.ToString() + ".txt");
                         CreateLogFile(sbLogger.ToString(), "NewLog\\Booking", kk.bookingID.ToString() + ".txt");
@@ -6479,7 +6469,8 @@ namespace MojoIndia.Controllers
 
             HttpCookie FMsMedia = new HttpCookie("FMsMediaIndia");
             FMsMedia["sMediaIndia"] = sourceMedia;
-            FMsMedia.Expires = DateTime.Now.AddHours(1);
+            // FMsMedia.Expires = DateTime.Now.AddHours(1);
+            FMsMedia.Expires = DateTime.Now.AddDays(7);
             Response.Cookies.Add(FMsMedia);
         }
         public string GetCookie()
@@ -7145,51 +7136,223 @@ namespace MojoIndia.Controllers
             Core.CouponStatusResponse objResponse = new CouponStatusResponse();
             try
             {
+                //AirContext airContext = FlightOperation.GetAirContext(ID);
+                //if (airContext != null)
+                //{
+                //    if (CouponCode.Equals("INSTAMOJO") || CouponCode.Equals("INSTAMOJOMob"))
+                //    {
+                //        if (airContext.flightBookingRequest.flightResult.Where(k => k.isPreCuponAvailable).ToList().Count > 0)
+                //        {
+                //            airContext.flightBookingRequest.CouponAmount = 0;
+                //            airContext.flightBookingRequest.CouponCode = CouponCode;
+                //            foreach (var item in airContext.flightBookingRequest.flightResult.Where(k => k.isPreCuponAvailable).ToList())
+                //            {
+                //                //      airContext.flightBookingRequest.CouponAmount += airContext.flightBookingRequest.CouponIncreaseAmount <= 0 ? 300m : airContext.flightBookingRequest.CouponIncreaseAmount;
+                //            }
+                //            objResponse.responseStatus.status = TransactionStatus.Success;
+                //            objResponse.CouponAmount = airContext.flightBookingRequest.CouponAmount;
+                //        }
+                //        else
+                //        {
+                //            objResponse.responseStatus.status = TransactionStatus.Error;
+                //            objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                //        }
+                //    }
+
+
+
+                //    else
+                //    {
+                //        airContext.flightBookingRequest.CouponAmount = 0;
+                //        //airContext.flightBookingRequest.sumFare.grandTotal = airContext.flightBookingRequest.sumFare.grandTotal+ airContext.flightBookingRequest.CouponIncreaseAmount;
+                //        objResponse.responseStatus.status = TransactionStatus.Error;
+                //        objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                //    }
+                //}
+                //else
+                //{
+                //    airContext.flightBookingRequest.CouponAmount = 0;
+                //    objResponse.responseStatus.status = TransactionStatus.Error;
+                //    objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                //}
+
+
+
                 AirContext airContext = FlightOperation.GetAirContext(ID);
                 if (airContext != null)
                 {
-                    if (CouponCode.Equals("INSTAMOJO") || CouponCode.Equals("INSTAMOJOMob"))
+                    Core.CouponStatusRequest csr = new Core.CouponStatusRequest
                     {
-                        if (airContext.flightBookingRequest.flightResult.Where(k => k.isPreCuponAvailable).ToList().Count > 0)
-                        {
-                            airContext.flightBookingRequest.CouponAmount = 0;
-                            airContext.flightBookingRequest.CouponCode = CouponCode;
-                            foreach (var item in airContext.flightBookingRequest.flightResult.Where(k => k.isPreCuponAvailable).ToList())
-                            {
-                                //      airContext.flightBookingRequest.CouponAmount += airContext.flightBookingRequest.CouponIncreaseAmount <= 0 ? 300m : airContext.flightBookingRequest.CouponIncreaseAmount;
-                            }
-                            objResponse.responseStatus.status = TransactionStatus.Success;
-                            objResponse.CouponAmount = airContext.flightBookingRequest.CouponAmount;
-                        }
-                        else
-                        {
-                            objResponse.responseStatus.status = TransactionStatus.Error;
-                            objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
-                        }
-                    }
+                        CabinClass = airContext.flightSearchRequest.cabinType,
+                        clientType = Core.ClientType.Web,
+                        CouponCode = CouponCode,
+                        //MCOAmount = (airContext.flightBookingRequest.flightResult.fare.adultMarkup * airContext.flightBookingRequest.adults) +
+                        //    (airContext.flightBookingRequest.flightResult.fare.childMarkup * airContext.flightBookingRequest.child) +
+                        //    (airContext.flightBookingRequest.flightResult.fare.infantMarkup * airContext.flightBookingRequest.infants) +
+                        //    (airContext.flightBookingRequest.flightResult.fare.infantWsMarkup * airContext.flightBookingRequest.infantsWs),
+                        TotalUnit = (airContext.flightBookingRequest.adults + airContext.flightBookingRequest.child + airContext.flightBookingRequest.infants + airContext.flightBookingRequest.infantsWs),
 
-
-
-                    else
+                        SourceMedia = airContext.flightBookingRequest.sourceMedia,
+                        TotalAmount = airContext.flightBookingRequest.sumFare.grandTotal,
+                        TravelDate = airContext.flightBookingRequest.flightResult[0].FlightSegments[0].Segments[0].DepTime
+                    };
+                    new Bal.BalCoupon().ValidateCoupon(csr, ref objResponse);
+                    if (objResponse.responseStatus.status == TransactionStatus.Success)
                     {
-                        airContext.flightBookingRequest.CouponAmount = 0;
-                        //airContext.flightBookingRequest.sumFare.grandTotal = airContext.flightBookingRequest.sumFare.grandTotal+ airContext.flightBookingRequest.CouponIncreaseAmount;
-                        objResponse.responseStatus.status = TransactionStatus.Error;
-                        objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                        airContext.flightBookingRequest.CouponAmount = objResponse.CouponAmount;
+                        airContext.flightBookingRequest.CouponCode = CouponCode;
                     }
+                    //    new Bal.FlightDetails().SaveFlightSessionData(airContext.flightSearchRequest.userSearchID, airContext);
                 }
                 else
                 {
-                    airContext.flightBookingRequest.CouponAmount = 0;
                     objResponse.responseStatus.status = TransactionStatus.Error;
                     objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
                 }
+
+
             }
             catch (Exception ex)
             {
                 new LogWriter(ex.ToString(), "Error18_" + DateTime.Today.ToString("ddMMyy"), "Error");
                 objResponse.responseStatus.status = TransactionStatus.Error;
                 objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CheckCouponNew(string ID, string CouponCode)
+        {
+            Core.CouponStatusResponse objResponse = new CouponStatusResponse();
+            objResponse.responseStatus.status = TransactionStatus.Error;
+            objResponse.responseStatus.message = "Invalid Coupon!!";
+            try
+            {
+
+                AirContext airContext = FlightOperation.GetAirContext(ID);
+                if (airContext != null)
+                {
+                    CouponDetail cd = new DAL.dalCoupon().GetCouponData(CouponCode);
+                    if (cd != null && cd.isActive)
+                    {
+                        ResponseStatus responseStatus = new ResponseStatus();
+                        if (cd.isValidateSourceMedia)
+                        {
+                            if (!cd.sourceMedia.Equals(airContext.flightBookingRequest.sourceMedia, StringComparison.OrdinalIgnoreCase))
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByEmail)
+                        {
+                            if (!cd.emailID.Equals(airContext.flightBookingRequest.emailID, StringComparison.OrdinalIgnoreCase))
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByCount)
+                        {
+                            if (cd.noOfCoupon <= cd.totalConsume)
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByNoOfPax)
+                        {
+                            if (cd.noOfPax > (airContext.flightBookingRequest.adults + airContext.flightBookingRequest.child + airContext.flightBookingRequest.infants))
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Coupon is valid for " + cd.noOfPax + " or more passengers!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByTotalAmt)
+                        {
+                            if (airContext.flightBookingRequest.sumFare.grandTotal < cd.minAmount)
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Coupon is valid for minimum booking Amount" + cd.minAmount + "!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByCabinClass)
+                        {
+                            if (airContext.flightSearchRequest.cabinType != cd.cabinClass)
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByAirline)
+                        {
+                            if (!airContext.flightBookingRequest.flightResult[0].FlightSegments[0].Segments[0].Airline.Equals(cd.airline))
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByBookingDate)
+                        {
+                            if (cd.bookingDateFrom < DateTime.Today || cd.bookingDateTo > DateTime.Today)
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidateByTravelDate)
+                        {
+                            if (cd.travelDateFrom < airContext.flightBookingRequest.flightResult[0].FlightSegments[0].Segments[0].DepTime || cd.travelDateTo > airContext.flightBookingRequest.flightResult[0].FlightSegments[0].Segments[0].DepTime)
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        if (responseStatus.status == TransactionStatus.Success && cd.isValidationByUTFCampaign)
+                        {
+                            if (!cd.UTFCampaign.Equals(airContext.flightBookingRequest.utm_campaign, StringComparison.OrdinalIgnoreCase))
+                            {
+                                responseStatus.status = TransactionStatus.Error;
+                                responseStatus.message = "Invalid Coupon!!";
+                            }
+                        }
+                        objResponse.responseStatus = responseStatus;
+                    }
+
+                    if (objResponse.responseStatus.status == TransactionStatus.Success)
+                    {
+                        if (cd.isLessConvenceFee)
+                        {
+                            objResponse.isLessConvenceFee = true;
+                        }
+                        if (cd.amountType == CouponAmountType.Flat)
+                        {
+                            objResponse.CouponAmount = cd.couponAmount;
+                        }
+                        else
+                        {
+                            objResponse.CouponAmount = airContext.flightBookingRequest.sumFare.grandTotal * (cd.couponAmount / 100);
+                        }
+                        airContext.flightBookingRequest.CouponAmount = objResponse.CouponAmount;
+                        airContext.flightBookingRequest.CouponCode = CouponCode;
+
+                    }
+                }
+                else
+                {
+                    objResponse.responseStatus.status = TransactionStatus.Error;
+                    objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                    airContext.flightBookingRequest.responseStatus.message = objResponse.responseStatus.message;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                new LogWriter(ex.ToString(), "Error18_" + DateTime.Today.ToString("ddMMyy"), "Error");
+                objResponse.responseStatus.status = TransactionStatus.Error;
+                objResponse.responseStatus.message = "Invalide coupon, Please try another coupon.";
+                //airContext.flightBookingRequest.responseStatus.message = objResponse.responseStatus.message;
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
@@ -7315,41 +7478,41 @@ namespace MojoIndia.Controllers
         }
         private void sendInCompletewhatsapp(FlightBookingRequest fsr)
         {
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            var url = "https://api.imiconnect.in/resources/v1/messaging";
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/json";
-            httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
-            string output = string.Empty;
+            //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            //var url = "https://api.imiconnect.in/resources/v1/messaging";
+            //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            //httpRequest.Method = "POST";
+            //httpRequest.ContentType = "application/json";
+            //httpRequest.Headers["key"] = "30127004-37da-11ed-baaa-02e28ff40276";
+            //string output = string.Empty;
 
-            string urllink = "https://www.flightsmojo.in" + fsr.deepLink;
-            Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
-            whatsapp.appid = "a_167149593199252900";
-            whatsapp.deliverychannel = "whatsapp";
-            whatsapp.message = new Core.Whatsapp.Message();
+            //string urllink = "https://www.flightsmojo.in" + fsr.deepLink;
+            //Core.Whatsapp.WA whatsapp = new Core.Whatsapp.WA();
+            //whatsapp.appid = "a_167149593199252900";
+            //whatsapp.deliverychannel = "whatsapp";
+            //whatsapp.message = new Core.Whatsapp.Message();
 
-            whatsapp.message.template = "6878282908957621";
-            whatsapp.message.parameters = new Core.Whatsapp.Parameters();
-            whatsapp.message.parameters.variable1 = "Brij";
-            whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
-            whatsapp.destination = new List<Core.Whatsapp.Destination>();
-            Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
-            whatsapp.destination.Add(ds);
-            ds.waid = new List<string>();
-            ds.waid.Add(fsr.phoneNo);
-            output = JsonConvert.SerializeObject(whatsapp);
+            //whatsapp.message.template = "6878282908957621";
+            //whatsapp.message.parameters = new Core.Whatsapp.Parameters();
+            //whatsapp.message.parameters.variable1 = "Brij";
+            //whatsapp.message.parameters.variable2 = fsr.bookingID.ToString();
+            //whatsapp.destination = new List<Core.Whatsapp.Destination>();
+            //Core.Whatsapp.Destination ds = new Core.Whatsapp.Destination();
+            //whatsapp.destination.Add(ds);
+            //ds.waid = new List<string>();
+            //ds.waid.Add(fsr.phoneNo);
+            //output = JsonConvert.SerializeObject(whatsapp);
 
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(output);
-            }
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }
-            var statuscode = httpResponse.StatusCode;
+            //using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            //{
+            //    streamWriter.Write(output);
+            //}
+            //var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    var result = streamReader.ReadToEnd();
+            //}
+            //var statuscode = httpResponse.StatusCode;
         }
 
         public Device GetDevice()
@@ -7369,5 +7532,222 @@ namespace MojoIndia.Controllers
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
-    }
+        #region AirtelWhatsApp
+
+        public static string BasicAuth = "";
+        private void sendwhatsapp(FlightBookingResponse fsr)
+        {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            var url = ConfigurationManager.AppSettings["UrlWhatsapp"];
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/json";
+            httpRequest.Headers["Authorization"] = ConfigurationManager.AppSettings["WhatsappAuth"]; ;
+            string output = string.Empty;
+
+            if (!string.IsNullOrEmpty(fsr.ReturnPNR))
+            {
+                Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+                {
+                    templateId = ConfigurationManager.AppSettings["TempIdRoundTrip"],
+                    from = ConfigurationManager.AppSettings["FromNo"],
+                    to = fsr.phoneNo,
+                    message = new Core.Whatsapp.Message()
+                    {
+                        variables = new List<string>()
+                    },
+                    mediaAttachment = new Core.Whatsapp.MediaAttachment() { type = "DOCUMENT", url = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf", fileName = "e-Ticket" }
+                };
+                whatsapp.message.variables.Add(fsr.passengerDetails.FirstOrDefault().firstName);
+                whatsapp.message.variables.Add(fsr.bookingID.ToString());
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy"));
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm"));
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber);
+                whatsapp.message.variables.Add(fsr.PNR);
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy"));
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm"));
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber);
+                whatsapp.message.variables.Add(fsr.ReturnPNR);
+                output = JsonConvert.SerializeObject(whatsapp);
+            }
+            else if (!string.IsNullOrEmpty(fsr.PNR))
+            {
+                Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+                {
+                    templateId = ConfigurationManager.AppSettings["TempIdOneWay"],
+                    from = ConfigurationManager.AppSettings["FromNo"],
+                    to = fsr.phoneNo,
+                    message = new Core.Whatsapp.Message()
+                    {
+                        variables = new List<string>()
+                    },
+                    mediaAttachment = new Core.Whatsapp.MediaAttachment() { type = "DOCUMENT", url = GlobalData.URL + "/Uploadedpdf/" + fsr.bookingID + ".pdf", fileName = "e-Ticket" }
+                };
+                whatsapp.message.variables.Add(fsr.passengerDetails.FirstOrDefault().firstName);
+                whatsapp.message.variables.Add(fsr.bookingID.ToString());
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin);
+                whatsapp.message.variables.Add(fsr.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination);
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd MMM yy"));
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("hh:mm"));
+                whatsapp.message.variables.Add(fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + fsr.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber);
+                whatsapp.message.variables.Add(fsr.PNR);
+                output = JsonConvert.SerializeObject(whatsapp);
+            }
+            else if (fsr.bookingStatus == Core.BookingStatus.Failed)
+            {
+                Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+                {
+                    templateId = ConfigurationManager.AppSettings["TempIdFailed"],
+                    from = ConfigurationManager.AppSettings["FromNo"],
+                    to = fsr.phoneNo,
+                    message = new Core.Whatsapp.Message()
+                    {
+                        variables = new List<string>()
+                    }
+                };
+                whatsapp.message.variables.Add(fsr.passengerDetails.FirstOrDefault().firstName);
+                whatsapp.message.variables.Add(fsr.bookingID.ToString());
+                output = JsonConvert.SerializeObject(whatsapp);
+            }
+            else if (fsr.bookingStatus == Core.BookingStatus.InProgress || fsr.bookingStatus == Core.BookingStatus.NONE)
+            {
+                Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+                {
+                    templateId = ConfigurationManager.AppSettings["TempIdInProgress"],
+                    from = ConfigurationManager.AppSettings["FromNo"],
+                    to = fsr.phoneNo,
+                    message = new Core.Whatsapp.Message()
+                    {
+                        variables = new List<string>()
+                    }
+                };
+                whatsapp.message.variables.Add(fsr.passengerDetails.FirstOrDefault().firstName);
+                whatsapp.message.variables.Add(fsr.bookingID.ToString());
+                output = JsonConvert.SerializeObject(whatsapp);
+            }
+            else if (fsr.bookingStatus == Core.BookingStatus.NONE)
+            {
+                Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+                {
+                    templateId = ConfigurationManager.AppSettings["TempIdInProgress"],
+                    from = ConfigurationManager.AppSettings["FromNo"],
+                    to = fsr.phoneNo,
+                    message = new Core.Whatsapp.Message()
+                    {
+                        variables = new List<string>()
+                    }
+                };
+                whatsapp.message.variables.Add(fsr.passengerDetails.FirstOrDefault().firstName);
+                whatsapp.message.variables.Add(fsr.bookingID.ToString());
+                output = JsonConvert.SerializeObject(whatsapp);
+            }
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(output);
+            }
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            var statuscode = httpResponse.StatusCode;
+            CreateLogFile(output, "Log\\whatsapp", fsr.bookingID.ToString() + ".txt");
+        }
+        public void groupbookingmsg(FlightBookingResponse fsr)
+        {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            var url = ConfigurationManager.AppSettings["UrlWhatsapp"];
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/json";
+            httpRequest.Headers["Authorization"] = ConfigurationManager.AppSettings["WhatsappAuth"];
+            string output = string.Empty;
+            var result = "";
+
+            Core.Whatsapp.AirtelWhatsapp whatsapp = new Core.Whatsapp.AirtelWhatsapp()
+            {
+                templateId = ConfigurationManager.AppSettings["TempIdGroupBooking"],
+                from = ConfigurationManager.AppSettings["FromNo"],
+                to = fsr.phoneNo//fsr
+                                //    to = fsr
+            };
+
+            output = JsonConvert.SerializeObject(whatsapp);
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(output);
+            }
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            var statuscode = httpResponse.StatusCode;
+            CreateLogFile(output, "Log\\whatsapp", "GB"+fsr.bookingID.ToString() + ".txt");
+        }
+        public void GetBasicAuth()
+        {
+            //var strResponse = GetTokenResponse((ConfigurationManager.AppSettings["Url"]), new Core.Whatsapp.LoginDetails);
+            //Ease2FlyClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.TokenResponse>(strResponse);
+            //AuthToken = res.result.token;
+        }
+        private string GetTokenResponse(string url, string requestData)
+        {
+            string response = string.Empty;
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
+                byte[] data = Encoding.UTF8.GetBytes(requestData);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(data, 0, data.Length);
+                dataStream.Close();
+                WebResponse webResponse = request.GetResponse();
+                var rsp = webResponse.GetResponseStream();
+                using (StreamReader reader = new StreamReader(rsp))
+                {
+                    response = reader.ReadToEnd();
+                }
+                return response;
+            }
+            catch (WebException webEx)
+            {
+                if (webEx != null && webEx.Response != null)
+                {
+                    //new ServicesHub.LogWriter_New(webEx.ToString(), "E2F GetTokenResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+                    }
+                }
+            }
+            return response;
+        }
+        #endregion
+
+
+        public ActionResult Coupon()
+        {
+            return View();
+        }
+        }
 }
