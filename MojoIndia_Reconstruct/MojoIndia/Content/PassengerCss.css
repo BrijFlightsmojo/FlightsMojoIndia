@@ -183,7 +183,7 @@ input[type=checkbox], input[type=radio] {box-sizing: border-box;padding: 0;}
 .width100{width:100%; float:left; margin:0; padding:0;}
 .width50{width:49%; float:left;  padding:0;}
 .width50> label{ width:100%;}
-.width20{width:19%; float:left; margin:0; padding:0; margin-right:8px;height:38px;}
+.width20{width:19%!important; float:left; margin:0; padding:0; margin-right:8px;height:38px;}
 .width20> span{padding:6px; display:inline-block;}
 .width80{width:78%; float:left; margin:0; padding:0;}
 .modal-boxfm {display: none;position: absolute;z-index: 1000;width: 98%;background: white;border-bottom: 1px solid #aaa;border-radius: 4px;box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);

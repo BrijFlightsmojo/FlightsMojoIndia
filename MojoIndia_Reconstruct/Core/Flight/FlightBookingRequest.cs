@@ -188,6 +188,7 @@ namespace Core.Flight
         public string BookingKey { get; set; }
         [DataMember]
         public string tinyUrlID { get; set; }
+        [DataMember]
+        public string CouponCodeMob { get; set; }
     }
-
 }

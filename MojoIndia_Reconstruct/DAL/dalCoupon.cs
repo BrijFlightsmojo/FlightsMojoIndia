@@ -143,7 +143,13 @@ namespace DAL
                         
                           
                             data.isActive = string.IsNullOrEmpty(reader["isActive"].ToString()) ? false : Convert.ToBoolean(reader["isActive"]);
-                                                      
+
+                            data.TripType = (TripType)(string.IsNullOrEmpty(reader["TripType"].ToString()) ? 0 : Convert.ToInt32(reader["TripType"]));
+                            data.TravelType = (TravelType)(string.IsNullOrEmpty(reader["TravelType"].ToString()) ? 0 : Convert.ToInt32(reader["TravelType"]));
+
+                            data.isValidTripType = string.IsNullOrEmpty(reader["isValidateByTripType"].ToString()) ? false : Convert.ToBoolean(reader["isValidateByTripType"]);
+                            data.isValidTravelType = string.IsNullOrEmpty(reader["isValidateByTravelType"].ToString()) ? false : Convert.ToBoolean(reader["isValidateByTravelType"]);
+
                         }
                     }
                     else

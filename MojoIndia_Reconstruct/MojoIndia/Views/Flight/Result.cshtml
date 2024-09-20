@@ -10,6 +10,7 @@
 {
     <title>Flights Searching: Flightsmojo in Travel Deals, Cheap Flight Deals, Airline Deals</title>
     <link href="/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="/Content/popstyle.css" rel="stylesheet" />
 }
 <style>
     .logo a img {
@@ -1301,7 +1302,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3"></div>
-                    <div class="col-md-6 session-exp no_padding">
+                    <div class=" session-exp no_padding">
                         <h2 class="session-head"> Session expired</h2>
                         <div class="session_content">
                             <h3 class="text-center t-color2"><img src="/images/clock_red.svg" alt="icon" />@*<i class="fa fa-clock-o"></i>*@Your Session has expired</h3><br />
@@ -2206,7 +2207,9 @@
                 'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
                 'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
                 'passenger_count': totpax,
-                'airline_class': $("#Cabin option:selected").text()
+                'airline_class': $("#Cabin option:selected").text(),
+                //'airline_name':'',
+                //'flight_code':'',
             });
         }
     </script>
@@ -2236,6 +2239,25 @@
 
 
     <script>
+        //function flight_detail() {
+        //    var adult = parseInt($("#Adult").val());
+        //    var child = parseInt($("#Child").val());
+        //    var infant = parseInt($("#Infant").val());
+        //    var totpax = adult + child + infant;
+        //    window.dataLayer = window.dataLayer || [];
+        //    window.dataLayer.push({
+        //        'event': 'flight_listing',
+        //        'link_name': 'flight detail',
+        //        'origin_city': $("#hfCity_from").val(),
+        //        'destination_city': $("#hfCity_to").val(),
+        //        'depart_date': $("#departure_date").val(),
+        //        'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+        //        'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+        //        'passenger_count': totpax,
+        //        'airline_class': $("#Cabin option:selected").text()
+        //    });
+        //}
+
         function flight_detail() {
             var adult = parseInt($("#Adult").val());
             var child = parseInt($("#Child").val());
@@ -2243,15 +2265,21 @@
             var totpax = adult + child + infant;
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                'event': 'flight_listing',
-                'link_name': 'flight detail',
+                'event': 'view_item',
+                'link_name': 'view item',
                 'origin_city': $("#hfCity_from").val(),
-                'destination_city': $("#hfCity_to").val(),
+                'destination_city':$("#hfCity_to").val(),
                 'depart_date': $("#departure_date").val(),
                 'return_date': $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
-                'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
+                'type':$("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
                 'passenger_count': totpax,
-                'airline_class': $("#Cabin option:selected").text()
+                //'airline_class': $("#Cabin option:selected").text(),
+                'depart_airline_class': $("#Cabin option:selected").text(),
+                'depart_airline_name':$("#Departure_Brand").val(),
+                'depart_flight_code':$("#depFlightNo").val(),
+                'return_airline_class':$("#Cabin option:selected").text(),
+                'return_airline_name':$("#Return_Brand").val(),
+                'return_flight_code':$("#Return_Flight_number").val(),
             });
         }
     </script>
@@ -2473,33 +2501,24 @@
             var infant = parseInt($("#Infant").val());
             var totpax = adult + child + infant;
 
-            var departure_date = new Date($("#departure_date").val());
-            var str_departure_date =new Date(departure_date.toISOString());
-
             fbq('track', 'Search', {
-                //content_type: 'flight',
-                //search_string: 'Flights from' +$("#hfCity_from").val() +'to'+$("#hfCity_to").val(),
-                //origin_airport: $("#hfCity_from").val(),
-                //destination_airport: $("#hfCity_to").val(),
-                //departing_departure_date: $("#departure_date").val(),
-                //returning_departure_date:  $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
-                //number_of_passengers: totpax, 
-                //travel_class: $("#Cabin option:selected").text(),
-
-
                 content_type: 'flight',
-                departing_departure_date:  '2024-12-12',
-                returning_departure_date:  '2024-12-12',
+                search_string: 'Flights from' +$("#hfCity_from").val() +'to'+$("#hfCity_to").val(),
                 origin_airport: $("#hfCity_from").val(),
-                destination_airport:  $("#hfCity_to").val(),
-                departing_arrival_date: '2024-12-12',
-                returning_arrival_date: '2024-12-12',
-                num_adults: $("#Adult").val(),
-                num_children: $("#Child").val(),
-                num_infants: $("#Infant").val(),
-                travel_class :  $("#Cabin option:selected").text(),
-                price :  $("#FBfare").val(),
-                currency: 'INR'
+                destination_airport: $("#hfCity_to").val(),
+                departing_departure_date: $("#departure_date").val(),
+                returning_departure_date:  $("#hfTripType").val() == "2" ? $("#return_date").val() : "",
+                number_of_passengers: totpax, 
+                travel_class: $("#Cabin option:selected").text(),
+
+
+                //content_type:'flight',
+                //departing_departure_date:'2024-12-25',
+                //returning_departure_date:'2024-12-25',
+                //origin_airport:$("#hfCity_from").val(),
+                //destination_airport:$("#hfCity_to").val(),
+                //departing_arrival_date:'2024-12-25',
+                //returning_arrival_date:'2024-12-25'
             });
         }
     </script>

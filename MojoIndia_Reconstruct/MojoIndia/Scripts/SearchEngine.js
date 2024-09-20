@@ -163,7 +163,7 @@ function submitForm() {
 
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                'event': 'search',
+                'event': 'Search',
                 'link_name': 'search click',
                 'origin_city': $("#hfCity_from").val(),
                 'destination_city': $("#hfCity_to").val(),
@@ -172,6 +172,7 @@ function submitForm() {
                 'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
                 'passenger_count': totpax,
                 'airline_class': $("#Cabin option:selected").text()
+
             });
 
             webengage.track("Flight searched", {

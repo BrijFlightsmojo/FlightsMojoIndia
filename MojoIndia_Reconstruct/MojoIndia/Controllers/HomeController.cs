@@ -655,7 +655,8 @@ namespace MojoIndia.Controllers
             sourceMedia = bNum ? intSmedia.ToString() : "1000";
             HttpCookie FMsMedia = new HttpCookie("FMsMediaIndia");
             FMsMedia["sMediaIndia"] = sourceMedia;
-            FMsMedia.Expires = DateTime.Now.AddHours(1);
+            // FMsMedia.Expires = DateTime.Now.AddHours(1);
+            FMsMedia.Expires = DateTime.Now.AddDays(7);
             Response.Cookies.Add(FMsMedia);
         }
         public string GetCookie()
@@ -707,11 +708,11 @@ namespace MojoIndia.Controllers
                     fsr.utm_medium = "retrageting";
                     fsr.utm_campaign = "webengage";
                     Core.Flight.AirContext airContext = new Core.Flight.AirContext(fsr.userIP);
-                 
+
                     airContext.flightSearchRequest = fsr;
                     airContext.IsSearchCompleted = false;
                     airContext.flightRef = new List<string>();
-                   
+
                     FlightOperation.SetAirContext(airContext);
                     return Redirect("/Flight/Result/" + fsr.userSearchID);
                 }

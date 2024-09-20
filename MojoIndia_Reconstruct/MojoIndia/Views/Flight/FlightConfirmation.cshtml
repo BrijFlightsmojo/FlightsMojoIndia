@@ -198,11 +198,11 @@
                 var DepArrivalDate = new Date(@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Year,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Month-1,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Day);
                 var str_DepArrDate = new Date(DepArrivalDate.toISOString());
 
-                var RetTime = new Date(@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Year,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Month-1,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Day);
-                var str_RetTime = "";
+                var RetTime = new Date(@DateTime.Today.Year,@DateTime.Today.Month-1,@DateTime.Today.Day);
+                var str_RetTime = new Date(RetTime.toISOString());
 
-                var RetArrDate = new Date(@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Year,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Month-1,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Day);
-                var str_RetArrDate = "";
+                var RetArrDate = new Date(@DateTime.Today.Year,@DateTime.Today.Month-1,@DateTime.Today.Day);
+                var str_RetArrDate = new Date(RetArrDate.toISOString());
 
             }
             else
@@ -228,7 +228,7 @@
                 'Departure class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
                 'Return class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString() : "")',
                 'Layover':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().layOverTime >0 ? true : false)',
-               
+
                 'Departure Date':str_DepTime,
                 'Departure arrival date':str_DepArrDate,
                 'Return Date':str_RetTime,
@@ -246,7 +246,7 @@
                 'Return duration':'@(Model.flightResult.Count() == 2 ? (Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Duration / 60) + "h" + (Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration % 60) + "mins" : "")',
                 'Promocode':'INSTAMOJO',
                 //'Mode of Payment':$('[name="payment"]:radio:checked').val(),
-                'Total Price':'@Model.sumFare.grandTotal',
+                'Total Price':'@Model.sumFare.grandTotal.ToString("f2")',
                 'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
                 'Extended Cancellation Policy Fee':'@Model.CancellaionPolicyAmt',
                 'Extended Airline Refund Assurance Fee':'@Model.RefundPolicyAmt',
@@ -256,9 +256,9 @@
             });
         }
     </script>
-      
+
     <script>
-        webengage.user.logout();
+       webengage.user.logout();
     </script>
 
 
@@ -279,6 +279,8 @@
 
         fbq('track', 'Purchase', {
             content_type: 'flight',
+			content_ids: '@Model.userSearchID',
+            booking_id:'@Model.bookingID',
             departing_departure_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
             returning_departure_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',
             origin_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
@@ -293,13 +295,9 @@
             value: @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2"))),
         });
 
-
-
-
-
-
     </script>
-
+	
+	
     @*value: @(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.conveniencefee)-CouponAmount).ToString("f2")),+ Model.sumFare.Tax + Model.sumFare.Markup *@
     <!-- Google Tag Manager -->
 

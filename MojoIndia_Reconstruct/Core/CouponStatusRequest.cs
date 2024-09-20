@@ -98,6 +98,10 @@ namespace Core
         public int updatedBy { get; set; }
         public DateTime updatedOn { get; set; }
         public string Counter { get; set; }
+        public bool isValidTripType { get; set; }
+        public bool isValidTravelType { get; set; }
+        public TripType TripType { get; set; }
+        public TravelType TravelType { get; set; }
 
 
     }

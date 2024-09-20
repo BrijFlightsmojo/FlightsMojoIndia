@@ -4,40 +4,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 @section AdditionalMeta{
-    @*<title>@Model.PageTitle</title>
-    <meta name="description" content="@Model.MetaDescription" />
-    <meta name="keywords" content="@Model.MetaKeyWord" />
-    <link rel="canonical" href="https://www.flightsmojo.in/city/cheap-flights-to-@(Model.CityName.Trim().Replace(" ","-") + "-" + Model.CityCode)" />
+    <title>Flight Ticket Coupon Code on Flightsmojo use @(ViewBag.CouponCode.ToUpper()) </title>
+    <meta name="description" content="Book your flight with FlightsMojo and enjoy the instant discount CouponCode @(ViewBag.CouponCode.ToUpper()). Online Flight Tickets for Domestic & International across India." />
+    <meta name="keywords" content="Flight Booking, Cheap alight ticket, domestic flight, international flight, Offer,  CouponCode @(ViewBag.CouponCode.ToUpper())." />
+    <link rel="canonical" href="https://www.flightsmojo.in/coupon/@(ViewBag.CouponCode)" />
     <meta name="author" content="Flights Mojo" />
     <meta name="language" content="en" />
     <meta name="robots" content="INDEX, FOLLOW" />
     <meta name="Copyright" content="https://www.flightsmojo.in/" />
-    <meta property="og:title" content="@Model.PageTitle" />
-    <meta property="og:description" content="@Model.MetaDescription" />
-    <meta property="og:url" content="https://www.flightsmojo.in/city/cheap-flights-to-@(Model.CityName.Trim().Replace(" ","-") + "-" + Model.CityCode)" />
+    <meta property="og:title" content="Flight Ticket Coupon Code on Flightsmojo use @(ViewBag.CouponCode.ToUpper())" />
+        <meta property="og:description" content="Book your flight with FlightsMojo and enjoy the instant discount CouponCode @(ViewBag.CouponCode.ToUpper()). Online Flight Tickets for Domestic & International across India." />
+    <meta property="og:url" content="https://www.flightsmojo.in/coupon/@(ViewBag.CouponCode)" />
     <meta property="og:type" content="Travel Agency" />
-    <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />*@
+    <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />
 }
+
+
+
+
+
+
 <style>
-   @@media screen and (max-width: 767px) {
-    .add_Banner {
-       
-       display: none;
+    @@media screen and (max-width: 767px) {
+        .add_Banner {
+            display: none;
+        }
     }
-}
 </style>
 
 <main>
-    
+
 
     <section class="banner_section" style="background:#6dc0e5;    position: relative;">
         <div class="container ">
             <div class="row ">
 
 
-              @{ Html.RenderPartial("~/Views/Shared/SearchEngine.cshtml");}
+                @{ Html.RenderPartial("~/Views/Shared/SearchEngine.cshtml");}
 
 
             </div>
@@ -61,76 +65,36 @@
             <div class="row">
                 <div class="coupon_leftCon">
                     <div class="coupon_leftTop">
-                       
+
                         <div class="dicount_heading">
                             <h1>Explore Your Beloved Destination with this Coupon Discount. Make haste now!</h1>
                         </div>
                         <div class="discont_desg">
                             <div class="dicount_code">
-                                <div class="Code_Top">Promo Code</div>                      
+                                <div class="Code_Top">Promo Code</div>
 
                                 <span class="cop_Dashed"></span>
                                 <div class="Code_Bottom">@ViewBag.CouponCode <span onclick="CopyText()" id="CopyText"><img src="~/images/copywhite.svg" /></span> </div>
                             </div>
                         </div>
 
-                        
+
                     </div>
                     <div class="clearfix"></div>
                     @if (ViewBag.CouponCode != null)
                     {
-                        if (ViewBag.CouponCode.Equals("FM10DOM"))
-                        {
-                            <div class="discount_content">
-                            <h2>What’s in it for you?</h2>
-                            <ul>
-                                <li>Enjoy up to 10% off on all domestic flight bookings with Flights Mojo.</li>
-                            </ul>
-                            </div>
-                            <div class="discount_content">
-                            <h2>How to Claim Your Discount?</h2>
-                            <ul>
-                                <li>Simply apply the coupon code FM10DOM at checkout, and the discount will be automatically applied to your booking.</li>
-                                
-                            </ul>
-                            </div>
-                            <div class="discount_content">
-                            <h2>Are there any other important facts to be aware of?</h2>
-                            
-                            <ul>
-                                <li>The discount is valid on all domestic flights, but the maximum discount you can avail is ₹300. This offer can be used by all customers once per transaction.</li>
-                                <li>Applicable only on domestic flight bookings.</li>
-                                <li>Maximum discount of ₹300 per booking.</li>
-                                <li>Valid for 30 days from issuance.</li>
-                                <li>Cannot be combined with other promotions or offers.</li>
-                            </ul>
-                            </div>
-                            <div class="discount_content">
-                            <h2>General Terms & Conditions:</h2>
-
-                            <ul>
-                                <li>The coupon codes are valid for online bookings made via the Flights Mojo website or mobile app.</li>
-                                <li>Discounts are applicable only to the base fare and not on taxes, fees, or surcharges.</li>
-                                <li>Flights Mojo reserves the right to modify or cancel the offer at any time.</li>
-                                <li>In case of cancellations, the coupon discount will not be refunded.</li>
-                                <li>Misuse of the coupon code, such as unauthorized or fraudulent use, may lead to disqualification from future offers.</li>
-                                <li>Coupon codes are subject to availability and Flights Mojo's discretion.</li>
-                                
-                            </ul>
-                            </div>
-                        }
-                        else if (ViewBag.CouponCode.Equals("LOYALTY25"))
+                        if (ViewBag.CouponCode.Equals("FM10DOM", StringComparison.OrdinalIgnoreCase))
                         {
                             <div class="discount_content">
                                 <h2>What’s in it for you?</h2>
                                 <ul>
-                                    <li>Get up to 15% off on all international flight bookings and travel the world for less!</li>
+                                    <li>Enjoy up to 10% off on all domestic flight bookings with Flights Mojo.</li>
                                 </ul>
                             </div>
                             <div class="discount_content">
                                 <h2>How to Claim Your Discount?</h2>
                                 <ul>
-                                    <li>Enter the coupon code LOYALTY25 during checkout, and the discount will be applied to your total booking amount.</li>
+                                    <li>Simply apply the coupon code FM10DOM at checkout, and the discount will be automatically applied to your booking.</li>
 
                                 </ul>
                             </div>
@@ -138,12 +102,11 @@
                                 <h2>Are there any other important facts to be aware of?</h2>
 
                                 <ul>
-                                    <li>The coupon is applicable to all international flights, and the maximum discount you can avail is ₹1,500. It is valid for both new and returning customers.</li>
-                                    <li>Applicable only on international flight bookings.</li>
-                                    <li>Maximum discount of ₹1,500 per booking.</li>
-                                    <li>Coupon valid for 30 days from issuance.</li>
+                                    <li>The discount is valid on all domestic flights, but the maximum discount you can avail is ₹300. This offer can be used by all customers once per transaction.</li>
+                                    <li>Applicable only on domestic flight bookings.</li>
+                                    <li>Maximum discount of ₹300 per booking.</li>
+                                    <li>Valid for 30 days from issuance.</li>
                                     <li>Cannot be combined with other promotions or offers.</li>
-                                    
                                 </ul>
                             </div>
                             <div class="discount_content">
@@ -160,7 +123,48 @@
                                 </ul>
                             </div>
                         }
-                        else if (ViewBag.CouponCode.Equals("FM5ALL"))
+                        else if (ViewBag.CouponCode.Equals("FM15INT", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <div class="discount_content">
+                                <h2>What’s in it for you?</h2>
+                                <ul>
+                                    <li>Get up to 15% off on all international flight bookings and travel the world for less!</li>
+                                </ul>
+                            </div>
+                            <div class="discount_content">
+                                <h2>How to Claim Your Discount?</h2>
+                                <ul>
+                                    <li>Enter the coupon code FM15INT during checkout, and the discount will be applied to your total booking amount.</li>
+
+                                </ul>
+                            </div>
+                            <div class="discount_content">
+                                <h2>Are there any other important facts to be aware of?</h2>
+
+                                <ul>
+                                    <li>The coupon is applicable to all international flights, and the maximum discount you can avail is ₹1,500. It is valid for both new and returning customers.</li>
+                                    <li>Applicable only on international flight bookings.</li>
+                                    <li>Maximum discount of ₹1,500 per booking.</li>
+                                    <li>Coupon valid for 30 days from issuance.</li>
+                                    <li>Cannot be combined with other promotions or offers.</li>
+
+                                </ul>
+                            </div>
+                            <div class="discount_content">
+                                <h2>General Terms & Conditions:</h2>
+
+                                <ul>
+                                    <li>The coupon codes are valid for online bookings made via the Flights Mojo website or mobile app.</li>
+                                    <li>Discounts are applicable only to the base fare and not on taxes, fees, or surcharges.</li>
+                                    <li>Flights Mojo reserves the right to modify or cancel the offer at any time.</li>
+                                    <li>In case of cancellations, the coupon discount will not be refunded.</li>
+                                    <li>Misuse of the coupon code, such as unauthorized or fraudulent use, may lead to disqualification from future offers.</li>
+                                    <li>Coupon codes are subject to availability and Flights Mojo's discretion.</li>
+
+                                </ul>
+                            </div>
+                        }
+                        else if (ViewBag.CouponCode.Equals("FM5ALL", StringComparison.OrdinalIgnoreCase))
                         {
                             <div class="discount_content">
                                 <h2>What’s in it for you?</h2>
@@ -184,7 +188,7 @@
                                     <li>Maximum discount of ₹200 per booking.</li>
                                     <li>Valid for 30 days from issuance.</li>
                                     <li>Cannot be combined with other offers or promotions.</li>
-                                                                        
+
                                 </ul>
                             </div>
                             <div class="discount_content">
@@ -221,7 +225,7 @@
 
                                 <ul>
                                     <li>This coupon is exclusively for users who have previously booked with Flights Mojo and have a minimum booking amount of ₹2,000. It is a one-time offer.</li>
-                                    
+
                                 </ul>
                             </div>
                             <div class="discount_content">
@@ -240,14 +244,8 @@
                         }
 
                     }
-                   
+
                 </div>
-                @*<div class="coupon_RightCon">
-                    <div class="coupon_banner">
-                        <span>@ViewBag.CouponCode <dfn href="#"><img src="/images/copy.svg" /></dfn></span>
-                        <img src="/images/int-offer.png" alt="coupon" />
-                    </div>
-                </div>*@
             </div>
         </div>
     </div>
@@ -264,25 +262,24 @@
     </div>
 
 
-    
-    
+
 
 
 </main>
 @section scripts {
     <script>
-    $('.showBtnfaq').click(function () {
+        $('.showBtnfaq').click(function () {
 
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            $('.hidemefaq').slideUp();
-        } else {
-            $('.hidemefaq').slideUp();
-            $('.showBtnfaq').removeClass('active');
-            $(this).addClass('active');
-            $(this).next().filter('.hidemefaq').slideDown();
-        }
-    });
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $('.hidemefaq').slideUp();
+            } else {
+                $('.hidemefaq').slideUp();
+                $('.showBtnfaq').removeClass('active');
+                $(this).addClass('active');
+                $(this).next().filter('.hidemefaq').slideDown();
+            }
+        });
     </script>
 
     <script>

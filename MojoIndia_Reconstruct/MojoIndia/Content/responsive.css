@@ -22,10 +22,7 @@
 .main_filter{ display:none;}
 
 .origin_con_mob input,.desti_con_mob input,.calden_right_mob input,.calden_left_mob input{ font-size: 30px;}	
-.search_div button{ font-size: 17px;
-    padding: 10px 0;
-    width: 100%;
-   }
+.search_div button{ font-size: 17px;padding: 10px 0;width: 100%;}
 
 .flight_menu{margin: 6px 0 0 0;}
 .search_menu ul{margin:-24px 0 0 14px;}
@@ -66,10 +63,7 @@
 /*.why_con h4{font-size: 15px;padding: 4px;}*/
 .modify_right{width: 35%;float: right;text-align: right;}
 .modify_cal_left{width: 47%;margin-left: 0;margin-right: 8px;}
-.modify_con{padding:0px; margin-bottom:0;top:0;top: 0;
-        position: fixed;
-        z-index: 9;
-        height: 50px;}
+.modify_con{padding:0px; margin-bottom:0;top:0;top: 0;position: fixed;z-index: 9;height: 50px;}
 .modify_calendr{margin:10px 0;}
 .modify_passenger{ margin-bottom:15px;}
 .modify_cal_right{width: 48%;}
@@ -93,8 +87,7 @@
 .result_left{width: 100%; margin-right: 0;}
 .contact_result{width: 65%;}
 .modifyleft_one,.modify_calendr,.modify_passenger,.modify_btn{width: 100%;}
-.modify_button{ text-align:center;    padding: 10px 0;border-radius:4px; font-weight:bold;
-    width: 100%;}
+.modify_button{ text-align:center;padding: 10px 0;border-radius:4px; font-weight:bold;width: 100%;}
 .repon_filter{display: block;}
 .reslt_right{width: 100%;  background:#fff;padding: 0 3px;}
 .gradient_slider{background:#fff;}
@@ -113,9 +106,7 @@
 .from_header{position: relative;}
 .from_header h3{ font-size: 16px; color: #000;margin: 0 0 15px 0;}
 .from_header a{position: absolute; right: 6px; font-size:20px;color: #000;top: -7px;text-decoration: none;}
-.flight_time_con{padding:4px 10px;border: 1px solid #ccc;border-radius: 12px;margin-bottom: 16px;position:relative;position: relative;
-    box-shadow: 1px 1px 6px #ccc;
-  }
+.flight_time_con{padding:4px 10px;border: 1px solid #ccc;border-radius: 12px;margin-bottom: 16px;position:relative;position: relative;box-shadow: 1px 1px 6px #ccc;}
 .flight_round_mob{padding:8px 10px;border: 1px solid rgba(16, 16, 16, .22);border-radius: 12px;margin-bottom: 16px;position:relative;display:flex; flex-direction:row;}
 .Round_trip_mob{width:100%; display:flex; flex-direction:row;}
 .top_cut{left: -103px;top: 45px; display: none;}
@@ -139,12 +130,8 @@
 .Airport_Code{font-size:12px;}
 .AirportName{font-size:12px;display: inline-block;}
 .AirportNamemob{font-size:12px;display:block;}
-.destination_coderound{width:36%;display: inline-block;
-        float: left;
-        text-align: left;}
-.destination_coderound2{width:36%;display: inline-block;
-        float: left;
-        text-align: right;}
+.destination_coderound{width:36%;display: inline-block;float: left;text-align: left;}
+.destination_coderound2{width:36%;display: inline-block;float: left;text-align: right;}
 .resultbook_left{width:35%;padding: 6px 8px;}
 .resultbook_right{ width:65%;padding: 6px 8px;}
 .pos_top{top: 0px;}
@@ -255,11 +242,7 @@
 .round_fourth{ padding:0px;}
 .flight_time_two .stop{font-size:12px; padding-top: 5px;display: inline-block;}
 .round_mobPrice{width:100%; display:inline-block;text-align:right; padding-bottom:10px;}
-.round_mobPrice h5{font-size: 18px;
-    color: #101010;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -.41px;}
+.round_mobPrice h5{font-size: 18px;color: #101010;font-weight: 700;line-height: 24px;letter-spacing: -.41px;}
 .pament_left{ width:100%; float:left; position:relative;}
 .payment_right{width:100%; margin:0; padding:15px;}
 .pay_pax_detail_Title{width:30%;padding-left:0;}
@@ -291,10 +274,7 @@
 .colunm5{width:23%;}
  .ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-datepicker-multi-2 ui-datepicker-multi{left:10px!important;z-index: 9;top: 404.953px;
     display: block;background: #fff;min-height: 200px;}
-#ui-datepicker-div{width: 98%!important;
-    left: 2px!important;
-    top: auto!important;
-    bottom: 0!important;}
+#ui-datepicker-div{width: 98%!important;left: 2px!important;top: auto!important;bottom: 0!important;}
 .ui-datepicker-multi .ui-datepicker-group{float: left;width: 100%!important;background: #fff;padding: 6px;}
 
 .Enablebtn img {width: 24%;padding-left: 7px;}
@@ -307,15 +287,8 @@
 .MobileSearchAutoComplete .origin_con,.MobileSearchAutoComplete .modify_from{width:100%; padding-bottom:30px;}
 .MobileSearchAutoComplete .desti_con,.MobileSearchAutoComplete .modify_to{width:100%;}
 /*.MobileSearchAutoComplete .desti_mid,.MobileSearchAutoComplete{display:none;}*/
-.MobileSearchAutoComplete h4{ display: block;
-    font-size:13px;
-    color: #706e6e;
-    padding: 0px 0;
-    font-weight: bold;
-    margin-bottom: 20px;
-    position: absolute;text-transform:uppercase;
-    top: 80px;
-    left:12px;}
+.MobileSearchAutoComplete h4{ display: block;font-size:13px;color: #706e6e;padding: 0px 0;font-weight: bold;
+    margin-bottom: 20px;position: absolute;text-transform:uppercase;top: 80px;left:12px;}
 .MobileSearchAutoComplete .city_orgin,.MobileSearchAutoComplete .modify_orgin{ display:none;}
 .MobileSearchAutoComplete .city_span,.MobileSearchAutoComplete .modify_span{ display:none;}
 .MobileSearchAutoComplete input{ padding: 10px 26px 10px 20px;font-size:13px;border-radius: 5px;margin: 0 0 15px;outline: 0;position: relative;z-index: 100;border: 1px solid #d6d6d6;
@@ -424,7 +397,8 @@
 .select-passenger {height: 70%;margin-top: 0.5vw;position: absolute;z-index: 99;background: #fff;top: auto;bottom: 0;}
 .padding_bottom{ padding-bottom:40px;}
 #web2{height: 100vh;overflow-y:scroll;position: initial;}
-.Flight_Air> ul li{width:30%;}
+.Flight_Air> ul li{width:30%;margin-bottom:15px;margin-right: 10px;}
+.airline-logo p{ font-size:12px; padding-top:5px;}
 .filter_timeN p{display:none;}
 .lastmin h1{color: #fff;text-align:left;right:0px;top: 2px;font-size: 18px;width: 100%;display: inline-block;}
 .trust_container picture img{width:100%;}
@@ -503,7 +477,7 @@ nav .menu {width: 100%;}
 .stop{ padding-left:4px;}
 .mob_timeStop{ display:block;}
 .mob_round_mid{width:80%;float:left;display:inline-block;}
-.exclisivdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #11970e;font-weight: bold;border-radius: 6px;}
+.exclisivdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #e83819;font-weight: bold;border-radius: 6px;}
 .severdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #11970e;font-weight: bold;border-radius: 6px;}
 .price_Calender{padding: 0px 0px!important;}
 .listing_con{box-shadow:none;}
@@ -511,22 +485,32 @@ nav .menu {width: 100%;}
 .flight_time_con:hover{box-shadow: 0 0 6px #f3850b;}
 .paymentmodal,.paymentmodal2,.mob_oneway_price{display:block;}
 
-.lineo_img {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
-.lineo_img1 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
+.lineo_img1 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .lineo_img1 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:21px;content: "";top: -3px;background: #ccc;}
-.lineo_img2 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img2 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .lineo_img2::before{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:27px;content: "";top: -3px;background: #ccc;}
 .lineo_img2::after{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;right:27px;content: "";top: -3px;background: #ccc;}
-.lineo_img3 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.lineo_img3 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .lineo_img3 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:19px;content: "";top: -3px;background: #ccc;}
 .lineo_img3::before{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:30px;content: "";top: -3px;background: #ccc;}
 .lineo_img3::after{ position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;right:30px;content: "";top: -3px;background: #ccc;}
-
 .layover_Sep2,.layover_Sep2 img,.layover_Sep2::after{ display:block;}
 .filter_header { z-index: 0;}
-
+.coupon_leftCon{width:100%;}
+.dicount_heading{width:60%;}
+.discont_desg{width:38%;}
+.dicount_code{width: 150px;}
+.coupon_RightCon{width:100%; padding:10px;}
+.coupon_banner{ margin-top:0;}
+.coupon_banner span{top: 90px;right: 76px;}
+#modBtn img{vertical-align:top;}
+.dicount_heading h1{ font-size: 14px;text-align:justify;margin-top: 25px;}
+.couponcard{width:100%;}
+.couponcard_link{left: calc(41% + 115.5px);}
+.couponcard_title{font-size: 1.4rem;}
+.couponcard_code{left: calc(30% - 4.5px);}
 }
-
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 

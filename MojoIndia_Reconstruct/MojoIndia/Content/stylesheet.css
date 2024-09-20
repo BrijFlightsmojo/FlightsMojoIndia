@@ -5,6 +5,7 @@ img {border:0px;}
 h1, h2, h3, h4, h5, h6,p{margin:0px; padding:0px;}
 a {text-decoration:none;color: #fff;}
 
+
 .content100> p a{color:#ff0000; text-decoration:underline;}
 .no-padding{ padding: 0px!important;}
 .no_padding {padding: 0;}
@@ -241,7 +242,7 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 .coupon_Container h1{font-size:20px; font-weight:bold;color:#000; padding:10px 0 0 15px;}
 .coupon_Container p{ font-size:13px; color:#333; margin:10px 0; padding:0 0 0 15px;}
 .couponcard {background-color: #fff;background-repeat: no-repeat;border: 1px solid #e6e5e7;border-radius: 1.6rem;display: flex;flex-direction: column;justify-content: space-between;
-min-height:21rem;padding: 1.6rem;position: relative;width: 38.2rem;}
+min-height:21rem;padding: 1.6rem;position: relative;width: 38.2rem;margin-bottom:15px;}
 .couponcard:before {left: -.7rem;transform: rotate(-270deg);}
 .couponcard:after {right: -.7rem;top: 66%;transform: rotate(-90deg);}
 .couponcard:after, .couponcard:before {background-color: #fafaff;border: 1px solid #e6e5e7;border-bottom: 0;border-top-left-radius: 1.2rem;border-top-right-radius: 1.2rem;content: "";
@@ -249,21 +250,21 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .couponcard_top {display: flex;}
 .couponcard_content {margin-left: 1.6rem;}
 .couponcard_top img {border-radius: .8rem;height: 10rem;object-fit: contain;width: 10rem;}
-.couponcard_title {color: #1e1c4c;font-size: 1.8rem;line-height: 2.4rem;}
-.couponcard_subtitle {color: #818087;font-size: 1.4rem;line-height: 2rem;margin-top: .8rem;}
+.couponcard_title {color: #1e1c4c;font-size: 1.6rem;line-height: 2.4rem;font-weight:bold;}
+.couponcard_subtitle {color: #818087;font-size: 1.3rem;line-height: 2rem;margin-top: .8rem;}
 .couponcard_tc{color: #03000f;font-size: 1.2rem;font-weight: 400;line-height: 16px;padding-top:1rem; }
 .couponcard_dashed {border: 1px dashed #cdcccf;position: absolute;top: 70%;width: calc(100% - 3.2rem);}
 .couponcard_bottom {align-items: center;display: flex;}
 .couponcard_promo {color: #818087;font-size: 12px;font-style: normal;font-weight: 700;letter-spacing: 1px;line-height: 16px;text-transform: uppercase;}
-.couponcard_code {color: #03000f;font-size: 1.2rem;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
+.couponcard_code {color: #03000f;font-size: 1.4rem;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
 .couponcard_link {font-size: 12px;font-style: normal;font-weight: 400;left: calc(50% + 115.5px);line-height: 16px;margin-top: -6px;position: absolute;text-align: right;}
 .couponcard_link a{color: #643de3;}
-.coupon_leftCon{width:75%;display:inline-block; padding:10px;margin-right:15px; float:left;}
+.coupon_leftCon{width:100%;display:inline-block; padding:10px;margin-right:15px; float:left;}
 .coupon_leftTop{width:100%; display:inline-block;display:flex;}
 .dicount_heading{width:78%; display:inline-block; margin-right:15px;}
-.dicount_heading h1 {font-size:23px; line-height:25px;margin-bottom: 30px;font-weight: 400;color: #000;margin-top: 20px;}
+.dicount_heading h1 {font-size:22px; line-height:25px;margin-bottom: 30px;font-weight: 400;color: #000;margin-top:45px;}
 .discont_desg{width:20%; display:inline-block;margin-bottom: 30px;margin-top: 20px;}
-.dicount_code{background: #ea4018;border:1px dashed #ea4018;height: 80px;width:165px;position: relative;display: inline-block;text-align: center;
+.dicount_code{background: #ef6614;border:1px dashed #ea4018;height: 80px;width:165px;position: relative;display: inline-block;text-align: center;
     border-radius: 3px;margin-bottom: 15px;float: right;}
 .dicount_code:before {content: "";position: absolute;width: 15px;height: 15px;top: 50%;left: 0;transform: translate(-50%, -50%);background: #fff;border-radius: 100%;}
 .dicount_code:after {content: "";position: absolute;width: 15px;height: 15px;top: 50%;right: 0;transform: translate(50%, -50%);background: #fff;border-radius: 100%;}
@@ -288,16 +289,17 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
     font-weight: 600;
     text-transform: uppercase;
 }
-.Code_Bottom a img{width: 15px;
+.Code_Bottom span{cursor:pointer;}
+.Code_Bottom span img{width: 15px;
     vertical-align: middle;}
-.discount_content{border: 1px solid #ccc;background-color: #fff;margin-bottom: 20px;padding-bottom: 10px;width:100%; display:inline-block;}
+.discount_content{border: 1px solid #ccc;background-color: #fff;margin-bottom: 20px;padding-bottom:0px;width:100%; display:inline-block;}
 .discount_content h2 {
-    padding: 13px 15px;
-    border-bottom-color: #d6d6d6;
+    padding: 10px 15px;
+    border-bottom-color: #49494a;
     font-size: 18px;
-    background: #d6d6d6;
-    color: #000;
-    margin-bottom: 15px;
+    background: #49494a;
+    color: #fff;
+    margin-bottom: 5px;
 }
 .discount_content ul{ padding-left:25px;}
 .discount_content ul li {
@@ -311,12 +313,9 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .coupon_RightCon{width:23%;display:inline-block;}
 .coupon_banner{width:100%;display:inline-block;margin-top: 145px;padding-top: 10px;position:relative;}
 .coupon_RightCon img{width:100%;}
-.coupon_banner span{position: absolute;
-    top: 60px;
-    right: 26px;
-    font-size: 16px;
-    font-weight: bold;}
-.coupon_banner>span a img{width: 20px;}
+.coupon_banner span{position: absolute;top: 60px;right: 26px;font-size: 16px;font-weight: bold;}
+.coupon_banner>span dfn{cursor:pointer;}
+.coupon_banner>span dfn img{width: 20px;}
 /*----------------destop css-------------*/
 
 
@@ -1054,15 +1053,15 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .flight_time_two2{width: 20%;float: left;text-align: center;padding: 0;line-height: 16px; padding-top:10px;display:block;}
 .layover_time {font-size: 13px;color: #000;}
 .layover_Sep{ position:relative; display:inline-block;width:100%;}
-.layover_Sep img{position: absolute;width:12px;right: -7px;top: 4px;}
-.layover_Sep::after{position: absolute;width:8px;height:8px;border-radius: 50%;border: 1px solid #ccc;left:-2px;content: "";top: 6px;background: #ccc;}
-.line_img {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
-.line_img1 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.layover_Sep img{position: absolute;width:12px;right: -7px;top: 5px;}
+.layover_Sep::after{position: absolute;width:8px;height:8px;border-radius: 50%;border: 1px solid #ccc;left:-2px;content: "";top:8px;background: #ccc;}
+.line_img {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
+.line_img1 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .line_img1 dfn{position: absolute;width:6px;height:6px;border-radius: 50%;border: 1px solid #ccc;left: 64px;content: "";top: -3px;background: #ccc;}
-.line_img2 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.line_img2 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .line_img2::before{ position: absolute;width:6px;height:6px;border-radius: 50%;border: 1px solid #ccc;left:42px;content: "";top: -3px;background: #ccc;}
 .line_img2::after{ position: absolute;width:6px;height:6px;border-radius: 50%;border: 1px solid #ccc;right:35px;content: "";top: -3px;background: #ccc;}
-.line_img3 {width: 100%;display: inline-block;border: 1px dotted #ccc;position: relative;}
+.line_img3 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .line_img3 dfn{position: absolute;width:6px;height: 6px;border-radius: 50%;border: 1px solid #ccc;left: 64px;content: "";top: -3px;background: #ccc;}
 .line_img3::before{ position: absolute;width:6px;height:6px;border-radius: 50%;border: 1px solid #ccc;left:42px;content: "";top: -3px;background: #ccc;}
 .line_img3::after{ position: absolute;width:6px;height:6px;border-radius: 50%;border: 1px solid #ccc;right:35px;content: "";top: -3px;background: #ccc;}
@@ -1296,7 +1295,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
 .populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
-.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;float:left;}
+.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
 .airport label {font-weight: 400; font-size: 14px;}
@@ -1456,14 +1455,14 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .applycoupon input:focus{  outline-width: 0;}
 .apply_coubtn,.apply_clrbtn{width:35%; float:left;    padding: 0 6px;}
 .apply_clrbtn{display:none;}
-.apply_coubtn a{border:1px solid #ff0b00;background:#fff;color: #000;font-size: 14px;padding: 11px 6px;border-radius: 2px;width: 100%;display: inline-block;text-align: center;font-weight: bold;}
+.apply_coubtn a{border:1px solid #ff0b00;background:#fff;color: #000;font-size: 14px;padding:9px 6px;border-radius: 2px;width: 100%;display: inline-block;text-align: center;font-weight: bold;}
 .apply_clrbtn a{ border:1px solid #ff0000 ; color:#ff0000; font-size:14px; padding:10px 6px; border-radius:2px;width:100%;display:inline-block;text-align:center;font-weight: bold;}
 .couponCon .radioCoupon-label{ font-size:15px; font-weight:bold; color:#333;}
 .selectCouponCon{width: 100%;float: left;padding: 0 4px;}
 .selectCouponCon p{color: #333;font-size: 11px;margin: 8px 0;}
 .radioCoupon> label span{padding: 5px 16px;border: 2px dashed #fff;}
 .apply_coubtn a:hover{background: #ff0000; color:#fff;}
-.ph_code{width: 100%;display: inline-block;border: 1px solid #ccc;padding: 6px 6px;text-align: center;font-weight: bold;}
+.ph_code{width:100%;display: inline-block;border: 1px solid #ccc;padding: 6px 6px;text-align: center;font-weight: bold;}
 .couponCon> h4{font-size: 16px;color: #333;padding: 10px 10px 10px 8px;}
 .radioCoupon {margin: 0.5rem;border-bottom: 1px solid #ccc;margin-bottom: 12px;float: left;width: 100%;}
 .radioCoupon input[type="checkbox"] {position: absolute;opacity: 0;}
@@ -1693,11 +1692,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .common_page_con p {font-size:14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
 .common_page_con ul{ padding-left: 30px; margin: 10px 0;}
 .common_page_con ul li{ font-size:14px;}
-.common_page_con h2{font-size: 20px;color: #fff;background:#49494a;margin: 0px 0 6px 0;padding: 4px 8px;box-shadow: 2px 3px 2px #ccc;display: inline-block;width: 100%;border-radius: 6px;}
-.common_page_con h1{font-size: 25px;font-weight: bold; margin: 15px 0 8px 0;}
-.common_page_con h3{font-size: 20px;font-weight: bold;}
+.common_page_con h2{font-size:18px;color: #fff;background:#49494a;margin: 0px 0 6px 0;padding:6px 8px;box-shadow: 2px 3px 2px #ccc;display: inline-block;width: 100%;}
+.common_page_con h1{font-size:25px;font-weight: bold; margin: 15px 0 8px 0;}
+.common_page_con h3{font-size:20px;font-weight: bold;}
 .common_page_con a{color: #000;font-weight: bold;}
-.para_content{ width: 100%; float: left; padding: 15px; border:1px solid #ccc; box-shadow: 2px 2px 2px #ccc; margin-bottom: 15px;}
+.Term_Container{width: 100%; float: left; border:1px solid #ccc; box-shadow: 2px 2px 2px #ccc; margin-bottom: 15px;}
+.para_content{ width: 100%; float: left; padding:15px;}
 .para_content h5 { font-size:16px; color:#000; font-weight:bold;}
 .para_content ol{ padding-left:15px;}
 .price_one {width: 33.3%;float: left;text-align: center;}
@@ -1806,7 +1806,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .text_content {width: 49%;display: inline-block;text-align: left;float: right;font-size: 13px;line-height: 25px;}
 .about_small {width: 100%;display: inline-block;border: 1px solid #ccc;padding: 20px 15px;box-shadow: 2px 3px 2px #ccc;}
 .about_small img {width: 80%;}
-.common_page_con h2 {font-size: 20px;color: #fff;background: #49494a;margin: 0px 0 6px 0; padding: 4px 8px;box-shadow: 2px 3px 2px #ccc;display: inline-block;width: 100%;border-radius: 6px;}
+
 .common_page_con p {font-size: 14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
 .marbuttom20 {margin-bottom: 20px;}
 .about_mob {display: none;}
@@ -1835,7 +1835,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .SelectAirline ul li span img{width:40px;}
 .SelectAirline ul li a{background: #ff0b00;padding: 6px 10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
 .SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 5px;}
-
+.discaimer_Con{ width:100%;display:inline-block; padding:20px 10px;border:1px solid #ccc;margin:40px 0;}
 
 
 /*--------------404pages css---------------------*/
@@ -1968,7 +1968,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .text_content {width: 49%;display: inline-block;text-align: left;float: right;font-size: 13px;line-height: 25px;}
 .about_small {width: 100%;display: inline-block;border: 1px solid #ccc;padding: 20px 15px;box-shadow: 2px 3px 2px #ccc;}
 .about_small img {width: 80%;}
-.common_page_con h2 {font-size: 20px;color: #fff;background: #49494a;margin: 0px 0 6px 0;padding: 4px 8px;box-shadow: 2px 3px 2px #ccc;display: inline-block;width: 100%;border-radius: 6px;}
+
 .common_page_con p {font-size: 14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
 .marbuttom20 {margin-bottom: 20px;}
 .about_mob {display: none;}
@@ -2031,8 +2031,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .faq_box{ border-bottom:2px solid #ccc; padding-bottom:15px; padding-top:8px;}
 .faq_box p b{ padding-bottom:5px; display:inline-block;}
 .Flight_Air{width:100%; float:left; padding:10px;border:1px solid #ccc;}
-.Flight_Air> ul{list-style-type: none;padding: 0;margin: 0;display: flex;flex-direction: row;text-align: center;}
-.Flight_Air> ul li{ padding:20px 0; border:1px solid #ccc; float:left; margin-right:25px;width:10%;text-align:center;}
+.Flight_Air> ul{list-style-type: none;padding: 0;margin: 0;text-align: center;}
+.Flight_Air> ul li{ padding:20px 0; border:1px solid #ccc; float:left; margin-right:20px;width:12%;text-align:center;}
 .Routes_Con{width:100%; float:left; padding:10px;border:1px solid #ccc; text-align:center;}
 .Routes_Con> ul{list-style-type:none; padding:0; margin:0;}
 .Routes_Con> ul li{ float:left; width:32%;padding:10px;}
