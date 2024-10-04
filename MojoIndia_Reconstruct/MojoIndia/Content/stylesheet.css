@@ -241,8 +241,8 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 .coupon_Container{width:100%;display:inline-block; padding:30px 0;}
 .coupon_Container h1{font-size:20px; font-weight:bold;color:#000; padding:10px 0 0 15px;}
 .coupon_Container p{ font-size:13px; color:#333; margin:10px 0; padding:0 0 0 15px;}
-.couponcard {background-color: #fff;background-repeat: no-repeat;border: 1px solid #e6e5e7;border-radius: 1.6rem;display: flex;flex-direction: column;justify-content: space-between;
-min-height:21rem;padding: 1.6rem;position: relative;width: 38.2rem;margin-bottom:15px;}
+.couponcard {background-color: #fff;background-repeat: no-repeat;border: 1px solid #e6e5e7;border-radius: 1.6rem;display: flex;flex-direction: column;justify-content:space-evenly;
+min-height:21rem;padding:8px;position: relative;width: 38.2rem;margin-bottom:15px;}
 .couponcard:before {left: -.7rem;transform: rotate(-270deg);}
 .couponcard:after {right: -.7rem;top: 66%;transform: rotate(-90deg);}
 .couponcard:after, .couponcard:before {background-color: #fafaff;border: 1px solid #e6e5e7;border-bottom: 0;border-top-left-radius: 1.2rem;border-top-right-radius: 1.2rem;content: "";
@@ -253,7 +253,7 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .couponcard_title {color: #1e1c4c;font-size: 1.6rem;line-height: 2.4rem;font-weight:bold;}
 .couponcard_subtitle {color: #818087;font-size: 1.3rem;line-height: 2rem;margin-top: .8rem;}
 .couponcard_tc{color: #03000f;font-size: 1.2rem;font-weight: 400;line-height: 16px;padding-top:1rem; }
-.couponcard_dashed {border: 1px dashed #cdcccf;position: absolute;top: 70%;width: calc(100% - 3.2rem);}
+.couponcard_dashed {border: 1px dashed #cdcccf;position: absolute;top: 70%;width: calc(100% - 2.2rem);left: 11px;}
 .couponcard_bottom {align-items: center;display: flex;}
 .couponcard_promo {color: #818087;font-size: 12px;font-style: normal;font-weight: 700;letter-spacing: 1px;line-height: 16px;text-transform: uppercase;}
 .couponcard_code {color: #03000f;font-size: 1.4rem;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
@@ -1295,7 +1295,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
 .populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
 .populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
-.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;}
+.airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;float:left;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
 .airport label {font-weight: 400; font-size: 14px;}

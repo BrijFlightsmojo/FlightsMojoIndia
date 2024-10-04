@@ -508,8 +508,9 @@ nav .menu {width: 100%;}
 .dicount_heading h1{ font-size: 14px;text-align:justify;margin-top: 25px;}
 .couponcard{width:100%;}
 .couponcard_link{left: calc(41% + 115.5px);}
-.couponcard_title{font-size: 1.4rem;}
+.couponcard_title{font-size: 1.4rem;line-height:15px;}
 .couponcard_code{left: calc(30% - 4.5px);}
+.couponcard_subtitle{line-height: 15px;}
 }
 @media only screen 
   and (min-device-width: 768px) 

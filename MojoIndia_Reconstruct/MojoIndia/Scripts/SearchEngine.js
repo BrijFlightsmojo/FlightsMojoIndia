@@ -163,7 +163,7 @@ function submitForm() {
 
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                'event': 'Search',
+                'event': 'search',
                 'link_name': 'search click',
                 'origin_city': $("#hfCity_from").val(),
                 'destination_city': $("#hfCity_to").val(),
@@ -172,18 +172,8 @@ function submitForm() {
                 'type': $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
                 'passenger_count': totpax,
                 'airline_class': $("#Cabin option:selected").text()
-
             });
 
-            webengage.track("Flight searched", {
-                "Source": $("#hfCity_from").val(),
-                "Destination": $("#hfCity_to").val(),
-                "Type": $("#hfTripType").val() == "2" ? "RoundTrip" : "OneWay",
-                "Departure Date": str_departure_date,
-                "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
-                "Class": $("#Cabin option:selected").text(),
-                "No of Passengers": totpax,
-            });
         }
            return validationFlag;
     }

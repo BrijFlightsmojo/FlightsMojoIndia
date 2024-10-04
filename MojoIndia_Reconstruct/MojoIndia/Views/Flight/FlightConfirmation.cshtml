@@ -189,95 +189,8 @@
 
         if(ctr==1)
         {
-            if (@Model.flightResult.Count() == 1)
-            {
-
-                var DepTime = new Date(@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Year,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Month-1,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Day);
-                var str_DepTime = new Date (DepTime.toISOString());
-
-                var DepArrivalDate = new Date(@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Year,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Month-1,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Day);
-                var str_DepArrDate = new Date(DepArrivalDate.toISOString());
-
-                var RetTime = new Date(@DateTime.Today.Year,@DateTime.Today.Month-1,@DateTime.Today.Day);
-                var str_RetTime = new Date(RetTime.toISOString());
-
-                var RetArrDate = new Date(@DateTime.Today.Year,@DateTime.Today.Month-1,@DateTime.Today.Day);
-                var str_RetArrDate = new Date(RetArrDate.toISOString());
-
-            }
-            else
-            {
-                var DepTime = new Date(@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Year,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Month-1,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Day);
-            var str_DepTime = new Date (DepTime.toISOString());
-
-            var DepArrivalDate = new Date(@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Year,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Month-1,@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().ArrTime.Day);
-            var str_DepArrDate = new Date(DepArrivalDate.toISOString());
-
-            var RetTime = new Date(@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Year,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Month-1,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.Day);
-            var str_RetTime = new Date(RetTime.toISOString());
-
-            var RetArrDate = new Date(@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Year,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Month-1,@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().ArrTime.Day);
-            var str_RetArrDate = new Date(RetArrDate.toISOString());
-            }
-
-            webengage.track('Flight Booked', {
-                'Departure Source':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'Departure Destination':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
-                'Return Source':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin : "")',
-                'Return Destination':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination : "")',
-                'Departure class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                'Return class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString() : "")',
-                'Layover':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().layOverTime >0 ? true : false)',
-
-                'Departure Date':str_DepTime,
-                'Departure arrival date':str_DepArrDate,
-                'Return Date':str_RetTime,
-                'Return arrival date':str_RetArrDate,
-
-                'Departure stops':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().stop-1)',
-                'Destination stops':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().stop-1 : 0)',
-                'Departure Price per adult':'@Model.flightResult.FirstOrDefault().Fare.fareBreakdown.FirstOrDefault().BaseFare',
-                'Departure Flight number':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline-@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber',
-                'Departure Brand':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                'Return Price per adult':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().Fare.fareBreakdown.FirstOrDefault().BaseFare : 0)',
-                'Return Flight number':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber : "")',
-                'Return Brand':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline : "")',
-                'Departure duration':'@((Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration/60)+"h"+ (Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration % 60) + "mins" ) ',
-                'Return duration':'@(Model.flightResult.Count() == 2 ? (Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Duration / 60) + "h" + (Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Duration % 60) + "mins" : "")',
-                'Promocode':'INSTAMOJO',
-                //'Mode of Payment':$('[name="payment"]:radio:checked').val(),
-                'Total Price':'@Model.sumFare.grandTotal.ToString("f2")',
-                'Fee & surcharge':'@(Model.sumFare.Tax + Model.sumFare.Markup+ Model.CouponAmount)',
-                'Extended Cancellation Policy Fee':'@Model.CancellaionPolicyAmt',
-                'Extended Airline Refund Assurance Fee':'@Model.RefundPolicyAmt',
-                'Coupon discount':'@Model.CouponAmount',
-                'Convenience fee':'@Model.conveniencefee',
-                'Price without tax':'@Model.sumFare.BaseFare'
-            });
-        }
-    </script>
-
-    <script>
-       webengage.user.logout();
-    </script>
-
-
-    <script>
-        @*fbq('track', 'Purchase', {
-            content_type: 'product',
-            content_ids: '@Model.bookingID', // Flight ID
-            value: '@Model.sumFare.grandTotal', // Flight Price
-            currency: 'INR', // Currency
-            departure_city: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin', // Departure City
-            arrival_city: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination', // Arrival City
-            departure_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")', // Departure Date
-            return_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")', // Return Date
-            number_of_passengers: '@(Model.passengerDetails.Count())', // Number of Passengers
-            travel_class: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()', // Travel Class
-            content_name: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline', // Optional: Name of the flight or airline
-        });*@
-
-        fbq('track', 'Purchase', {
+		
+		   fbq('track', 'Purchase', {
             content_type: 'flight',
 			content_ids: '@Model.userSearchID',
             booking_id:'@Model.bookingID',
@@ -294,8 +207,11 @@
             currency: 'INR',
             value: @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2"))),
         });
-
+        }
     </script>
+
+
+
 	
 	
     @*value: @(((Model.sumFare.grandTotal+Model.fareIncreaseAmount+Model.conveniencefee)-CouponAmount).ToString("f2")),+ Model.sumFare.Tax + Model.sumFare.Markup *@

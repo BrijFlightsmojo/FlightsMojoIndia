@@ -1450,7 +1450,6 @@
                                         <div class="Oneway_Time"><span>{{seg.depTime}}</span><em></em></div>
                                         <div class="terminal">{{seg.fFullAprName}}</div>
                                         <div class="duration" ng-if="seg.eft>0">Duration {{ReturnInt(seg.eft/60)}}h {{seg.eft%60}}m</div>
-
                                     </div>
                                     <div class="oneoutinbond">
                                         <div class="Oneway_Time"><span>{{seg.arrTime}}</span><em></em></div>
@@ -2290,19 +2289,6 @@
             var child = parseInt($("#Child").val());
             var infant = parseInt($("#Infant").val());
             var totpax = adult + child + infant;
-
-            //var departure_date = new Date($("#departure_date").val());
-            //var str_departure_date =new Date(departure_date.toISOString());
-
-            //var depArrDate = new Date($("#depArrDate").val());
-            //var str_depArrDate =  new Date(depArrDate.toISOString());
-
-            //var return_date = new Date($("#return_date").val());
-            //var str_return_date = new Date(return_date.toISOString());
-
-            //var retArrdate = new Date($("#RetArrDate").val());
-            //var str_retArrDate =  new Date(retArrdate.toISOString());
-
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'flight_listing',
@@ -2315,92 +2301,6 @@
                 'passenger_count': totpax,
                 'airline_class': $("#Cabin option:selected").text()
             });
-
-            if( $("#hfTripType").val() == "2")
-            {
-                var adult = parseInt($("#Adult").val());
-                var child = parseInt($("#Child").val());
-                var infant = parseInt($("#Infant").val());
-                var totpax = adult + child + infant;
-
-                //var departure_date = new Date($("#departure_date").val());
-                //var str_departure_date =new Date(departure_date.toISOString());
-
-                //var depArrDate = new Date($("#depArrDate").val());
-                //var str_depArrDate =  new Date(depArrDate.toISOString());
-
-                //var return_date = new Date($("#return_date").val());
-                //var str_return_date = new Date(return_date.toISOString());
-
-                //var retArrdate = new Date($("#RetArrDate").val());
-                //var str_retArrDate =  new Date(retArrdate.toISOString());
-                webengage.track("Flight Selected", {
-                    "Departure Source":$("#hfCity_from").val(),
-                    "Departure Destination": $("#hfCity_to").val(),
-                    "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
-                    "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
-                    "Departure class": $("#Cabin option:selected").text(),
-                    "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
-                    "Layover": $("#Layover").val(),
-                    //"Departure Date": str_departure_date,
-                    //"Departure arrival date": str_depArrDate,
-                    //"Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
-                    //"Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
-                    "Departure stops": $("#Departure_stops").val(),
-                    "Destination stops": $("#Destination_stops").val(),
-                    "Departure Price per adult": $("#Departure_Price_per_adult").val(),
-                    "Departure Flight number": $("#depFlightNo").val(),
-                    "Departure Brand": $("#Departure_Brand").val(),
-                    "Return Price per adult": $("#Return_Price_per_adult").val(),
-                    "Return Flight number": $("#Return_Flight_number").val(),
-                    "Return Brand": $("#Return_Brand").val(),
-                    "Departure duration": $("#Departure_duration").val(),
-                    "Return duration": $("#Return_duration").val(),
-                });
-
-            }
-            else
-            {
-                var adult = parseInt($("#Adult").val());
-                var child = parseInt($("#Child").val());
-                var infant = parseInt($("#Infant").val());
-                var totpax = adult + child + infant;
-
-                var departure_date = new Date($("#departure_date").val());
-                var str_departure_date =new Date(departure_date.toISOString());
-
-                var depArrDate ="";
-                var str_depArrDate =  "";
-
-                var return_date = "";
-                var str_return_date ="";
-
-                var retArrdate = "";
-                var str_retArrDate =  "";
-                webengage.track("Flight Selected", {
-                    "Departure Source":$("#hfCity_from").val(),
-                    "Departure Destination": $("#hfCity_to").val(),
-                    "Return Source": $("#hfTripType").val() == "2" ? $("#hfCity_to").val() : "",
-                    "Return Destination": $("#hfTripType").val() == "2" ? $("#hfCity_from").val() : "",
-                    "Departure class": $("#Cabin option:selected").text(),
-                    "Return class": $("#hfTripType").val() == "2" ? $("#Cabin option:selected").text() : "",
-                    "Layover": $("#Layover").val(),
-                    "Departure Date": str_departure_date,
-                    "Departure arrival date": str_depArrDate,
-                    "Return Date": $("#hfTripType").val() == "2" ? str_return_date : "",
-                    "Return arrival date": $("#hfTripType").val() == "2" ? str_retArrDate : "",
-                    "Departure stops": $("#Departure_stops").val(),
-                    "Destination stops": $("#Destination_stops").val(),
-                    "Departure Price per adult": $("#Departure_Price_per_adult").val(),
-                    "Departure Flight number": $("#depFlightNo").val(),
-                    "Departure Brand": $("#Departure_Brand").val(),
-                    "Return Price per adult": $("#Return_Price_per_adult").val(),
-                    "Return Flight number": $("#Return_Flight_number").val(),
-                    "Return Brand": $("#Return_Brand").val(),
-                    "Departure duration": $("#Departure_duration").val(),
-                    "Return duration": $("#Return_duration").val(),
-                });
-            }
         }
     </script>
 
