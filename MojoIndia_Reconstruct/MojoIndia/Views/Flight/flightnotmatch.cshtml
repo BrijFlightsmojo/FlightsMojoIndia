@@ -20,12 +20,11 @@
         z-index: 999999;
         background: rgba(0, 0, 0, 0.61);
     }
-
+       
         .SessionTimeOutFlight .sessionboxFlight {
-            top: 70%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+           
+            -ms-transform:translate(42%, 50%);
+            transform: translate(42%, 50%);
             position: relative;
             height: 214px;
             width: 460px;
@@ -95,6 +94,7 @@
         .session-expflight{width:100%;}
         .session-expflight{height:380px;}
         .noresultmatch{padding-top: 0px;margin: 0px;}
+        .SessionTimeOutFlight .sessionboxFlight{ transform: translate(13%, 50%);}
     }
 </style>
 <main>
@@ -190,7 +190,7 @@
     @Scripts.Render("~/bundles/MojoJsResult")
     <script>
         $(document).ready(function () {
-
+            GF_FlightNotFound();
             $(".modify_click,.button,.modify_clickNO").click(function () {
 
                 $(".modify_search").slideDown("slow");
@@ -200,9 +200,21 @@
                 $(".modify_search").slideUp("slow");
 
             });
+
+           
         })
 
     </script>
+
+<script>
+    function GF_FlightNotFound() {
+        gtag('event', 'view_item', {
+            'send_to': 'GF-982',
+            'flight_error_code': 'FLIGHT_NOT_FOUND',
+            'flight_error_message': 'FLIGHT NOT FOUND'
+        });
+    }
+</script>
 }
 
 

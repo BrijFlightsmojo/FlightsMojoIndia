@@ -348,7 +348,7 @@ namespace MojoIndia.Controllers
             fsr.sourceMedia = bNum ? intSmedia.ToString() : "1000";
             setCookie(fsr.sourceMedia);
             fsr.utm_campaign = "";
-            fsr.utm_medium = "";
+            fsr.utm_medium = "Core_API";
 
 
             fsr.currencyCode = (Request.QueryString["currency"] != null && !string.IsNullOrEmpty(Request.QueryString.Get("currency"))) ? Request.QueryString.Get("currency").ToUpper() : "INR";
@@ -372,6 +372,7 @@ namespace MojoIndia.Controllers
             stopwatch.Stop();
 
             airContext.flightSearchResponse = new Bal.FlightDetails().SearchFlightGF(fsr);
+            airContext.IsSearchCompleted = true;
             FlightResult result = null,resutlReturn=null;
             if (true)
             {
@@ -431,7 +432,7 @@ namespace MojoIndia.Controllers
                             resutlReturn.Fare.grandTotal += fare / 2;
                         }
                     }
-                    else
+                    else if(result != null)
                     {
                         if (result.Fare.grandTotal < fsr.googleFlightRequest.DisplayedPrice)
                         {
@@ -458,7 +459,7 @@ namespace MojoIndia.Controllers
             else
             {
                 airContext.IsGFMatch = false;
-                result = airContext.flightSearchResponse.Results[0][0];
+            //    result = airContext.flightSearchResponse.Results[0][0];
                 return Redirect("/Flight/flightnotmatch/" + fsr.userSearchID);
             }
         }
@@ -874,7 +875,7 @@ namespace MojoIndia.Controllers
             fsr.sourceMedia = "1037";
             setCookie(fsr.sourceMedia);
             fsr.utm_campaign = "";
-            fsr.utm_medium = "";
+            fsr.utm_medium = "GooglePrice";
             fsr.currencyCode = "INR";
             #endregion
 
@@ -1633,7 +1634,10 @@ namespace MojoIndia.Controllers
                             responseStatus = new ResponseStatus(),
                             affiliate = airContext.flightSearchResponse.affiliate,
                             redirectID = airContext.flightSearchRequest.redirectID,
-                            isBuyCancellaionPolicy = false
+                            isBuyCancellaionPolicy = false,
+                            device = GetDevice(),
+                            utm_medium = airContext.flightSearchRequest.utm_medium,
+                            utm_campaign = airContext.flightSearchRequest.utm_campaign
                         };
                         bookingLog(ref sbLogger, "Flight Booking Request", JsonConvert.SerializeObject(airContext.flightBookingRequest));
                         airContext.flightBookingRequest.deepLink = airContext.flightSearchRequest.deepLink;

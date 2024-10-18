@@ -1,0 +1,281 @@
+﻿
+@{
+    ViewBag.Title = "faqs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<style>
+  .accordion_container {
+    width: 100%;display: inline-block;
+    margin-bottom: 30px;
+}
+.accordion_head {
+    background-color:#fff;
+    color: #000;
+    cursor: pointer;
+    font-family: arial;
+    font-size:16px;
+    margin-top: 8px;
+    padding:10px 11px;
+    font-weight: bold;border:1px solid #ccc; 
+}
+.accordion_body {
+    background: #ffffff;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.accordion_body p {
+    padding: 6px 11px;
+    margin: 0px;
+}
+.plusminus {
+    float:right;
+}
+.accordion_head::before{content: "\f059";
+    font: normal normal normal 14px / 1 FontAwesome;
+    color: #e83819;
+    margin-right: 10px;
+    font-size: 17px;}
+
+</style>
+
+<section class="search_bg">
+    <div class="container">
+        <h1>FREQUENTLY ASKED QUESTIONS</h1>
+    </div>
+</section>
+
+<section class="common_page_con">
+    <div class="container">
+
+        <section>
+            <div class="accordion_container">
+                <div class="accordion_head">
+                    How can I request an in-flight meal?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Most of the airlines do not have free meals while you are onboard. They charge an additional amount for an in-flight meal. While making the booking, you will get an option to place a request for an inflight meal. The request will directly reach the airline and all the passengers must place this request at least 24 hours before the flight departure time. FareObuddy holds no guarantee of the meal provision as it is up to the discretion of the airline.</p>
+                </div>
+                <div class="accordion_head">
+                    Why did I experience an increase in the offered fare while placing the booking?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>The airlines update the airfares every minute and are dynamic.<br />
+                    This change is reflected depending upon the demand and availability matrix at the time of booking. The time that you (or our agent) take to search the flight and make a booking may result in selling out of the inventories or the particular seats. In the meantime, the flight supplier offers different inventory, and the newly offered seats or class may be of a higher price. As a travel agency, we strive hard and keep on monitoring the updated fares and keep them current.</p>
+                </div>
+                <div class="accordion_head">
+                    Do you guarantee the airfares that are selected by me?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Airfares mentioned on FareObuddy.com are dynamic and vary without any prior notice. Till the time you (or our agent) have not completed the payment and issued the tickets, the fare isn't guaranteed. In case of a technical glitch, the fare displayed on the website is not updated. Then we will reach out to you within 3 business days and let you know the new fare. In a case like this, we offer you the option to accept or deny or cancel your bookings and receive a full refund. For further details, please go through our Terms and Conditions and read about the fare details with the cancellation policy.</p>
+                </div>
+                <div class="accordion_head">
+                    Do you allow changes to the ticket once it is issued?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>After issuance, any changes to the ticket are not permitted. You must verify every detail on the ticket before completing the booking. It is your responsibility to make sure that all the information is error-free and accurate. To ensure this, please check with our agent while they make your reservation.</p>
+                </div>
+                <div class="accordion_head">
+                    Are all the listed fares on your website inclusive of all the taxes?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>The U.S. Department of Transportation has issued the New Airline Passenger Protention Rules. Under the new rules, FareObuddy must ensure that the advertised fares and baggage fees are inclusive of the taxes. These airfares are inclusive of the applicable taxes by the government of the U.S.</p>
+                </div>
+                <div class="accordion_head">
+                    Are there any extra charges in case I want to make any changes to my airline ticket?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>In case there are any changes required on your airline ticket, an additional charge is levied to do so. In case our agents assist you with the changes, it's considered a new booking, and you are required to pay for the same. To know more regarding this, please read our section Taxes & Fees.</p>
+                </div>
+                <div class="accordion_head">
+                    For the bookings made, do I require a printed ticket?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>While making the booking, our agents inform you if you are required to carry a printed copy. In case of a change in this requirement, we will notify you within 24-hours of booking made. However, we strongly advise that you carry a printed ticket if you have reserved it with multiple airlines.</p>
+                </div>
+                <div class="accordion_head">
+                    When should I consider my reservation as confirmed?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>FareObuddy advises you to call the airline directly 72-hours before the time of departure. It is a mandatory step and must be followed for Return Flights as well.</p>
+                </div>
+
+                <div class="accordion_head">
+                    Is it feasible that I add a passenger to the already generated PNR or ticket?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>FareObuddy or any other travel company will not offer any such provisions of adding a new passenger to the existing booking. Hence, you are required to make a fresh booking for the new passenger. Please note: FareObuddy cannot guarantee that the new booking made by us will be at the original price of the previously booked tickets. Also, we do not guarantee that there will be an availability of flight matching to the existing booking.</p>
+                </div>
+                <div class="accordion_head">
+                    How is my baggage managed in case of a change of flights by the airline?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>According to the baggage agreement, in case of a change of flight the airline is responsible for check-in baggage at all the airports. In case the agreement does not have this provision, then it becomes your responsibility to check with the Baggage Claim and make sure that your baggage is checked till the destination city.</p>
+                </div>
+                <div class="accordion_head">
+                    What are the documents required to complete a booking?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>To make a booking, the document requirement keeps on changing. The change is dependent on various factors including the city of departure, arrival, change of places, and your passport's nationality. FareObuddy advises you to call the airline and confirm with them what are the right set of documents to complete the booking. With that, also make sure that the information you receive is up to date. We hold no responsibility if you do not have sufficient documents at the airport, and the airline denies your boarding.</p>
+                </div>
+                <div class="accordion_head">
+                    What are the different kinds of trips offered?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Roundtrip: Flight from and to the same destination<br />
+One-way: Flight only till the destination with no return destination<br />
+Multiple Destinations: Different flights to different locations</p>
+                </div>
+
+                <div class="accordion_head">
+                    What do you mean by different classes on a flight?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Usually, most of the airlines offer particular classes - Economy, Business, and First Class.</p>
+                    <p>Economy class: Available on all airlines, Economy-class is the least expensive travel option with the maximum area.<br />
+Business-class: Business class has additional space and legroom and offers in-flight meals. Business-class is more expensive than the Economy.<br />
+First-class: Usually placed closest to the aircraft front, First-class offers the most comfortable seats. First-class ticket holders have access to upgraded meals, shorter check-in line, and lounge. The fare of a First-class is the most expensive.</p>
+                </div>
+
+                <div class="accordion_head">
+                    What flight options are available?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Non-stop flights: No stop or change before the destination.<br />
+No Flights change but a stopover: May have two landings but no change of planes.<br />
+Connecting flights: One or more landings with more than one departure. You are required to get off the plane and board again.</p>
+                </div>
+
+                <div class="accordion_head">
+                    What are the documents required to get through airport security?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>For domestic travel: A boarding pass, government-issued photo ID & a flight itinerary.<br />
+For International Travel: A passport, a visa permit to enter the country depending upon the requirement.</p>
+                </div>
+                <div class="accordion_head">
+                    Will I receive a confirmation voucher for my hotel reservation made on FareObuddy?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Whenever you make a booking for any service on FareObuddy, we generate a confirmation email at the earliest and assign you a reference ID. Based on this reference number, your e-vouchers get generated that you will receive within 24-48 hours of your booking. The confirmation email is a formal communication from FareObuddy that we have received your booking request and have started to work on the same.</p>
+                </div>
+                <div class="accordion_head">
+                    Is it feasible to add additional passengers to an existing hotel booking?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Unlike flight bookings, we can add additional guests to your hotel booking if there is availability in the booked property. You can reach out to us on our customer care number 1-844-736-1666. Alternatively, you can make a new reservation on our website FareObuddy.</p>
+                </div>
+
+                <div class="accordion_head">
+                    The hotel is asking for a higher amount than as mentioned on my reservation. What should I do?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>The hotel may charge an additional fee under the resort/ hotel fee to be paid at the hotel. Additionally, in some cities, a government tax is charged to be paid during checkout. Apart from these charges, the hotel must honor the rate quoted to you during the reservation. As a piece of evidence, you can present the printout of your reservation and ask them to rectify the charges.</p>
+                </div>
+                <div class="accordion_head">
+                    How can I cancel my hotel bookings?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>For hotel cancellation, you need to reach out to the FareObuddy customer care. Our travel experts will help you with the cancellation process and give you a brief regarding Hotel Cancellation Policy as well as our service fees for processing the same. To know more regarding the cancellation process, read our Terms and Conditions.</p>
+                </div>
+                <div class="accordion_head">
+                    I made the hotel booking online. Am I required to make the payment immediately?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Yes. Before confirming your booking, we require your credit/ debit card details in order to confirm your booking. The price debited from your account is inclusive of hotel tariff, our service fee, and other taxes.</p>
+                </div>
+                <div class="accordion_head">
+                    What can I do if I face problems during check-in?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>FareObuddy recommends that you carry a printout of the confirmation email shared by us over the email. In case the hotel is overbooked like they might do on some occasions and if you have a confirmed reservation, then the hotel is under an obligation to facilitate you with another hotel at comparable prices along with free private transfers to the property.</p>
+                </div>
+                <div class="accordion_head">
+                    What do we mean by prepaid hotel reservation?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>A prepaid reservation is the one where you are charged at the time of making the booking. In this case, you will be charged with the Full Base Amount (room only), and you will have to pay at the hotel for other incidentals like food, parking, cleaning fee, bar phone calls, etc. The rates that are offered by us are guaranteed only at the time of booking.</p>
+                </div>
+                <div class="accordion_head">
+                    I want to change my hotel booking dates. How can I do the same?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>For any changes to the date, type of room, name of booking holder, etc are at the sole discretion of the hotel policy. We at FareObuddy can only reach out to the hotel on your behalf and request a change for which we charge a service fee.</p>
+                </div>
+                <div class="accordion_head">
+                    Can you confirm my type of bedding as selected by me?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Any requests made for the type of preferences are on first-cum-first-serve basis. These include- bedding type, smoking/non-smoking room, and late/early check-in. Most of the hotels do honour the customer's request, however, some may not be able to due to unavailability. In such cases, FareObuddy does not hold any guarantee that your request is confirmed.</p>
+                </div>
+                <div class="accordion_head">
+                    Is my pet allowed in the hotel?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>Every hotel has different policies for pet acceptance. However, it is best to reach out to the hotel and confirm their policy. No hotel will allow a pet if you have not given them prior notice for it. We at FareObuddy have no control over the hotel's pet policy, and you can read more about it in our Terms and Conditions.</p>
+                </div>
+                <div class="accordion_head">
+                    Are the hotel rates of the hotel in the US dollar?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>All the hotel tariffs on FareObuddy.com are in US dollar or Canadian Dollar. You can make the selection of currency accordingly.</p>
+                </div>
+                <div class="accordion_head">
+                    I reached out to the hotel and they do not have my reservation details. What should I do?<span class="plusminus">+</span>
+
+                </div>
+                <div class="accordion_body" style="display: none;">
+                    <p>In most of the cases, the hotel does not receive the guest name 72-hours before the date of arrival. But do not worry, your reservation is safe and confirmed with us. Our team confirms and assures that the check-in details and your confirmation has reached the hotel 3 days before your scheduled arrival.</p>
+                </div>
+            </div>
+        </section>
+
+        </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+       
+        $(".accordion_head").click(function () {
+            if ($('.accordion_body').is(':visible')) {
+                $(".accordion_body").slideUp(300);
+                $(".plusminus").text('+');
+            }
+            if ($(this).next(".accordion_body").is(':visible')) {
+                $(this).next(".accordion_body").slideUp(300);
+                $(this).children(".plusminus").text('+');
+            } else {
+                $(this).next(".accordion_body").slideDown(300);
+                $(this).children(".plusminus").text('-');
+            }
+        });
+    });
+</script>

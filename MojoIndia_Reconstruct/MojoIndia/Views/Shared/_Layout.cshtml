@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover,">
+     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="FMJ">
     @RenderSection("AdditionalMeta", false)
 
@@ -47,6 +47,18 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1610653086459666&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+
+        <!-- Global site tag (gtag.js) - Google Flights: PARTNER_ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GF-982"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config','GF-982');
+    </script>
+
+
 
     @Styles.Render("~/Content/cssIndia")
     @Scripts.Render("~/bundles/modernizr")

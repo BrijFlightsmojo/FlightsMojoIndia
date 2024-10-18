@@ -168,6 +168,9 @@
                                                                 <td><b>ARRIVAL</b></td>
                                                                 <td><b>DURATION</b></td>
                                                                 <td><b>PNR</b></td>
+@if (Model.bookingStatus == BookingStatus.Ticketed|| Model.bookingStatus == BookingStatus.Confirmed)
+{
+                                                                <td><b>Baggage/Cabin Baggage</b></td>}
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
@@ -206,6 +209,11 @@
                                                                 {
                                                                     <td>@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</td>
                                                                 }
+@if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
+{
+                                                                <td>
+                                                                    <span>15KG / 7KG</span>
+                                                                </td>}
                                                             </tr>
 
                                                             @if (seg.layOverTime > 0)

@@ -9,10 +9,16 @@
 {
     <title>Flight Passenger: Flightsmojo.in</title>
     <link href="/Content/PassengerCss.css" rel="stylesheet" />
-	<link href="/Content/popstyle.css" rel="stylesheet" />
+    <link href="/Content/popstyle.css" rel="stylesheet" />
 }
 
 <style>
+    .fixed_price {
+        position: fixed;
+        width: 24%;
+        display: inline-block;
+    }
+
     .logo a img {
         width: 60%;
         padding-left: 20px;
@@ -92,10 +98,20 @@
             max-width: 1550px;
         }
     }
-    @@media screen and ( max-width:767px){
-         .logo a img{width:72%;
-        padding-left:0px;} 
-        
+
+    @@media screen and ( max-width:767px) {
+        .logo a img {
+            width: 72%;
+            padding-left: 0px;
+        }
+    }
+
+    .couponcodeinvalid {
+        color: red;
+    }
+
+    .couponcodesuccess {
+        color: green;
     }
 </style>
 <div class="clearfix"></div>
@@ -111,12 +127,11 @@
                                     <a href="/flight/result/@Model.userSearchID"><i class="fa fa-caret-left"></i>BACK TO RESULT</a><span> You have selected the best offer.</span>
                                 </div>
                                 <div class="pament_left">
-
+                                    <div class="mobile"><h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;" />Flight Detail </h3></div>
                                     <div class="payment_div">
-                                        <h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;"/>@*<i class="fa-solid fa-plane"></i>*@ Flight Detail </h3>
+                                        <h3 style="text-transform:uppercase;"><img src="/images/airplane.png" alt="icon" style="width:22px;" />Flight Detail </h3>
                                         <div class="passengerFlightD">
                                             <div class="onewayItenary">
-
                                                 <div class="passenger_Deapart">
 
                                                     @foreach (var flightResult in Model.flightResult)
@@ -184,8 +199,8 @@
                                                                             <div class="passDSline"><span class="passIcon"></span></div>
                                                                             <div class="clearfix"></div>
                                                                             <div class="PassReundale">
-                                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
-                                                                                {
+                                                                               @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown || Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType ==Core.RefundType.NonRefundable)
+                                                                               {
                                                                                     <span style="color: #e94117;border: 1px solid #e94117;padding: 2px 0px; font-weight:600;">
                                                                                         NON REFUNDABLE
                                                                                     </span>
@@ -228,7 +243,7 @@
                                                 <div class="clearfix"></div>
                                                 <ul class="fareRulesMenu">
 
-                                                    <li><a class="showSingle" onclick="FareRule()">Fare Rules</a></li>
+                                                    <li><a class="showSingle">Fare Rules</a></li>
                                                     @if (Model.travelType == Core.TravelType.Domestic && Model.flightResult.FirstOrDefault().cabinClass == Core.CabinType.Economy)
                                                     {
                                                         <li><a class="showSingleBaggage">Baggage</a></li>
@@ -253,7 +268,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Cancel Before 72 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;">  NON REFUNDABLE</td>
@@ -267,7 +282,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Cancel within 72 hours & before 4 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -299,7 +314,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Reschedule before 72 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -312,7 +327,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="width:60%;">Reschedule within 72 hours & before 4 hours of departure time.</td>
-                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                                @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                                                 {
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
                                                                     <td style="color: #e94117;font-weight: 600; font-size:11px;width:20%;"> NON REFUNDABLE</td>
@@ -329,7 +344,7 @@
 
                                                         <ul>
 
-                                                            @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR)
+                                                            @if (Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                                             {
                                                                 <h6>IMPORTANT INFORMATION</h6>
                                                                 <li>This booking and airline PNR is <strong> 100% confirmed </strong> under Group Fare Category.</li>
@@ -388,7 +403,7 @@
 
                                                                             if (airline.code == "QP" || airline.code == "AI" || airline.code == "6E" || airline.code == "I5" || airline.code == "UK" || airline.code == "SG" || airline.code == "IX")
                                                                             {
-                                                                                if (airline.code == "AI")
+                                                                                @*if (airline.code == "AI")
                                                                                 {
                                                                                     <tr>
                                                                                         <td><img src="@seg.url" /></td>
@@ -402,7 +417,7 @@
                                                                                     </tr>
                                                                                 }
                                                                                 else
-                                                                                {
+                                                                                {*@
                                                                                     <tr>
                                                                                         <td><img src="/images/flight_small/@(airline.code).gif" /></td>
                                                                                         <td>
@@ -410,55 +425,84 @@
                                                                                             <p>@airline.code - @seg.FlightNumber</p>
                                                                                         </td>
 
-                                                                                        <td>15 kg</td>
-                                                                                        <td> 7 kg</td>
+                                                                                        @*<td>15 kg</td>
+                                                                                        <td> 7 kg</td>*@
+                                                                                        <td>@seg.Baggage</td> 
+                                                                                        <td>@seg.CabinBaggage</td>
                                                                                     </tr>
+                                                                                    //}
                                                                                 }
-
-
-
-
                                                                             }
                                                                         }
                                                                     }
-                                                                }
                                                             </table>
                                                         </div>
                                                     </div>
                                                 }
                                             </div>
+
+
+                                            @foreach (var fr in Model.flightResult)
+                                            {
+                                                foreach (var fs in fr.FlightSegments)
+                                                {
+                                                    <div class="mobile_iteneray" style="padding-bottom:15px;">
+                                                        <div class="mobItenary_logo">
+                                                            <img src="@fs.Segments[0].url" />
+                                                        </div>
+                                                        <div class="mobItenary_detail">
+                                                            <div class="City_name">
+                                                                <span>@(Core.FlightUtility.GetAirport(fs.Segments[0].Origin).cityName)</span>
+                                                                <em>-</em>
+                                                                <span>@(Core.FlightUtility.GetAirport(fs.Segments.LastOrDefault().Destination).cityName)</span>
+
+                                                            </div>
+                                                            <div class="itenary_type">
+                                                                <span class="itenaryDate">@fs.Segments[0].DepTime.ToString("ddd dd MMM")</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mobItenary_btn">
+                                                            <a onclick="ShowModel('@(Model.flightResult.Count==2 || Model.flightResult[0].FlightSegments.Count==2?"2":"1")')">Detail <i class="fa fa-caret-down"></i></a>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
                                         </div>
                                     </div>
 
-                                    @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                    {*@
-                                        <div class="mobile">
-                                            <div class="couponCon">
-                                                <h4>Enter Promo Code <img src="/images/right.svg" alt="icon" style="width:13px; transform:rotate(180deg);"/> @*<i class="fa-solid fa-angles-down"></i>*@</h4>
-                                                <div class="couponapplyCon">
-                                                    <span class="applycoupon"> @*onclick="ChangeCouponMob('INSTAMOJO')"*@
-                                                    <input type="text" id="CouponCodeMob" readonly="readonly" value="@Model.CouponCode" placeholder="##COUPON" /></span>
-                                                    <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCouponMob"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                                    <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCouponMob"><a onclick="ClearCouponCode()">CLEAR X</a></span>
+
+                                    <div class="mobile">
+                                        <div class="couponCon">
+                                            <h4>Enter Promo Code <img src="/images/right.svg" alt="icon" style="width:13px; transform:rotate(180deg);" /> @*<i class="fa-solid fa-angles-down"></i>*@</h4>
+                                            <div class="couponapplyCon">
+                                                <span class="applycoupon">
+                                                    @*<input type="text" id="CouponCodeMob" readonly="readonly" value="@Model.CouponCode" placeholder="##COUPON" />*@
+                                                    @Html.TextBoxFor(o => o.CouponCodeMob, new { @placeholder = "Enter Coupon Code" })
+                                                </span>
+                                                <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCodeMob)?" none":"block")" id="applyCouponMob"><a onclick="ApplyCouponCodeMob()">Apply</a></span>
+                                                <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCodeMob)?" block":"none")" id="clearCouponMob"><a onclick="ClearCouponCodeMob()">CLEAR X</a></span>
+                                            </div>
+
+                                            <div class="coupon_alert_message">
+
+                                                <span class="couponcodeinvlidorsuccess" id="CouponMsgMob" style="color:green"></span>
+
+                                            </div>
+
+                                            <div class="selectCouponCon">
+                                                <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
+                                                    <input id="rbtnNone" name="radio" type="radio" value="None">
+                                                    <label for="rbtnNone" class="radioCoupon-label">None</label>
+                                                    <p>No Coupon Applied. </p>
                                                 </div>
-                                                <div class="selectCouponCon">
-                                                    @*<p style="color:green;" class="Coupon-hide">
-                                                        Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
-                                                    </p>*@
-                                                    <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
-                                                        <input id="rbtnNone" name="radio" type="radio" value="None">
-                                                        <label for="rbtnNone" class="radioCoupon-label">None</label>
-                                                        <p>No Coupon Applied. </p>
-                                                    </div>
-                                                    <div class="radioCoupon" style="display:none;"> @*onclick="ChangeCouponMob('INSTAMOJO')"*@
-                                                        <input id="INSTAMOJOMob" name="radio" type="radio" value="INSTAMOJO" checked="checked">
-                                                        <label for="INSTAMOJOMob" class="radioCoupon-label">INSTAMOJO</label>
-                                                        @*<p> Get Upto 33% Off on Flight Bookings.</p>*@
-                                                    </div>
+                                                <div class="radioCoupon" style="display:none;">
+                                                    <input id="INSTAMOJOMob" name="radio" type="radio" value="INSTAMOJO" checked="checked">
+                                                    <label for="INSTAMOJOMob" class="radioCoupon-label">INSTAMOJO</label>
                                                 </div>
                                             </div>
                                         </div>
-                                    @*}*@
+                                    </div>
+
                                     <div class="ProgrssDiv">
                                         <div id="Contactstep" class="passenger_step false">
                                             <div class="progess_Step">
@@ -691,9 +735,9 @@
                                                 Add on
                                             </div>
 
-                                            @if (Model.travelType != Core.TravelType.International)
+                                            @if (Model.travelType != Core.TravelType.International && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithoutPNR && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.SeriesFareWithPNR && Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown|| Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.None || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                             {
-                                               if (Model.flightResult[0].Fare.subProvider != 48 && Model.flightResult[0].Fare.subProvider != 66)
+                                                if (Model.flightResult[0].Fare.subProvider != 48 && Model.flightResult[0].Fare.subProvider != 66)
                                                 {
                                                     if (Model.flightResult[0].Fare.gdsType == GdsType.Tbo
                                                         || Model.flightResult[0].Fare.gdsType == GdsType.TripJack
@@ -705,45 +749,45 @@
                                                             <input type="hidden" id="hfStepShow" value="0" />
 
 
-                                                        <div class="payment_div AddonsStep1" style="display:none;">
-                                                            <h2 class="para_text">
-                                                                <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
-                                                                <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
-                                                            </h2>
-                                                            <div class="cancel_policy">
-                                                                <ul>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
-                                                                    <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="extended_con" onclick="CancellaionPolicy();">
-                                                                <div class="smart_check">
-                                                                    <label class="switch" for="chbCancellaionPolicyBye">
-                                                                        <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
-                                                                        <div class="slider round"></div>
-                                                                    </label>
+                                                            <div class="payment_div AddonsStep1" style="display:none;">
+                                                                <h2 class="para_text">
+                                                                    <img src="/images/24-hours-support.svg" alt="icon"> Extended Cancellation Policy <span>Recommended</span>
+                                                                    <p>Allow yourself to cancel/rebook your flight witin 24  from the time of booking for any reason!</p>
+                                                                </h2>
+                                                                <div class="cancel_policy">
+                                                                    <ul>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Extended Deadline:</b> Full freedom to cancel within 24 hours of your booking</li>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Full Refund:</b> Eligible for a complete refund on cancellations within this period.</li>
+                                                                        <li><img src="/images/Shape 6.png" /><b>Instant Processing:</b> Cancellations are quick and hassle free.</li>
+                                                                    </ul>
                                                                 </div>
-                                                                <div class="policy_textse">
-                                                                    <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
-                                                                    <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
+                                                                <div class="extended_con" onclick="CancellaionPolicy();">
+                                                                    <div class="smart_check">
+                                                                        <label class="switch" for="chbCancellaionPolicyBye">
+                                                                            <input type="checkbox" id="chbCancellaionPolicyBye" name="chbCancellaionPolicyBye">
+                                                                            <div class="slider round"></div>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="policy_textse">
+                                                                        <span class="policy_one" id="CancellaionPolicyYes" style="display: none;">Yes, I’d like to take advantage of the Extended Cancellation Policy benefits!</span>
+                                                                        <span class="policy_two" id="CancellaionPolicyNo" style="display: block;"> No thanks, I just want 2 hours free Cancellation.</span>
+                                                                    </div>
+                                                                    <div class="extended_price">
+                                                                        <h5>₹ @Model.CancellaionPolicyAmt.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</h5>
+                                                                        <p>Per person</p>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="extended_price">
-                                                                    <h5>₹ @Model.CancellaionPolicyAmt</h5>
-                                                                    <p>Per person</p>
+                                                                <div class="extended_bottom">
+                                                                    <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
+                                                                    <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="extended_bottom">
-                                                                <p><em>*</em>Extended Cancellation policy Is Non-Refundable once Purchased.</p>
-                                                                <div class="extended_ploicy"><a href="/terms-condition" target="_blank">T&C</a></div>
-                                                            </div>
-                                                        </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="hidden" id="hfStepHide" value="0" />
+                                                        }
                                                     }
-                                                    else
-                                                    {
-                                                        <input type="hidden" id="hfStepHide" value="0" />
-                                                    }
-                                                }
 
                                                     else
                                                     {
@@ -765,7 +809,7 @@
                                                             <h2 class="para_text"><img src="/images/insurance.svg" alt="icon"> Airline Refund Assurance <dfn>Recommended</dfn></h2>
 
                                                         </div>
-                                                        <div class="airline_RefundRight"><h5>₹ @Model.RefundPolicyAmt</h5></div>
+                                                        <div class="airline_RefundRight"><h5>₹ @Model.RefundPolicyAmt.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</h5></div>
                                                     </div>
                                                     <div class="airline_refundTrem">
                                                         <div class="refund_Text">
@@ -920,7 +964,7 @@
                                                             <input type="hidden" id="hfconveniencefeeUPI" name="hfconveniencefeeUPI" value="@(150 * Model.passengerDetails.Count * Model.flightResult.Count)" />
                                                         </div>
                                                         <div class="PaynowDiv">
-                                                            @if (Model.flightResult.Exists(o => (o.Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || o.Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)))
+                                                            @if (Model.flightResult.Exists(o => (o.Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || o.Fare.mojoFareType == MojoFareType.SeriesFareWithPNR || o.Fare.mojoFareType == Core.MojoFareType.None)))
                                                             {
                                                                 <span class="payment-button" id="btnSubmit_offer_fare" onclick="return ShowGroupFare();">Pay Now </span>
                                                             }
@@ -928,77 +972,75 @@
                                                             {
                                                                 <span class="payment-button" id="btnSubmitPay" onclick="return payOnline();">Pay Now </span>
                                                             }
-                                                            <span class="ssl_payment"><i class="fa-solid fa-lock"></i> SSL Secure Payment</span>
+                                                            <span class="ssl_payment"><i class="fa fa-lock"></i> SSL Secure Payment</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @*Mobile*@
+
                                 </div>
-                                @*desktop*@
+
 
                                 <div class="payment_right mobile_none">
-                                    <div class="passenger_price">
-                                        <div class="price-section">
-                                            <h3>Price Details</h3>
-                                            <div class="pricing">
-                                                <div class="price-row">
-
-                                                    <label class="psen-name">@Model.adults Traveler(s) : Adult</label>
-                                                    <label class="rate-amount"> ₹ <font id="AdultFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                </div>
-                                                @if (Model.child > 0)
-                                                {
+                                    <div class="fixed_price">
+                                        <div class="passenger_price">
+                                            <div class="price-section">
+                                                <h3>Price Details</h3>
+                                                <div class="pricing">
                                                     <div class="price-row">
-                                                        <label class="psen-name">@Model.child Traveler(s) : Child</label>
-                                                        <label class="rate-amount"> ₹ <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
-                                                }
-                                                @if (Model.infants > 0)
-                                                {
-                                                    <div class="price-row">
-                                                        <label class="psen-name">@Model.infants Traveler(s) : infants</label>
-                                                        <label class="rate-amount"> ₹ <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
-                                                    </div>
-                                                }
 
-                                                <div class="price-row">
-                                                    <label class="psen-namehead">Fee &amp; Surcharge</label>
-                                                    <label class="rate-amounthead">
-                                                        ₹ <font id="Surcharge">
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                                            {
-                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
+                                                        <label class="psen-name">@Model.adults Traveler(s) : Adult</label>
+                                                        <label class="rate-amount"> ₹ <font id="AdultFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                    </div>
+                                                    @if (Model.child > 0)
+                                                    {
+                                                        <div class="price-row">
+                                                            <label class="psen-name">@Model.child Traveler(s) : Child</label>
+                                                            <label class="rate-amount"> ₹ <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                        </div>
+                                                    }
+                                                    @if (Model.infants > 0)
+                                                    {
+                                                        <div class="price-row">
+                                                            <label class="psen-name">@Model.infants Traveler(s) : infants</label>
+                                                            <label class="rate-amount"> ₹ <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></label>
+                                                        </div>
+                                                    }
+
+                                                    <div class="price-row">
+                                                        <label class="psen-namehead">Fee &amp; Surcharge</label>
+                                                        <label class="rate-amounthead">
+                                                            ₹ <font id="Surcharge">
+
                                                                 @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
-                                                        </font>
-                                                    </label>
-                                                </div>
-                                                @*<div class="price-row" id="CouponPriceDetails" style="display:@(Model.CouponAmount>0?"block":"none");">
-                                                    <label class="psen-namehead">Coupon Discount</label>
-                                                    <label class="rate-amounthead">
-                                                        ₹<span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
-                                                    </label>
-                                                </div>*@
 
-                                                <div class="price-row" id="PriceCancellaionPolicy" style="display:none;">
-                                                    <label class="psen-name ">Extended Cancellation Policy Fee</label>
-                                                    <label class="rate-amount CancellaionPolicy">
-                                                        ₹<span id="CancellationAmt">@(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
-                                                    </label>
-                                                </div>
+                                                            </font>
+                                                        </label>
+                                                    </div>
 
-                                                <div class="price-row" id="PriceRefundPolicy" style="display:none;">
-                                                    <label class="psen-name ">Extended Airline Refund Assurance Fee</label>
-                                                    <label class="rate-amount CancellaionPolicy">
-                                                        ₹<span id="RefundAmt">@(((Model.RefundPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
-                                                    </label>
-                                                </div>
+                                                    <div class="Fare100" id="CouponPriceDetails" style="display:@(Model.CouponAmount>0?" block":"none");">
+                                                        <span class="textLeft">Coupon Discount</span>
+                                                        <span class="textRight">
+                                                            ₹
+                                                            <span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="price-row" id="PriceCancellaionPolicy" style="display:none;">
+                                                        <label class="psen-name ">Extended Cancellation Policy Fee</label>
+                                                        <label class="rate-amount CancellaionPolicy">
+                                                            ₹<span id="CancellationAmt">@(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="price-row" id="PriceRefundPolicy" style="display:none;">
+                                                        <label class="psen-name ">Extended Airline Refund Assurance Fee</label>
+                                                        <label class="rate-amount CancellaionPolicy">
+                                                            ₹<span id="RefundAmt">@(((Model.RefundPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</span>
+                                                        </label>
+                                                    </div>
 
 
 
@@ -1010,14 +1052,9 @@
                                                 <div class="coupn-section">
                                                     <h4 id="emFareDetailsProgress" style="display:block">
                                                         Rechecking Fare.. <em>
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                                            {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
+
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+
                                                         </em>
                                                         <em>
                                                             <img src="/images/1495.gif" />  ₹
@@ -1026,25 +1063,15 @@
                                                     <h4 id="emFareDetails" style="display:none;">
                                                         Final Total Price:
                                                         <em id="totalAmount">
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                                            {
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount + Model.RefundPolicyAmt + Model.CancellaionPolicyAmt) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            }
-                                                            else
-                                                            {*@
-                                                                @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                            @*}*@
+
+                                                            @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+
                                                         </em>
                                                         <em>
                                                             ₹
-                                                            @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015")
-                                                                {
-                                                                    <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount+Model.RefundPolicyAmt + Model.CancellaionPolicyAmt)).ToString("f2"))" />
-                                                                }*@
-                                                            @*else
-                                                                {*@
+
                                                             <input type="hidden" id="hftotalAmt" value="@(((Model.sumFare.grandTotal+Model.CouponIncreaseAmount)).ToString("f2"))" />
-                                                            @*}*@
+
 
                                                             <input type="hidden" id="hftotalpax" value="@(Model.adults+Model.child+Model.infants+Model.infantsWs)" />
                                                             @Html.HiddenFor(o => o.CouponAmount)
@@ -1063,89 +1090,52 @@
                                                         <p>Seats in this sector are selling out fast</p>
                                                     </div>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @*@if (Model.sourceMedia == "1013")
-                                        {
-                                            <div class="couponCon">
-                                                <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
-                                                <div class="couponapplyCon">
-                                                    <span class="applycoupon" onclick="ChangeCoupon('@Model.CouponCode')">
-                                                        <input type="text" placeholder="FMZERONETB" readonly="readonly" />
-
-                                                    </span>
-                                                    <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                                    <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
-                                                </div>
-                                                <div class="selectCouponCon">
-                                                    @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                                    {
-                                                    <div class="radioCoupon" onclick="ChangeCoupon('@Model.CouponCode')">
-                                                        <input id="@Model.CouponCode" name="radio" type="radio" checked="checked" value="@Model.CouponCode" />
-                                                        <label for="@Model.CouponCode" class="radioCoupon-label">@Model.CouponCode</label>
-                                                        <p>Use this coupon and get Rs.@Model.CouponAmount OFF on your flight booking.</p>
-                                                    </div>
-                                                    }
-                                                    <div class="radioCoupon" onclick="ChangeCoupon('FMZERONETB')">
-                                                        <input id="FMZERONETB" name="radio" type="radio" checked="checked" />
-                                                        <label for="FMZERONETB" class="radioCoupon-label">FMZERONETB</label>
-                                                        <p>ZERO Convenience Fees</p>
-                                                        <p>
-                                                            There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
-
-                                        else if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
-                                        {*@
-                                    <div class="couponCon">
-                                        <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
-                                        <div class="couponapplyCon">
-                                            <span class="applycoupon"> @*onclick="ChangeCoupon('INSTAMOJO')"*@
-                                            @Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code", @readonly = "readonly" })</span>
-                                            <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
-                                            <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
                                         </div>
-                                        <div class="selectCouponCon">
-                                            @if (!string.IsNullOrEmpty(Model.CouponCode))
-                                            {
-                                                <div class="radioCoupon"> @*onclick="ChangeCoupon('INSTAMOJO')"*@
-                                                    <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
-                                                    <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
-                                                    <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
-                                                </div>
-                                            }
-                                            @*@if (Model.sourceMedia != "1013")
-                                            {
-                                                <p style="color:green;" class="Coupon-hide">
-                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully.
-                                                </p>
-                                            }
-                                            else
-                                            {
-                                                <p style="color:green;" class="Coupon-hide">
-                                                    Congratulations! Instant Discount of Rs.@Model.CouponIncreaseAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in")) has been applied successfully
-                                                    and There is no convenience charge for your Net Banking transaction, the coupon has already been applied to the selected fare.
-                                                </p>
-                                            }*@
-
-                                            <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
-                                                <input id="rbtnNone" name="radio" type="radio" value="None" />
-                                                <label for="rbtnNone" class="radioCoupon-label">None</label>
-                                                <p>No Coupon Applied. </p>
+                                        <div class="couponCon">
+                                            <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
+                                            <div class="couponapplyCon">
+                                                <span class="applycoupon">
+                                                    @Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code" })
+                                                </span>
+                                                <span class="apply_coubtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" none":"block")" id="applyCoupon"><a onclick="ApplyCouponCode()">Apply</a></span>
+                                                <span class="apply_clrbtn" style="display:@(!string.IsNullOrEmpty(Model.CouponCode)?" block":"none")" id="clearCoupon"><a onclick="ClearCouponCode()">CLEAR X</a></span>
                                             </div>
-                                        @*<div class="radioCoupon" onclick="ChangeCoupon('INSTAMOJO')">
-                                            <input id="INSTAMOJO" name="radio" type="radio" value="INSTAMOJO" checked="checked" />
-                                            <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
-                                            <p> Get Upto 33% Off on Flight Bookings.</p>
-                                        </div>*@
+                                            <div class="coupon_alert_message">
+                                                
+                                                <span class="couponcodeinvlidorsuccess" id="CouponMsg" style="color:green"></span>@*@Model.responseStatus.message*@
+                                                @*@if (Model.responseStatus.message == "Invalid Coupon")
+                                                {
+                                                    <span class="couponcodeinvalid">Invalid Coupon</span>
+                                                } 
+                                                else
+                                                {
+                                                    <span class="couponcodesuccess">Success</span>
+                                                }*@
+                                            </div>
+                                            <div class="selectCouponCon">
+                                                @if (!string.IsNullOrEmpty(Model.CouponCode))
+                                                {
+                                                    <div class="radioCoupon">
+                                                        <input id="INSTAMOJO" name="radio" type="radio" checked="checked" value="INSTAMOJO" />
+                                                        <label for="INSTAMOJO" class="radioCoupon-label">INSTAMOJO</label>
+                                                        <p>Use this coupon and get Rs.@Model.CouponIncreaseAmount OFF on your flight booking.</p>
+                                                    </div>
+                                                }
+
+
+                                                <div class="radioCoupon" onclick="ClearCouponCode()" style="display:none;">
+                                                    <input id="rbtnNone" name="radio" type="radio" value="None" />
+                                                    <label for="rbtnNone" class="radioCoupon-label">None</label>
+                                                    <p>No Coupon Applied. </p>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                    @*}*@
+
                                 </div>
                             </div>
                         </div>
@@ -1189,53 +1179,71 @@
                             <div class="TotalAmount">
                                 <span class="textLeft">Total</span>
                                 <span class="textRight">
-                                    ₹
-                                    <a id="modBtn"><span><font id="totalAmountMobile"> @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></span><img src="/images/info-icon-black.svg" alt="icon" style="width:15px;position: relative;top:-2px;"/> @*<i class="fa fa-info-circle"></i>*@ </a>
+                                    ₹<a id="modBtn"><span><font id="totalAmountMobile"> @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font></span> <img src="/images/info-icon-black.svg" alt="icon" style="width:15px;position: relative;top:-2px;" /> @*<i class="fa fa-info-circle"></i>*@ </a>
                                 </span>
                             </div><!---->
                             <div id="modal" class="modalprice">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="header-title">Fare Summary</h3>
-                                        <div class="close"><img src="/images/close.svg" alt="icon" style="width:15px;" /></div>
+                                        <h3 class="header-title" style="font-size:24px;">Fare Breakup</h3>
+                                        <div class="close">X</div>
                                     </div>
 
                                     <div class="modal-body">
                                         <div class="FlightFare">
                                             <div class="Fare100">
-                                                <span class="textLeft">@Model.adults Traveler(s) : Adult</span>
+
+                                                <span class="textLeft"> Base Fare</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <font id="AdultFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                    ₹<font id="AdultFare">@((Model.sumFare.BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
                                                 </span>
                                             </div>
+                                            <div class="Fare100">
 
-                                            @if (Model.child > 0)
-                                            {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.child Traveler(s) : Child</span>
-                                                    <span class="textRight">
-                                                        ₹
-                                                        <font id="ChildFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.adults Traveler(s) : Adult</span>
+                                                <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                    ₹<font id="AdultFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).First().BaseFare) ).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                </span>
+
+                                                @if (Model.child > 0)
+                                                {
+                                                    <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.child Traveler(s) : Child</span>
+                                                    <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                        ₹<font id="ChildFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Child).First().BaseFare)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
                                                     </span>
-                                                </div>
-                                            }
-                                            @if (Model.infants > 0)
-                                            {
-                                                <div class="Fare100">
-                                                    <span class="textLeft">@Model.infants Traveler(s) : Adult</span>
-                                                    <span class="textRight">
-                                                        ₹
-                                                        <font id="InfantFare">@((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
+                                                }
+
+                                                @if (Model.infants > 0)
+                                                {
+                                                    <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">@Model.infants Traveler(s) : Infant</span>
+                                                    <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                        ₹<font id="InfantFare">@(((Model.sumFare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Infant).First().BaseFare)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))</font>
                                                     </span>
-                                                </div>
-                                            }
+                                                }
+
+                                            </div>
+
+                                         
 
                                             <div class="Fare100">
-                                                <span class="textLeft">Fee & Surcharge</span>
+                                                <span class="textLeft">Taxes & Fees</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <font id="SurchargeMob">
+                                                    ₹<font id="SurchargeMob">
+                                                        @*@if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
+                                                            {
+                                                                @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                            }
+                                                            else
+                                                            {*@
+                                                        @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
+                                                        @*}*@
+                                                    </font>
+                                                </span>
+                                            </div>
+                                            <div class="Fare100">
+                                                <span class="textLeft" style="color:#7e7e7e; font-weight:normal;">Airline Taxes & Fees</span>
+                                                <span class="textRight" style="color:#7e7e7e; font-weight:normal;">
+                                                    ₹<font id="SurchargeMob">
                                                         @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                         {
                                                             @(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.CouponIncreaseAmount)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
@@ -1250,8 +1258,7 @@
                                             <div class="Fare100" id="CouponPriceDetailsMob" style="display:@(Model.CouponAmount>0?" block":"none");">
                                                 <span class="textLeft">Coupon Discount</span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <span id="CouponAmt">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
+                                                    ₹<span id="CouponAmtMob">-@Model.CouponAmount.ToString("0,0", new System.Globalization.CultureInfo("HI-in"))</span>
                                                 </span>
                                             </div>
 
@@ -1260,10 +1267,7 @@
                                                 <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
                                                     <span class="textLeft">Extended Cancellation Policy Fee</span>
                                                     <span class="textRight">
-                                                       ₹
-                                                        <font id="CancellationMob">
-                                                            @(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
-                                                        </font>
+                                                        ₹<font id="CancellationMob">@(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in"))) </font>
                                                     </span>
                                                 </div>
                                             }
@@ -1274,8 +1278,7 @@
                                                 <div class="Fare100" style="display:none;" id="RefundAmtMob">
                                                     <span class="textLeft">Extended Refund Policy Fee</span>
                                                     <span class="textRight">
-                                                       ₹
-                                                        <font id="RefundMob">
+                                                        ₹<font id="RefundMob">
                                                             @(((Model.RefundPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
                                                         </font>
                                                     </span>
@@ -1291,16 +1294,18 @@
                                                     Convenience fee
                                                 </span>
                                                 <span class="textRight">
-                                                    ₹
-                                                    <span><font id="ConFeeAmtMob"></font></span>
+                                                    ₹<span><font id="ConFeeAmtMob"></font></span>
                                                 </span>
                                             </div>
 
                                         </div>
                                         <div class="TotalAmountmob">
-                                            <span class="AmttextLeft">Final Total Price:</span><span class="AmttextRight">
-                                                ₹
-                                                <span id="totalAmountMob1">
+                                            <span class="AmttextLeft">
+                                                Grand Total:
+                                                <dfn>(Excluding convenience fee)</dfn>
+                                            </span>
+                                            <span class="AmttextRight">
+                                                ₹<span id="totalAmountMob1">
                                                     @if (Model.sourceMedia == "1000" || Model.sourceMedia == "1001" || Model.sourceMedia == "1016" || Model.sourceMedia == "1004" || Model.sourceMedia == "1015" || Model.sourceMedia == "1013")
                                                     {
                                                         @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.CouponIncreaseAmount) - Model.CouponAmount).ToString("0,0", new System.Globalization.CultureInfo("HI-in")))
@@ -1312,6 +1317,9 @@
                                                 </span>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="model-Footer">
+                                        <button onclick="CloseFare();">Continue</button>
                                     </div>
                                 </div>
                             </div>
@@ -1394,6 +1402,333 @@
         </div>
     </div>
 </div>
+
+<div class="paymentmodal" id="paymentmodal1">
+    <div class="modal-content1">
+        <div class="paymentmod_head">
+            <span class="close-button1" onclick="closeModel('paymentmodal1');">×</span>
+            <h1>Flight Details</h1>
+        </div>
+        <div class="Scroll_Div2">
+            <div class="Oneway_FlightDetail">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>@(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)</span>
+                        <em class="posR">-</em>
+                        <span>@(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)</span>
+                    </div>
+                    <p>Departing Flight |<em>@Model.flightResult[0].FlightSegments[0].Segments[0].DepTime.ToString("ddd dd MMM")</em> </p>
+                </div>
+                <div>
+                    <div>
+                        @foreach (var fs in Model.flightResult)
+                        {
+                            foreach (var fsegg in fs.FlightSegments)
+                            {
+                                int segCtrr = 0;
+                                foreach (var seg in fsegg.Segments)
+                                {
+
+                                    Airline airline = null;
+                                    Airline OptAirline = null;
+                                    airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                                    OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                                    var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                                    var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                                    segCtrr++;
+
+                                    <div class="oneway_flightbottom">
+                                        <div class="oneway_Airlines">
+
+                                            <span>
+                                                <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                                <dfn>@airline.name</dfn>
+                                                <dfn>@airline.code - @seg.FlightNumber</dfn>
+                                            </span>
+                                        </div>
+                                        <div class="oneway_Mobdetail">
+                                            @if (segCtrr < fsegg.Segments.Count)
+                                            {
+                                                <div class="onewaydetail_left">
+                                                    <span>.</span>
+                                                    <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                                    <span>.</span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="onewaydetail_left">
+                                                    <span>.</span>
+                                                    <span style="width: 1px;border: 1px solid #cacaca;height: 118px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                                    <img src="/images/map.svg" alt="icon" />
+                                                </div>
+                                            }
+                                            <div class="onewaydetail_Right">
+                                                <div class="onewayinbond">
+                                                    <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                                    <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                                    <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                                </div>
+                                                <div class="oneoutinbond">
+                                                    <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                                    <div class="terminal">@toAirPort.cityName  . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layover_con">
+                                        @if (seg.layOverTime > 0)
+                                        {
+                                            <p>
+                                                Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")
+                                            </p>
+                                        }
+                                    </div>
+                                }
+                            }
+                        }
+
+
+                    </div>
+                </div>
+                <div class="booking_Upgrade" style="display:none;">
+                    <h1>Upgrade your booking</h1>
+                    <p>Fare for 1 Traveller</p>
+                    <div class="fare_Type">
+                        <div class="radio_payment">
+                            <dfn>
+                                <input type="radio" />
+                            </dfn>
+                            <h2>SAVER</h2>
+                            <span><em>₹</em>3454</span>
+                        </div>
+                        <div class="facilityDiv">
+                            <span><img src="/images/seat-airline.svg" />Cabin Bag :</span>
+                            <span>7KG</span>
+                        </div>
+
+                        <div class="facilityDiv">
+                            <span><img src="/images/briefcase.svg" />Check-in Bag :</span>
+                            <span>15KG</span>
+                        </div>
+                        <div class="facilityDiv">
+                            <span><img src="/images/no-money.svg" />Cancellation :</span>
+                            <span>₹ 2999 onwards</span>
+                        </div>
+
+                        <div class="facilityDiv">
+                            <span><img src="/images/calendar1.svg" />Date Change : </span>
+                            <span>₹ 2250 onwards</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="paymentmodal" id="paymentmodal2">
+    <div class="modal-content1">
+        <div class="paymentmod_head">
+            <span class="close-button2" onclick="closeModel('paymentmodal2');">×</span>
+            <h1>Flight Details</h1>
+        </div>
+        <div class="fare_nav">
+            <ul>
+                <li onclick="openTripTab('divOB')">
+                    <a class="active showBtn">
+                        @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        - @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                    </a>
+                </li>
+                <li onclick="openTripTab('divIB')">
+                    <a class="showBtn">
+                        @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        - @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="Scroll_Div_Int2">
+            <div class="Oneway_FlightDetail" id="divOB">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        </span>
+                        <em class="posR">-</em>
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        </span>
+                    </div>
+                    <p>Departing Flight |<em>@Model.flightResult[0].FlightSegments[0].Segments[0].DepTime.ToString("ddd dd MMM")</em> </p>
+                </div>
+                <div>
+
+
+
+                    @{
+                        var fseg = Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault();
+                        int segCtr = 0;
+                        foreach (var seg in fseg.Segments)
+                        {
+                            Airline airline = null;
+                            Airline OptAirline = null;
+                            airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                            OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                            var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                            var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                            segCtr++;
+                            <div class="oneway_flightbottom">
+                                <div class="oneway_Airlines">
+                                    <span>
+                                        <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                        <dfn>@airline.name</dfn>
+                                    </span>
+                                </div>
+                                <div class="oneway_Mobdetail">
+                                    @if (segCtr < fseg.Segments.Count)
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <span>.</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <img src="/images/map.svg" alt="icon" />
+                                        </div>
+                                    }
+                                    <div class="onewaydetail_Right">
+                                        <div class="onewayinbond">
+                                            <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                            <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                        </div>
+                                        <div class="oneoutinbond">
+                                            <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@toAirPort.cityName  . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layover_con" ng-if="seg.layOverTime!=''">
+                                @if (seg.layOverTime > 0)
+                                {
+                                    <div class="layover_con">
+                                        <span></span>
+                                        <p> Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
+
+
+
+
+                </div>
+            </div>
+            <div class="Oneway_FlightDetail" id="divIB" style="display:none;">
+                <div class="Oneway_flightTop">
+                    <div class="Depart_flight">
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments.LastOrDefault().Destination).cityName)
+                        </span>
+                        <em class="posR">-</em>
+                        <span>
+                            @(Core.FlightUtility.GetAirport(Model.flightResult[0].FlightSegments[0].Segments[0].Origin).cityName)
+                        </span>
+                    </div>
+                    
+
+                    @if (Model.travelType != Core.TravelType.International)
+                    {
+                        <p>Departing Flight |<em>@Model.flightResult.LastOrDefault().FlightSegments[0].Segments.LastOrDefault().DepTime.ToString("ddd dd MMM")</em> </p>
+                    }
+                    else
+                    {
+                        @*<p>Departing Flight |<em>@Model.flightResult.FirstOrDefault().FlightSegments[0].Segments.LastOrDefault().DepTime.ToString("ddd dd MMM")</em> </p>*@
+                    }
+
+                </div>
+                <div>
+
+                    @{
+                        var fseg1 = Model.flightResult.LastOrDefault().FlightSegments.LastOrDefault();
+                        int segCtr1 = 0;
+                        foreach (var seg in fseg1.Segments)
+                        {
+                            Airline airline = null;
+                            Airline OptAirline = null;
+                            airline = Model.airline.Where(x => x.code == seg.Airline).SingleOrDefault();
+                            OptAirline = Model.airline.Where(x => x.code == seg.OperatingCarrier).SingleOrDefault();
+                            var fromAirPort = Model.airport.Where(x => x.airportCode == seg.Origin).SingleOrDefault();
+                            var toAirPort = Model.airport.Where(x => x.airportCode == seg.Destination).SingleOrDefault();
+                            segCtr1++;
+                            <div class="oneway_flightbottom">
+                                <div class="oneway_Airlines">
+                                    <span>
+                                        <img src="@seg.url" class="dep-ai-img" alt="@(airline.name)" title="@(airline.name)" />
+                                        <dfn>@airline.name</dfn>
+                                    </span>
+                                </div>
+                                <div class="oneway_Mobdetail">
+                                    @if (segCtr1 < fseg1.Segments.Count)
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <span>.</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="onewaydetail_left">
+                                            <span>.</span>
+                                            <span style="width: 1px;border: 1px solid #cacaca;height:100px;margin-top: 0px;position: relative;top: 11px;"></span>
+                                            <img src="/images/map.svg" alt="icon" />
+                                        </div>
+                                    }
+                                    <div class="onewaydetail_Right">
+                                        <div class="onewayinbond">
+                                            <div class="Oneway_Time"><span>@seg.DepTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@fromAirPort.cityName . @(fromAirPort.airportName) @(string.IsNullOrEmpty(seg.FromTerminal) ? "" : ("Terminal-" + seg.FromTerminal.ToLower().Replace("terminal", ""))) (@(fromAirPort.airportCode))</div>
+                                            <div class="duration">Duration : @(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</div>
+
+                                        </div>
+                                        <div class="oneoutinbond">
+                                            <div class="Oneway_Time"><span>@seg.ArrTime.ToString("HH:mm")</span><em></em></div>
+                                            <div class="terminal">@toAirPort.cityName . @(toAirPort.airportName)  @(string.IsNullOrEmpty(seg.ToTerminal) ? "" : ("Terminal-" + seg.ToTerminal.ToLower().Replace("terminal", ""))) (@(toAirPort.airportCode))</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            if (seg.layOverTime > 0)
+                            {
+                                <div class="layover_con">
+                                    <span></span>
+                                    <p> Layover Time: (@toAirPort.airportCode) | @((seg.layOverTime / 60) + "hr " + (seg.layOverTime % 60) + "min")</p>
+                                </div>
+                            }
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 @if (Model.sourceMedia.Equals("1015"))
 {
     string ss = string.Empty, cabin = string.Empty;
@@ -1434,10 +1769,46 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/mojoFlightIndiaPassenger")
+    <script>
+        function closeModel(valModel) {
+            $("#" + valModel).removeClass("show-modal");
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            $body.css("overflow-y", "auto");
+            $body.width(oldWidth);
+        }
+        function ShowModel(val) {
+            $("#paymentmodal" + val).addClass("show-modal");
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            $body.css("overflow", "hidden");
+            $body.width(oldWidth);
+        }
+        function openTripTab(tabID) {
+            $("#divOB").hide();
+            $("#divIB").hide();
+            $("#" + tabID).show();
+        }
+    </script>
 
+    <script>
+        $(document).ready(function(){
+            $('ul li a').click(function(){
+                $('li a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
 
+    </script>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        function CloseFare() {
+            $(".modalprice").hide();
+        }
+
+    </script>
 
     <script>
         function CancellaionPolicy() {
@@ -1464,7 +1835,6 @@
             }
         }
     </script>
-
 
     <script>
         function RefundPolicy() {
@@ -1496,17 +1866,15 @@
         }
     </script>
 
-
-
     <script type="text/javascript">
         var totPax=@Model.passengerDetails.Count;
         if ($(window).width() > 960) {
             $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
                 if (scroll >= 140) {
-                    $(".payment_right").addClass("fixed-right");
+                    $(".payment_right").addClass("");
                 } else {
-                    $(".payment_right").removeClass("fixed-right");
+                    $(".payment_right").removeClass("");
                 }
             });
         }
@@ -1514,6 +1882,7 @@
     <script>
         $(document).ready(function () {
             changeRbtn();
+            GF_ViewItem();
             $(".showSingle").click(function () {
                 $(this).addClass("active");
                 $('.showSingleBaggage').removeClass("active");
@@ -1553,9 +1922,13 @@
             $(".closepopup").click(function () {
                 $("#GrpFare").hide();
             });
+            checkoutGTM();
 
-            FlightDetails();
-            ContactInfo();
+            //flight_detail();
+            //FlightDetails();
+            //ContactInfo();
+
+            ViewContentFB();
 
         });
 
@@ -1607,7 +1980,7 @@
                 $("#CouponProg").show();
                 $.ajax({
                     type: "POST",
-                    url: "/Flight/CheckCoupon",
+                    url: "/Flight/CheckCouponNew",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify({ CouponCode: $("#CouponCode").val(), ID: $("#userSearchID").val() }),
@@ -1616,24 +1989,28 @@
                         $("#CouponProg").hide();
                         if (data.responseStatus.status == 1) {
 
-                            $("#CouponMsg").html(data.responseStatus.messege);
+                            $("#CouponMsg").html(data.responseStatus.message);
+                            $("#CouponMsgMob").html(data.responseStatus.message);
                             $("#CouponAmount").val(data.CouponAmount);
                             $("#CouponAmountMob").val(data.CouponAmount);
                             $("#CouponPriceDetails").show();
                             $("#CouponPriceDetailsMob").show();
                             $("#CouponAmt").html("-" + data.CouponAmount.toFixed(0));
+                            $("#CouponAmtMob").html("-" + data.CouponAmount.toFixed(0));
                             $(".Coupon-hide").show();
                             $("#IdMsg").show();
                             CalculateAmount();
                         }
                         else {
 
-                            $("#CouponMsg").html(data.responseStatus.messege);
+                            $("#CouponMsg").html(data.responseStatus.message);
+                            $("#CouponMsgMob").html(data.responseStatus.message);
                             $("#CouponAmount").val("0");
                             $("#CouponAmountMob").val("0");
                             $("#CouponPriceDetails").hide();
                             $("#CouponPriceDetailsMob").hide();
                             $("#CouponAmt").html("0");
+                            $("#CouponAmtMob").html("0");
                             $("#IdMsg").hide();
                             CalculateAmount();
                         }
@@ -1646,6 +2023,7 @@
                         $("#CouponPriceDetails").hide();
                         $("#CouponPriceDetailsMob").hide();
                         $("#CouponAmt").html("0");
+                        $("#CouponAmtMob").html("0");
                         CalculateAmount();
                     }
                 });
@@ -1676,6 +2054,7 @@
                         $("#CouponPriceDetails").show();
                         $("#CouponPriceDetailsMob").show();
                         $("#CouponAmt").html("-" + data.CouponAmount.toFixed(0));
+                        $("#CouponMsg").hide();
                         //document.getElementById("rbtnNone").checked = true;
                         CalculateAmount();
                     }
@@ -1688,6 +2067,127 @@
                         $("#CouponPriceDetailsMob").hide();
                         $("#CouponAmt").html("0");
                         $(".Coupon-hide").hide();
+                        $("#CouponMsg").hide();
+                        document.getElementById("rbtnNone").checked = true;
+                        CalculateAmount();
+                    }
+                },
+                error: function (data) {
+                    $("#CouponProg").hide();
+                    $("#CouponMsg").html("Invalide coupon, Please try another coupon.");
+                    $("#CouponAmount").val("0");
+                    $("#CouponAmountMob").val("0");
+                    $("#CouponPriceDetails").hide();
+                    $("#CouponPriceDetailsMob").hide();
+                    $("#CouponAmt").html("0");
+                    CalculateAmount();
+                }
+            });
+
+            $("#clearCoupon").hide();
+            $("#applyCoupon").show();
+
+            $("#clearCouponMob").hide();
+            $("#applyCouponMob").show();
+        }
+
+
+        function ApplyCouponCodeMob() {
+            if ($("#CouponCodeMob").val() == "") {
+                $("#CouponMsgMob").html("Please enter a valid coupon!!");
+            }
+            else {
+                $("#CouponProg").show();
+                $.ajax({
+                    type: "POST",
+                    url: "/Flight/CheckCouponNew",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ CouponCode: $("#CouponCodeMob").val(), ID: $("#userSearchID").val() }),
+                    responseType: "json",
+                    success: function (data) {
+                        $("#CouponProg").hide();
+                        if (data.responseStatus.status == 1) {
+
+                            $("#CouponMsg").html(data.responseStatus.message);
+                            $("#CouponMsgMob").html(data.responseStatus.message);
+                            $("#CouponAmount").val(data.CouponAmount);
+                            $("#CouponAmountMob").val(data.CouponAmount);
+                            $("#CouponPriceDetails").show();
+                            $("#CouponPriceDetailsMob").show();
+                            $("#CouponAmt").html("-" + data.CouponAmount.toFixed(0));
+                            $("#CouponAmtMob").html("-" + data.CouponAmount.toFixed(0));
+                            $(".Coupon-hide").show();
+                            $("#IdMsg").show();
+                            CalculateAmount();
+                        }
+                        else {
+
+                            $("#CouponMsg").html(data.responseStatus.message);
+                            $("#CouponMsgMob").html(data.responseStatus.message);
+                            $("#CouponAmount").val("0");
+                            $("#CouponAmountMob").val("0");
+                            $("#CouponPriceDetails").hide();
+                            $("#CouponPriceDetailsMob").hide();
+                            $("#CouponAmt").html("0");
+                            $("#CouponAmtMob").html("0");
+                            $("#IdMsg").hide();
+                            CalculateAmount();
+                        }
+                    },
+                    error: function (data) {
+                        $("#CouponProg").hide();
+                        $("#CouponMsg").html("Invalide coupon, Please try another coupon.");
+                        $("#CouponAmount").val("0");
+                        $("#CouponAmountMob").val("0");
+                        $("#CouponPriceDetails").hide();
+                        $("#CouponPriceDetailsMob").hide();
+                        $("#CouponAmt").html("0");
+                        $("#CouponAmtMob").html("0");
+                        CalculateAmount();
+                    }
+                });
+                $("#clearCoupon").show();
+                $("#clearCouponMob").show();
+                $("#applyCoupon").hide();
+                $("#applyCouponMob").hide();
+            }
+        }
+        function ClearCouponCodeMob() {
+            $("#CouponCode").val("");
+            $("#CouponCodeMob").val("");
+            $("#CouponProg").show();
+            $.ajax({
+                type: "POST",
+                url: "/Flight/CheckCoupon",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({ CouponCode: $("#CouponCode").val(), ID: $("#userSearchID").val() }),
+                responseType: "json",
+                success: function (data) {
+
+                    $("#CouponProg").hide();
+                    if (data.responseStatus.status == 1) {
+                        $("#CouponMsg").html(data.responseStatus.messege);
+                        $("#CouponAmount").val(data.CouponAmount);
+                        $("#CouponAmountMob").val(data.CouponAmount);
+                        $("#CouponPriceDetails").show();
+                        $("#CouponPriceDetailsMob").show();
+                        $("#CouponAmt").html("-" + data.CouponAmount.toFixed(0));
+                        $("#CouponMsg").hide();
+                        //document.getElementById("rbtnNone").checked = true;
+                        CalculateAmount();
+                    }
+                    else {
+
+                        $("#CouponMsg").html(data.responseStatus.messege);
+                        $("#CouponAmount").val("0");
+                        $("#CouponAmountMob").val("0");
+                        $("#CouponPriceDetails").hide();
+                        $("#CouponPriceDetailsMob").hide();
+                        $("#CouponAmt").html("0");
+                        $(".Coupon-hide").hide();
+                        $("#CouponMsg").hide();
                         document.getElementById("rbtnNone").checked = true;
                         CalculateAmount();
                     }
@@ -1726,7 +2226,6 @@
             if($("#hfStepAddonRP").val()!="0")
             {
                 totalAmt += parseFloat($("#hfAddonRPAmt").val());
-
             }
 
             $("#totalAmount").html("" + totalAmt.toFixed(0));
@@ -1760,7 +2259,6 @@
         });
     </script>
 
-
     <script>
         $(document).ready(function () {
             $(".hide-toggle").click(function () {
@@ -1781,7 +2279,6 @@
                 e.preventDefault();
                 $("body").append(appendthis);
                 $(".modal-overlay").fadeTo(500, 0.7);
-                //$(".js-modalbox").fadeIn(500);
                 var modalBox = $(this).attr('data-modal-id');
                 $("#" + modalBox).fadeIn($(this).data());
             });
@@ -1896,9 +2393,10 @@
                         $('.AddonsStep1').hide();
                         $('.AddonsStep2').hide();
                         $("#BookingID").val(bookingID);
-                        checkout();
-                        PassengerInfo();
+                        checkoutLead();
+                        PassengerInfoFB();
                         $('#ResultProgressPopupSave').hide();
+
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -1938,6 +2436,7 @@
                     $('.AddonsStep1').hide();
                     $('.AddonsStep2').hide();
                     update_payment();
+                    AddPaymentInfoGTM();
                     $('#ResultProgressPopupSave').hide();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1947,11 +2446,6 @@
             });
         }
     </script>
-
-
-
-
-
 
     <script>
         function SavePassenger() {
@@ -2043,85 +2537,85 @@
                 }
 
 
-                    var jsonData = {
-                        ID: $("#userSearchID").val(),
-                        Paxlst: _Paxlst
-                    }
-                    $('#ResultProgressPopupSave').show();
-                    $.ajax({
-                        type: "POST",
-                        url: "/Flight/SavePassengerDetails",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(jsonData),
-                        responseType: "json",
-                        success: function (r) {
-                            $("#btn_proceed").hide();
-                            $("#btn_disable").show();
-                            if($("#hfStepShow").val()!="0")
+                var jsonData = {
+                    ID: $("#userSearchID").val(),
+                    Paxlst: _Paxlst
+                }
+                $('#ResultProgressPopupSave').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/Flight/SavePassengerDetails",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(jsonData),
+                    responseType: "json",
+                    success: function (r) {
+                        $("#btn_proceed").hide();
+                        $("#btn_disable").show();
+                        if($("#hfStepShow").val()!="0")
+                        {
+                            $('.AddonsStep1').hide();
+                            $('.AddonsStep2').show();
+                        }
+                        else
+                        {
+                            $('.AddonsStep1').show();
+                            $('.AddonsStep2').show();
+                        }
+                        Contactstep.classList.add("success");
+                        Contactstep.classList.remove("false");
+                        Passengerstep.classList.add("success");
+                        Passengerstep.classList.remove("false");
+                        var strHtml="", strHtmlChd="",strHtmlInf="";
+                        var adt=0,chd=0,inf=0;
+                        for(var i =0;i<_Paxlst.length;i++)
+                        {
+                            if(_Paxlst[i].passengerType=="Adult")
                             {
-                                $('.AddonsStep1').hide();
-                                $('.AddonsStep2').show();
+                                if(adt==0){
+                                    strHtml+="<span>Adult:</span>";
+                                }
+                                strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                adt++;
+                            }
+                            else if(_Paxlst[i].passengerType=="Child")
+                            { if(chd==0){
+                                strHtmlChd+="<span>Child:</span>";
+                            }
+                                strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                chd++
                             }
                             else
                             {
-                                $('.AddonsStep1').show();
-                                $('.AddonsStep2').show();
+                                if(inf==0){
+                                    strHtmlInf+="<span>Infant:</span>";
+                                }
+                                strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
+                                inf++;
                             }
-                            Contactstep.classList.add("success");
-                            Contactstep.classList.remove("false");
-                            Passengerstep.classList.add("success");
-                            Passengerstep.classList.remove("false");
-                            var strHtml="", strHtmlChd="",strHtmlInf="";
-                            var adt=0,chd=0,inf=0;
-                            for(var i =0;i<_Paxlst.length;i++)
-                            {
-                                if(_Paxlst[i].passengerType=="Adult")
-                                {
-                                    if(adt==0){
-                                        strHtml+="<span>Adult:</span>";
-                                    }
-                                    strHtml+="<p><img style='width:25px;padding-right: 6px;' src='/images/profile.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    adt++;
-                                }
-                                else if(_Paxlst[i].passengerType=="Child")
-                                { if(chd==0){
-                                    strHtmlChd+="<span>Child:</span>";
-                                }
-                                    strHtmlChd+="<p><img style='width:25px;padding-right: 6px;' src='/images/Child.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    chd++
-                                }
-                                else
-                                {
-                                    if(inf==0){
-                                        strHtmlInf+="<span>Infant:</span>";
-                                    }
-                                    strHtmlInf+="<p><img style='width:25px;padding-right: 6px;' src='/images/baby-boy.svg'>"+_Paxlst[i].title+" "+_Paxlst[i].firstName+" "+_Paxlst[i].lastName+"</p>";
-                                    inf++;
-                                }
-                            }
-                            $('#ResultProgressPopupSave').hide();
-                            $("#PaxShowData").html(strHtml);
-                            $("#PaxShowDataChd").html(strHtmlChd);
-                            $("#PaxShowDataInf").html(strHtmlInf);
-
-                            $("#PaxShow").show();
-                            PaxShow.style.display = "block";
-                            $("#PaxShowDataChd").show();
-                            $("#PaxShowDataInf").show();
-                            $("#AddOnstep").show();
-                            step1.style.display = "none";
-                            step2.style.display = "none";
-                            ShowContact.style.display = "block";
-                            AddPaymentInfo();
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                            $('#ResultProgressPopupSave').hide();
                         }
-                    });
-                }
+                        $('#ResultProgressPopupSave').hide();
+                        $("#PaxShowData").html(strHtml);
+                        $("#PaxShowDataChd").html(strHtmlChd);
+                        $("#PaxShowDataInf").html(strHtmlInf);
+
+                        $("#PaxShow").show();
+                        PaxShow.style.display = "block";
+                        $("#PaxShowDataChd").show();
+                        $("#PaxShowDataInf").show();
+                        $("#AddOnstep").show();
+                        step1.style.display = "none";
+                        step2.style.display = "none";
+                        ShowContact.style.display = "block";
+                        PassengerInfoGTM();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        $('#ResultProgressPopupSave').hide();
+                    }
+                });
             }
+        }
 
 
 
@@ -2148,6 +2642,7 @@
                         $("#Surcharge").html((Math.ceil(r.TaxWithMakrup)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#SurchargeMob").html((Math.ceil(r.TaxWithMakrup)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totalAmount").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+                        $("#hftotalAmt").val(r.grandTotal+r.fareIncreaseAmount);
                         $("#totalAmountMobile").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totA").html(Math.ceil((r.grandTotal+r.fareIncreaseAmount)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
                         $("#totalAmountMob1").html(Math.ceil(r.grandTotal + r.fareIncreaseAmount));
@@ -2164,8 +2659,7 @@
                             $("#fareIncreaseDetailsMobile").hide();
 
                         }
-                        //$("#ContinueBtn").show();
-                        //$("#ContinueBtnDisabled").hide();
+
                         $("#ContinueBtn").hide();
                         $("#ContinueBtnDisabled").show();
                         $("#ContinueBtnMobile").show();
@@ -2309,7 +2803,8 @@
 
     <script>
         function payOnline() {
-
+            InitiateCheckoutFB();
+            PayNowClickGTM();
             var jsonData = {
                 mode: $('[name="payment"]:radio:checked').val(),
                 ID: '@Model.userSearchID',
@@ -2374,7 +2869,8 @@
                                 $('form#Payment').submit();
                                 $('#ResultProgressPopup').show();
                                 $("#GrpFare").hide();
-                                PayNowClick();
+                                
+
                             },
 
                             "prefill": {
@@ -2427,157 +2923,63 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
-    <script>
-        function FlightDetails() {
-            if(@Model.flightResult.Count()==1)
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'view_item',
-                    'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy"): "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                        'quantity': '@Model.passengerDetails.Count()',
-                        'index':0
-                    }]
-                });
-            }
-            else
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'view_item',
-                    'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy"): "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                        'quantity': '@Model.passengerDetails.Count()',
-                        'index':0
-                    },
-                        {
-                            'item_id': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                            'quantity': '@Model.passengerDetails.Count()',
-                            'index':1
-                        }]
-                });
-            }
-        }
-
-    </script>
+    @*---GTM Tag---*@
 
 
     <script>
-        function FareRule() {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'flight_detail_page',
-                'link_name':'fare rule',
-                'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                'passenger_count': @Model.passengerDetails.Count(),
-                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
-            });
-        }
-
-    </script>
-
-
-    <script>
-        function checkout() {
-            if(@Model.flightResult.Count()==1)
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'begin_checkout',
-                    'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                        'quantity':  @Model.passengerDetails.Count(),
-                        'index':0
-                    }]
-                });
-            }
-            else
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'begin_checkout',
-                    'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                        'quantity':  @Model.passengerDetails.Count(),
-                        'index':0
-                    },
-                        {
-                            'item_id': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                            'quantity':  '@(Model.passengerDetails.Count())',
-                            'index':1,
-                        }]
-                });
-            }
-        }
-
-    </script>
-
-
-    <script>
-        function ContactInfo() {
+        function checkoutLead() {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'contact_info',
+                'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
+                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                'passenger_count': @Model.passengerDetails.Count(),
+                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+                'url_retarget':'https://www.flightsmojo.in/fm/@Model.tinyUrlID',
+            });
+        }
+
+    </script>
+  
+
+            <script>
+                function PayNowClickGTM() {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'pay_now_click',
+                        'link_name':'flight detail',
+                        'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                        'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
+                        'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                        'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                        'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                        'passenger_count': @Model.passengerDetails.Count(),
+                        'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                        'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                        'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                        'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                        'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                        'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
+                    });
+                }
+            </script>
+
+
+    <script>
+        function AddPaymentInfoGTM() {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'add_payment_info',
                 'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
                 'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
                 'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
                 'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
@@ -2588,106 +2990,18 @@
                 'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
                 'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
                 'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
+                ,'url_retarget':'https://www.flightsmojo.in/fm/@Model.tinyUrlID',
             });
         }
-
     </script>
 
     <script>
-
-
-        function PassengerInfo() {
-            var totpax = @Model.passengerDetails.Count();
-
+        function PassengerInfoGTM() {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'passenger_detail',
                 'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                'passenger_count': @Model.passengerDetails.Count(),
-                'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
-            });
-
-        }
-    </script>
-
-    <script>
-
-        function AddPaymentInfo() {
-            if(@Model.flightResult.Count()==1)
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'add_payment_info',
-                    'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                        'quantity': '@Model.passengerDetails.Count()',
-                        'index':0
-                    }]
-                });
-            }
-            else
-            {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'add_payment_info',
-                    'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                    'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                    'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                    'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                    'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                    'passenger_count': @Model.passengerDetails.Count(),
-                    'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
-                    'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                    'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
-                    'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
-                    'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
-                    'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                    items: [{
-                        'item_id': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
-                        'quantity': @Model.passengerDetails.Count(),
-                        'index':0
-                    },
-                                 {
-                                     'item_id': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
-                                     'quantity': '@( Model.passengerDetails.Count())',
-                                     'index':1,
-                                 }]
-                });
-            }
-        }
-
-
-    </script>
-
-    <script>
-        function PayNowClick() {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'pay_now_click',
-                'link_name':'flight detail',
-                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
                 'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
                 'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
                 'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
@@ -2702,26 +3016,193 @@
         }
     </script>
 
+    @*<script>
+                function flight_detailGTM() {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'flight_detail_page',
+                        'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                        'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                        'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                        'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                        'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                        'passenger_count': @Model.passengerDetails.Count(),
+                        'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                        'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                        'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                        'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                        'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                        'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")'
+                    });
+                }
 
+        </script>*@
+
+    <script>
+                function checkoutGTM() {
+                    if(@Model.flightResult.Count()==1)
+                    {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'begin_checkout',
+                            'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                            'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
+                            'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                            'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                            'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                            'passenger_count': @Model.passengerDetails.Count(),
+                            'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                            'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                            'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                            'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                            'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                            'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+                            items: [{
+                                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                                'quantity':  @Model.passengerDetails.Count(),
+                                'index':0
+                            }]
+                        });
+                    }
+                    else
+                    {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'begin_checkout',
+                            'origin_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                            'destination_city': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination',
+                            'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                            'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
+                            'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                            'passenger_count': @Model.passengerDetails.Count(),
+                            'depart_airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                            'depart_airline_name': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                            'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                            'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                            'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                            'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+                            items: [{
+                                'item_id': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                                'quantity':  @Model.passengerDetails.Count(),
+                                'index':0
+                            },
+                                {
+                                    'item_id': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+                                    'quantity':  '@(Model.passengerDetails.Count())',
+                                    'index':1,
+                                }]
+                        });
+                    }
+                }
+
+        </script>
+
+    @*<script>
+                function FlightDetailsGTM() {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'checkout_started',
+                        'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                        'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                        'depart_date':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
+                        'return_date':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy"): "")',
+                        'type':'@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                        'passenger_count': '@Model.passengerDetails.Count()',
+                        'depart_airline_class':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                        'depart_airline_name':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline',
+                        'depart_flight_code':'@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)-@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                        'return_airline_class':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString(): "")',
+                        'return_airline_name':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline: "")',
+                        'return_flight_code':'@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline + "-" + Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber: "")',
+                        'url_retarget':'https://www.flightsmojo.in/fm/@Model.tinyUrlID',
+                        });
+                }
+
+        </script>*@
+
+    @*---FB Events---*@
 
     <script>
 
-        function Flight_listingLoad() {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'flight_listing',
-                'link_name':'load',
-                'origin_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
-                'destination_city':'@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
-                'depart_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy")',
-                'return_date': '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("MM-dd-yyyy") : "")',
-                'type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
-                'passenger_count': @(Model.passengerDetails.Count()),
-                'airline_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()'
+
+        function PassengerInfoFB() {
+            fbq('track', 'AddToCart', {
+                content_type: 'flight',
+                content_ids: '@Model.userSearchID',
+                booking_id:$("#BookingID").val(),
+                value: '@Model.sumFare.grandTotal', // Flight Price
+                currency: 'INR', // Currency
+                origin_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin', // Departure City
+                destination_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination', // Arrival City
+                departing_departure_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_departure_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',  num_adults: @Model.adults,
+                departing_arrival_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_arrival_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',
+                num_children: @Model.child,
+                num_infants: @Model.infants,
+                travel_class: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',// Travel Class
+                content_name: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline', // Optional: Name of the flight or airline
+                checkout_url: 'https://www.flightsmojo.in/fm/@(Model.tinyUrlID)',
             });
         }
     </script>
 
+
+    <script>
+        function InitiateCheckoutFB() {
+            fbq('track', 'InitiateCheckout', {
+                content_type: 'flight',
+                content_ids: '@Model.userSearchID',
+                booking_id:$("#BookingID").val(),
+                value: '@Model.sumFare.grandTotal', // Flight Price
+                currency: 'INR', // Currency
+                origin_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin', // Departure City
+                destination_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination', // Arrival City
+                departing_departure_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_departure_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',  num_adults: @Model.adults,
+                departing_arrival_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_arrival_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',
+                num_children: @Model.child,
+                num_infants: @Model.infants,
+                travel_class: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',// Travel Class
+                content_name: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline', // Optional: Name of the flight or airline
+                checkout_url: 'https://www.flightsmojo.in/fm/@(Model.tinyUrlID)',
+            });
+        }
+    </script>
+
+    <script>
+        function ViewContentFB() {
+
+            fbq('track', 'ViewContent', {
+                content_type: 'flight',
+                content_ids: '@Model.userSearchID', // Flight ID
+                value: '@Model.sumFare.grandTotal', // Flight Price
+                currency: 'INR', // Currency
+                origin_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin', // Departure City
+                destination_airport: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination', // Arrival City
+                departing_departure_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_departure_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',  num_adults: @Model.adults,
+                departing_arrival_date: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd")',
+                returning_arrival_date: '@(Model.flightResult.Count() == 2 ? Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-MM-dd") : "")',
+                num_children: @Model.child,
+                num_infants: @Model.infants,
+                travel_class: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',// Travel Class
+                content_name: '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline', // Optional: Name of the flight or airline
+                checkout_url: 'https://www.flightsmojo.in/fm/@(Model.tinyUrlID)',
+            });
+        }
+    </script>
+
+<script>
+    function GF_ViewItem() {
+        gtag('event', 'view_item', {
+            'send_to': 'GF-982',
+            'value': '@Model.sumFare.grandTotal',
+            'currency': '@Model.sumFare.Currency'
+        });
+    }
+</script>
 }
 
 

@@ -799,5 +799,14 @@ namespace MojoIndia.Controllers
             return "";
         }
         #endregion
+
+
+        [ActionName("faqs")]
+        public ActionResult faqs()
+        {
+            ViewBag.Message = "Your web-checkin page.";
+
+            return View("faqs");
+        }
     }
 }

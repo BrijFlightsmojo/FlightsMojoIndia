@@ -323,7 +323,8 @@
 .mobile_none,.footer_result{ display:none;}
 
 .ResultProgressPopup .ResultProgressProgressBar{left: 50%;width:30%; height:102px;}
-.ResultProgressPopup1 .ResultProgressProgressBar1{left: 50%; width:30%; height:102px;}
+.ResultProgressPopup1 .ResultProgressProgressBar1{left: 50%; width:100%;}
+.confirm_progress1{width:100%;}
 .DesktopCon{ display:none;}
 .MobileCon{ display:block;}
 .mobile_container{ width:100%; float:left; padding:10px; background:#f5f7fb;}

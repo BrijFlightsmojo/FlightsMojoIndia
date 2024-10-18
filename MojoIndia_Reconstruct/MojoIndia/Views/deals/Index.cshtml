@@ -242,6 +242,46 @@
                             </div>
                         }
 
+                        @if (Model.FAQQ11 != "")
+                        {
+                            <div class="faq_box">
+                                <p class="showBtnfaq"><b>11. @Model.FAQQ11</b><i class="fa fa-caret-down"></i></p>
+                                <p class="hidemefaq"> Ans: @Model.FAQANS11</p>
+                            </div>
+                        }
+
+                        @if (Model.FAQQ12 != "")
+                        {
+                            <div class="faq_box">
+                                <p class="showBtnfaq"><b>12. @Model.FAQQ12</b><i class="fa fa-caret-down"></i></p>
+                                <p class="hidemefaq"> Ans: @Model.FAQANS12</p>
+                            </div>
+                        }
+
+                        @if (Model.FAQQ13 != "")
+                        {
+                            <div class="faq_box">
+                                <p class="showBtnfaq"><b>13. @Model.FAQQ13</b><i class="fa fa-caret-down"></i></p>
+                                <p class="hidemefaq"> Ans: @Model.FAQANS13</p>
+                            </div>
+                        }
+
+                        @if (Model.FAQQ14 != "")
+                        {
+                            <div class="faq_box">
+                                <p class="showBtnfaq"><b>14. @Model.FAQQ14</b><i class="fa fa-caret-down"></i></p>
+                                <p class="hidemefaq"> Ans: @Model.FAQANS14</p>
+                            </div>
+                        }
+
+                        @if (Model.FAQQ15 != "")
+                        {
+                            <div class="faq_box">
+                                <p class="showBtnfaq"><b>15. @Model.FAQQ15</b><i class="fa fa-caret-down"></i></p>
+                                <p class="hidemefaq"> Ans: @Model.FAQANS15</p>
+                            </div>
+                        }
+
                     </div>
                 </div>
             }
@@ -333,4 +373,28 @@
         }
     });
     </script>
+
+
+    <script>
+        $(document).ready(function () {
+            changeCls();
+         });
+    </script>
+
+
+<script>
+    function changeCls() {
+            var name="@(Model.ThemeName.Replace(" ", "-").ToString())";
+             if(name=="business-class")
+            {
+                 $("#Cabin").val("3");
+                 setPaxDropBox();
+            }
+             else if (name == "premium-economy")
+            {
+                 $("#Cabin").val("2");
+                 setPaxDropBox();
+            }
+        }
+</script>
 }

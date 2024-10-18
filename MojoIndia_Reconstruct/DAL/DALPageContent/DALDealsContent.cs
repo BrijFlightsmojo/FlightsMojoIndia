@@ -65,6 +65,11 @@ namespace DAL
                     content.FAQQ8 = ds.Tables[0].Rows[0]["FAQQ8"].ToString();
                     content.FAQQ9 = ds.Tables[0].Rows[0]["FAQQ9"].ToString();
                     content.FAQQ10 = ds.Tables[0].Rows[0]["FAQQ10"].ToString();
+                    content.FAQQ11 = ds.Tables[0].Rows[0]["FAQQ11"].ToString();
+                    content.FAQQ12 = ds.Tables[0].Rows[0]["FAQQ12"].ToString();
+                    content.FAQQ13 = ds.Tables[0].Rows[0]["FAQQ13"].ToString();
+                    content.FAQQ14 = ds.Tables[0].Rows[0]["FAQQ14"].ToString();
+                    content.FAQQ15 = ds.Tables[0].Rows[0]["FAQQ15"].ToString();
                     content.FAQANS1 = ds.Tables[0].Rows[0]["FAQANS1"].ToString();
                     content.FAQANS2 = ds.Tables[0].Rows[0]["FAQANS2"].ToString();
                     content.FAQANS3 = ds.Tables[0].Rows[0]["FAQANS3"].ToString();
@@ -75,6 +80,11 @@ namespace DAL
                     content.FAQANS8 = ds.Tables[0].Rows[0]["FAQANS8"].ToString();
                     content.FAQANS9 = ds.Tables[0].Rows[0]["FAQANS9"].ToString();
                     content.FAQANS10 = ds.Tables[0].Rows[0]["FAQANS10"].ToString();
+                    content.FAQANS11 = ds.Tables[0].Rows[0]["FAQANS11"].ToString();
+                    content.FAQANS12 = ds.Tables[0].Rows[0]["FAQANS12"].ToString();
+                    content.FAQANS13 = ds.Tables[0].Rows[0]["FAQANS13"].ToString();
+                    content.FAQANS14 = ds.Tables[0].Rows[0]["FAQANS14"].ToString();
+                    content.FAQANS15 = ds.Tables[0].Rows[0]["FAQANS15"].ToString();
                     content.ResponseStatus = new Core.ResponseStatus();
 
                 }

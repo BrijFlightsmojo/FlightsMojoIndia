@@ -1685,20 +1685,20 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 
 /*---------------other pages css---------------*/
-.search_bg {background: #49494a;background-size: cover;margin: 0;padding-bottom: 10px;float: left;width: 100%;position: relative;top:0px;}
-.search_bg h1 {font-size: 25px;margin: 1% 0;color: #fff;text-align: center;font-weight: 600;text-transform: uppercase;}
-.common_page_con{ width: 100%; float: left;margin-top: 30px; padding: 0;}
+.search_bg {border-top: 1px solid #ccc;background-size: cover;margin: 0;padding-bottom: 10px;float: left;width: 100%;position: relative;top: 0;}
+.search_bg h1 {font-size: 25px;margin: 30px 0 10px 0;color: #000;text-align: center;font-weight: 600;text-transform: uppercase;}
+.common_page_con{ width: 100%; float: left; padding: 0;}
 .common_content{ width: 100%;display: inline-block; padding: 15px;}
-.common_page_con p {font-size:14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
-.common_page_con ul{ padding-left: 30px; margin: 10px 0;}
+.common_page_con p {font-size:13px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
+.common_page_con ul{ padding-left: 30px; margin:0px;}
 .common_page_con ul li{ font-size:14px;}
-.common_page_con h2{font-size:18px;color: #fff;background:#49494a;margin: 0px 0 6px 0;padding:6px 8px;box-shadow: 2px 3px 2px #ccc;display: inline-block;width: 100%;}
+.common_page_con h2{font-size:14px;color: #000;margin: 0px;padding:6px 0px;display: inline-block;width: 100%; font-weight:bold;}
 .common_page_con h1{font-size:25px;font-weight: bold; margin: 15px 0 8px 0;}
 .common_page_con h3{font-size:20px;font-weight: bold;}
 .common_page_con a{color: #000;font-weight: bold;}
-.Term_Container{width: 100%; float: left; border:1px solid #ccc; box-shadow: 2px 2px 2px #ccc; margin-bottom: 15px;}
-.para_content{ width: 100%; float: left; padding:15px;}
-.para_content h5 { font-size:16px; color:#000; font-weight:bold;}
+.Term_Container{width: 100%; float: left;  margin-bottom: 15px;}
+.para_content{ width: 100%; float: left; padding:0;}
+.para_content h5 { font-size:14px; color:#000; font-weight:bold;padding-top: 15px;}
 .para_content ol{ padding-left:15px;}
 .price_one {width: 33.3%;float: left;text-align: center;}
 .price_table p {font-size: 13px;color: #000; font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;border: 1px solid #ccc;    padding: 6px;}
@@ -1722,8 +1722,37 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .affliate_img {background: #fff;padding: 15px;float: left;border: 1px solid #ccc;text-align: center;    width: 100%;}
 .affliate_img img {width: 60%;display: inline-block;margin-bottom: 25px;}
 .affliat_login a {background: linear-gradient(#e83819,#f3850b);border: 1px solid #a31c20;border-radius: 6px;padding: 6px 15px;font-size: 16px;color: #fff;font-weight: 600;}
-.about_small{width: 100%; display: inline-block; border: 1px solid #ccc; padding: 20px 15px; box-shadow: 2px 3px 2px #ccc;}
-.about_small img{width:80%;}
+/*.about_small{width: 100%; display: inline-block; border: 1px solid #ccc; padding: 20px 15px; box-shadow: 2px 3px 2px #ccc;}
+.about_small img{width:80%;}*/
+.About_topcon{background:#49494a; padding:20px;width:100%;display:inline-block;}
+.about_topcon_left{ width:49%; display:inline-block;border-radius:15px;background:#fff; padding:30px;float:left; margin-top:40px;}
+.about_topcon_left h1{font-size:30px;color: #000;line-height:42px;font-weight: bold;padding-right: 70px;}
+.aboutleft_head> p{color:#e83819!important;font-size:14px; font-weight:bold!important; padding:15px 0 0 0;}
+.aboutleft_content{width: 100%;float: left;margin-top:15px;padding: 10px;}
+.aboutleft_content p{ font-size:14px; color:#000;line-height:40px;}
+.about_topcon_right{width:45%; display:inline-block; margin-left:50px;float:left;}
+.about_topcon{border-radius:15px;background:#fff;margin-bottom:10px;width:100%; display:inline-block;}
+.about_topcon img{width:100%;height:280px;border-radius:15px;border:1px solid #fff;}
+.about_botcon{width:100%;display:inline-block;background:#fff; border-radius:15px;}
+.about_exp_top{display:inline-block;width:100%;}
+.about_exp_left{width:50%;float:left;text-align:center;padding:15px 10px;}
+.about_exp_left h2{font-size:24px;color:#000;}
+.about_exp_left> p{text-align:center!important;font-size:12px!important; color:#878181!important;display:inline-block;}
+.About_topbot{width:100%; float:left; margin-top:30px; padding:10px;margin-bottom: 30px;padding-top:20px;border:1px solid #ccc;border-radius:15px;}
+.About_mission{width:50%; float:left; padding-left:50px;padding-right:30px;}
+.About_mission h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
+.About_mission h3{font-size:25px;font-weight: bold;line-height:34px;}
+.About_mission p{font-size:14px;text-align:left; margin-top:10px;color:#666;}
+.about_welCon{width:100%; float:left;margin-top:30px;}
+.about_welCon h2{font-size:25px; color:#000; padding:6px 0;}
+.about_welCon h3{font-size:25px; color:#000; padding:6px 0; margin-top:30px;}
+.About_Vision{width:50%; float:left; padding-right:50px;padding-left:30px;}
+.About_Vision h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
+.About_Vision h3{font-size:25px;font-weight: bold;line-height:34px;}
+.About_Vision p{font-size:13px;text-align:left; margin-top:10px;color:#666;}
+
+
+
 .marbuttom20{ margin-bottom: 20px;}
 .contactDivleft{width:40%; float:left;margin-right:15px;}
 .contactDivleft h1,.contactDivleft h2{ font-size:20px; color:#000; margin-bottom:15px; font-weight:bold; margin-top:20px;}

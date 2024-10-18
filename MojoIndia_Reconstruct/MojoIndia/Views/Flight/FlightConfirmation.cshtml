@@ -96,6 +96,18 @@
  .resul_deatil{padding: 5px; background:none;}
         }
     </style>
+
+    <!-- Global site tag (gtag.js) - Google Flights: PARTNER_ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GF-982"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config','GF-982');
+    </script>
+
+
+
     <script>
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -211,6 +223,76 @@
     </script>
 
 
+   
+    <script>
+        var ctr=@Model.webengCtr;
+
+        if(@Model.sourceMedia=="1037")
+        {
+            if(@Model.flightResult.Count()==1)
+            {
+                gtag('event', 'purchase', {
+                    'send_to': 'GF-982',
+                    'trip_type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                    'value': ' @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2")))',
+                    'currency': 'INR',
+                    'passengers': {
+                        'total': '@(Model.passengerDetails.Count())',
+                        'adult':  '@(Model.adults)',
+                        'child': '@(Model.child)',
+                        'infant_in_seat': '0',
+                        'infant_in_lap': '@(Model.infants)'
+                    },
+                    'items': [
+                      {
+                          'travel_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'fare_product': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'booking_code': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FareClass.ToString()',
+                          'flight_number': '@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                          'origin': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                          'destination': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                          'start_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-dd-MM")',
+                      }]
+                });
+            }
+        else
+            {
+                gtag('event', 'purchase', {
+                    'send_to': 'GF-982',
+                    'trip_type': '@(Model.flightResult.Count() == 2 ? "RoundTrip" : "OneWay")',
+                    'value': ' @(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.sumFare.ServiceFee + Model.sumFare.OtherCharges + Model.conveniencefee).ToString("f2")))',
+                    'currency': 'INR',
+                    'passengers': {
+                        'total': '@(Model.passengerDetails.Count())',
+                        'adult':  '@(Model.adults)',
+                        'child': '@(Model.child)',
+                        'infant_in_seat': '0',
+                        'infant_in_lap': '@(Model.infants)'
+                    },
+                    'items': [
+                      {
+                         'travel_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'fare_product': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'booking_code': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FareClass.ToString()',
+                          'flight_number': '@(Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                          'origin': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                          'destination': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                          'start_date': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-dd-MM")',
+                      },
+                      {
+                          'travel_class': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'fare_product': '@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinClass.ToString()',
+                          'booking_code': '@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FareClass.ToString()',
+                          'flight_number': '@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Airline)@(Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().FlightNumber)',
+                          'origin': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Destination',
+                          'destination': '@Model.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin',
+                          'start_date': '@Model.flightResult.LastOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("yyyy-dd-MM")',
+                      }]
+                });
+
+            }
+        }
+    </script>
 
 	
 	
