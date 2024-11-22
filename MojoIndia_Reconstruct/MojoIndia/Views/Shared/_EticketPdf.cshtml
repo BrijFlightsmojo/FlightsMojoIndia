@@ -91,9 +91,12 @@
                                                     <td style="font-size:12px; color:#000;"><b>ARRIVAL</b></td>
                                                     <td style="font-size:12px; color:#000;"><b>DURATION</b></td>
                                                     <td style="font-size:12px; color:#000;"><b>PNR</b></td>
-                                                    @if (Model.bookingStatus == Core.BookingStatus.Confirmed || Model.bookingStatus == Core.BookingStatus.Ticketed)
+                                                    @if (Model.travelType != Core.TravelType.International)
                                                     {
-                                                    <td style="font-size:12px; color:#000;"><b>Baggage/Cabin Baggage</b></td>
+                                                        if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
+                                                        {
+                                                            <td style="font-size:12px; color:#000;"><b>Baggage/Cabin Baggage</b></td>
+                                                        }
                                                     }
                                                     
                                                 </tr>
@@ -144,12 +147,15 @@
                                                     {
                                                         <td style="font-size:12px;"><b style="padding-top:6px;">@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</b></td>
                                                     }
-@if (Model.bookingStatus == Core.BookingStatus.Confirmed || Model.bookingStatus == Core.BookingStatus.Ticketed)
-{
-                                                    <td style="font-size:12px;">
-                                                        <span><b>15KG / 7KG</b></span>
-                                                    </td>
-}
+                                                    @if (Model.travelType != Core.TravelType.International)
+                                                    {
+                                                        if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
+                                                        {
+                                                            <td style="font-size:12px;">
+                                                                <span><b>15KG / 7KG</b></span>
+                                                            </td>
+                                                        }
+                                                    }
                                                 </tr>
                                                 @if (seg.layOverTime > 0)
                                                 {
@@ -164,7 +170,8 @@
                             }
                         }
                         @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
-                                       @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)
+                                       @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithPNR
+				       || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown || Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                        {
                             <tr>
                                 <td colspan="2" style="line-height:20px;">

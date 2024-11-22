@@ -19,9 +19,16 @@
     <meta name="google-site-verification" content="q0BfdWkjWsvjXD8U_ZvtnecpMhT_SRRzrUkUFcwBBLE" />
     <link rel="alternate" href="https://www.flightsmojo.in/" hreflang="en-in" />
     <link rel="alternate" hreflang="x-default" href="https://www.flightsmojo.in" />
+    <link href="/Content/owl.carousel.min.css" rel="stylesheet" />
 }
 <style>
-    .ui-widget.ui-widget-content{top: 406.094px !important;}
+    .ui-widget.ui-widget-content {
+        top: 406.094px !important;
+    }
+
+    .owl-next, .owl-prev {
+        display: none;
+    }
 </style>
 <main>
     <div class="searc_bg">
@@ -47,7 +54,7 @@
             <picture>
                 <source srcset="/images/icon_travel.webp" type="image/webp" />
 
-               <img src="/images/icon_travel.png" alt="banner" />
+                <img src="/images/icon_travel.png" alt="banner" />
             </picture>
 
         </div>
@@ -83,8 +90,9 @@
                             <img src="/images/coup2.svg" alt="coupon" class="sc-aXZVg cILmlV loaded">
                             <div class="couponcard_content">
                                 <div class="couponcard_title"> Explore the World for Less</div>
-                                <div class="couponcard_subtitle">Save up to 15% on international flights. Plan your dream vacation today with great discounts on global journeys!
-</div>
+                                <div class="couponcard_subtitle">
+                                    Save up to 15% on international flights. Plan your dream vacation today with great discounts on global journeys!
+                                </div>
                                 <div class="couponcard_tc"><a href="/Coupon/FM15INT" style="color:#ef6614 !important;">T&C apply</a></div>
                             </div>
                         </div>
@@ -104,8 +112,9 @@
                             <img src="/images/coup3.svg" alt="coupon" class="sc-aXZVg cILmlV loaded">
                             <div class="couponcard_content">
                                 <div class="couponcard_title">Book Now, Save More!</div>
-                                <div class="couponcard_subtitle">Grab a 5% discount up to ₹200 on all flight bookings. Don’t miss out on these savings for your next adventure!
-</div>
+                                <div class="couponcard_subtitle">
+                                    Grab a 5% discount up to ₹200 on all flight bookings. Don’t miss out on these savings for your next adventure!
+                                </div>
                                 <div class="couponcard_tc"><a href="/Coupon/FM5ALL" style="color:#ef6614 !important;">T&C apply</a></div>
                             </div>
                         </div>
@@ -124,22 +133,22 @@
 
     </div>
 
-    <div class="trust_pilot_con">
-        <div class="container">
-            <div class="row">
-                <div class="tp_container">
-                    <div data-romw-token="ck15c9nAI4hMGt68Hr18kHA0dMpYudzU5xxakB1kyMPLUkZFz2"></div>                   
-                    <div data-romw-token="bf0ae0CVfZ448bq1qbjgbZ6VRnBpqA1dOabBBE7wp311G4zhrP"></div>
-                   
+    @*<div class="trust_pilot_con">
+            <div class="container">
+                <div class="row">
+                    <div class="tp_container">
+                        <div data-romw-token="ck15c9nAI4hMGt68Hr18kHA0dMpYudzU5xxakB1kyMPLUkZFz2"></div>
+                        <div data-romw-token="bf0ae0CVfZ448bq1qbjgbZ6VRnBpqA1dOabBBE7wp311G4zhrP"></div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
     <div class="populal_main">
         <div class="container">
-            
+
             <div class="row">
-                
+                <div class="DesktopCon">
                     <div class="col-md-6">
                         <div class="poular_Routes">
                             <h2>Popular International Routes</h2>
@@ -152,25 +161,93 @@
                             <input type="hidden" id="hfcabinClass" value="1" />
                         </div>
                     </div>
-                <div class="col-md-6">
-                    <div class="poular_Routes">
-						<h2>Popular Domestic Routes</h2>
-                        <ul id="ulDealDetailsInt"></ul>
-                        <input type="hidden" id="hfdealTypeInst" value="6" />
-                        <input type="hidden" id="hforiginInst" value="" />
-                        <input type="hidden" id="hfdestinationInst" value="" />
-                        <input type="hidden" id="hfairlineInst" value="" />
-                        <input type="hidden" id="hftripTypeInst" value="1" />
-                        <input type="hidden" id="hfcabinClassInst" value="1" />
+                    <div class="col-md-6">
+                        <div class="poular_Routes">
+                            <h2>Popular Domestic Routes</h2>
+                            <ul id="ulDealDetailsInt"></ul>
+                            <input type="hidden" id="hfdealTypeInst" value="6" />
+                            <input type="hidden" id="hforiginInst" value="" />
+                            <input type="hidden" id="hfdestinationInst" value="" />
+                            <input type="hidden" id="hfairlineInst" value="" />
+                            <input type="hidden" id="hftripTypeInst" value="1" />
+                            <input type="hidden" id="hfcabinClassInst" value="1" />
+                        </div>
                     </div>
                 </div>
-                
+
+
+                <div class="mobile">
+                    <div class="popularRouts_Con">
+                        <h1>Popular International Routes </h1>
+                        <div class="col-12 col-carousel">
+                            <div class="owl-carousel carousel-main">
+                                @if (Model.websiteFareDeal != null && Model.websiteFareDeal.Count > 0)
+                                {
+                                    foreach (var item in Model.websiteFareDeal)
+                                    {
+                                        <div class="routes_main">
+                                            <a href="@item.redirectURL">
+                                                <div class="block ">
+                                                    <div class="Flight_deals">
+                                                        <div class="flight_city">@item.origin.airportCode </div>
+                                                        <p class="flights_date">@item.depDate.ToString("ddd, dd MMM")</p>
+                                                        <div class="flight_city">@item.destination.airportCode</div>
+                                                    </div>
+                                                    <div class="Arrival_from">Starting From </div>
+                                                    <div class="fares">
+                                                        <i class="fa fa-inr"></i> @item.totalFare
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mobile">
+                    <div class="popularRouts_Con" style="margin-bottom:15px;">
+                        <h1>Popular Domestic Routes </h1>
+                        <div class="col-12 col-carousel">
+                            <div class="owl-carousel carousel-main">
+                                @if (Model.websiteFareDealInt != null && Model.websiteFareDealInt.Count > 0)
+                                {
+                                    foreach (var item in Model.websiteFareDealInt)
+                                    {
+                                        <div class="routes_main  ">
+                                             <a href="@item.redirectURL">
+                                                <div class="block ">
+                                                    <div class="Flight_deals">
+                                                        <div class="flight_city">@item.origin.airportCode </div>
+                                                        <p class="flights_date">@item.depDate.ToString("ddd, dd MMM") </p>
+                                                        <div class="flight_city">@item.destination.airportCode</div>
+                                                    </div>
+                                                    <div class="Arrival_from">Starting From </div>
+                                                    <div class="fares">
+                                                        <i class="fa fa-inr"></i> @item.totalFare
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="fare_quted">
                     <h6>*All fares are quoted in INR.</h6>
                     <p>Last updated on @DateTime.Today.AddDays(-7).ToString() , the fares mentioned above are for flight tickets and inclusive of fuel surcharges, <a href="/user-agreement">user agreement.</a> Based on historical data, these fares are subject to change without prior notice and cannot be guaranteed at the time of booking. Kindly go through our <a href="/terms-condition">terms and conditions</a>  before booking.</p>
                 </div>
             </div>
+
+
         </div>
+
     </div>
     <div class="whychoose_con">
         <div class="container-fluid">
@@ -212,3 +289,38 @@
 
 <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
 <script src=https://reviewsonmywebsite.com/js/v2/embed.js?id =fd1f59fcc8467fb2938d974af932af56 type="text/javascript"></script>
+
+<script src="/Scripts/jquery-3.4.1.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/owl.carousel.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $('.carousel-main').owlCarousel({
+        items: 3,
+        loop: false,
+        autoplay: false,
+        autoplayTimeout: 2000,
+        margin: 15,
+        nav: true,
+        dots: false,
+        navText: ['<span class="fa fa-chevron-left fa-2x"></span>', '<span class="fa fa-chevron-right fa-2x"></span>'],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 2,
+                nav: true
+            },
+            600: {
+                items: 6,
+                nav: false
+            },
+            1000: {
+                items: 8,
+                nav: true,
+                loop: true
+            }
+        }
+    })
+</script>

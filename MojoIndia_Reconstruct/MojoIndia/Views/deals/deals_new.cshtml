@@ -20,7 +20,10 @@
     <meta property="og:type" content="Travel Agency" />
     <meta property="og:image" content="https://www.flightsmojo.in/images/logo.png" />
 }
-
+<style>
+    .poular_RoutesN> ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
+.poular_RoutesN> ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
+</style>
 <main>
 
     <section class="banner_section" style="background: #6dc0e5;">
@@ -52,7 +55,7 @@
     <section class="populal_main">
         <div class="container">
             <h2>@Model.DealHeading</h2>
-            <div class="row">
+            <div class="row poular_RoutesN">
                 <ul id="ulDealDetails"></ul>
                 <input type="hidden" id="hfdealType" value="46" />
                 <input type="hidden" id="hforigin" value="" />
@@ -108,7 +111,7 @@
         }
 
         .content_con p {
-            font-size: 14px;
+            font-size: 12px;
             color: #000;
             font-family: 'Poppins', sans-serif;
             text-align: justify;
@@ -123,7 +126,7 @@
 
             .CitypageLink li {
                 float: left;
-                margin: 20px 0;
+                margin: 0;
                 padding: 0 8px;
                 color: #000;
                 font-size: 14px;

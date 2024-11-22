@@ -104,10 +104,32 @@ namespace Dal
                     content.ResponseStatus = new Core.ResponseStatus();
                     content.ResponseStatus.message = "Data pull properly, Please take action!!";
 
-                    if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    //{
+                    //    content.websiteFareDeal = new List<WebsiteFareDeal>();
+                    //    foreach (DataRow dr in ds.Tables[1].Rows)
+                    //    {
+                    //        WebsiteFareDeal deal = new WebsiteFareDeal()
+                    //        {
+                    //            airline = Core.FlightUtility.GetAirline(dr["airline"].ToString()),
+                    //            origin = FlightUtility.GetAirport(dr["origin"].ToString()),
+                    //            destination = FlightUtility.GetAirport(dr["destination"].ToString()),
+                    //            tripType = ((TripType)(string.IsNullOrEmpty(dr["tripType"].ToString()) ? 0 : Convert.ToInt32(dr["tripType"]))).ToString(),
+                    //            cabinClass = ((CabinType)(string.IsNullOrEmpty(dr["cabinClass"].ToString()) ? 0 : Convert.ToInt32(dr["cabinClass"]))).ToString(),
+                    //            totalFare = (string.IsNullOrEmpty(dr["totalFare"].ToString()) ? 0 : Convert.ToDecimal(dr["totalFare"])).ToString("f0"),
+                    //            depDate = (string.IsNullOrEmpty(dr["depDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["depDate"])),
+                    //            retDate = (string.IsNullOrEmpty(dr["retDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["retDate"]))
+                    //        };
+                    //        content.websiteFareDeal.Add(deal);
+                    //    }
+                    //}
+
+                    using (SqlConnection conn = DataConnection.GetConSearchHistoryAndDeal_RDS())
                     {
+                        DataSet dset = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "[usp_CityContent_SELECT]", param);
+
                         content.websiteFareDeal = new List<WebsiteFareDeal>();
-                        foreach (DataRow dr in ds.Tables[1].Rows)
+                        foreach (DataRow dr in dset.Tables[0].Rows)
                         {
                             WebsiteFareDeal deal = new WebsiteFareDeal()
                             {

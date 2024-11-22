@@ -167,6 +167,8 @@ namespace Core.Flight
         public Device device { get; set; }
         [DataMember]
         public int webengCtr { get; set; }
+        [DataMember]
+        public TravelType travelType { get; set; }
         public FlightBookingResponse()
         {
 
@@ -230,6 +232,7 @@ namespace Core.Flight
             RefundPolicyAmt = fbr.RefundPolicyAmt;
             CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
             device = fbr.device;
+            travelType = fbr.travelType;
         }
     }
     [DataContract]

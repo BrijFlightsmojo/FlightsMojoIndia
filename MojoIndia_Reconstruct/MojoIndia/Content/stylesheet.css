@@ -238,7 +238,7 @@ nav .menu .icons li a{display:block;width:40px;height:40px;text-align:center;lin
 .CopnDeal:before {-webkit-transform: rotate(-270deg);transform: rotate(-270deg);left: -0.7rem;}
 .CopnDeal:after {top: 66%;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);right: -0.7rem;}
 
-.coupon_Container{width:100%;display:inline-block; padding:30px 0;}
+.coupon_Container{width:100%;display:inline-block; padding:0;margin-top:30px;}
 .coupon_Container h1{font-size:20px; font-weight:bold;color:#000; padding:10px 0 0 15px;}
 .coupon_Container p{ font-size:13px; color:#333; margin:10px 0; padding:0 0 0 15px;}
 .couponcard {background-color: #fff;background-repeat: no-repeat;border: 1px solid #e6e5e7;border-radius: 1.6rem;display: flex;flex-direction: column;justify-content:space-evenly;
@@ -250,13 +250,13 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .couponcard_top {display: flex;}
 .couponcard_content {margin-left: 1.6rem;}
 .couponcard_top img {border-radius: .8rem;height: 10rem;object-fit: contain;width: 10rem;}
-.couponcard_title {color: #1e1c4c;font-size: 1.6rem;line-height: 2.4rem;font-weight:bold;}
-.couponcard_subtitle {color: #818087;font-size: 1.3rem;line-height: 2rem;margin-top: .8rem;}
+.couponcard_title {color: #1e1c4c;font-size:13px;line-height: 2.4rem;font-weight:bold;}
+.couponcard_subtitle {color: #818087;font-size:12px;line-height: 2rem;margin-top: .8rem;}
 .couponcard_tc{color: #03000f;font-size: 1.2rem;font-weight: 400;line-height: 16px;padding-top:1rem; }
 .couponcard_dashed {border: 1px dashed #cdcccf;position: absolute;top: 70%;width: calc(100% - 2.2rem);left: 11px;}
 .couponcard_bottom {align-items: center;display: flex;}
 .couponcard_promo {color: #818087;font-size: 12px;font-style: normal;font-weight: 700;letter-spacing: 1px;line-height: 16px;text-transform: uppercase;}
-.couponcard_code {color: #03000f;font-size: 1.4rem;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
+.couponcard_code {color: #03000f;font-size:13px;font-weight: 700;left: calc(50% - 6.5px);letter-spacing: 1px;line-height: 16px;position: relative;text-transform: uppercase;}
 .couponcard_link {font-size: 12px;font-style: normal;font-weight: 400;left: calc(50% + 115.5px);line-height: 16px;margin-top: -6px;position: absolute;text-align: right;}
 .couponcard_link a{color: #643de3;}
 .coupon_leftCon{width:100%;display:inline-block; padding:10px;margin-right:15px; float:left;}
@@ -296,7 +296,7 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .discount_content h2 {
     padding: 10px 15px;
     border-bottom-color: #49494a;
-    font-size: 18px;
+    font-size: 14px;
     background: #49494a;
     color: #fff;
     margin-bottom: 5px;
@@ -307,7 +307,7 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
     position: relative;
     vertical-align: middle;
     color: #333;
-    font-size: 13px;
+    font-size: 12px;
 }
 .discount_content p{padding: 0 15px; font-size: 15px;}
 .coupon_RightCon{width:23%;display:inline-block;}
@@ -1094,8 +1094,8 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .outbond_topL img {float: left;width:25px;padding:0px; vertical-align:bottom;}
 .outbond_topL h2 {font-size: 15px;color: #ff0600;font-weight: bold; width: 80%;float: left;padding: 0px 0px!important;
     margin: 0;}
-.outbond_topR {width: 60%;float: left;text-align: right;padding: 7px 15px;}
-.outbond_topR> span {font-size: 12px;color: #4c4c4c; font-weight:bold;}
+/*.outbond_topR {width: 60%;float: left;text-align: right;padding: 7px 15px;}
+.outbond_topR> span {font-size: 12px;color: #4c4c4c; font-weight:bold;}*/
 
 .outbond_icon {width: 10%;float: left;padding: 0 15px;}
 .outbond_icon img {width:70%;}
@@ -1292,9 +1292,9 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .tp_container img{width: 100%;}
 .populal_main{width: 100%; float: left;background: #fff;}
 .populal_main h1{font-size: 30px;text-align: center; width: 100%;margin: 20px 0; display: inline-block;color:#000;}
-.populal_main ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
-.populal_main ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
-.populal_main ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
+.populal_main>ul { margin: 0; padding: 0;list-style: none;width: 100%; float: left;}
+.populal_main>ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
+.populal_main>ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
 .airline-logo {padding: 10px; vertical-align: middle;text-align: center;display: inline-block;float:left;}
 .airport {float: left;font-size: 13px;border-left: #ccc solid 1px;padding-left: 10px;padding-top: 0;padding-bottom: 0;padding-right: 15px;margin-top: 6px;}
 .airport p {margin-bottom: 0;font-size: 14px;}
@@ -1464,6 +1464,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .apply_coubtn a:hover{background: #ff0000; color:#fff;}
 .ph_code{width:100%;display: inline-block;border: 1px solid #ccc;padding: 6px 6px;text-align: center;font-weight: bold;}
 .couponCon> h4{font-size: 16px;color: #333;padding: 10px 10px 10px 8px;}
+.couponCon> h4 img{width:22px;margin-left:12px;vertical-align: middle;}
 .radioCoupon {margin: 0.5rem;border-bottom: 1px solid #ccc;margin-bottom: 12px;float: left;width: 100%;}
 .radioCoupon input[type="checkbox"] {position: absolute;opacity: 0;}
 .radioCoupon input[type="checkbox"] + .radioCoupon-label:before {content: '';background: #f4f4f4;border-radius: 100%;border: 1px solid #b4b4b4;display: inline-block;width: 20px;height: 20px;position: relative;top: 1px;margin-right: 1em;vertical-align: top;cursor: pointer;text-align: center;transition: all 250ms ease}
@@ -1473,7 +1474,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .radioCoupon input[type="checkbox"] + .radioCoupon-label:empty:before {margin-right: 0;}
 #PopupX{ display:none;}
 .Airlines_link{width: 100%;float: left;padding: 8px 10px;margin: 0;}
-.Airlines_link li {font-size: 14px;list-style-type: none;background: url(/images/disc.jpg) no-repeat;background-position: 5px 9px;padding: 4px 0 4px 18px;line-height: 18px;color: #000;}
+.Airlines_link li {font-size: 13px;list-style-type: none;background: url(/images/disc.jpg) no-repeat;background-position: 5px 9px;padding: 4px 0 4px 18px;line-height: 18px;color: #000;}
 
 /*.pas_airlines_detail{float: left;}*/
 .passenger_right{width:25%; float: left; margin: 0; padding:0px;}
@@ -1610,8 +1611,8 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 
 .airline_RefundLeft span label{cursor: pointer;}
 .Refund_BottomLeft label{cursor: pointer;}
-.airline_RefundLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 7px solid #fff; margin-top:8px; background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
-.Refund_BottomLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right: 7px;border: 7px solid #fff;background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.airline_RefundLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right:8px;border: 7px solid #fff; margin-top:8px; background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
+.Refund_BottomLeft .input-radio {box-shadow: 0px 0px 0px 1px #6d6d6d;font-size: 3em;width:15px;height:15px;margin-right:8px;border: 7px solid #fff;background-clip: border-box;border-radius: 50%;appearance: none;transition: background-color 0.3s, box-shadow 0.3s;}
 .input-radio.on:checked {box-shadow: 0px 0px 0px 4px #00eb27;background-color: #51ff6e;}
 .input-radio.off:checked {box-shadow: 0px 0px 0px 4px #eb0000;background-color: #ff5151;}
 .main_Refund a{color: #49494a;font-size:15px;font-weight: bold;text-decoration: underline;text-align: right;float: right;display: inline-block;padding-right: 15px;padding-top:10px;}
@@ -1686,13 +1687,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 /*---------------other pages css---------------*/
 .search_bg {border-top: 1px solid #ccc;background-size: cover;margin: 0;padding-bottom: 10px;float: left;width: 100%;position: relative;top: 0;}
-.search_bg h1 {font-size: 25px;margin: 30px 0 10px 0;color: #000;text-align: center;font-weight: 600;text-transform: uppercase;}
+.search_bg h1 {font-size:20px;margin: 30px 0 10px 0;color: #000;text-align: center;font-weight: 600;text-transform: uppercase;}
 .common_page_con{ width: 100%; float: left; padding: 0;}
 .common_content{ width: 100%;display: inline-block; padding: 15px;}
-.common_page_con p {font-size:13px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
+.common_page_con> p {font-size:13px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
 .common_page_con ul{ padding-left: 30px; margin:0px;}
-.common_page_con ul li{ font-size:14px;}
-.common_page_con h2{font-size:14px;color: #000;margin: 0px;padding:6px 0px;display: inline-block;width: 100%; font-weight:bold;}
+.common_page_con ul li{ font-size:12px;}
+.common_page_con h2{font-size:13px;color: #000;margin: 0px;padding:6px 0px;display: inline-block;width: 100%; font-weight:bold;}
 .common_page_con h1{font-size:25px;font-weight: bold; margin: 15px 0 8px 0;}
 .common_page_con h3{font-size:20px;font-weight: bold;}
 .common_page_con a{color: #000;font-weight: bold;}
@@ -1700,6 +1701,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .para_content{ width: 100%; float: left; padding:0;}
 .para_content h5 { font-size:14px; color:#000; font-weight:bold;padding-top: 15px;}
 .para_content ol{ padding-left:15px;}
+.para_content ol li{ font-size:13px;}
 .price_one {width: 33.3%;float: left;text-align: center;}
 .price_table p {font-size: 13px;color: #000; font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;border: 1px solid #ccc;    padding: 6px;}
 .price_one span{width: 50%;display: inline-block;}
@@ -1725,31 +1727,58 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 /*.about_small{width: 100%; display: inline-block; border: 1px solid #ccc; padding: 20px 15px; box-shadow: 2px 3px 2px #ccc;}
 .about_small img{width:80%;}*/
 .About_topcon{background:#49494a; padding:20px;width:100%;display:inline-block;}
-.about_topcon_left{ width:49%; display:inline-block;border-radius:15px;background:#fff; padding:30px;float:left; margin-top:40px;}
-.about_topcon_left h1{font-size:30px;color: #000;line-height:42px;font-weight: bold;padding-right: 70px;}
-.aboutleft_head> p{color:#e83819!important;font-size:14px; font-weight:bold!important; padding:15px 0 0 0;}
-.aboutleft_content{width: 100%;float: left;margin-top:15px;padding: 10px;}
-.aboutleft_content p{ font-size:14px; color:#000;line-height:40px;}
-.about_topcon_right{width:45%; display:inline-block; margin-left:50px;float:left;}
-.about_topcon{border-radius:15px;background:#fff;margin-bottom:10px;width:100%; display:inline-block;}
+.about_topcon_left{ width:49%; float:left;}
+.about_topcon_left h1{font-size:20px;color: #000;line-height:34px;font-weight: bold;padding-right: 70px;}
+.aboutleft_head> p{color:#e83819!important;font-size:14px; font-weight:bold!important; margin-top:10px;}
+.aboutleft_content{width: 100%;float: left;padding: 10px; margin-bottom:15px;}
+.aboutleft_content> p{ font-size:13px; color:#000;line-height:40px;}
+.about_leftit{ width:100%; background:#fff;padding:30px;display:inline-block;border-radius:15px;margin-bottom:15px;}
+.about_topcon_right{width:45%; display:inline-block; margin-left:60px;float:left;}
+
+.about_topcon video{border:2px solid #fff;border-radius:15px;}
 .about_topcon img{width:100%;height:280px;border-radius:15px;border:1px solid #fff;}
 .about_botcon{width:100%;display:inline-block;background:#fff; border-radius:15px;}
 .about_exp_top{display:inline-block;width:100%;}
 .about_exp_left{width:50%;float:left;text-align:center;padding:15px 10px;}
-.about_exp_left h2{font-size:24px;color:#000;}
+.about_exp_left h2{font-size:24px;color:#e83819;}
 .about_exp_left> p{text-align:center!important;font-size:12px!important; color:#878181!important;display:inline-block;}
-.About_topbot{width:100%; float:left; margin-top:30px; padding:10px;margin-bottom: 30px;padding-top:20px;border:1px solid #ccc;border-radius:15px;}
-.About_mission{width:50%; float:left; padding-left:50px;padding-right:30px;}
+.About_topbot{width:100%; float:left; margin-top:30px; margin-bottom: 30px;padding-top:20px;border-radius:15px;}
+.About_mission{width:48%; float:left;padding: 15px 30px 15px 50px;border: 1px solid #ccc;border-radius: 15px; margin-right:30px;}
 .About_mission h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
-.About_mission h3{font-size:25px;font-weight: bold;line-height:34px;}
+.About_mission h3{font-size:20px;font-weight: bold;line-height:34px;}
 .About_mission p{font-size:14px;text-align:left; margin-top:10px;color:#666;}
 .about_welCon{width:100%; float:left;margin-top:30px;}
-.about_welCon h2{font-size:25px; color:#000; padding:6px 0;}
-.about_welCon h3{font-size:25px; color:#000; padding:6px 0; margin-top:30px;}
-.About_Vision{width:50%; float:left; padding-right:50px;padding-left:30px;}
+.about_welCon h2{font-size:20px; color:#000; padding:6px 0;}
+.about_welCon h3{font-size:20px; color:#000; padding:6px 0; margin-top:30px;}
+.About_Vision{width:49%; float:left;padding: 15px 30px 15px 40px;border: 1px solid #ccc;border-radius: 15px;}
 .About_Vision h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
-.About_Vision h3{font-size:25px;font-weight: bold;line-height:34px;}
-.About_Vision p{font-size:13px;text-align:left; margin-top:10px;color:#666;}
+.About_Vision h3{font-size:20px;font-weight: bold;line-height:34px;}
+.About_Vision p{font-size:13px;text-align:left; margin-top:10px;color:#000;}
+
+
+.popularRouts_Con{width:100%; display:inline-block; padding:10px;}
+.popularRouts_Con h1{font-size: 20px;font-weight: bold;color: #000;padding: 10px 0 0 15px;text-align:left;}
+.domestic_routes{display: flex;margin-right: -20px; margin-top: 15px;}
+.routes_main{background: #fff;overflow: hidden;padding: 15px;position: relative;border-radius: 5px;box-shadow: 2px 0 6px rgba(0, 0, 0, .3);transition: all .5s;cursor: pointer;border: 1px solid #ddd;}
+.carousel-main ul{display: flex;
+    width: 100%;}
+.routes_main:hover {box-shadow: 1px 2px 6px #ccc;transform: scale(1.1);}
+.routes_main a {text-decoration: none;}
+.routes_main:before { content: "";width: 80px;height: 100px;z-index: 2;position: absolute;right: -9px;bottom: -14px;opacity: .1; background-size: cover;}
+.routes_main .Flight_deals {border-left: 2px solid #afadad;padding-left: 12px;position: relative;margin-bottom: 20px;}
+.routes_main .Flight_deals:before {content: "";width: 6px;height: 6px;border-radius: 50%;background: #e83819;position: absolute;top: 0;left: -4px;}
+.routes_main .Flight_deals:after {content: "";width: 6px;height: 6px;border-radius: 50%;background: #e83819;position: absolute;bottom: 0;left: -4px;}
+.routes_main .Flight_deals .flight_city {font-size: 16px;color: #000;font-weight:bold;}
+.Flight_deals .flights_date {font-size: 13px;color: #9b9b9b;padding:4px 0;}
+.routes_main .Arrival_from {font-size: 12px;color: #9b9b9b;font-weight:600;padding-left: 12px;}
+.routes_main .fares {font-size: 16px;color: #e83819;font-weight:500;padding-left: 12px;}
+.routes_main:hover .fares {color: #e83819;}
+
+
+
+
+
+
 
 
 
@@ -1827,7 +1856,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .quick_linck ul {list-style-type: none;padding: 0;margin: 0;}
 .quick_linck ul li a {font-size: 13px;color: #000;line-height: 25px;}
 .quick_linck ul li a i {padding-right: 5px;}
-.populal_main h2 {font-size: 25px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
+.populal_main h2 {font-size:20px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
 .content_con {width: 100%;float: left;margin-top: 20px;padding: 15px;border: 1px solid #ccc;margin-bottom: 20px;}
 .content_con> h2{font-size:16px;font-weight: bold;margin-bottom: 3px;margin-top: 8px;}
 .content_con h4 {color: #fff;width: 100%;background: #e83719;margin: 0;padding: 6px;display: inline-block;font-size: 20px;margin-bottom: 15px;text-transform: uppercase;}
@@ -1836,7 +1865,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .about_small {width: 100%;display: inline-block;border: 1px solid #ccc;padding: 20px 15px;box-shadow: 2px 3px 2px #ccc;}
 .about_small img {width: 80%;}
 
-.common_page_con p {font-size: 14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
+.common_page_con p {font-size: 13px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify; }
 .marbuttom20 {margin-bottom: 20px;}
 .about_mob {display: none;}
 .common_content {width: 100%;display: inline-block;padding: 15px;}
@@ -1862,8 +1891,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .SelectAirline ul{ list-style-type:none; margin:0; padding:0;}
 .SelectAirline ul li{ display:flex; flex-direction:row; border:1px solid #ccc; padding:20px; margin-bottom:15px;border-radius:6px;justify-content:space-between;}
 .SelectAirline ul li span img{width:40px;}
-.SelectAirline ul li a{background: #ff0b00;padding: 6px 10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
-.SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 5px;}
+.SelectAirline ul li a{background: #ff0b00;padding:10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
+.SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 10px;}
 .discaimer_Con{ width:100%;display:inline-block; padding:20px 10px;border:1px solid #ccc;margin:40px 0;}
 
 
@@ -1886,7 +1915,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 
 /*--------confirmation Page---------------*/
-.bookinStatus {width: 100%; float: left;position: relative;background: #49494a;border-radius: 15px;padding: 10px 15px;margin-top: 15px;margin-bottom: 20px;}
+ .bookinStatus {width: 100%; float: left;position: relative;background: #49494a;border-radius: 15px;padding: 10px 15px;margin-top: 15px;margin-bottom: 20px;}
 .spanHeader {position: absolute;border-radius: 15px;background: linear-gradient(to right,#e83819,#f3850b);padding: 4px 10px;color: #fff;font-size: 14px;font-weight: bold;top: -19px;left: 20px;}
 .divBookingType {width: 25%;float: left;}
 .divBookingType ul {list-style-type: none;margin: 0;padding: 0;border-right: 1px solid #fff;padding: 0 10px;}
@@ -1982,7 +2011,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .confirm_progress1> p{font-size:18px; color:#000; padding:30px 0;}
 .content_con {width: 100%;float: left;margin-top: 20px;padding: 15px;border: 1px solid #ccc;margin-bottom: 20px;}
 .content_con h4 {color: #fff;width: 100%;background: #e83719;margin: 0;padding: 6px;display: inline-block;font-size: 20px;margin-bottom: 15px;text-transform: uppercase;}
-.content_con p{ font-size:13px; color:#000;font-family: 'Poppins', sans-serif;text-align:justify;}
+.content_con p{ font-size:12px; color:#000;font-family: 'Poppins', sans-serif;text-align:justify;}
 .popular_Routs{width:100%; float:left; }
 .popular_Routs h3{ font-size:16px; color:#000; font-weight:bold; margin:6px 0 6px 0;}
 .popular_Routs>h2{ font-size:20px; margin-top:8px; margin-bottom:2px; font-weight:600; color:#000;}
@@ -1991,14 +2020,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .content100 ul li{ font-size:13px;line-height:20px;}
 .popular_Routs> ul{list-style-type:none; margin:0; padding:0;}
 .popular_Routs> ul li{ float:left; width:25%; line-height:25px;}
-.popular_Routs> ul li a{ color:#000; font-size:14px;letter-spacing: .3px;font-weight: 600;text-decoration: underline;}
+.popular_Routs> ul li a{ color:#000; font-size:13px;letter-spacing: .3px;font-weight: 600;text-decoration: underline;}
 .content_con h5{background: #ccc;   padding: 4px 6px;font-weight: bold;font-size: 16px;margin-top: 20px;}
 .content_img {width: 48%;display: inline-block;}
 .text_content {width: 49%;display: inline-block;text-align: left;float: right;font-size: 13px;line-height: 25px;}
 .about_small {width: 100%;display: inline-block;border: 1px solid #ccc;padding: 20px 15px;box-shadow: 2px 3px 2px #ccc;}
 .about_small img {width: 80%;}
 
-.common_page_con p {font-size: 14px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
+
 .marbuttom20 {margin-bottom: 20px;}
 .about_mob {display: none;}
 .common_content {width: 100%;display: inline-block;padding: 15px;}
@@ -2034,7 +2063,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .city_menu{ width:100%; float:left; margin:0; padding:0;}
 .city_menu ul{ list-style-type:none; margin:0; padding:10px 30px; display:inline-block;}
 .city_menu ul li{ float:left;}
-.city_menu ul li a{ color:#000; font-size:14px; text-decoration:none;}
+.city_menu ul li a{ color:#000; font-size:12px; text-decoration:none;}
 .MonthlyDeal{ width:100%; float:left; margin-top:20px; box-shadow: 0px 3px 6px #00000029;}
 .MonthlyDeal h2{ padding:10px 15px; display:inline-block; font-size:20px; color:#fff;background:#49494a; border:1px solid #49494a; width:100%; float:left;}
 .MonthlyDeal> ul{list-style-type:none; margin:0; padding:0px;display:inline-block;border:0.5px solid #ccc;width:100%;padding:10px;}
@@ -2048,15 +2077,15 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .Flight_Info> ul li dfn{font-style:normal; font-size:14px;color:#333;text-align:left;display:inline-block;width: 50%;}
 .Flight_Info> ul li span{ font-size:13px;color:#333;text-align:right;display:inline-block;width: 50%;}
 .Flight_Info> p{ font-size:13px; color:#333; line-height:25px; text-align:justify;}
-.Flight_Info> p b{ font-size:14px; color:#000;}
+.Flight_Info> p b{ font-size:12px; color:#000;}
 .airportinfo_left{width:49%; float:left; border-right:1px solid #ccc;padding-left:30px;}
-.airportinfo_left p{padding:6px; line-height:25px; font-size:14px;}
+.airportinfo_left p{padding:6px; line-height:25px; font-size:12px;}
 .airportinfo_right{width:49%; float:left; padding-left:40px;}
-.airportinfo_right p{ padding:6px; line-height:25px;font-size:14px;}
+.airportinfo_right p{ padding:6px; line-height:25px;font-size:12px;}
 .faq_con{ width:100%; float:left; border-bottom:1px solid #ccc; margin-bottom:15px; padding-bottom:8px;}
-.faq_con p{ font-size:14px; line-height:20px; text-align:justify;}
-.Flight_Info p{font-size:14px; line-height:20px; text-align:justify;}
-.Flight_Info h3{font-size: 18px;color:#000;font-weight: bold;margin: 20px 0 0 0;}
+.faq_con p{ font-size:13px; line-height:20px; text-align:justify;}
+.Flight_Info p{font-size:13px; line-height:20px; text-align:justify;}
+.Flight_Info h3{font-size:14px;color:#000;font-weight: bold;margin: 20px 0 0 0;}
 .faq_box{ border-bottom:2px solid #ccc; padding-bottom:15px; padding-top:8px;}
 .faq_box p b{ padding-bottom:5px; display:inline-block;}
 .Flight_Air{width:100%; float:left; padding:10px;border:1px solid #ccc;}
@@ -2065,7 +2094,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .Routes_Con{width:100%; float:left; padding:10px;border:1px solid #ccc; text-align:center;}
 .Routes_Con> ul{list-style-type:none; padding:0; margin:0;}
 .Routes_Con> ul li{ float:left; width:32%;padding:10px;}
-.Routes_Con> ul li a{  color:#d80303; font-size:14px; font-weight:bold; text-decoration:none; cursor:pointer; }
+.Routes_Con> ul li a{  color:#d80303; font-size:12px; font-weight:bold; text-decoration:none; cursor:pointer; }
 
 .showBtnfaq{display:block; cursor:pointer; background:#e8e8e8; padding:6px 10px;}
 .showBtnfaq i{text-align:right;float:right;}

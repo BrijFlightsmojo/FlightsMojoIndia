@@ -30,8 +30,14 @@
     $(".close_btn").click(function () {
         $(".searach_popup").hide();
     });
-    SetWebsiteDeal();
-    SetWebsiteDealInt();
+    if ($(window).width() < 765) {
+        SetWebsiteDealIntMob();
+    }
+    else {
+        SetWebsiteDeal();
+        SetWebsiteDealInt();
+    }
+
     setCookiesDiv();
 });
 
@@ -329,3 +335,125 @@ function SetWebsiteDealInt() {
         }
 }
 
+
+function SetWebsiteDealIntMob() {
+    if ($("#divDealTypeInstMob").length > 0 || $("#ulDealDetailsIntMob").length > 0)
+        try {
+            var jsonDate = {
+                dealType: 6,
+                origin: $("#hforiginInstMob").val(),
+                destination: $("#hfdestinationInstMob").val(),
+                airline: $("#hfairlineInstMob").val(),
+                tripType: $("#hftripTypeInstMob").val(),
+                cabinClass: $("#hfcabinClassInstMob").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/service/getWebsiteDeal",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(jsonDate),
+                responseType: "json",
+                success: function (response) {
+                    debugger;
+                    DealData = response;
+                    var htmlData = "";
+                    if (response.length > 0) {
+                        for (var i = 0; i < response.length; i++) {
+                            htmlData += "<div class='routes_main'>";
+                            htmlData += "    <a href='#'>";
+                            htmlData += "    <div class='block'>";
+                            htmlData += "    <div class='Flight_deals'>";
+                            htmlData += "    <div class='flight_city'>" + response[i].origin.airportCode + "</div>";
+                            htmlData += "    <p class='flights_date'>" + getDateDDMMMyyyyy(response[i].depDate) + "</p>";
+                            htmlData += "    <div class='flight_city'>" + response[i].destination.airportCode + "</div>";
+                            htmlData += "</div>";
+                            htmlData += "<div class='Arrival_from'>";
+                            htmlData += "Starting From";
+                            htmlData += "</div>";
+                            htmlData += "<div class='fares'>";
+                            htmlData += "<i class='fa fa-inr'></i> " + response[i].totalFare + "";
+                            htmlData += "</div>";
+                            htmlData += "</div>";
+                            htmlData += "    </a>";
+                            htmlData += "</div>";
+                        }
+                        $("#divDealTypeInstMob").html(htmlData)
+                    }
+                    else {
+                        $("#divDealTypeInstMob").html("");
+                    }
+                },
+                error: function (response) {
+
+                    $("#divDealTypeInstMob").html("");
+                }
+            })
+        } catch (i) {
+            $("#divDealTypeInstMob").html("");
+        }
+}
+
+
+
+//function SetWebsiteDealIntMob() {
+//    debugger;
+//    if ($("#divDealTypeInstMob").length > 0 || $("#ulDealDetailsIntMob").length > 0)
+//        try {
+//            var jsonDate = {
+//                dealType: 6,
+//                origin: $("#hforiginInstMob").val(),
+//                destination: $("#hfdestinationInstMob").val(),
+//                airline: $("#hfairlineInstMob").val(),
+//                tripType: $("#hftripTypeInstMob").val(),
+//                cabinClass: $("#hfcabinClassInstMob").val()
+//            };
+//            $.ajax({
+//                type: "POST",
+//                url: "/service/getWebsiteDeal",
+//                contentType: "application/json; charset=utf-8",
+//                dataType: "json",
+//                data: JSON.stringify(jsonDate),
+//                responseType: "json",
+//                success: function (response) {
+//                    debugger;
+//                    DealData = response;
+//                    var htmlData = "";
+//                    if (response.length > 0) {
+//                        for (var i = 0; i < response.length; i++) {
+//                            htmlData += "<li>";
+//                            htmlData += "<div class='routes_main'>";
+//                            htmlData += "    <a href='#'>";
+//                            htmlData += "    <div class='block'>";
+//                            htmlData += "    <div class='Flight_deals'>";
+//                            htmlData += "    <div class='flight_city'>" + response[i].origin.airportCode + "</div>";
+//                            htmlData += "    <p class='flights_date'>" + getDateDDMMMyyyyy(response[i].depDate) + "</p>";
+//                            htmlData += "    <div class='flight_city'>" + response[i].destination.airportCode + "</div>";
+//                            htmlData += "</div>";
+//                            htmlData += "<div class='Arrival_from'>";
+//                            htmlData += "Starting From";
+//                            htmlData += "</div>";
+//                            htmlData += "<div class='fares'>";
+//                            htmlData += "<i class='fa fa-inr'></i> " + response[i].totalFare + "";
+//                            htmlData += "</div>";
+//                            htmlData += "</div>";
+//                            htmlData += "    </a>";
+//                            htmlData += "</div>";
+//                            htmlData += "</li>";
+//                        }
+//                        $("#divDealTypeInstMob").html(htmlData)
+//                    }
+//                    else {
+//                        $("#divDealTypeInstMob").html("");
+//                    }
+//                },
+//                error: function (response) {
+
+//                    $("#divDealTypeInstMob").html("");
+//                }
+//            })
+//        } catch (i) {
+//            $("#divDealTypeInstMob").html("");
+//        }
+
+//}

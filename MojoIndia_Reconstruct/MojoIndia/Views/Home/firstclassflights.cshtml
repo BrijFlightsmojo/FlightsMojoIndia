@@ -22,6 +22,38 @@
     <meta property="og:image" content="https://www.flightsmojo.in/images/destination/firstclass_banner.jpg" />
 
 }
+<style>
+    .poular_RoutesN > ul li {
+        width: 48%;
+        border: #133F65 solid 2px;
+        border-radius: 32px;
+        float: left;
+        margin: 10px;
+        transition: transform .4s;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+        .poular_RoutesN > ul li:hover {
+            ms-transform: scale(1.04);
+            -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+        }
+        @@media screen and ( max-width:767px) {
+
+.poular_RoutesN> ul li{width: 95%;}
+.airline-logo{width: 100%;}
+.airport{padding-right: 7px;width: 25%;padding-left:7px;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+.aeroplane{width: 10%;margin-right: 5px;}
+.return{width: 25%;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+
+
+    }
+</style>
 
 <section class="banner_section" style="background:#6dc0e5;">
     <div class="container">
@@ -57,8 +89,8 @@
     <div class="populal_main">
         <div class="container">
             <h2>Popular Routes</h2>
-            <div class="row">
-                <div class="row">
+            <div class="row poular_RoutesN">
+               
                     <ul id="ulDealDetails"></ul>
                     <input type="hidden" id="hfdealType" value="3" />
                     <input type="hidden" id="hforigin" value="" />
@@ -66,7 +98,7 @@
                     <input type="hidden" id="hfairline" value="" />
                     <input type="hidden" id="hftripType" value="1" />
                     <input type="hidden" id="hfcabinClass" value="1" />
-                </div>
+            
             </div>
         </div>
     </div>
@@ -76,7 +108,7 @@
                 <div class="Flight_Info">
                     <div class="faq_con">
 
-                        <p style="font-size:14px;line-height:20px; margin:15px 0">Planning a trip and confused about which airline class tickets to buy for convenient air travel? Well, you're not alone. Choosing a flight can be a bit tricky and confusing with all the options. And what's better than an upgraded flight, right? However, 
+                        <p style="line-height:20px; margin:15px 0">Planning a trip and confused about which airline class tickets to buy for convenient air travel? Well, you're not alone. Choosing a flight can be a bit tricky and confusing with all the options. And what's better than an upgraded flight, right? However, 
                         it's not much about the flying option but how much is the flight that's more concerning, especially for travelers with a limited budget. 
                         Nevertheless, we have come a long way from expensive first, and business class flight tickets. Now you can buy these costly airline tickets at
                          low prices. Luxury flights have made travel more accessible and way more comfortable than before. With more legroom, comfortable seats, 
@@ -89,7 +121,7 @@
 
                         <h3>Difference between First Class Flights and Business Class Flights: </h3>
 
-                        <p style="font-size:14px;line-height:20px; margin:10px 0;">Now, some people have this notion that first class and business airline services are the same 
+                        <p style="line-height:20px; margin:10px 0;">Now, some people have this notion that first class and business airline services are the same 
                         and that there is not much difference. That's not true. Both cabin classes are different and come with additional perks and benefits. Every
                          traveler looks for comfort, but not all of them are lucky and can't afford to travel in luxury. But with great comfort comes great expenses.
                          And it's a known fact when you pay a little extra and receive a little bonus. The same goes with airline tickets; Additional luggage, extra 
@@ -99,112 +131,137 @@
                          cheaper in comparison with international business class flights.
                         </p>
 
-                        <p style="font-size:14px;line-height:20px;"><b>Here are some differences between the first and business flights that you might want to consider
+                        <p style="line-height:20px;"><b>Here are some differences between the first and business flights that you might want to consider
                              before booking your air tickets; </b></p>
 
 
                         <h3>Business Class Flights:</h3>
-                        <p style="font-size:14px;line-height:20px; margin:10px 0;">With luxurious money comes premium services, which can be seen in your seat. Business class flights
+                        <p style="line-height:20px; margin:10px 0;">With luxurious money comes premium services, which can be seen in your seat. Business class flights
                          have comfortable reclining seats with extra legroom. In contrast, economy class flights struggle to fit your legs and give you backache & neck pain.
                          Business class services were started as another class to work among the economy and first class cabins. But, lately, it almost merged with the first 
                         class. It became the highest-demanded flight class in airline services.</p>
 
-                        <p style="font-size:14px;line-height:20px;">Although lounge services vary from country to country, they are top-notch and provide excellent quality services.
+                        <p style="line-height:20px; margin:10px 0;">Although lounge services vary from country to country, they are top-notch and provide excellent quality services.
                          The menu is long, with the finest cuisines from local to continental. Whatever dish you can think of on a plane, it's probably there. Business class is full 
                         of five-star hotel services to make your journey as comfortable as possible. With all these deluxe airline services, you won't even notice when your flight 
                         takes off and lands. That's how comfortable business class flights are. All airlines offer expensive complimentary drinks to their passengers. You wouldn't want
                          to say no to that expensive champagne, now would you? You can get a business class flight at the lowest airfare through a little search. So if you are traveling
                          from Pune, Ahmedabad, or any other city to a long-distance route, you should definitely opt for a comfortable flying experience, which won't cost you as much.</p>
 
+                        <p><b>Services that your Business Class flight ticket will offer; </b></p>
 
-                        <p style="font-size:14px;line-height:20px;"><b>Services that your Business Class flight ticket will offer; </b></p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Exclusive, comfortable seats</p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Elite Dining </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Exceptional entertainment services, like video games and movies </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Faster and efficient baggage services </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Separate boarding and deboarding services </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Expensive complimentary drinks</p>
+                        <ul class="Airlines_link">
+                            
+                            <li> Exclusive, comfortable seats</li>
+                            <li> Elite Dining </li>
+                            <li> Exceptional entertainment services, like video games and movies </li>
+                            <li> Faster and efficient baggage services </li>
+                            <li> Separate boarding and deboarding services </li>
+                            <li> Expensive complimentary drinks</li>
+                            </ul>
+                            <h3>Best Airlines for Business Class Flights: </h3>
 
-                       <h3>Best Airlines for Business Class Flights: </h3>
+                            <p style="line-height:20px;margin:10px 0;">Flightsmojo brings you the most trustable and best Business Class airlines. We have partnered with various air carriers that include some popular airlines in the aviation industry.</p>
 
-                        <p style="font-size:14px;line-height:20px;margin:10px 0;">Flightsmojo brings you the most trustable and best Business Class airlines. We have partnered with various air carriers that include some popular airlines in the aviation industry.</p>
-
-                        <p><b>Air India:</b>The oldest airline established in India, and is also the first one to start four cabin classes; Economy, Premium Economy, First, and Business class. It is also one of the airlines which provide affordable fares for your bookings.</p>
-                        <p><b>SpiceJet:</b>The second best and largest airline in India, SpiceJet does not have First Class cabins as of now. But the airline has added Business Class cabins to its flight lists and provides reasonable pricing for its services.</p>
-                        <p><b>Vistara:</b> One of the latest airlines in India, Vistara has gained quite an excellent reputation for its impeccable flying services. Their Business Class and First Class cabin services are among the best and most affordable in the industry.</p>
-                        <p><b>AirAsia:</b>It might be a low cost carrier, but AirAsia India has three cabin class services; Economy, Premium Economy, and Business class. Currently, AirAsia has no other cabin flights. But being a low cost airline, they offer lower fares with good service quality.</p>
-                        <p>Check the airline reviews before booking your cheap Business Class Flight tickets.  </p>
-
-
-
-                        <h3>First Class Flights:</h3>
-                        <p style="font-size:14px;line-height:20px; margin:10px 0;">Ever wonder why some people look fresh after an 8-10 hour-long plane journey? The secret of looking fresh as ever,
-                         even after a long journey, is a First Class Flight. Unlike economy and business class flights, first class cabins come with the most comfortable seats. These
-                         seats are limited because it's a plane, and the space is limited, making them the most expensive flight seats. Plus, these comfortable seats turn into a bed.
-                         Also, your seats turn into your private space, like your own room, an enclosed pod. First class flights also come with off-plane services: luxurious lounges,
-                         extra baggage services, faster check-ins, a delicious menu, and complimentary beverages. When you pay an additional small amount, the airline takes extra care
-                         of you. Everything gets 10x better than economy class flights, making your journey a whole lot better. You might want to consider a first class plane ride this
-                         time you travel and experience an exciting air journey.</p>
-
-                        <p style="font-size:14px;line-height:20px;"><b>Services that your First Class flight ticket will offer; </b></p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Comfortable reclining seats </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Exquisite dining  </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Elite entertainment with better screen  </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Swift and safe baggage services </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; First preference boarding and deboarding services </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Lavish drinks </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Soft & comfortable nightwear </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Soft Blankets and pillows </p>
-
-                        <h3>Best Airlines for First Class Flights: </h3>
-                        <p style="font-size:14px;line-height:20px; margin:10px 0;">Flightsmojo brings you the most reliable and best Flight Class airlines. 
-                        You can check the airline reviews prior to booking your cheap First Class Flight tickets.  </p>
-
-                        <p><b>Vistara:</b>Vistara has gained a solid reputation for delivering outstanding flying services in India. The airline's Business Class and First Class
-                         cabin services are among the most competitively priced and exceptional in the industry.</p>
-                        <p><b>Air India:</b>This Indian airline holds the title of being the oldest in the country, and it's the pioneer in providing four various cabin classes:
-                         Economy, Premium Economy, First, and Business. Moreover, the airline offers affordable fares for customers to make bookings. </p>
-                        <p><b>Air India Express:</b>Operated by the major carrier, Air India, Air India Express is among the airlines operating regular international and domestic 
-                        flying services with First Class flights. Travelers can expect the lowest prices on their booking compared to other airlines, especially during festivals and special occasions</p>
-                        <p>To ensure a seamless travel experience, it's necessary to verify with your agent the services that come with your tickets and to thoroughly review feedback
-                         from others before making a final decision on your airline ticket purchase.</p>
+                            <p><b>Air India:</b>The oldest airline established in India, and is also the first one to start four cabin classes; Economy, Premium Economy, First, and Business class. It is also one of the airlines which provide affordable fares for your bookings.</p>
+                            <p><b>SpiceJet:</b>The second best and largest airline in India, SpiceJet does not have First Class cabins as of now. But the airline has added Business Class cabins to its flight lists and provides reasonable pricing for its services.</p>
+                            <p><b>Vistara:</b> One of the latest airlines in India, Vistara has gained quite an excellent reputation for its impeccable flying services. Their Business Class and First Class cabin services are among the best and most affordable in the industry.</p>
+                            <p><b>AirAsia:</b>It might be a low cost carrier, but AirAsia India has three cabin class services; Economy, <a style="color:#ff0000;" href="https://www.flightsmojo.in/deals/premium-economy">Premium Economy</a>, and Business class. Currently, AirAsia has no other cabin flights. But being a low cost airline, they offer lower fares with good service quality.</p>
+                            <p>Check the airline reviews before booking your cheap Business Class Flight tickets.  </p>
 
 
 
-                       <h3>Popular Routes & Cost of First and Business Class Flight Tickets:</h3>
-                        <p style="font-size:14px;line-height:20px; margin:10px 0;">You can easily travel on a cheap First Class Flight. Generally, international First Class Tickets cost more 
-                        than international Business Class Tickets. Because both have different numbers of services with different quality facilities. The variance is not that big,
-                         but it is evident once you fly both flights you'll know. Business cabins are a better and finer version of the economy with fine dining and other services.
-                         First cabins have much higher standard facilities compared to other cabins. The cost of each class ticket varies depending on cabin services, airport services,
-                         baggage allowance, and other amenities. But, the roles are reversed in the case of Domestic travel. Visit the website for more information. You can also get
-                         the cheapest price tickets on the following popular routes;</p>
+                            <h3>First Class Flights:</h3>
+                            <p style="line-height:20px; margin:10px 0;">
+                                Ever wonder why some people look fresh after an 8-10 hour-long plane journey? The secret of looking fresh as ever,
+                                even after a long journey, is a First Class Flight. Unlike economy and business class flights, first class cabins come with the most comfortable seats. These
+                                seats are limited because it's a plane, and the space is limited, making them the most expensive flight seats. Plus, these comfortable seats turn into a bed.
+                                Also, your seats turn into your private space, like your own room, an enclosed pod. First class flights also come with off-plane services: luxurious lounges,
+                                extra baggage services, faster check-ins, a delicious menu, and complimentary beverages. When you pay an additional small amount, the airline takes extra care
+                                of you. Everything gets 10x better than economy class flights, making your journey a whole lot better. You might want to consider a first class plane ride this
+                                time you travel and experience an exciting air journey.
+                            </p>
+                        <p><b>Services that your First Class flight ticket will offer; </b></p>
 
-                        <p style="font-size:14px;line-height:20px;"> &bull; Delhi to Mumbai </p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Mumbai to Chennai</p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; New Delhi to Ahmedabad</p>
-                        <p style="font-size:14px;line-height:20px;"> &bull; Ahmedabad to Pune</p>
+                            <ul class="Airlines_link">
+                                
+                                <li> Comfortable reclining seats </li>
+                                <li> Exquisite dining  </li>
+                                <li> Elite entertainment with better screen  </li>
+                                <li> Swift and safe baggage services </li>
+                                <li> First preference boarding and deboarding services </li>
+                                <li> Lavish drinks </li>
+                                <li> Soft & comfortable nightwear </li>
+                                <li> Soft Blankets and pillows </li>
+                            </ul>
+                            <h3>Best Airlines for First Class Flights: </h3>
+                            <p style="line-height:20px; margin:10px 0;">
+                                Flightsmojo brings you the most reliable and best Flight Class airlines.
+                                You can check the airline reviews prior to booking your cheap First Class Flight tickets.
+                            </p>
 
-                        <p>Longer routes are hectic and can be very exhausting if you are taking a 12+ hour flight. Talk about back pain and poor legs. First or Business cabins are much
-                         more apt for longer hour travel. So, whenever you have a lengthy hour journey, make sure to put comfort first. If you wish to fly luxuriously on more air routes,
-                         contact our customer support and ask for your desired route or most frequented routes for deluxe travel.</p>
+                            <p>
+                                <b>Vistara:</b>Vistara has gained a solid reputation for delivering outstanding flying services in India. The airline's Business Class and First Class
+                                cabin services are among the most competitively priced and exceptional in the industry.
+                            </p>
+                            <p>
+                                <b>Air India:</b>This Indian airline holds the title of being the oldest in the country, and it's the pioneer in providing four various cabin classes:
+                                Economy, Premium Economy, First, and Business. Moreover, the airline offers affordable fares for customers to make bookings.
+                            </p>
+                            <p>
+                                <b>Air India Express:</b>Operated by the major carrier, Air India, Air India Express is among the airlines operating regular international and domestic
+                                flying services with First Class flights. Travelers can expect the lowest prices on their booking compared to other airlines, especially during festivals and special occasions
+                            </p>
+                            <p>
+                                To ensure a seamless travel experience, it's necessary to verify with your agent the services that come with your tickets and to thoroughly review feedback
+                                from others before making a final decision on your airline ticket purchase.
+                            </p>
 
-                       <h3>How to Get Better Deals & Discounts on First and Business Class Ticket Booking?</h3>
 
-                        <p style="font-size:14px;line-height:20px; margin:10px 0px;">The first thing to come to mind when reserving your air tickets is, "Is there any discount or deal to reduce my
-                         booking expenses?" We all look for ways to lower our expenses, whether it's shopping or ticket booking. So, in order to get better deals & discounts on 
-                        your First and Business Class Flight booking, you have to search and compare different airline costs on the internet, preferably on available trusted travel
-                         agencies. They work solely to collect data on airlines and sort them out in a way that customers can conveniently search and compare distinctive given options.
-                         Flightsmojo comes into the picture here, and our website is the same with a smooth and easy to use platform. Compare and pick the one option that works with
-                         your schedule and budget. We help you bring all the reliable information regarding airlines and prices and help you choose the best possible flight option.</p>
 
-                        <p style="font-size:14px;line-height:20px;">As we explained above, luxurious flights offer luxurious services, and you deserve a lavish trip on your holidays
-                         to have a relaxing getaway. You can check for coupons on the internet on many available free coupon websites. You can also try and ask for deals and discounted
-                         fares on your reservations. There are also tried and tested travel hacks to reduce luxury cabin class ticket rates. Try booking in advance, redeem loyalty
-                         points, and apply discount coupons and credit card discounts. Compare various airlines and air ticket prices and book a cheap first class or business class 
-                        flight. You can choose either of these flights. Both are ideal for a comfortable journey. Don't worry about paying extra charges; you can get affordable luxury 
-                        flights with the help of Flightsmojo.</p>
+                            <h3>Popular Routes & Cost of First and Business Class Flight Tickets:</h3>
+                        <p style="line-height:20px; margin:10px 0;">
+                            You can easily travel on a cheap First Class Flight. Generally, international First Class Tickets cost more
+                            than international Business Class Tickets. Because both have different numbers of services with different quality facilities. The variance is not that big,
+                            but it is evident once you fly both flights you'll know. Business cabins are a better and finer version of the economy with fine dining and other services.
+                            First cabins have much higher standard facilities compared to other cabins. The cost of each class ticket varies depending on cabin services, airport services,
+                            baggage allowance, and other amenities. But, the roles are reversed in the case of Domestic travel. Visit the website for more information.
+                        </p> 
+                        <p><b>You can also get the cheapest price tickets on the following popular routes;</b></p>
+                            
+                            <ul class="Airlines_link">
+                                <li> Delhi to Mumbai </li>
+                                <li> Mumbai to Chennai</li>
+                                <li> New Delhi to Ahmedabad</li>
+                                <li> Ahmedabad to Pune</li>
+                            </ul>
+                            <p>
+                                Longer routes are hectic and can be very exhausting if you are taking a 12+ hour flight. Talk about back pain and poor legs. First or Business cabins are much
+                                more apt for longer hour travel. So, whenever you have a lengthy hour journey, make sure to put comfort first. If you wish to fly luxuriously on more air routes,
+                                contact our customer support and ask for your desired route or most frequented routes for deluxe travel.
+                            </p>
 
-                    </div>
+                            <h3>How to Get Better Deals & Discounts on First and Business Class Ticket Booking?</h3>
+
+                            <p style="line-height:20px; margin:10px 0px;">
+                                The first thing to come to mind when reserving your air tickets is, "Is there any discount or deal to reduce my
+                                booking expenses?" We all look for ways to lower our expenses, whether it's shopping or ticket booking. So, in order to get better deals & discounts on
+                                your First and Business Class Flight booking, you have to search and compare different airline costs on the internet, preferably on available trusted travel
+                                agencies. They work solely to collect data on airlines and sort them out in a way that customers can conveniently search and compare distinctive given options.
+                                Flightsmojo comes into the picture here, and our website is the same with a smooth and easy to use platform. Compare and pick the one option that works with
+                                your schedule and budget. We help you bring all the reliable information regarding airlines and prices and help you choose the best possible flight option.
+                            </p>
+
+                            <p style="line-height:20px;">
+                                As we explained above, luxurious flights offer luxurious services, and you deserve a lavish trip on your holidays
+                                to have a relaxing getaway. You can check for coupons on the internet on many available free coupon websites. You can also try and ask for deals and discounted
+                                fares on your reservations. There are also tried and tested travel hacks to reduce luxury cabin class ticket rates. Try booking in advance, redeem loyalty
+                                points, and apply discount coupons and credit card discounts. Compare various airlines and air ticket prices and book a cheap first class or business class
+                                flight. You can choose either of these flights. Both are ideal for a comfortable journey. Don't worry about paying extra charges; you can get affordable luxury
+                                flights with the help of Flightsmojo.
+                            </p>
+
+</div>
                 </div>
             </div>
             <div class="MonthlyDeal">

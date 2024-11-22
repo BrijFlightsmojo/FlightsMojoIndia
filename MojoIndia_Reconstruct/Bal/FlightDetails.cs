@@ -33,37 +33,12 @@ namespace Bal
                 {
                     WebClient client = new WebClient();
                     //var url = API_URL + "Flights/GetFlightResultTest?authcode=" + authcode;
+                    //var url = string.Empty;
                     var url = API_URL + "Flights/SearchFlight?authcode=" + authcode;
                     string serialisedData = JsonConvert.SerializeObject(airContext.flightSearchRequest);
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     System.DateTime dt = DateTime.Now;
-                    //string kk = "";
                     var kk = client.UploadString(url, serialisedData);
-                    // if (isDummyResult)
-                    // {
-                    //     if (airContext.flightSearchRequest.travelType == TravelType.International)
-                    //     {
-                    //         //kk = client.UploadString(url, serialisedData);
-                    //         string path = System.IO.Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, (airContext.flightSearchRequest.tripType == TripType.OneWay ? "IntResponseOneWay.json" : "IntResponse.json"));
-                    //         using (System.IO.StreamReader r = new System.IO.StreamReader(path))
-                    //         {
-                    //             kk = r.ReadToEnd();
-                    //         }
-                    //     }
-                    //     else
-                    //     {
-                    //         string path = System.IO.Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, (airContext.flightSearchRequest.tripType == TripType.OneWay ? "DomResponseOneWay.json" : "DomResponse.json"));
-                    //         using (System.IO.StreamReader r = new System.IO.StreamReader(path))
-                    //         {
-                    //             kk = r.ReadToEnd();
-                    //         }
-                    //     }
-                    // }
-                    // else
-                    // {
-                    //     kk = client.UploadString(url, serialisedData);
-                    // }
-                    //// { "PassengerType":1,"BaseFare":8617.00,"Tax":1738.70,"YQTax":750.00,"AdditionalTxnFeePub":0.0,"AdditionalTxnFeeOfrd":0.0,"PGCharge":0.0,"Markup":0.0,"CommissionEarned":0.0,"TdsOnCommission":0.0,"OtherCharges":971.00}]
                     airContext.flightSearchResponse = JsonConvert.DeserializeObject<FlightSearchResponse>(kk.ToString());
                     airContext.IsSearchCompleted = true;
 
@@ -112,7 +87,7 @@ namespace Bal
         }
 
 
-        public FlightSearchResponse SearchFlightGF( FlightSearchRequest fsr)
+        public FlightSearchResponse SearchFlightGFOld(FlightSearchRequest fsr)
         {
             try
             {
@@ -123,10 +98,10 @@ namespace Bal
                     string serialisedData = JsonConvert.SerializeObject(fsr);
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     System.DateTime dt = DateTime.Now;
-                   
+
                     var kk = client.UploadString(url, serialisedData);
                     FlightSearchResponse flightSearchResponse = JsonConvert.DeserializeObject<FlightSearchResponse>(kk.ToString());
-                 
+
 
                     #region setAirline URL
 
@@ -158,8 +133,70 @@ namespace Bal
                 else
                 {
                     FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
-                   flightSearchResponse.response.status = TransactionStatus.Error;
-                   flightSearchResponse.response.message = "Request is empty!";
+                    flightSearchResponse.response.status = TransactionStatus.Error;
+                    flightSearchResponse.response.message = "Request is empty!";
+                    return flightSearchResponse;
+                }
+            }
+            catch (Exception exrr)
+            {
+                FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
+
+
+                flightSearchResponse.response.status = TransactionStatus.Error;
+                flightSearchResponse.response.message = "Request is empty!";
+                return flightSearchResponse;
+            }
+        }
+
+        public FlightSearchResponse SearchFlightGF(FlightSearchRequest fsr)
+        {
+            try
+            {
+                if (fsr != null)
+                {
+                    WebClient client = new WebClient();
+                    var url = API_URL + "Flights/SearchFlightCRM?authcode=" + authcode;
+                    string serialisedData = JsonConvert.SerializeObject(fsr);
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    System.DateTime dt = DateTime.Now;
+
+                    var kk = client.UploadString(url, serialisedData);
+                    FlightSearchResponse flightSearchResponse = JsonConvert.DeserializeObject<FlightSearchResponse>(kk.ToString());
+
+
+                    #region setAirline URL
+
+                    foreach (var item in flightSearchResponse.Results)
+                    {
+                        foreach (var result in item)
+                        {
+                            foreach (var fs in result.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    if (airlineArr.Contains(seg.Airline))
+                                    {
+                                        seg.url = "/images/airlinesSvg/" + seg.Airline + ".svg";
+                                    }
+                                    else
+                                    {
+                                        seg.url = "/images/flight_small/" + seg.Airline + ".gif";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+
+                    return flightSearchResponse;
+
+                }
+                else
+                {
+                    FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
+                    flightSearchResponse.response.status = TransactionStatus.Error;
+                    flightSearchResponse.response.message = "Request is empty!";
                     return flightSearchResponse;
                 }
             }

@@ -11,7 +11,7 @@ namespace Dal
 {
     public class DALOriginDestinationContent
     {
-        public OriginDestinationContent OriginDestinationWithDeal(SiteId siteID, string OriginCode, string DestinationCode, bool isActive,string counter)
+        public OriginDestinationContent OriginDestinationWithDeal(SiteId siteID, string OriginCode, string DestinationCode, bool isActive, string counter)
         {
             SqlParameter[] param = new SqlParameter[5];
 
@@ -27,7 +27,7 @@ namespace Dal
             param[3] = new SqlParameter("@isActive", SqlDbType.Bit);
             param[3].Value = isActive;
 
-            param[4] = new SqlParameter("@Counter", SqlDbType.VarChar,50);
+            param[4] = new SqlParameter("@Counter", SqlDbType.VarChar, 50);
             param[4].Value = counter;
 
             using (SqlConnection con = DataConnection.GetConnection())
@@ -95,10 +95,32 @@ namespace Dal
                     content.ResponseStatus.status = Core.TransactionStatus.Success;
                     content.ResponseStatus.message = "Data pull properly, Please take action!!";
 
-                    if ( ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    //if ( ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    //{
+                    //    content.websiteFareDeal = new List<WebsiteFareDeal>();
+                    //    foreach (DataRow dr in ds.Tables[1].Rows)
+                    //    {
+                    //        WebsiteFareDeal deal = new WebsiteFareDeal()
+                    //        {
+                    //            airline = Core.FlightUtility.GetAirline(dr["airline"].ToString()),
+                    //            origin = FlightUtility.GetAirport(dr["origin"].ToString()),
+                    //            destination = FlightUtility.GetAirport(dr["destination"].ToString()),
+                    //            tripType = ((TripType)(string.IsNullOrEmpty(dr["tripType"].ToString()) ? 0 : Convert.ToInt32(dr["tripType"]))).ToString(),
+                    //            cabinClass = ((CabinType)(string.IsNullOrEmpty(dr["cabinClass"].ToString()) ? 0 : Convert.ToInt32(dr["cabinClass"]))).ToString(),
+                    //            totalFare = (string.IsNullOrEmpty(dr["totalFare"].ToString()) ? 0 : Convert.ToDecimal(dr["totalFare"])).ToString("f0"),
+                    //            depDate = (string.IsNullOrEmpty(dr["depDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["depDate"])),
+                    //            retDate = (string.IsNullOrEmpty(dr["retDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["retDate"]))
+                    //        };
+                    //        content.websiteFareDeal.Add(deal);
+                    //    }
+                    //}
+
+                    using (SqlConnection conn = DataConnection.GetConSearchHistoryAndDeal_RDS())
                     {
+                        DataSet dset = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "[spOriginDestinationContent_SELECT]", param);
+
                         content.websiteFareDeal = new List<WebsiteFareDeal>();
-                        foreach (DataRow dr in ds.Tables[1].Rows)
+                        foreach (DataRow dr in dset.Tables[0].Rows)
                         {
                             WebsiteFareDeal deal = new WebsiteFareDeal()
                             {
@@ -146,12 +168,14 @@ namespace Dal
             param[5] = new SqlParameter("@cabinClass", SqlDbType.Int);
             param[5].Value = cabinClass;
 
-            using (SqlConnection con = DataConnection.GetConnection())
+            using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
             {
                 DataSet ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "usp_WebsiteDealSelectForWebsite", param);
                 OriginDestinationContent content = new OriginDestinationContent();
-                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0)
                 {
+                    if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
                         content.websiteFareDeal = new List<WebsiteFareDeal>();
                         foreach (DataRow dr in ds.Tables[0].Rows)
                         {
@@ -164,10 +188,47 @@ namespace Dal
                                 cabinClass = ((CabinType)(string.IsNullOrEmpty(dr["cabinClass"].ToString()) ? 0 : Convert.ToInt32(dr["cabinClass"]))).ToString(),
                                 totalFare = (string.IsNullOrEmpty(dr["totalFare"].ToString()) ? 0 : Convert.ToDecimal(dr["totalFare"])).ToString("f0"),
                                 depDate = (string.IsNullOrEmpty(dr["depDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["depDate"])),
-                                retDate = (string.IsNullOrEmpty(dr["retDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["retDate"]))
+                                //  depDate = (string.IsNullOrEmpty(dr["depDate"].ToString()) ? DateTime.Today : DateTime.ParseExact(dr["depDate"].ToString(), "dd-MM-yyyy", new System.Globalization.CultureInfo("en-US")))Convert.ToDateTime(dr["depDate"]).ToString("dd-MM-yyyy"),
+                                retDate = (string.IsNullOrEmpty(dr["retDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["retDate"])),
+                                redirectURL = "/flight/searchFlightResult?org=" + FlightUtility.GetAirport(dr["origin"].ToString()).airportCode +
+                                "&dest=" + FlightUtility.GetAirport(dr["destination"].ToString()).airportCode +
+                                "&depdate=" + Convert.ToDateTime(dr["depDate"]).ToString("dd-MM-yyyy") +
+                                "&retdate=" + "" +
+                                "&tripType=" + ((TripType)(string.IsNullOrEmpty(dr["tripType"].ToString()) ? 0 : Convert.ToInt32(dr["tripType"]))).ToString() +
+                                "&adults=1&child=0&infants=0&cabin=" + ((int)((Core.CabinType)Convert.ToInt32(dr["cabinClass"]))) +
+                                "&utm_source=1000&currency=inr"
                             };
                             content.websiteFareDeal.Add(deal);
                         }
+                    }
+
+                    if (ds.Tables.Count > 0 && ds.Tables[1].Rows.Count > 0)
+                    {
+                        content.websiteFareDealInt = new List<WebsiteFareDealInt>();
+                        foreach (DataRow dr in ds.Tables[1].Rows)
+                        {
+                            WebsiteFareDealInt dealInt = new WebsiteFareDealInt()
+                            {
+                                airline = Core.FlightUtility.GetAirline(dr["airline"].ToString()),
+                                origin = FlightUtility.GetAirport(dr["origin"].ToString()),
+                                destination = FlightUtility.GetAirport(dr["destination"].ToString()),
+                                tripType = ((TripType)(string.IsNullOrEmpty(dr["tripType"].ToString()) ? 0 : Convert.ToInt32(dr["tripType"]))).ToString(),
+                                cabinClass = ((CabinType)(string.IsNullOrEmpty(dr["cabinClass"].ToString()) ? 0 : Convert.ToInt32(dr["cabinClass"]))).ToString(),
+                                totalFare = (string.IsNullOrEmpty(dr["totalFare"].ToString()) ? 0 : Convert.ToDecimal(dr["totalFare"])).ToString("f0"),
+                                depDate = (string.IsNullOrEmpty(dr["depDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["depDate"])),
+                                retDate = (string.IsNullOrEmpty(dr["retDate"].ToString()) ? DateTime.Today : Convert.ToDateTime(dr["retDate"])),
+                                redirectURL = "/flight/searchFlightResult?org=" + FlightUtility.GetAirport(dr["origin"].ToString()).airportCode +
+                                "&dest=" + FlightUtility.GetAirport(dr["destination"].ToString()).airportCode +
+                                "&depdate=" + Convert.ToDateTime(dr["depDate"]).ToString("dd-MM-yyyy") +
+                                "&retdate=" + "" +
+                                "&tripType=" + ((TripType)(string.IsNullOrEmpty(dr["tripType"].ToString()) ? 0 : Convert.ToInt32(dr["tripType"]))).ToString() +
+                                "&adults=1&child=0&infants=0&cabin=" + ((int)((Core.CabinType)Convert.ToInt32(dr["cabinClass"]))) +
+                                "&utm_source=1000&currency=inr"
+                            };
+                            content.websiteFareDealInt.Add(dealInt);
+                        }
+                    }
+
                 }
                 else
                 {
@@ -198,7 +259,7 @@ namespace Dal
                             foreach (DataRow row in ds.Tables[0].Rows)
                             {
                                 OriginDestinationContent ODC = new OriginDestinationContent();
-                                ODC.OriginCode= row["OriginCode"].ToString();
+                                ODC.OriginCode = row["OriginCode"].ToString();
                                 ODC.DestinationCode = row["DestinationCode"].ToString();
                                 ODC.OriginName = row["OriginName"].ToString();
                                 ODC.DestinationName = row["DestinationName"].ToString();

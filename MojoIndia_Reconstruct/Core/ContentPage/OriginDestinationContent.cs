@@ -69,7 +69,10 @@ namespace Core.ContentPage
         public List<WebsiteFareDeal> websiteFareDeal { get; set; }
         public SearchEnginDetails searchEnginDetails { get; set; }
 
-      
+
+        public List<WebsiteFareDealInt> websiteFareDealInt { get; set; }
+
+
         public List<Airline> airline { get; set; }     
         public List<Airport> airport { get; set; }      
         public List<AircraftDetail> aircraftDetail { get; set; }

@@ -8,7 +8,7 @@
 }
 
 @media screen and ( max-width:767px){
-.populal_main{display: none;}
+
 .search_con{width:100%;float: left;margin-top: 0px;text-align: center;padding-top: 0px}
 .search_main{width:100%;margin:30px 0px 2px 0;padding:40px 10px 10px 10px;border-radius:0;box-shadow:none;}
 .searc_bg {padding:5px; position:relative;}
@@ -167,7 +167,13 @@
 .outbond_four{width: 20%;}
 .layover_con p{left: 18%;}
 .modify_right {width: 35%;float: right;text-align: right;display: none;}    
-.outbond_topL h2{padding-top:5px;}
+.outbond_topL h2{margin: 3px 0 0 0;}
+.indiaConf_top ul li:nth-child(3n+1){font-size:12px!important;}
+.indiaConf_top ul li:nth-child(3n+2){ font-size:12px!important;}
+.indiaConf_top ul li:nth-child(3n+3){font-size:12px!important;}
+.outbond_two_con p,.outbond_third_con p{font-size:12px!important;}
+.outbond_two_con span,.outbond_third_con{font-size:12px;}
+.outbond_four_con p,.outbond_four_con span{font-size:12px!important;}
 .Modify_BTN > a{font-size: 18px;padding: 4px 16px;}
   /*result page css*/
 .Filter_left{float: left;width: 100%;padding: 0 15px;}
@@ -190,7 +196,7 @@
 .airclass_popup {display: none;border-radius: 0px;position: fixed;height: 100vh!important;width: 100%;top: 0px;left: 0px;margin-left: 0;z-index: 9;background-color: #fff;}
 .done-btn, .done-btnmob, .btn_class, .done-btn_classmob {background: linear-gradient(to right,#e83819,#f3850b);color: #fff;font-size: 18px;border: 0;padding: 8px 40px;border-radius:4px;}
 .outbond_topR > span{ font-size:12px;}
-.outbond_topL{width:100%;}
+.outbond_topL{width:100%!important;}
 .outbond_topR{width:100%; padding:0 4px;text-align:center;}
 .scrollMob{flex-flow: wrap; min-height: calc(110vh - 258px);height: calc(110vh - 258px);overflow-y: scroll;    width: 50vw;}
 .borderRight{border-right:1px solid #ccc;}
@@ -308,7 +314,7 @@
 .close_passen> i{text-align:right;float: right;font-size: 20px;}
 
 .newslatter input{ font-size:14px;width:100%;padding:11px 100px 11px 8px;}
-.fare_quted{ padding:10px;}
+.fare_quted{ padding:10px;display:none;}
 .width_mob {width: 60%;}
 /*.mobpay_header{ display:none; padding:10px 10px 10px 20px;}*/
 .paspaymentMobile{display:block; padding:10px;    background: #eee;}
@@ -356,7 +362,7 @@
 .contact_top{padding:0;}
 .contacttopRight{ margin-left:0; padding:0; margin:15px 0;}
 .contact_form{ width:100%;}
-.listing_con,.result_book{border:0px; border-radius:0;}
+.result_book{border:0px; border-radius:0;}
 /*.contents{ width:100%;height:490px;top:42%;}*/
 .contents {width: 100%;top: 42%;}
 .close_group{left: 88%;top: 18px;}
@@ -481,11 +487,11 @@ nav .menu {width: 100%;}
 .exclisivdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #e83819;font-weight: bold;border-radius: 6px;}
 .severdeal{position: absolute;top: -10px;right: 50px;border: 1px solid #ccc;background: #fff;color: #11970e;font-weight: bold;border-radius: 6px;}
 .price_Calender{padding: 0px 0px!important;}
-.listing_con{box-shadow:none;}
+.listing_con{box-shadow:none;margin-bottom: 0px!important;}
 .listing_con:hover{box-shadow:none;}
 .flight_time_con:hover{box-shadow: 0 0 6px #f3850b;}
 .paymentmodal,.paymentmodal2,.mob_oneway_price{display:block;}
-
+.traveldetai_top {padding:8px;}
 .lineo_img {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .lineo_img1 {width: 100%;display: inline-block;border: 1px solid #ccc;position: relative;}
 .lineo_img1 dfn{position: absolute;width:5px;height:5px;border-radius: 50%;border: 1px solid #ccc;left:21px;content: "";top: -3px;background: #ccc;}
@@ -499,9 +505,9 @@ nav .menu {width: 100%;}
 .layover_Sep2,.layover_Sep2 img,.layover_Sep2::after{ display:block;}
 .filter_header { z-index: 0;}
 .coupon_leftCon{width:100%;}
-.dicount_heading{width:60%;}
-.discont_desg{width:38%;}
-.dicount_code{width: 150px;}
+.dicount_heading{width:60%;display:none;}
+.discont_desg{width:100%;text-align:center;}
+.dicount_code{width: 150px;float: none;}
 .coupon_RightCon{width:100%; padding:10px;}
 .coupon_banner{ margin-top:0;}
 .coupon_banner span{top: 90px;right: 76px;}
@@ -512,6 +518,20 @@ nav .menu {width: 100%;}
 .couponcard_title{font-size: 1.4rem;line-height:15px;}
 .couponcard_code{left: calc(30% - 4.5px);}
 .couponcard_subtitle{line-height: 15px;}
+.about_topcon_left{width:100%;margin-top: 10px;padding: 10px;}
+.about_topcon_left h1{font-size: 20px;line-height: 30px;padding-right: 0px;}
+.about_topcon_right{width: 100%;margin-left: 0px; margin-top:10px;}
+.About_mission{width: 100%;padding-left: 0px;padding-right: 0px;}
+.About_mission h3{font-size:20px;}
+
+.poular_RoutesN> ul li{width: 95%;}
+.airline-logo{width: 12%;}
+.airport{padding-right: 7px;width: 25%;padding-left:7px;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+.aeroplane{width: 10%;margin-right: 5px;}
+.return{width: 25%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.about_topcon video{width:100%;}
 }
 @media only screen 
   and (min-device-width: 768px) 

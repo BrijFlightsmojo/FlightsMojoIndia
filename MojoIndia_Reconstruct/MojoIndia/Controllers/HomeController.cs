@@ -81,7 +81,10 @@ namespace MojoIndia.Controllers
             //{
             //    setIpTrackerCookie(Request.QueryString["location"].ToString());
             //}
-            return View(new OriginDestinationContent());
+            //return View(new OriginDestinationContent());
+
+            OriginDestinationContent acd = ODC.OriginDestinationWithDealHomePage(3, "", "", "", 1, 1);
+            return View(acd);
         }
         private void sendwa()
         {

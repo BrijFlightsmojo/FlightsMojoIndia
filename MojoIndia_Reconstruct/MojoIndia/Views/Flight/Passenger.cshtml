@@ -7,22 +7,35 @@
 }
 @section AdditionalMeta
 {
-    <title>Flight Passenger: Flightsmojo.in</title>
+    <title>Flight Passenger: Flightsmojo</title>
     <link href="/Content/PassengerCss.css" rel="stylesheet" />
     <link href="/Content/popstyle.css" rel="stylesheet" />
 }
 
 <style>
-    .fixed_price {
-        position: fixed;
-        width: 24%;
-        display: inline-block;
-    }
+.Paymentgroup {
+    display: block;
+    position: relative;
+    padding-left:25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size:14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
-    .logo a img {
-        width: 60%;
-        padding-left: 20px;
-    }
+.Paymentgroup input {position: absolute;opacity: 0;cursor: pointer;}
+.checkmarked {position: absolute;top:13px;left: 0;height:18px;width:18px;background-color: #fff!important;border-radius:50%;border: 1px solid #ccc;}
+.Paymentgroup:hover input ~ .checkmarked {background-color: #f2f3f4!important;}
+.Paymentgroup input:focus ~ .checkmarked {border-color: #56CCF2;box-shadow: 0px 0px 8px #56CCF2;}
+.checkmarked:after {content: "";position: absolute;display: none;}
+.Paymentgroup input:checked ~ .checkmarked:after {display: block;}
+.Paymentgroup .checkmarked:after {left:2px;top:2px;width:12px;height:12px;border:3px solid #ef4223;border-width:3px;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);border-radius:50%;}
+.fixed_price {position: fixed;width: 24%;display: inline-block;}
+
+.logo a img {width: 60%;padding-left: 20px;}
 
     #form .form-group label.error {
         color: #FB3A3A;
@@ -473,7 +486,7 @@
 
                                     <div class="mobile">
                                         <div class="couponCon">
-                                            <h4>Enter Promo Code <img src="/images/right.svg" alt="icon" style="width:13px; transform:rotate(180deg);" /> @*<i class="fa-solid fa-angles-down"></i>*@</h4>
+                                            <h4>Enter Promo Code <i class="fa fa-chevron-down"></i><img src="~/images/discount.svg" /></h4>
                                             <div class="couponapplyCon">
                                                 <span class="applycoupon">
                                                     @*<input type="text" id="CouponCodeMob" readonly="readonly" value="@Model.CouponCode" placeholder="##COUPON" />*@
@@ -890,70 +903,62 @@
                                             </div>
                                             <div class="payment_Detail" id="step3" style="display:none;">
                                                 <div class="paymentDiv_Left">
-                                                    <div class="payment_Note">
-                                                        <p>
-                                                            <b>Note:</b>Kindly ensure that the details filled for
-                                                            the travellers match the government issued
-                                                            photo ID.The ticket are non-refundable therefore
-                                                            please check all the details before moving ahead
-                                                            such as your Name,Contact Number etc.
-                                                        </p>
+                                                    <div class="paymenttype_bottom">
+                                                        <div class="paymentNDiv">
+                                                            <h3>How would you like to pay?</h3>
+                                                            <div class="paymentRow">
+
+                                                                <label class="Paymentgroup"><img class="payupi_small" src="/images/bhim.svg" />
+                                                                    UPI
+                                                                    <input type="radio" checked="checked" name="payment" value="upi" id="upi">
+                                                                    <span class="checkmarked"></span>
+                                                                  
+                                                                    <img class="payupi" src="~/images/upipay_icon.png" />
+                                                                   <em>Recommended</em>
+                                                                </label>
+                                                                <dfn class="DesktopCon">"Speed Up Your Payments with UPI – Fast, Safe, Easy!"</dfn>
+                                                                <dfn class="mobile">"Fast, Safe, Easy!"</dfn>
+
+                                                            </div>
+                                                            <div class="paymentRow">
+                                                                <label class="Paymentgroup"><img class="paycard_small" src="/images/credit-card.svg" />
+                                                                    Cards
+                                                                    <input type="radio" value="card" name="payment" id="card">
+                                                                    <span class="checkmarked"></span>
+                                                                    <img class="paycard" src="~/images/pay_icon.png" />
+                                                                   
+                                                                </label>
+                                                            </div>
+                                                            <div class="paymentRow">
+                                                                <label class="Paymentgroup"><img class="paynet_small" src="/images/online-banking.svg" />
+                                                                    Netbanking
+                                                                    <input type="radio" name="payment" value="netbanking" id="netbanking">
+                                                                    <span class="checkmarked"></span>
+                                                                    <img class="paynetbanking" src="~/images/pay_bank.png" />
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="paymentRow">
+                                                                <label class="Paymentgroup"><img class="paywallet_small" src="/images/wallet.svg" />
+                                                                    Wallet
+                                                                    <input type="radio" name="payment" value="wallet" id="payment-wallet">
+                                                                    <span class="checkmarked"></span>
+                                                                    <img class="paywallet" src="~/images/pay_wallet.png" />
+                                                                
+                                                                </label>
+                                                            </div>
+                                                         
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                                 <div class="paymentDiv_Right">
-                                                    <div class="paymenttype_bottom">
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="/images/upi_icon.png" alt="upi" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="upi" id="upi" checked="checked">
-                                                            <label class="payment-label is-maestro" for="upi">UPI</label>
-                                                        </div>
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="~/images/payment_icon.png" alt="card" width="30"></div>
-                                                            <input class="payment-card" type="radio" value="card" name="payment" id="card">
-                                                            <label class="payment-label is-maestro" for="card">Debit & Credit Card</label>
-                                                        </div>
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="~/images/netbank_icon.png" alt="netbanking" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="netbanking" id="netbanking">
-                                                            <label class="payment-label is-maestro" for="netbanking">Netbanking </label>@*<span>(Zero Convenience Fees)</span>*@
-                                                        </div>
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="~/images/wallet_icon.png" alt="wallet" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="wallet" id="payment-wallet">
-                                                            <label class="payment-label is-maestro" for="payment-wallet">Wallet</label>
-                                                        </div>
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="~/images/payment_icon.png" alt="emi" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="emi" id="payment-emi">
-                                                            <label class="payment-label is-maestro" for="payment-emi">Debit & Credit Card EMI</label>
-                                                        </div>
-
-                                                        <!--<div class="payment">
-                                                            <div class="payment-image"><img src="~/images/paylater_icon.png" alt="paylater" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="paylater" id="payment-paylater">
-                                                            <label class="payment-label is-maestro" for="payment-paylater">Pay Later</label>
-                                                        </div>
-
-                                                        <div class="payment">
-                                                            <div class="payment-image"><img src="~/images/cardeless_icon.png" alt="cardless_emi" width="30"></div>
-                                                            <input class="payment-card" type="radio" name="payment" value="cardless_emi" id="payment-cardless_emi">
-                                                            <label class="payment-label is-maestro" for="payment-cardless_emi">Cardless EMI</label>
-                                                        </div>-->
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="payDiv">
                                                     <div class="payDivLeft">
                                                         <p class="term_para">By selecting Pay Now, you agree that you have accepted the above-mentioned policies and have gone through our <a style="color:#ff0b00" href="/terms-condition" target="_blank">Terms & Conditions</a>, <a style="color:#ff0b00" href="/user-agreement" target="_blank">User-Agrement</a> and <a style="color:#ff0b00" href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
                                                     </div>
                                                     <div class="PayDivRight">
-                                                        <div class="paymentAmt">
+                                                        <div class="paymentAmt" style="display:none;">
                                                             <p>Total, inclusive of all taxes <span> ₹<b id="totA"></b></span></p>
 
 
@@ -976,6 +981,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1095,7 +1101,7 @@
                                             </div>
                                         </div>
                                         <div class="couponCon">
-                                            <h4>Enter Promo Code <i class="fa-solid fa-angles-down"></i></h4>
+                                            <h4>Enter Promo Code <i class="fa fa-chevron-down"></i><img src="~/images/discount.svg"/></h4>
                                             <div class="couponapplyCon">
                                                 <span class="applycoupon">
                                                     @Html.TextBoxFor(o => o.CouponCode, new { @placeholder = "Enter Coupon Code" })
@@ -1265,7 +1271,7 @@
                                             @if (Model.CancellaionPolicyAmt > 0)
                                             {
                                                 <div class="Fare100" style="display:none;" id="CancellaionAmtMob">
-                                                    <span class="textLeft">Extended Cancellation Policy Fee</span>
+                                                    @*<span class="textLeft">Extended Cancellation Policy Fee</span>*@
                                                     <span class="textRight">
                                                         ₹<font id="CancellationMob">@(((Model.CancellaionPolicyAmt)).ToString("0,0", new System.Globalization.CultureInfo("HI-in"))) </font>
                                                     </span>
@@ -1302,7 +1308,7 @@
                                         <div class="TotalAmountmob">
                                             <span class="AmttextLeft">
                                                 Grand Total:
-                                                <dfn>(Excluding convenience fee)</dfn>
+                                                @*<dfn>(Excluding convenience fee)</dfn>*@
                                             </span>
                                             <span class="AmttextRight">
                                                 ₹<span id="totalAmountMob1">
@@ -2395,7 +2401,6 @@
                         checkoutLead();
                         PassengerInfoFB();
                         $('#ResultProgressPopupSave').hide();
-
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -2558,7 +2563,8 @@
                         }
                         else
                         {
-                            $('.AddonsStep1').show();
+                            //$('.AddonsStep1').show();
+                            $('.AddonsStep1').hide();
                             $('.AddonsStep2').show();
                         }
                         Contactstep.classList.add("success");

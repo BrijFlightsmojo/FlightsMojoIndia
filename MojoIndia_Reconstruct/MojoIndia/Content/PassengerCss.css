@@ -153,7 +153,7 @@
 .payment_type p{ color:#000; font-size:14px; font-weight:bold; margin:10px 0;text-align:center;}
 .payment_type h1{ font-size:25px; color:#000; margin-top:10px;text-align:center;display:inline-block; font-weight:bold;}
 .ssl_payment{color:#02c710; font-size:12px; margin:10px 0 0px 0;text-align:center;display:inline-block; width:100%;}
-.paymenttype_bottom{ width:100%; margin:0 auto; text-align:center; float:left; margin-top:20px;}
+.paymenttype_bottom{ width:100%; margin:0 auto; text-align:center; float:left;}
 .paymenttype_bottom ul {list-style-type: none;margin:0;padding:0;}
 .paymenttype_bottom ul li{ width:100%; border:1px solid #ddd; float:left;}
 .paymenttype_bottom ul li a{ background:#fff; font-size:12px; color:#000; font-weight:bold; text-align:left; float:left;padding:6px;cursor:pointer;width:100%;}
@@ -163,23 +163,48 @@
 .payment_iconDiv h6{ color:#000; font-size:14px; font-weight:bold; padding:10px 0 0px 0;text-align:center;}
 .payment_iconDiv img{ width:60%; margin-top:6px;}
 .paynow_Btn{width: 100%;display: inline-block;background: #e83819;font-size: 16px;color: #fff;padding:8px;border: 0;font-weight: bold;}
-.payment-button{background: linear-gradient(to right,#e83819,#f3850b); width:100%; float:left;padding:10px 6px; font-size:18px; color:#fff; border-radius:8px; font-weight:bold; border:0; cursor:pointer;}
+.payment-button{background: linear-gradient(to right,#e83819,#f3850b); width:60%; display:inline-block;padding:10px 6px; font-size:18px; color:#fff; border-radius:8px; font-weight:bold; border:0; cursor:pointer;}
 /*------------new payment page css start here----------------*/
 
 
-.payment-card {-webkit-appearance: none;-moz-appearance: none;appearance: none;position: absolute;top: 50%;right: 40px;-webkit-transform: translateY(-50%);transform: translateY(-50%);-webkit-transition: all .2s ease-in;transition: all .2s ease-in;opacity: 0;outline: none;z-index: 2;}
+/*.payment-card {-webkit-appearance: none;-moz-appearance: none;appearance: none;position: absolute;top: 50%;right: 40px;-webkit-transform: translateY(-50%);transform: translateY(-50%);-webkit-transition: all .2s ease-in;transition: all .2s ease-in;opacity: 0;outline: none;z-index: 2;}
 
 input[type=checkbox]:focus, input[type=file]:focus, input[type=radio]:focus {outline: 0px auto -webkit-focus-ring-color;outline: none;outline-offset:0px;}
 .payment-card:checked:after {width: 20px;border:0px;}
-.payment-card:checked+.payment-label { background: #eee;border-radius: 10px;border:1px solid #2dca1c;}
-.payment-label:hover {background: #eee;border-radius: 10px;}
+.payment-card:checked+.payment-label { background: #eee;border-radius:0px;border:1px solid #2dca1c;}
+.payment-label:hover {background: #eee;border-radius: 0px;}
 .payment-card:checked {right: 20px;opacity: 1;}
 input[type=checkbox], input[type=radio] {box-sizing: border-box;padding: 0;}
-.payment-label> span{ font-size:11px;  padding-left:10px;color: #ff5722}
-.payment {height: 55px;position: relative;width:45%;border: 1px solid #ccc;float: left;margin: 6px;border-radius: 10px;margin-left: 20px;}
-.payment-image {position: absolute;top: 50%;left:15px;-webkit-transform: translateY(-50%);transform: translateY(-50%);width:25px;z-index: 2;}
-.payment-label { cursor: pointer;display: -webkit-box;display: flex;font-size:12px;font-weight: 700;-webkit-box-align: center;align-items: center;letter-spacing: 1px;padding: 0 0 0 60px;position: absolute;top: 0;right: 0;bottom: 0;left: 0;
-    text-transform: uppercase;margin-bottom: 0;}
+.payment-label> span{ font-size:11px;  padding-left:10px;color: #ff5722}*/
+/*.payment {height:60px;position: relative;width:96%;border: 1px solid #ccc;float: left;margin:0px;border-radius: 10px;margin-left: 20px;}*/
+/*.payment-image {position: absolute;top: 50%;left:200px;-webkit-transform: translateY(-50%);transform: translateY(-50%);width:40%;z-index: 2;}*/
+/*.cardpay{width:90%;}*/
+/*.upi_img{width:35px;}*/
+/*.payment-label { cursor: pointer;display: -webkit-box;display: flex;font-size:14px;font-weight: 700;-webkit-box-align: center;align-items: center;letter-spacing: 1px;padding: 0 0 0 5px;position: absolute;top: 0;right: 0;bottom: 0;left: 0;
+    text-transform: uppercase;margin-bottom: 0;}*/
+.paymentRow{width: 100%;display: inline-block;text-align: left;position:relative;}
+.paymentRow dfn{position: absolute;top: 34px;left: 64px;font-size: 12px;font-style: normal;}
+.paymentNDiv{border:1px solid #ccc; padding:10px;width:100%; display:inline-block;}
+.paymentNDiv h3{ font-size:20px; font-weight:bold;color:#808080;text-align:left; padding:10px 0;}
+.Paymentgroup {display: block;position: relative;padding: 8px 6px 20px 41px;margin-bottom: 12px;cursor: pointer;font-size:18px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;border-bottom: 1px solid #ccc;
+    line-height: 31px;}
+.Paymentgroup em{font-size: 11px;
+    font-style: normal;
+    margin-left: 12px;
+    background: #089e04;
+    color: #fff;
+    font-weight: normal;
+    padding: 2px 8px;
+    border-radius: 15px;}
+.payupi{text-align: right;float: right;width:12%;vertical-align: middle;margin-right: 20px;}
+.paycard{text-align: right;float: right;width:15%;vertical-align: middle;margin-right: 20px;}
+.paywallet_small{text-align: left;float: left;display: inline-block;width:25px;margin-top: 5px; margin-right:8px;}
+.paynet_small{text-align: left;float: left;display: inline-block;width:19px;margin-top:3px; margin-right:8px;}
+.paywallet{text-align: right;float: right;width:14%;vertical-align: middle;margin-right: 20px;}
+.payemi{text-align: right;float: right;width:40px;vertical-align: middle;margin-right: 20px;}
+.payupi_small{text-align: left;float: left;display: inline-block;width:20px;margin-top: 5px; margin-right:8px;}
+.paycard_small{text-align: left;float: left;display: inline-block;width:25px;margin-top: 5px; margin-right:8px;}
+.paynetbanking{text-align: right;float: right;width:17%;vertical-align: middle;margin-right: 20px;}
 .width100{width:100%; float:left; margin:0; padding:0;}
 .width50{width:49%; float:left;  padding:0;}
 .width50> label{ width:100%;}
@@ -212,10 +237,10 @@ a.close:hover {color: #222;	-webkit-transition: color 1s ease;-moz-transition: c
 .Good_Know ul li a.toggle:hover {background: rgba(0, 0, 0, 0.9);}
 .term_para{ width:100%; float:left; margin:10px 0; font-size:12px;}
 .payment_Detail{display: block;width: 100%;float: left;background: #fff;border-radius: 15px;margin-bottom: 15px;padding: 10px;border: #ccc solid 1px;box-shadow: 0 4px 10px rgba(0,0,0,.12);}
-.paymentDiv_Left{ width:40%; float:left;}
-.payment_Note{width:100%; float:left; margin-top:20px; padding-top:15px;}
-.payment_Note p{ font-size:11px;}
-.paymentDiv_Right{ width:58%;float:left; margin-left:20px;border-left: 1px dotted #ddd;}
+.paymentDiv_Left{ width:100%; float:left;}
+/*.payment_Note{width:100%; float:left; margin-top:20px; padding-top:15px;}
+.payment_Note p{ font-size:11px;}*/
+.paymentDiv_Right{ width:100%;float: left;padding: 10px;background: #fff;}
 
 
 .align-items-center {align-items: center;}
@@ -252,11 +277,12 @@ position: absolute;left:12px;top:6px;}
 .proceed_Paybtn{color: #fff;font-size:16px;font-weight: 600;padding:10px 30px;border-radius:4px;border: none;background: #ef6614;text-decoration: none;text-align: center;cursor: pointer;display: inline-block;}
 .payDiv{width:100%; float:left; border-top:1px solid #ccc;padding:0px;margin-top: 20px;}
 .payDivLeft{ width:100%; float:left; text-align:left;}
+.payDivLeft p{color:#000;}
 .PayDivRight{ width:100%; float:right; text-align:center;}
-.paymentAmt{width:60%; float:left;text-align:center;}
-.paymentAmt p{ color:#808080; font-size:12px;}
+.paymentAmt{width:100%; float:left;text-align:center;margin-bottom: 10px;}
+.paymentAmt p{ color:#000; font-size:12px;}
 .paymentAmt p span{ font-size:20px; color:#000; font-weight:bold;}
-.PaynowDiv{width:38%; float:left;}
+.PaynowDiv{width:100%;text-align: center;display: inline-block;}
 .mobile_paymentPrice{width:100%; float:left;display:none; }
 .TotalAmount{width:100%; float:left;padding:20px 10px; border:1px solid #ccc; border-radius:8px;}
 .textLeft{ font-size:14px; text-align:left; color:#333;width:49%; float:left; font-weight:600;}
@@ -414,10 +440,12 @@ margin-bottom: 20px;}
 .gst_top{padding:10px 0;}
 .passenger_Dtailsone{border:0;box-shadow:none; padding:0px;}
 .paymenttype_bottom{ border:0px;}
-.payment{height:45px; margin-bottom:6px;border-radius:8px;width: 98%; margin-left:3px;}
-.payment-card:checked+.payment-label {background: #eee;border-radius:8px;}
-.payment-label{ font-size:12px;}
-.payment-image{ width:30px;}
+/*.payment{height:60px; margin-bottom:0px;border-radius:0px;width: 98%; margin-left:3px;}
+.payment-card:checked+.payment-label {background: #eee;border-radius:0px;}
+.payment-label{ font-size:13px;}*/
+
+/*.payment-image {top: 50%;left:190px;}
+.cardpay {width:100%;}*/
 .payment_Page_main{position:relative;top:-60px;z-index: 9; }
 #PopupX{ display: block!important;position: fixed;right: 20px;top: 23px;font-size: 20px;}
 .width20{width:19%;padding:0px;height:38px;}
@@ -425,12 +453,13 @@ margin-bottom: 20px;}
 .gst_bottom{border-radius:0px;}
 .passengerFlightD{ padding:0px;}
 /*.payment-button{position: fixed;left: 0;bottom: 0;z-index: 99;}*/
-.payment-label> span{padding-left: 10px;font-size: 11px;}
+/*.payment-label> span{padding-left: 10px;font-size: 11px;}*/
 .progess_Step span{left: 0px;}
 .passenger_step:before{left: 15px;z-index:-1;}
 .paymentDiv_Right{width: 100%;margin-left: 0px; border:0px;}
 .paymentDiv_Left,.payDivLeft,.PayDivRight,.paymentAmt,.PaynowDiv{width:100%;}
-.payment-button{ margin-top:15px;}
+.payment-button{ margin-top:15px;width:100%;}
+.paymentAmt{display:none;}
 .ProgrssDiv{padding-left: 0px;}
 .mobile_paymentPrice{display:block; position: relative;}
 .progess_Step{margin-bottom: 15px; font-size:16px; font-weight:bold;}
@@ -462,6 +491,22 @@ margin-bottom: 20px;}
     font-weight: bold;}
 .mobile h3 img{ padding-right:5px;}
 .mobile_iteneray{display:block;}
+.paycard{width:40%;}
+.paynetbanking{width:40%;}
+.paywallet{width:38%;}
+.payupi{width:30%;}
+.Paymentgroup em{margin-left: 0px;font-size: 10px;}
+.Paymentgroup{padding-left: 30px;font-size: 14px;}
+.poular_RoutesN> ul li{width: 95%;}
+.airline-logo{width: 12%;}
+.airport{padding-right: 7px;width: 25%;padding-left:7px;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+.aeroplane{width: 10%;margin-right: 5px;}
+.return{width: 25%;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+
 }
 
 
@@ -483,6 +528,12 @@ margin-bottom: 20px;}
 
 @media (min-width: 992px) and (max-width: 1280px){
 .pay_pax_birth{width:34%;}
-.paymentDiv_Right{margin-left: 10px;}
+
 .payment{margin-left: 10px;}
+.payupi{width: 15%!import;margin-right:10px!import;}
+.paycard{width: 18%!import;margin-right:10px!import;}
+.paynetbanking{width:20%!import;margin-right:10px!import;}
+.paywallet{width:18%!import;margin-right:10px!import;}
+.paymentRow dfn{left: 53px;font-size: 11px;}
+
 }

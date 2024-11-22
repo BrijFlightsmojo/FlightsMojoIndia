@@ -13,6 +13,7 @@ namespace Core.ContentPage
         public string tripType { get; set; }
         public string cabinClass { get; set; }
         public string totalFare { get; set; }
+        public string redirectURL { get; set; }
     }
     public class WebsiteCustomDeal
     {
@@ -27,5 +28,18 @@ namespace Core.ContentPage
         public string cabinClass { get; set; }
         public string totalFare { get; set; }
         public string deepLink { get; set; }
+    }
+
+    public class WebsiteFareDealInt
+    {
+        public Airport origin { get; set; }
+        public Airport destination { get; set; }
+        public DateTime depDate { get; set; }
+        public DateTime retDate { get; set; }
+        public Airline airline { get; set; }
+        public string tripType { get; set; }
+        public string cabinClass { get; set; }
+        public string totalFare { get; set; }
+        public string redirectURL { get; set; }
     }
 }

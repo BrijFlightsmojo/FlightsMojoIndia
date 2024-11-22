@@ -276,65 +276,11 @@ namespace Core.Flight
         public int subProvider { get; set; }
         #region Satkar
         [DataMember]
-        public decimal cgstax { get; set; }
-        [DataMember]
-        public decimal igstax { get; set; }
-        [DataMember]
-        public decimal sgstax { get; set; }
-        [DataMember]
-        public decimal flat { get; set; }
-        [DataMember]
-        public decimal yQTax { get; set; }
-        [DataMember]
-        public decimal additionalTxnFeeOfrd { get; set; }
-        [DataMember]
-        public decimal additionalTxnFeePub { get; set; }
-        [DataMember]
+       
         public decimal pGCharge { get; set; }
         [DataMember]
-        public decimal artGST { get; set; }
-        [DataMember]
-        public decimal artGSTOnMFee { get; set; }
-        [DataMember]
-        public decimal artTDS { get; set; }
-        [DataMember]
+      
         public decimal pLBEarned { get; set; }
-        [DataMember]
-        public decimal incentiveEarned { get; set; }
-        [DataMember]
-        public decimal artIncentive { get; set; }
-        [DataMember]
-        public decimal totalBaggageCharges { get; set; }
-        [DataMember]
-        public decimal totalMealCharges { get; set; }
-        [DataMember]
-        public decimal totalSeatCharges { get; set; }
-        [DataMember]
-        public decimal totalSpecialServiceCharges { get; set; }
-        [DataMember]
-        public decimal transactionFee { get; set; }
-        [DataMember]
-        public decimal managementFee { get; set; }
-        [DataMember]
-        public decimal cGSTax { get; set; }
-        [DataMember]
-        public decimal sGSTax { get; set; }
-        [DataMember]
-        public decimal iGSTax { get; set; }
-        [DataMember]
-        public decimal feeSurcharges { get; set; }
-        [DataMember]
-        public decimal instantDiscontOnFare { get; set; }
-        [DataMember]
-        public decimal publishedFareSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal taxSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal baseFareSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal instantDiscountSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal yqSoldInSwapping { get; set; }
         [DataMember]
         public bool isFareSwapped { get; set; }
         [DataMember]

@@ -105,20 +105,20 @@
                                             <td colspan="6" style="padding:10px ;">
                                                 <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #ccc; padding:10px;">
                                                     <tr>
-                                                        <td colspan="6"><p style="border-bottom:1px solid #ccc;  padding:0; font-size:16px; font-weight:bold; margin:0;">PASSENGER NAME</p></td>
+                                                        <td colspan="6"><p style="border-bottom:1px solid #ccc;  padding:4px 0px; font-size:14px; font-weight:bold; margin:0;">PASSENGER NAME</p></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>NAME</b></td>
+                                                        <td><b style="font-size:13px;  margin:0;">NAME</b></td>
                                                         @if (!string.IsNullOrEmpty(Model.passengerDetails.FirstOrDefault().ticketNo))
                                                         {
-                                                            <td><b>TICKET NO.</b></td>
+                                                            <td><b style="font-size:13px;  margin:0;">TICKET NO.</b></td>
                                                         }
-                                                        <td><b>Status</b></td>
+                                                        <td><b style="font-size:13px;  margin:0;">Status</b></td>
                                                     </tr>
                                                     @foreach (var pax in Model.passengerDetails)
                                                     {
                                                         <tr>
-                                                            <td><b>@(pax.title + " " + pax.firstName + " " + pax.lastName)</b></td>
+                                                            <td><b style="  font-size:12px;  margin:0;">@(pax.title + " " + pax.firstName + " " + pax.lastName)</b></td>
                                                             @if (!string.IsNullOrEmpty(pax.ticketNo))
                                                             {
                                                                 <td>@pax.ticketNo</td>
@@ -126,7 +126,7 @@
                                                             <td style="padding-bottom:5px">
                                                                 @if (Model.bookingStatus == BookingStatus.Ticketed)
                                                                 {
-                                                                    <span style="color:#fff; Background:#18A160; padding:5px 10px; border-radius:15px;">@((BookingStatus)Model.bookingStatus)</span>
+                                                                    <span style="color:#fff; Background:#18A160; padding:5px 10px; border-radius:15px; font-size:12px;line-height:25px;">@((BookingStatus)Model.bookingStatus)</span>
                                                                 }
                                                                 else if (Model.bookingStatus == BookingStatus.Confirmed)
                                                                 {<span style="color:#fff; Background:#18A160; padding:5px 10px; border-radius:15px;">@((BookingStatus)Model.bookingStatus)</span> }
@@ -158,19 +158,26 @@
                                                     <td colspan="6" style="padding:10px ;">
                                                         <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #ccc; padding:10px;">
                                                             <tr>
-                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:left;"><span style="font-size:15px; font-weight:bold; margin:0; ">@(seg.DepTime.ToString("ddd, dd MMM yyyy"))</span></td>
-                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:center;"><span style="font-size:15px; font-weight:bold; margin:0;">@(AirportFrom1.cityName) - @(AirportTo1.cityName)</span></td>
-                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:right;"><span style="font-size:15px; font-weight:bold; margin:0;">@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</span></td>
+                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:left;"><span style="font-size:13px; font-weight:bold; margin:0; ">@(seg.DepTime.ToString("ddd, dd MMM yyyy"))</span></td>
+                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:center;"><span style="font-size:13px; font-weight:bold; margin:0;">@(AirportFrom1.cityName) - @(AirportTo1.cityName)</span></td>
+                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:right;"><span style="font-size:13px; font-weight:bold; margin:0;">@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</span></td>
+                                                                <td colspan="2" style="border-bottom:1px solid #ccc;text-align:right;">&nbsp;</td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2"><b>AIRLINE</b></td>
-                                                                <td><b>DEPARTURE</b></td>
-                                                                <td><b>ARRIVAL</b></td>
-                                                                <td><b>DURATION</b></td>
-                                                                <td><b>PNR</b></td>
-@if (Model.bookingStatus == BookingStatus.Ticketed|| Model.bookingStatus == BookingStatus.Confirmed)
-{
-                                                                <td><b>Baggage/Cabin Baggage</b></td>}
+                                                                <td colspan="2"><b style="font-size:13px; font-weight:bold;line-height:25px;"> Airline</b></td>
+                                                                <td><b style="font-size:13px; font-weight:bold;line-height:25px;">Departure</b></td>
+                                                                <td><b style="font-size:13px; font-weight:bold;line-height:25px;">Arrival</b></td>
+                                                                <td><b style="font-size:13px; font-weight:bold;line-height:25px;">Duration</b></td>
+                                                                <td><b style="font-size:13px; font-weight:bold;line-height:25px;">Pnr</b></td>
+                                                                @if (Model.travelType != Core.TravelType.International)
+                                                                {
+                                                                    if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
+                                                                    {
+                                                                        <td><b style="font-size:13px; font-weight:bold;line-height:25px;">Baggage/Cabin Baggage</b></td>
+                                                                    }
+                                                                }
+
+
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
@@ -178,42 +185,48 @@
                                                                     <p style="margin:0;padding:0;font-size:12px;">@(airline.name + "-" + airline.code + "-" + seg.FlightNumber)</p>
                                                                 </td>
                                                                 <td>
-                                                                    <b>@AirportFrom1.cityName @(seg.DepTime.ToString("hh:mm tt"))</b>
+                                                                    <b style="font-size:12px;">@AirportFrom1.cityName @(seg.DepTime.ToString("hh:mm tt"))</b>
                                                                     @if (!string.IsNullOrEmpty(seg.FromTerminal))
                                                                     {
                                                                         <p style="margin:0;padding:0;font-size:12px;">Terminal:@seg.FromTerminal</p>
                                                                     }
                                                                 </td>
                                                                 <td>
-                                                                    <b>@AirportTo1.cityName @(seg.ArrTime.ToString("hh:mm tt"))</b>
+                                                                    <b style="font-size:12px;">@AirportTo1.cityName @(seg.ArrTime.ToString("hh:mm tt"))</b>
                                                                     @if (!string.IsNullOrEmpty(seg.ToTerminal))
                                                                     {
                                                                         <p style="margin:0;padding:0;font-size:12px;">Terminal:@seg.ToTerminal</p>
                                                                     }
                                                                 </td>
                                                                 <td>
-                                                                    <span>@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</span>
+                                                                    <span style="font-size:12px;">@(seg.Duration > 0 ? ((seg.Duration / 60) + "hr " + (seg.Duration % 60) + "min") : "Non Stop")</span>
                                                                 </td>
                                                                 @if (fs.SegName.Equals("Depart", StringComparison.OrdinalIgnoreCase))
                                                                 {
                                                                     if (!string.IsNullOrEmpty(Model.PNR))
                                                                     {
-                                                                        <td>@Model.PNR</td>
+                                                                        <td style="font-size:12px;">@Model.PNR</td>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <td>Pending</td>
+                                                                        <td style="font-size:12px;">Pending</td>
                                                                     }
                                                                 }
                                                                 else
                                                                 {
                                                                     <td>@(string.IsNullOrEmpty(Model.ReturnPNR) ? "Pending" : (Model.ReturnPNR))</td>
                                                                 }
-@if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
-{
-                                                                <td>
-                                                                    <span>15KG / 7KG</span>
-                                                                </td>}
+                                                                @if (Model.travelType != Core.TravelType.International)
+                                                                {
+                                                                    if (Model.bookingStatus == BookingStatus.Ticketed || Model.bookingStatus == BookingStatus.Confirmed)
+                                                                    {
+                                                                        {
+                                                                            <td>
+                                                                                <span style="font-size:12px;">15KG / 7KG</span>
+                                                                            </td>
+                                                                        }
+                                                                    }
+                                                                }
                                                             </tr>
 
                                                             @if (seg.layOverTime > 0)
@@ -233,40 +246,40 @@
                                         <th colspan="6" style="padding:10px ;">
                                             <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #ccc; padding:10px;">
                                                 <tr>
-                                                    <th colspan="2"><b>BaseFare</b></th>
-                                                    <th><b>Taxes</b></th>
-                                                    <th><b>Convenience Fee</b></th>
+                                                    <th colspan="2" style="text-align:center; font-size:13px;"><b>BaseFare</b></th>
+                                                    <th style="text-align:center; font-size:13px;"><b>Taxes</b></th>
+                                                    <th style="text-align:center; font-size:13px;"><b>Convenience Fee</b></th>
 
                                                     @if (Model.CancellaionPolicyAmt > 0)
                                                     {
-                                                        <th>CancellaionPolicyAmt</th>
+                                                        <th style="text-align:center; font-size:13px;">CancellaionPolicyAmt</th>
                                                     }
                                                     @if (Model.RefundPolicyAmt > 0)
                                                     {
-                                                        <th>RefundPolicyAmt</th>
+                                                        <th style="text-align:center; font-size:13px;">RefundPolicyAmt</th>
                                                     }
-                                                    <th><b>Total</b></th>
+                                                    <th style="text-align:center; font-size:13px;"><b>Total</b></th>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="2">
-                                                        <p style="margin:0;padding:0;font-size:12px;">@((Model.sumFare.BaseFare).ToString("f2"))</p>
+                                                    <td colspan="2" style="text-align:center; font-size:12px; padding-top:6px;">
+                                                        <p style="margin:0;padding:0;font-size:12px;padding-top:6px;">@((Model.sumFare.BaseFare).ToString("f2"))</p>
                                                     </td>
-                                                    <td>
-                                                        <p style="margin:0;padding:0;font-size:12px;">@(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount) - Model.sumFare.CommissionEarned).ToString("f2"))</p>
+                                                    <td style="text-align:center; font-size:12px;padding-top:6px;">
+                                                        <p style="margin:0;padding:0;font-size:12px;padding-top:6px;">@(((Model.sumFare.Tax + Model.sumFare.Markup + Model.fareIncreaseAmount) - Model.sumFare.CommissionEarned).ToString("f2"))</p>
                                                     </td>
-                                                    <td>
+                                                    <td style="text-align:center; font-size:12px;padding-top:6px;">
                                                         <p style="margin:0;padding:0;font-size:12px;">@(Model.conveniencefee)</p>
                                                     </td>
 
                                                     @if (Model.CancellaionPolicyAmt > 0)
                                                     {
-                                                        <td>@Model.CancellaionPolicyAmt</td>
+                                                        <td style="text-align:center; font-size:12px;padding-top:6px;">@Model.CancellaionPolicyAmt</td>
                                                     }
                                                     @if (Model.RefundPolicyAmt > 0)
                                                     {
-                                                        <td>@Model.RefundPolicyAmt</td>
+                                                        <td style="text-align:center; font-size:12px;padding-top:6px;">@Model.RefundPolicyAmt</td>
                                                     }
-                                                    <td>
+                                                    <td style="text-align:center; font-size:12px;padding-top:6px;">
                                                         <p style="margin:0;padding:0;font-size:12px;">@(((Model.sumFare.grandTotal + Model.fareIncreaseAmount + Model.conveniencefee + Model.CancellaionPolicyAmt + Model.RefundPolicyAmt)).ToString("f2"))</p>
                                                     </td>
 
@@ -382,7 +395,8 @@
                                         </td>
                                     </tr>
                                     @*@if (Model.FareTypeList.Contains(FareType.INSTANTPUR) || Model.FareTypeList.Contains(FareType.INST_SERIESPUR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITHOUT_PNR) || Model.FareTypeList.Contains(FareType.OFFER_FARE_WITH_PNR) || Model.FareTypeList.Contains(FareType.OFFER_RETURN_FARE_WITHOUT_PNR))*@
-                                    @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithPNR)
+                                    @if (Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || Model.flightResult.FirstOrDefault().Fare.mojoFareType == MojoFareType.SeriesFareWithPNR
+                                        || Model.flightResult[0].Fare.mojoFareType == Core.MojoFareType.Unknown || Model.flightResult[0].Fare.FareType == Core.FareType.NONE || Model.flightResult[0].Fare.refundType == Core.RefundType.NonRefundable)
                                     {
                                         <tr>
                                             <td colspan="6" style="padding:10px ;">

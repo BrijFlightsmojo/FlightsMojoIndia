@@ -23,14 +23,15 @@
 
 <main>
     <style>
-        @@media screen and ( max-width:767px) {
-            .bannerhead {
-                position: absolute;
-                top: 8px;
-                right: 0px;
-                text-align: left;
-            }
-        }
+@@media screen and ( max-width:767px) {
+.bannerhead {position: absolute;top: 8px;right: 0px;text-align: left;}
+.poular_RoutesN> ul li{width: 95%!important;}
+.airline-logo{width:12%;}
+.airport{padding-right: 7px;width: 25%;padding-left:7px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.aeroplane{width: 10%;margin-right: 5px;}
+.return{width: 25%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+}
 .banner_section{margin-top:-4px;}
         .showBtnfaq {
             display: block;
@@ -49,6 +50,8 @@
             padding: 6px 10px;
             border: 1px solid #ccc;
         }
+.poular_RoutesN> ul li {width: 48%;border: #133F65 solid 2px;border-radius: 32px;float: left;margin: 10px;transition: transform .4s;overflow: hidden; cursor: pointer;}
+.poular_RoutesN> ul li:hover{ms-transform: scale(1.04); -webkit-transform: scale(1.04);transform: scale(1.04);}
     </style>
 
     <section class="banner_section" style="background:#6dc0e5;    position: relative;">
@@ -78,7 +81,7 @@
     <section class="populal_main">
         <div class="container">
             <h2>@Model.DealHeading</h2>
-            <div class="row">
+            <div class="row poular_RoutesN">
                 <ul id="ulDealDetails"></ul>
                 <input type="hidden" id="hfdealType" value="5" />
                 <input type="hidden" id="hforigin" value="@Model.CityCode" />
@@ -134,7 +137,7 @@
         }
 
         .content_con p {
-            font-size: 14px;
+            font-size: 12px;
             color: #000;
             font-family: 'Poppins', sans-serif;
             text-align: justify;
@@ -149,7 +152,7 @@
 
             .CitypageLink li {
                 float: left;
-                margin: 20px 0;
+                margin:0;
                 color: #000;
                 font-size: 14px;
             }
