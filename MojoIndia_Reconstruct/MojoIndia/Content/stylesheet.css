@@ -354,7 +354,7 @@ height: 1.2rem;position: absolute;top: 66%;width: 2.4rem;}
 .passen_icon{background: url(/images/user_red.svg) no-repeat;width:23px;height:23px;position: absolute;left: 5px;top:19px;border: 1px solid #ccc;border-radius: 50%;}
 .passenger-div {text-align: center;  display: none; border-radius:20px;position: absolute;height: auto!important;  width:400px;top: 69px; margin-left: 0;   z-index: 9;box-shadow: 2px 2px 2px #49494a;border:1px solid #ccc; background-color: #fff;left:0; }
 .search_div{width:100%; float:left; margin: 10px 0;text-align:center;}
-.search_div button{ background:#ef6614;padding: 8px 0; color: #fff; border-radius:4px; font-size:20px; width:90%; font-weight: bold; border:0;}
+.search_div button{ background:#ef4223;padding: 8px 0; color: #fff; border-radius:4px; font-size:20px; width:90%; font-weight: bold; border:0;}
 .search_div a{color: #fff;}
 .search_div a:hover{color: #fff;text-decoration: none;}
 .done-btn,.done-btnmob,.btn_class,.done-btn_classmob{background:linear-gradient(to right,#e83819,#f3850b); color:#fff; font-size:16px;border:0; padding:8px 20px; border-radius: 20px;}
@@ -1090,12 +1090,12 @@ input[type="text"].tripinput::-webkit-input-placeholder {color: #fff; }
 .resul_deatil {width: 100%;float: left;padding: 15px;display: none;}
 .outbond {width: 100%;float: left;}
 .outbond_top {width: 100%;display: inline-block;background: #e1e1e1;border-radius: 20px;margin: 10px 0;}
-.outbond_topL {width: 40%;float: left;padding: 7px 15px;}
-.outbond_topL img {float: left;width:25px;padding:0px; vertical-align:bottom;}
-.outbond_topL h2 {font-size: 15px;color: #ff0600;font-weight: bold; width: 80%;float: left;padding: 0px 0px!important;
+.outbond_topL {width:20%;float: left;padding: 7px 15px;}
+.outbond_topL img {float: left;width:22px;padding:0px; vertical-align:bottom;}
+.outbond_topL h2 {font-size:13px;color: #ff0600;font-weight: bold;padding:2px 0px!important;
     margin: 0;}
-/*.outbond_topR {width: 60%;float: left;text-align: right;padding: 7px 15px;}
-.outbond_topR> span {font-size: 12px;color: #4c4c4c; font-weight:bold;}*/
+.outbond_topR {width:80%;float: left;text-align: right;padding: 7px 15px;}
+.outbond_topR> span {font-size: 12px;color: #4c4c4c; font-weight:bold;}
 
 .outbond_icon {width: 10%;float: left;padding: 0 15px;}
 .outbond_icon img {width:70%;}
@@ -1302,7 +1302,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .aeroplane {float: left;line-height: 52px;margin-right: 10px;}
 .return {border: none;padding: 0px 9px;}
 .return p span,.airport p span{font-weight: bold; font-size: 16px;}
-.price {float: right; background: #e83719;color: #fff;border-radius: 32px;text-align: center;font-size:18px;line-height:60px; padding:0 20px;}
+.price {float: right; background: #ef4223;color: #fff;border-radius: 32px;text-align: center;font-size:18px;line-height:60px; padding:0 20px;}
 .fare_quted{ width: 100%; float: left; margin:20px 0;}
 .fare_quted h6{font-size: 16px; color: #e83719;}
 .fare_quted p{ font-size: 13px; line-height: 20px; text-align: left;}
@@ -1538,7 +1538,7 @@ div.scrollmenu {background-color: #fff;overflow: auto;white-space: nowrap;color:
 .form_div{margin-bottom: 14px; position: relative; margin-bottom:10px;width:100%; display:inline-block;}
 .form_div> input{width: 100%;border: 0;border-bottom: 1px solid #ccc;padding-bottom: 0px;font-size: 16px;padding-left: 0;}
 .error_mesg{ color: red; border-bottom:0; font-size:12px;display:none;}
-.form_div i{position: absolute;color: #30caca;right: 0;top:22px;font-size: 20px;text-align:center;}
+.form_div i{position: absolute;color: #30caca;right: 0;top:32px;font-size: 20px;text-align:center;}
 .form_div> textarea{width: 100%;border: 0;border-bottom: 1px solid #ccc;padding-bottom: 0px;font-size: 16px;padding-left: 0;}
 .submitDiv{width:100%;display:inline-block; text-align:center; margin:4px;}
 .call_image{ width:100%; float:left; margin:0; padding:0 20px 30px 20px;}
@@ -1686,13 +1686,15 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 
 
 /*---------------other pages css---------------*/
-.search_bg {border-top: 1px solid #ccc;background-size: cover;margin: 0;padding-bottom: 10px;float: left;width: 100%;position: relative;top: 0;}
+.check_con{width:100%; float:left; margin:0 auto;border-top: 1px solid #ccc;border-bottom:6px solid #ef4223;}
+.check_con img{width:100%; height:600px;border:0;}
+.search_bg {border-top: 1px solid #ccc;margin: 0;padding-bottom: 10px;float: left;width: 100%;position: relative;top: 0;}
 .search_bg h1 {font-size:20px;margin: 30px 0 10px 0;color: #000;text-align: center;font-weight: 600;text-transform: uppercase;}
 .common_page_con{ width: 100%; float: left; padding: 0;}
 .common_content{ width: 100%;display: inline-block; padding: 15px;}
 .common_page_con> p {font-size:13px;color: #000;font-weight: 400;text-transform: none;line-height: 23px;text-align: justify;}
 .common_page_con ul{ padding-left: 30px; margin:0px;}
-.common_page_con ul li{ font-size:12px;}
+.common_page_con ul li{ font-size:13px;}
 .common_page_con h2{font-size:13px;color: #000;margin: 0px;padding:6px 0px;display: inline-block;width: 100%; font-weight:bold;}
 .common_page_con h1{font-size:25px;font-weight: bold; margin: 15px 0 8px 0;}
 .common_page_con h3{font-size:20px;font-weight: bold;}
@@ -1729,12 +1731,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .About_topcon{background:#49494a; padding:20px;width:100%;display:inline-block;}
 .about_topcon_left{ width:49%; float:left;}
 .about_topcon_left h1{font-size:20px;color: #000;line-height:34px;font-weight: bold;padding-right: 70px;}
-.aboutleft_head> p{color:#e83819!important;font-size:14px; font-weight:bold!important; margin-top:10px;}
+.aboutleft_head> p{color:#e83819!important;font-size:14px!important; font-weight:bold!important; margin-top:10px;}
+.aboutleft_head> p img{width:14px;vertical-align:middle;}
 .aboutleft_content{width: 100%;float: left;padding: 10px; margin-bottom:15px;}
 .aboutleft_content> p{ font-size:13px; color:#000;line-height:40px;}
 .about_leftit{ width:100%; background:#fff;padding:30px;display:inline-block;border-radius:15px;margin-bottom:15px;}
 .about_topcon_right{width:45%; display:inline-block; margin-left:60px;float:left;}
-
+.video_mob{display:none;}
+.video_destop{display:block;}
 .about_topcon video{border:2px solid #fff;border-radius:15px;}
 .about_topcon img{width:100%;height:280px;border-radius:15px;border:1px solid #fff;}
 .about_botcon{width:100%;display:inline-block;background:#fff; border-radius:15px;}
@@ -1745,19 +1749,20 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .About_topbot{width:100%; float:left; margin-top:30px; margin-bottom: 30px;padding-top:20px;border-radius:15px;}
 .About_mission{width:48%; float:left;padding: 15px 30px 15px 50px;border: 1px solid #ccc;border-radius: 15px; margin-right:30px;}
 .About_mission h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
+.About_mission h2 img{width:14px;vertical-align:top;}
 .About_mission h3{font-size:20px;font-weight: bold;line-height:34px;}
 .About_mission p{font-size:14px;text-align:left; margin-top:10px;color:#666;}
 .about_welCon{width:100%; float:left;margin-top:30px;}
 .about_welCon h2{font-size:20px; color:#000; padding:6px 0;}
 .about_welCon h3{font-size:20px; color:#000; padding:6px 0; margin-top:30px;}
 .About_Vision{width:49%; float:left;padding: 15px 30px 15px 40px;border: 1px solid #ccc;border-radius: 15px;}
-.About_Vision h2{color:#e83819!important;font-size:14px;text-align:left; margin-bottom:10px; font-weight:bold;}
+.About_Vision h2{color:#e83819!important;font-size:13px;text-align:left; margin-bottom:10px; font-weight:bold;}
 .About_Vision h3{font-size:20px;font-weight: bold;line-height:34px;}
 .About_Vision p{font-size:13px;text-align:left; margin-top:10px;color:#000;}
-
+.About_Vision h2 img{width:14px;vertical-align:top;}
 
 .popularRouts_Con{width:100%; display:inline-block; padding:10px;}
-.popularRouts_Con h1{font-size: 20px;font-weight: bold;color: #000;padding: 10px 0 0 15px;text-align:left;}
+.popularRouts_Con> h2{font-size: 20px;font-weight: bold;color: #ef4223;padding: 10px 0 10px 15px;text-align:left;}
 .domestic_routes{display: flex;margin-right: -20px; margin-top: 15px;}
 .routes_main{background: #fff;overflow: hidden;padding: 15px;position: relative;border-radius: 5px;box-shadow: 2px 0 6px rgba(0, 0, 0, .3);transition: all .5s;cursor: pointer;border: 1px solid #ddd;}
 .carousel-main ul{display: flex;
@@ -1856,7 +1861,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .quick_linck ul {list-style-type: none;padding: 0;margin: 0;}
 .quick_linck ul li a {font-size: 13px;color: #000;line-height: 25px;}
 .quick_linck ul li a i {padding-right: 5px;}
-.populal_main h2 {font-size:20px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
+.populal_main> h2 {font-size:20px;text-align: center;width: 100%;margin: 20px 0;display: inline-block;color: #e83819;font-weight: bold;}
 .content_con {width: 100%;float: left;margin-top: 20px;padding: 15px;border: 1px solid #ccc;margin-bottom: 20px;}
 .content_con> h2{font-size:16px;font-weight: bold;margin-bottom: 3px;margin-top: 8px;}
 .content_con h4 {color: #fff;width: 100%;background: #e83719;margin: 0;padding: 6px;display: inline-block;font-size: 20px;margin-bottom: 15px;text-transform: uppercase;}
@@ -1886,16 +1891,44 @@ input:checked + .slider:before { -webkit-transform: translateX(26px);-ms-transfo
 .paymenttymob{ display:none;}
 .flight_footer{ width:100%; float:left; text-align:center; padding:0px;}
 
-.SelectAirline{width: 60%;margin: 0 auto;}
-.SelectAirline> h1{ font-size:24px; color:#000; text-align:center;}
-.SelectAirline ul{ list-style-type:none; margin:0; padding:0;}
-.SelectAirline ul li{ display:flex; flex-direction:row; border:1px solid #ccc; padding:20px; margin-bottom:15px;border-radius:6px;justify-content:space-between;}
-.SelectAirline ul li span img{width:40px;}
-.SelectAirline ul li a{background: #ff0b00;padding:10px;text-align: center;border-radius: 4px;cursor: pointer;font-size: 14px;color: #fff;}
-.SelectAirline ul li h3{font-size: 18px;color: #333;padding-top: 10px;}
+.SelectAirline{width:70%;float:left;}
+.SelectAirline> h1{ font-size:30px; color:#000; text-align:center;margin: 30px 0 15px 0;}
+.SelectAirline ul{ list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;}
+.SelectAirline ul li{ display: inline-block;flex-direction: column;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;border-radius: 6px;width: 31%;text-align: center;float: left;margin-right: 11px;height:180px;}
+.SelectAirline ul li span img{width:70px;}
+.SelectAirline ul li a{background: #ef4223;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 10px;
+    width: 50%;
+    display: inline-block;}
+.SelectAirline ul li h3{font-size: 15px;color: #333;padding-top: 10px;padding-bottom: 10px;display: inline-block;width: 100%;}
 .discaimer_Con{ width:100%;display:inline-block; padding:20px 10px;border:1px solid #ccc;margin:40px 0;}
+.chekin_right{width: 30%;float: left;padding-top:80px;}
+.bording_con{width: 100%;display: inline-block;text-align: center;}
+/*.bording_con> ul{list-style-type: none;margin: 0;padding: 0;width: 100%;display: flex;flex-direction: row;justify-content: space-between;}
+.bording_con> ul li{ width: 100%;}*/
+.bording_con> button:nth-child(3n+1){border-radius: 20px;background: #49494a;color: #fff;font-size: 14px;padding: 10px;width:49%;display: inline-block;border:0; font-weight:bold;}
+.bording_con> button:nth-child(3n+2){border-radius: 20px;background: #49494a;color: #fff;font-size: 14px;padding: 10px;width:49%;display: inline-block;border:0;font-weight:bold;}
+.bording_con> button:nth-child(3n+3){border-radius: 20px;background: #49494a;color: #fff;font-size: 14px;padding: 10px;width:49%;display: inline-block;margin-top:15px;display:inline-block;width:100%;border:0;font-weight:bold;}
+.bording_con> button:hover{background:#ef4223;}
+.bording_con> button.active{background:#ef4223;}
+.bording_content1:not(:first-child) {display: none;}
 
-
+.bording_content1{padding:0 10px;text-align:center;width: 100%;border-radius: 20px;}
+.bording_content1> p{color:#fff; line-height:25px; font-size:13px;text-align:center;}
+.bording_content1> img{width:35%;padding:10px;}
+.gate_font{color:#fff; font-weight:bold; font-size:80px;}
+.gate_font2{color:#fff; font-weight:bold; font-size:40px;}
+.contentSection{padding:20px;margin-top:10px;text-align:center;width: 100%;background: #49494a;border-radius: 20px;height:382px;}
 /*--------------404pages css---------------------*/
 .detnation404_con{width:100%; float:left; margin:0 auto; padding:0; background:url(/images/404page.jpg)no-repeat; background-size:cover;}
 .content404_con{width:100%; float:left;margin:0 auto; text-align:center; padding:200px;}

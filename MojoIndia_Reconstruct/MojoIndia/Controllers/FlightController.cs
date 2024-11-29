@@ -7588,7 +7588,6 @@ namespace MojoIndia.Controllers
                                 responseStatus.message = "Invalid Coupon!!";
                             }
                         }
-
                         objResponse.responseStatus = responseStatus;
                     }
 
@@ -7608,7 +7607,6 @@ namespace MojoIndia.Controllers
                         }
                         airContext.flightBookingRequest.CouponAmount = objResponse.CouponAmount;
                         airContext.flightBookingRequest.CouponCode = CouponCode;
-
                     }
                 }
                 else

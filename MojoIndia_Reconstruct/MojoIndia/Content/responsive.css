@@ -196,8 +196,8 @@
 .airclass_popup {display: none;border-radius: 0px;position: fixed;height: 100vh!important;width: 100%;top: 0px;left: 0px;margin-left: 0;z-index: 9;background-color: #fff;}
 .done-btn, .done-btnmob, .btn_class, .done-btn_classmob {background: linear-gradient(to right,#e83819,#f3850b);color: #fff;font-size: 18px;border: 0;padding: 8px 40px;border-radius:4px;}
 .outbond_topR > span{ font-size:12px;}
-.outbond_topL{width:100%!important;}
-.outbond_topR{width:100%; padding:0 4px;text-align:center;}
+.outbond_topL{width:20%!important;}
+.outbond_topR{width:80%; padding:0 4px;text-align:center;}
 .scrollMob{flex-flow: wrap; min-height: calc(110vh - 258px);height: calc(110vh - 258px);overflow-y: scroll;    width: 50vw;}
 .borderRight{border-right:1px solid #ccc;}
 .fare_book button {font-size: 18px;font-weight: bold;color: #fff;border-radius: 6px;text-decoration: none;display: inline-block;cursor: pointer;border: 0px;padding: 14px 0;background: transparent;}
@@ -466,11 +466,11 @@ nav .menu {width: 100%;}
 .Flight_Info> ul li span{ width:100%; font-weight:bold;text-align: center;}
 .pricerange_mobile{ display:block;}
 .pricerane_destop{ display:none;}
-.SelectAirline{width: 90%;}
+.SelectAirline{width:100%;padding: 10px;}
 .destopnone{ display:none;}
 .ailines_detail{width: 20%;line-height:12px;}
 .line_img img{display: none;}
-
+.SelectAirline ul li{ margin-right:0px;width:50%;height:auto;}
 .ailines_detail p{font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .flight_round_mob {width: 100%;float: left;margin-top: 10px;}
 .result_book{display:none;}
@@ -478,7 +478,8 @@ nav .menu {width: 100%;}
 .mob_oneway_price{width:25%; float:left;text-align: right;padding-top:15px;}
 .mob_oneway_price h5{ font-size:16px; font-weight:bold; color:#000;}
 .mob_line{width:25%; float:left; padding-top:10px;}
-
+.check_con img{height:auto;}
+.chekin_right{width:100%; padding:10px;}
 .mob_timeStop{width: 100%;float: left;padding-left: 22px;font-size: 12px;color: #666; padding-top:4px;}
 .layover_time{font-size: 12px;color: #666;padding-right: 5px;}
 .stop{ padding-left:4px;}
@@ -518,12 +519,12 @@ nav .menu {width: 100%;}
 .couponcard_title{font-size: 1.4rem;line-height:15px;}
 .couponcard_code{left: calc(30% - 4.5px);}
 .couponcard_subtitle{line-height: 15px;}
-.about_topcon_left{width:100%;margin-top: 10px;padding: 10px;}
+.about_topcon_left{width:100%;margin-top: 10px;padding:0px;}
 .about_topcon_left h1{font-size: 20px;line-height: 30px;padding-right: 0px;}
 .about_topcon_right{width: 100%;margin-left: 0px; margin-top:10px;}
-.About_mission{width: 100%;padding-left: 0px;padding-right: 0px;}
+.About_mission{width: 100%;padding-left: 0px;padding-right: 0px;border:0px;}
 .About_mission h3{font-size:20px;}
-
+.About_topcon{padding: 10px;}
 .poular_RoutesN> ul li{width: 95%;}
 .airline-logo{width: 12%;}
 .airport{padding-right: 7px;width: 25%;padding-left:7px;white-space: nowrap;
@@ -532,6 +533,8 @@ nav .menu {width: 100%;}
 .aeroplane{width: 10%;margin-right: 5px;}
 .return{width: 25%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .about_topcon video{width:100%;}
+.video_mob{display:block;}
+.video_destop{display:none;}
 }
 @media only screen 
   and (min-device-width: 768px) 
